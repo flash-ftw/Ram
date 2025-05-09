@@ -585,10 +585,22 @@ export async function registerRoutes(app: Express): Promise<Server> {
         .replace(/[^a-z0-9]+/g, '-')
         .replace(/(^-|-$)/g, '');
       
+      // Process the data to ensure correct types
       const productData = {
         name,
         slug,
-        ...rest
+        price: parseFloat(rest.price),
+        categoryId: parseInt(rest.categoryId),
+        brandId: parseInt(rest.brandId),
+        featured: rest.featured === 'true',
+        inStock: rest.inStock === 'true',
+        quantity: parseInt(rest.quantity),
+        // Maintain the correct type for other fields
+        description: rest.description,
+        features: rest.features,
+        mainImage: rest.mainImage,
+        galleryImages: rest.galleryImages ? JSON.parse(rest.galleryImages) : [],
+        originalPrice: rest.originalPrice ? parseFloat(rest.originalPrice) : undefined
       };
       
       const validatedData = insertProductSchema.parse(productData);
