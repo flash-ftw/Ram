@@ -13,7 +13,7 @@ export const fileUploadMiddleware = fileUpload({
 });
 
 // Valid image extensions
-const validExtensions = ['.jpg', '.jpeg', '.png', '.gif', '.webp'];
+const validExtensions = ['.jpg', '.jpeg', '.png', '.gif', '.webp', '.svg'];
 
 // Generate a unique filename
 export function generateUniqueFilename(originalFilename: string): string {
