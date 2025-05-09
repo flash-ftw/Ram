@@ -3,7 +3,8 @@ import { useParams } from "wouter";
 import { useQuery } from "@tanstack/react-query";
 import { apiRequest } from "@/lib/queryClient";
 import AdminLayout from "@/components/admin/AdminLayout";
-import ProductForm, { ProductFormValues } from "@/components/admin/ProductForm";
+import ProductForm from "@/components/admin/ProductForm";
+import type { ProductFormValues } from "@/components/admin/ProductForm";
 import { Product } from "@shared/schema";
 
 export default function ProductEdit() {
