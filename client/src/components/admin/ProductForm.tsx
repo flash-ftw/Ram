@@ -16,7 +16,7 @@ import { ArrowLeft, Save } from "lucide-react";
 import { Product } from "@shared/schema";
 
 // Create a schema for product validation
-export const productSchema = z.object({
+const productSchema = z.object({
   name: z.string().min(3, { message: "Name must be at least 3 characters" }),
   description: z.string().min(10, { message: "Description must be at least 10 characters" }),
   price: z.coerce.number().min(0.01, { message: "Price must be greater than 0" }),
@@ -26,12 +26,13 @@ export const productSchema = z.object({
   brandId: z.coerce.number({ required_error: "Brand is required" }),
   featured: z.boolean().default(false),
   mainImage: z.string().url({ message: "Main image must be a valid URL" }),
-  galleryImages: z.array(z.string().url({ message: "Gallery image must be a valid URL" })).optional(),
+  galleryImages: z.array(z.string().url({ message: "Gallery image must be a valid URL" })).default([]),
   inStock: z.boolean().default(true),
   quantity: z.coerce.number().int().min(0, { message: "Quantity must be a non-negative integer" }),
 });
 
 export type ProductFormValues = z.infer<typeof productSchema>;
+export { productSchema };
 
 interface ProductFormProps {
   productId?: number;
@@ -47,11 +48,23 @@ const ProductForm = ({ productId, defaultValues, isEdit = false }: ProductFormPr
   const [galleryImageUrl, setGalleryImageUrl] = useState("");
 
   // Get categories and brands for dropdown options
-  const { data: categories = [] } = useQuery({
+  interface Category {
+    id: number;
+    name: string;
+    slug: string;
+  }
+  
+  interface Brand {
+    id: number;
+    name: string;
+    slug: string;
+  }
+
+  const { data: categories = [] } = useQuery<Category[]>({
     queryKey: ['/api/categories'],
   });
 
-  const { data: brands = [] } = useQuery({
+  const { data: brands = [] } = useQuery<Brand[]>({
     queryKey: ['/api/brands'],
   });
 

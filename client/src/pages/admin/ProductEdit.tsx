@@ -24,15 +24,15 @@ export default function ProductEdit() {
         name: product.name,
         description: product.description,
         price: product.price,
-        originalPrice: product.originalPrice || null,
+        originalPrice: product.originalPrice ?? null,
         features: product.features,
-        categoryId: product.categoryId,
-        brandId: product.brandId,
-        featured: product.featured,
+        categoryId: product.categoryId || 0,
+        brandId: product.brandId || 0,
+        featured: product.featured || false,
         mainImage: product.mainImage,
         galleryImages: product.galleryImages || [],
-        inStock: product.inStock,
-        quantity: product.quantity,
+        inStock: product.inStock || true,
+        quantity: product.quantity || 0,
       });
     }
   }, [product]);
