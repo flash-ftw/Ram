@@ -148,6 +148,19 @@ export function serveUploadedFiles(app: any) {
   app.use('/uploads', (req: Request, res: Response, next: NextFunction) => {
     const filePath = path.join(process.cwd(), 'public', req.url);
     if (fs.existsSync(filePath)) {
+      // Set the appropriate content type based on file extension
+      const fileExt = path.extname(filePath).toLowerCase();
+      if (fileExt === '.svg') {
+        res.setHeader('Content-Type', 'image/svg+xml');
+      } else if (fileExt === '.jpg' || fileExt === '.jpeg') {
+        res.setHeader('Content-Type', 'image/jpeg');
+      } else if (fileExt === '.png') {
+        res.setHeader('Content-Type', 'image/png');
+      } else if (fileExt === '.gif') {
+        res.setHeader('Content-Type', 'image/gif');
+      } else if (fileExt === '.webp') {
+        res.setHeader('Content-Type', 'image/webp');
+      }
       return res.sendFile(filePath);
     }
     next();
