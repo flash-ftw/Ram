@@ -10,6 +10,13 @@ import {
   insertUserSchema 
 } from "@shared/schema";
 import bcrypt from "bcryptjs";
+import { 
+  fileUploadMiddleware, 
+  uploadProductImage, 
+  uploadBrandLogo, 
+  uploadProductGalleryImages, 
+  serveUploadedFiles 
+} from "./utils/upload";
 
 // Authentication middleware
 const isAuthenticated = (req: Request, res: Response, next: NextFunction) => {
@@ -28,6 +35,8 @@ const isAdmin = (req: Request, res: Response, next: NextFunction) => {
 };
 
 export async function registerRoutes(app: Express): Promise<Server> {
+  // Set up the static file serving for uploaded files
+  serveUploadedFiles(app);
   // Authentication routes
   app.post("/api/auth/login", async (req, res) => {
     try {
@@ -341,7 +350,7 @@ export async function registerRoutes(app: Express): Promise<Server> {
   });
 
   // Brands API - Admin endpoints
-  app.post("/api/admin/brands", isAuthenticated, isAdmin, async (req, res) => {
+  app.post("/api/admin/brands", isAuthenticated, isAdmin, fileUploadMiddleware, uploadBrandLogo, async (req, res) => {
     try {
       // Validate the name field exists before generating slug
       if (!req.body.name) {
@@ -376,7 +385,7 @@ export async function registerRoutes(app: Express): Promise<Server> {
     }
   });
 
-  app.put("/api/admin/brands/:id", isAuthenticated, isAdmin, async (req, res) => {
+  app.put("/api/admin/brands/:id", isAuthenticated, isAdmin, fileUploadMiddleware, uploadBrandLogo, async (req, res) => {
     try {
       const id = parseInt(req.params.id);
       if (isNaN(id)) {
@@ -411,7 +420,7 @@ export async function registerRoutes(app: Express): Promise<Server> {
   });
 
   // Add PATCH endpoint for brands (for partial updates)
-  app.patch("/api/admin/brands/:id", isAuthenticated, isAdmin, async (req, res) => {
+  app.patch("/api/admin/brands/:id", isAuthenticated, isAdmin, fileUploadMiddleware, uploadBrandLogo, async (req, res) => {
     try {
       const id = parseInt(req.params.id);
       if (isNaN(id)) {
@@ -559,7 +568,7 @@ export async function registerRoutes(app: Express): Promise<Server> {
     }
   });
 
-  app.post("/api/admin/products", isAuthenticated, isAdmin, async (req, res) => {
+  app.post("/api/admin/products", isAuthenticated, isAdmin, fileUploadMiddleware, uploadProductImage, uploadProductGalleryImages, async (req, res) => {
     try {
       // Validate the name field exists before generating slug
       if (!req.body.name) {
@@ -594,7 +603,7 @@ export async function registerRoutes(app: Express): Promise<Server> {
     }
   });
 
-  app.put("/api/admin/products/:id", isAuthenticated, isAdmin, async (req, res) => {
+  app.put("/api/admin/products/:id", isAuthenticated, isAdmin, fileUploadMiddleware, uploadProductImage, uploadProductGalleryImages, async (req, res) => {
     try {
       const id = parseInt(req.params.id);
       if (isNaN(id)) {
@@ -629,7 +638,7 @@ export async function registerRoutes(app: Express): Promise<Server> {
   });
 
   // Add PATCH endpoint for products (for partial updates)
-  app.patch("/api/admin/products/:id", isAuthenticated, isAdmin, async (req, res) => {
+  app.patch("/api/admin/products/:id", isAuthenticated, isAdmin, fileUploadMiddleware, uploadProductImage, uploadProductGalleryImages, async (req, res) => {
     try {
       const id = parseInt(req.params.id);
       if (isNaN(id)) {
