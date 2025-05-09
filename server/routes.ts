@@ -632,6 +632,27 @@ export async function registerRoutes(app: Express): Promise<Server> {
         productData.slug = slug;
       }
       
+      // Convert form field types
+      if (productData.price) productData.price = parseFloat(productData.price);
+      if (productData.originalPrice) productData.originalPrice = parseFloat(productData.originalPrice);
+      if (productData.categoryId) productData.categoryId = parseInt(productData.categoryId);
+      if (productData.brandId) productData.brandId = parseInt(productData.brandId);
+      if (productData.quantity) productData.quantity = parseInt(productData.quantity);
+      if (productData.featured !== undefined) productData.featured = productData.featured === 'true';
+      if (productData.inStock !== undefined) productData.inStock = productData.inStock === 'true';
+      if (productData.galleryImages) {
+        try {
+          productData.galleryImages = typeof productData.galleryImages === 'string' 
+            ? JSON.parse(productData.galleryImages)
+            : productData.galleryImages;
+        } catch (e) {
+          // If not JSON, ensure it's an array
+          productData.galleryImages = Array.isArray(productData.galleryImages) 
+            ? productData.galleryImages 
+            : [productData.galleryImages];
+        }
+      }
+      
       const validatedData = insertProductSchema.partial().parse(productData);
       const product = await storage.updateProduct(id, validatedData);
       
@@ -665,6 +686,27 @@ export async function registerRoutes(app: Express): Promise<Server> {
           .replace(/[^a-z0-9]+/g, '-')
           .replace(/(^-|-$)/g, '');
         productData.slug = slug;
+      }
+      
+      // Convert form field types
+      if (productData.price) productData.price = parseFloat(productData.price);
+      if (productData.originalPrice) productData.originalPrice = parseFloat(productData.originalPrice);
+      if (productData.categoryId) productData.categoryId = parseInt(productData.categoryId);
+      if (productData.brandId) productData.brandId = parseInt(productData.brandId);
+      if (productData.quantity) productData.quantity = parseInt(productData.quantity);
+      if (productData.featured !== undefined) productData.featured = productData.featured === 'true';
+      if (productData.inStock !== undefined) productData.inStock = productData.inStock === 'true';
+      if (productData.galleryImages) {
+        try {
+          productData.galleryImages = typeof productData.galleryImages === 'string' 
+            ? JSON.parse(productData.galleryImages)
+            : productData.galleryImages;
+        } catch (e) {
+          // If not JSON, ensure it's an array
+          productData.galleryImages = Array.isArray(productData.galleryImages) 
+            ? productData.galleryImages 
+            : [productData.galleryImages];
+        }
       }
       
       const validatedData = insertProductSchema.partial().parse(productData);

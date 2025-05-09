@@ -37,7 +37,7 @@ export async function uploadProductImage(req: Request, res: Response, next: Next
     if (!validExtensions.includes(fileExt)) {
       return res.status(400).json({ 
         message: 'Invalid file type', 
-        error: 'Only image files are allowed (jpg, jpeg, png, gif, webp)'
+        error: 'Only image files are allowed (jpg, jpeg, png, gif, webp, svg)'
       });
     }
 
@@ -69,7 +69,7 @@ export async function uploadBrandLogo(req: Request, res: Response, next: NextFun
     if (!validExtensions.includes(fileExt)) {
       return res.status(400).json({ 
         message: 'Invalid file type', 
-        error: 'Only image files are allowed (jpg, jpeg, png, gif, webp)'
+        error: 'Only image files are allowed (jpg, jpeg, png, gif, webp, svg)'
       });
     }
 
@@ -107,7 +107,7 @@ export async function uploadProductGalleryImages(req: Request, res: Response, ne
       if (!validExtensions.includes(fileExt)) {
         return res.status(400).json({ 
           message: 'Invalid file type in gallery', 
-          error: 'Only image files are allowed (jpg, jpeg, png, gif, webp)'
+          error: 'Only image files are allowed (jpg, jpeg, png, gif, webp, svg)'
         });
       }
 
