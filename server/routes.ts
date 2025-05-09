@@ -62,11 +62,13 @@ export async function registerRoutes(app: Express): Promise<Server> {
     }
   });
   
-  app.post("/api/auth/logout", (req, res) => {
+  app.get("/api/auth/logout", (req, res) => {
     req.session.destroy((err) => {
       if (err) {
         return res.status(500).json({ message: "Failed to logout" });
       }
+      res.clearCookie('connect.sid');
+      res.setHeader('Content-Type', 'application/json');
       res.json({ message: "Logged out successfully" });
     });
   });
@@ -125,6 +127,36 @@ export async function registerRoutes(app: Express): Promise<Server> {
       res.json(category);
     } catch (error) {
       console.error("Error fetching category:", error);
+      res.status(500).json({ message: "Failed to fetch category" });
+    }
+  });
+  
+  // Categories API - Admin specific GET endpoints
+  app.get("/api/admin/categories", isAuthenticated, isAdmin, async (req, res) => {
+    try {
+      const categories = await storage.getAllCategories();
+      res.json(categories);
+    } catch (error) {
+      console.error("Error fetching categories:", error);
+      res.status(500).json({ message: "Failed to fetch categories" });
+    }
+  });
+  
+  app.get("/api/admin/categories/:id", isAuthenticated, isAdmin, async (req, res) => {
+    try {
+      const id = parseInt(req.params.id);
+      if (isNaN(id)) {
+        return res.status(400).json({ message: "Invalid category ID" });
+      }
+      
+      const category = await storage.getCategoryById(id);
+      if (!category) {
+        return res.status(404).json({ message: "Category not found" });
+      }
+      
+      res.json(category);
+    } catch (error) {
+      console.error("Error fetching category by ID:", error);
       res.status(500).json({ message: "Failed to fetch category" });
     }
   });
@@ -238,6 +270,36 @@ export async function registerRoutes(app: Express): Promise<Server> {
       res.json(brand);
     } catch (error) {
       console.error("Error fetching brand:", error);
+      res.status(500).json({ message: "Failed to fetch brand" });
+    }
+  });
+  
+  // Brands API - Admin specific GET endpoints
+  app.get("/api/admin/brands", isAuthenticated, isAdmin, async (req, res) => {
+    try {
+      const brands = await storage.getAllBrands();
+      res.json(brands);
+    } catch (error) {
+      console.error("Error fetching brands:", error);
+      res.status(500).json({ message: "Failed to fetch brands" });
+    }
+  });
+  
+  app.get("/api/admin/brands/:id", isAuthenticated, isAdmin, async (req, res) => {
+    try {
+      const id = parseInt(req.params.id);
+      if (isNaN(id)) {
+        return res.status(400).json({ message: "Invalid brand ID" });
+      }
+      
+      const brand = await storage.getBrandById(id);
+      if (!brand) {
+        return res.status(404).json({ message: "Brand not found" });
+      }
+      
+      res.json(brand);
+    } catch (error) {
+      console.error("Error fetching brand by ID:", error);
       res.status(500).json({ message: "Failed to fetch brand" });
     }
   });
