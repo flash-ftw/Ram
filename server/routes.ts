@@ -35,7 +35,7 @@ const isAdmin = (req: Request, res: Response, next: NextFunction) => {
 };
 
 export async function registerRoutes(app: Express): Promise<Server> {
-  // Set up the static file serving for uploaded files
+  // Set up the static file serving for uploaded files - this must come before other routes
   serveUploadedFiles(app);
   // Authentication routes
   app.post("/api/auth/login", async (req, res) => {

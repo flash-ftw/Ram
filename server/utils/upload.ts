@@ -1,4 +1,4 @@
-import { Request, Response, NextFunction } from 'express';
+import express, { Request, Response, NextFunction } from 'express';
 import fileUpload from 'express-fileupload';
 import path from 'path';
 import fs from 'fs';
@@ -145,24 +145,24 @@ export async function uploadProductGalleryImages(req: Request, res: Response, ne
 
 // Utility to serve static files
 export function serveUploadedFiles(app: any) {
-  app.use('/uploads', (req: Request, res: Response, next: NextFunction) => {
-    const filePath = path.join(process.cwd(), 'public', req.url);
-    if (fs.existsSync(filePath)) {
-      // Set the appropriate content type based on file extension
-      const fileExt = path.extname(filePath).toLowerCase();
-      if (fileExt === '.svg') {
-        res.setHeader('Content-Type', 'image/svg+xml');
-      } else if (fileExt === '.jpg' || fileExt === '.jpeg') {
-        res.setHeader('Content-Type', 'image/jpeg');
-      } else if (fileExt === '.png') {
-        res.setHeader('Content-Type', 'image/png');
-      } else if (fileExt === '.gif') {
-        res.setHeader('Content-Type', 'image/gif');
-      } else if (fileExt === '.webp') {
-        res.setHeader('Content-Type', 'image/webp');
+  // Create a mapping of file extensions to MIME types
+  const mimeTypes: Record<string, string> = {
+    '.svg': 'image/svg+xml',
+    '.jpg': 'image/jpeg',
+    '.jpeg': 'image/jpeg',
+    '.png': 'image/png',
+    '.gif': 'image/gif',
+    '.webp': 'image/webp'
+  };
+  
+  // Use Express static middleware with proper MIME type configuration
+  app.use('/uploads', express.static(path.join(process.cwd(), 'public', 'uploads'), {
+    setHeaders: (res: Response, filePath: string) => {
+      const ext = path.extname(filePath).toLowerCase();
+      // Check if the extension exists in our mime types
+      if (Object.prototype.hasOwnProperty.call(mimeTypes, ext)) {
+        res.setHeader('Content-Type', mimeTypes[ext]);
       }
-      return res.sendFile(filePath);
     }
-    next();
-  });
+  }));
 }
