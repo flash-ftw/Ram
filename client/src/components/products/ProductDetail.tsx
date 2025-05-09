@@ -14,6 +14,7 @@ import { Button } from "@/components/ui/button";
 import { Badge } from "@/components/ui/badge";
 import { useProduct } from "@/hooks/useProduct";
 import { useCategories } from "@/hooks/useCategories";
+import { getImageUrl } from "@/lib/utils";
 
 const ProductDetail = () => {
   const { slug } = useParams();

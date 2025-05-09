@@ -4,6 +4,7 @@ import { Badge } from "@/components/ui/badge";
 import { Button } from "@/components/ui/button";
 import { Card, CardContent } from "@/components/ui/card";
 import { Product } from "@shared/schema";
+import { getImageUrl } from "@/lib/utils";
 
 interface ProductCardProps {
   product: Product;
@@ -15,7 +16,7 @@ const ProductCard = ({ product }: ProductCardProps) => {
       <Link href={`/product/${product.slug}`}>
         <div className="relative w-full h-64">
           <img 
-            src={product.mainImage} 
+            src={getImageUrl(product.mainImage)} 
             alt={product.name} 
             className="w-full h-full object-cover"
           />
