@@ -410,6 +410,42 @@ export async function registerRoutes(app: Express): Promise<Server> {
     }
   });
 
+  // Add PATCH endpoint for brands (for partial updates)
+  app.patch("/api/admin/brands/:id", isAuthenticated, isAdmin, async (req, res) => {
+    try {
+      const id = parseInt(req.params.id);
+      if (isNaN(id)) {
+        return res.status(400).json({ message: "Invalid brand ID" });
+      }
+      
+      // Generate a slug if name is being updated
+      let brandData = { ...req.body };
+      if (req.body.name) {
+        const slug = req.body.name
+          .toLowerCase()
+          .replace(/[^a-z0-9]+/g, '-')
+          .replace(/(^-|-$)/g, '');
+        brandData.slug = slug;
+      }
+      
+      const validatedData = insertBrandSchema.partial().parse(brandData);
+      const brand = await storage.updateBrand(id, validatedData);
+      
+      if (!brand) {
+        return res.status(404).json({ message: "Brand not found" });
+      }
+      
+      res.setHeader('Content-Type', 'application/json');
+      res.json(brand);
+    } catch (error) {
+      if (error instanceof z.ZodError) {
+        return res.status(400).json({ message: "Invalid brand data", errors: error.errors });
+      }
+      console.error("Error updating brand:", error);
+      res.status(500).json({ message: "Failed to update brand" });
+    }
+  });
+
   app.delete("/api/admin/brands/:id", isAuthenticated, isAdmin, async (req, res) => {
     try {
       const id = parseInt(req.params.id);
@@ -582,6 +618,42 @@ export async function registerRoutes(app: Express): Promise<Server> {
         return res.status(404).json({ message: "Product not found" });
       }
       
+      res.json(product);
+    } catch (error) {
+      if (error instanceof z.ZodError) {
+        return res.status(400).json({ message: "Invalid product data", errors: error.errors });
+      }
+      console.error("Error updating product:", error);
+      res.status(500).json({ message: "Failed to update product" });
+    }
+  });
+
+  // Add PATCH endpoint for products (for partial updates)
+  app.patch("/api/admin/products/:id", isAuthenticated, isAdmin, async (req, res) => {
+    try {
+      const id = parseInt(req.params.id);
+      if (isNaN(id)) {
+        return res.status(400).json({ message: "Invalid product ID" });
+      }
+      
+      // Generate a slug if name is being updated
+      let productData = { ...req.body };
+      if (req.body.name) {
+        const slug = req.body.name
+          .toLowerCase()
+          .replace(/[^a-z0-9]+/g, '-')
+          .replace(/(^-|-$)/g, '');
+        productData.slug = slug;
+      }
+      
+      const validatedData = insertProductSchema.partial().parse(productData);
+      const product = await storage.updateProduct(id, validatedData);
+      
+      if (!product) {
+        return res.status(404).json({ message: "Product not found" });
+      }
+      
+      res.setHeader('Content-Type', 'application/json');
       res.json(product);
     } catch (error) {
       if (error instanceof z.ZodError) {
