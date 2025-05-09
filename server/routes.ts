@@ -132,7 +132,20 @@ export async function registerRoutes(app: Express): Promise<Server> {
   // Categories API - Admin endpoints
   app.post("/api/admin/categories", isAuthenticated, isAdmin, async (req, res) => {
     try {
-      const validatedData = insertCategorySchema.parse(req.body);
+      // Generate a slug from the name
+      const { name, ...rest } = req.body;
+      const slug = name
+        .toLowerCase()
+        .replace(/[^a-z0-9]+/g, '-')
+        .replace(/(^-|-$)/g, '');
+      
+      const categoryData = {
+        name,
+        slug,
+        ...rest
+      };
+      
+      const validatedData = insertCategorySchema.parse(categoryData);
       const category = await storage.createCategory(validatedData);
       res.status(201).json(category);
     } catch (error) {
@@ -151,7 +164,17 @@ export async function registerRoutes(app: Express): Promise<Server> {
         return res.status(400).json({ message: "Invalid category ID" });
       }
       
-      const validatedData = insertCategorySchema.partial().parse(req.body);
+      // Generate a slug if name is being updated
+      let categoryData = { ...req.body };
+      if (req.body.name) {
+        const slug = req.body.name
+          .toLowerCase()
+          .replace(/[^a-z0-9]+/g, '-')
+          .replace(/(^-|-$)/g, '');
+        categoryData.slug = slug;
+      }
+      
+      const validatedData = insertCategorySchema.partial().parse(categoryData);
       const category = await storage.updateCategory(id, validatedData);
       
       if (!category) {
@@ -214,7 +237,20 @@ export async function registerRoutes(app: Express): Promise<Server> {
   // Brands API - Admin endpoints
   app.post("/api/admin/brands", isAuthenticated, isAdmin, async (req, res) => {
     try {
-      const validatedData = insertBrandSchema.parse(req.body);
+      // Generate a slug from the name
+      const { name, ...rest } = req.body;
+      const slug = name
+        .toLowerCase()
+        .replace(/[^a-z0-9]+/g, '-')
+        .replace(/(^-|-$)/g, '');
+      
+      const brandData = {
+        name,
+        slug,
+        ...rest
+      };
+      
+      const validatedData = insertBrandSchema.parse(brandData);
       const brand = await storage.createBrand(validatedData);
       res.status(201).json(brand);
     } catch (error) {
@@ -233,7 +269,17 @@ export async function registerRoutes(app: Express): Promise<Server> {
         return res.status(400).json({ message: "Invalid brand ID" });
       }
       
-      const validatedData = insertBrandSchema.partial().parse(req.body);
+      // Generate a slug if name is being updated
+      let brandData = { ...req.body };
+      if (req.body.name) {
+        const slug = req.body.name
+          .toLowerCase()
+          .replace(/[^a-z0-9]+/g, '-')
+          .replace(/(^-|-$)/g, '');
+        brandData.slug = slug;
+      }
+      
+      const validatedData = insertBrandSchema.partial().parse(brandData);
       const brand = await storage.updateBrand(id, validatedData);
       
       if (!brand) {
@@ -365,7 +411,20 @@ export async function registerRoutes(app: Express): Promise<Server> {
 
   app.post("/api/admin/products", isAuthenticated, isAdmin, async (req, res) => {
     try {
-      const validatedData = insertProductSchema.parse(req.body);
+      // Generate a slug from the name
+      const { name, ...rest } = req.body;
+      const slug = name
+        .toLowerCase()
+        .replace(/[^a-z0-9]+/g, '-')
+        .replace(/(^-|-$)/g, '');
+      
+      const productData = {
+        name,
+        slug,
+        ...rest
+      };
+      
+      const validatedData = insertProductSchema.parse(productData);
       const product = await storage.createProduct(validatedData);
       res.status(201).json(product);
     } catch (error) {
