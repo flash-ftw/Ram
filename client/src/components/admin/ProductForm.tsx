@@ -145,7 +145,7 @@ const ProductForm = ({ productId, defaultValues, isEdit = false }: ProductFormPr
             if (Array.isArray(dataValue) && dataValue.length > 0) {
               // If there are URLs that aren't data URIs (existing images), add them
               dataValue.forEach((img, index) => {
-                if (!img.startsWith('data:')) {
+                if (typeof img === 'string' && !img.startsWith('data:')) {
                   formData.append(`galleryImagesUrls[${index}]`, img);
                 }
               });

@@ -30,7 +30,7 @@ export async function uploadProductImage(req: Request, res: Response, next: Next
       return next();
     }
 
-    const file = req.files.image as fileUpload.UploadedFile;
+    const file = req.files.mainImage as fileUpload.UploadedFile;
     if (!file) return next();
 
     const fileExt = path.extname(file.name).toLowerCase();
