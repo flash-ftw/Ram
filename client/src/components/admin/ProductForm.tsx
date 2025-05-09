@@ -385,7 +385,7 @@ const ProductForm = ({ productId, defaultValues, isEdit = false }: ProductFormPr
                 name="price"
                 render={({ field }) => (
                   <FormItem>
-                    <FormLabel>Price ($)</FormLabel>
+                    <FormLabel>Price (TND)</FormLabel>
                     <FormControl>
                       <Input {...field} type="number" step="0.01" min="0" />
                     </FormControl>

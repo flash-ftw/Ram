@@ -14,7 +14,7 @@ import { Button } from "@/components/ui/button";
 import { Badge } from "@/components/ui/badge";
 import { useProduct } from "@/hooks/useProduct";
 import { useCategories } from "@/hooks/useCategories";
-import { getImageUrl } from "@/lib/utils";
+import { getImageUrl, formatPrice } from "@/lib/utils";
 
 const ProductDetail = () => {
   const { slug } = useParams();
@@ -184,11 +184,11 @@ const ProductDetail = () => {
               </div>
               
               <div className="mt-8 flex items-center">
-                <span className="text-3xl font-bold text-gray-900">${product.price.toFixed(2)}</span>
+                <span className="text-3xl font-bold text-gray-900">{formatPrice(product.price)}</span>
                 {product.originalPrice && (
                   <>
                     <span className="ml-3 text-lg text-gray-500 line-through">
-                      ${product.originalPrice.toFixed(2)}
+                      {formatPrice(product.originalPrice)}
                     </span>
                     <span className="ml-3 px-2 py-1 text-xs font-semibold text-white bg-green-500 rounded">
                       Save {Math.round((1 - product.price / product.originalPrice) * 100)}%
