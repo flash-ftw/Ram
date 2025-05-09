@@ -1,10 +1,43 @@
 import express, { type Request, Response, NextFunction } from "express";
+import session from "express-session";
 import { registerRoutes } from "./routes";
 import { setupVite, serveStatic, log } from "./vite";
+import { pool } from "./db";
+import connectPgSimple from "connect-pg-simple";
+import { storage } from "./storage";
+
+// Declare session extend for TypeScript
+declare module "express-session" {
+  interface SessionData {
+    user: {
+      id: number;
+      username: string;
+      isAdmin: boolean;
+    };
+  }
+}
 
 const app = express();
 app.use(express.json());
 app.use(express.urlencoded({ extended: false }));
+
+// Initialize session store with PostgreSQL
+const PostgreSqlStore = connectPgSimple(session);
+app.use(
+  session({
+    store: new PostgreSqlStore({
+      pool: pool,
+      createTableIfMissing: true,
+    }),
+    secret: process.env.SESSION_SECRET || "modernshowroom-secret",
+    resave: false,
+    saveUninitialized: false,
+    cookie: {
+      maxAge: 30 * 24 * 60 * 60 * 1000, // 30 days
+      secure: process.env.NODE_ENV === "production",
+    },
+  })
+);
 
 app.use((req, res, next) => {
   const start = Date.now();
@@ -37,6 +70,24 @@ app.use((req, res, next) => {
 });
 
 (async () => {
+  // Initialize admin user if this is the first run
+  try {
+    // Check if any admin users exist first
+    const adminUsers = await storage.getAllAdminUsers?.() || [];
+    
+    if (adminUsers.length === 0) {
+      // Create default admin user
+      await storage.createUser({
+        username: "admin",
+        password: "admin123", // In a real app, you'd hash this
+        isAdmin: true
+      });
+      console.log("Created default admin user: admin / admin123");
+    }
+  } catch (error) {
+    console.error("Error initializing admin user:", error);
+  }
+
   const server = await registerRoutes(app);
 
   app.use((err: any, _req: Request, res: Response, _next: NextFunction) => {
@@ -44,7 +95,7 @@ app.use((req, res, next) => {
     const message = err.message || "Internal Server Error";
 
     res.status(status).json({ message });
-    throw err;
+    console.error(err);
   });
 
   // importantly only setup vite in development and after
