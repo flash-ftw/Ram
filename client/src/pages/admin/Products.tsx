@@ -63,10 +63,15 @@ export default function AdminProducts() {
     if (!productToDelete) return;
     
     try {
-      await apiRequest({
-        url: `/api/admin/products/${productToDelete.id}`,
-        method: 'DELETE'
+      // Send DELETE request
+      const response = await fetch(`/api/admin/products/${productToDelete.id}`, {
+        method: 'DELETE',
+        credentials: 'include'
       });
+      
+      if (!response.ok) {
+        throw new Error(`Failed to delete product: ${response.statusText}`);
+      }
       
       toast({
         title: "Product deleted",
@@ -76,6 +81,9 @@ export default function AdminProducts() {
       // Invalidate queries to refresh data
       queryClient.invalidateQueries({ queryKey: ['/api/admin/products'] });
       queryClient.invalidateQueries({ queryKey: ['/api/products'] });
+      
+      // Force refetch to update the UI
+      queryClient.refetchQueries({ queryKey: ['/api/admin/products'] });
       
       setDeleteDialogOpen(false);
       setProductToDelete(null);

@@ -133,14 +133,18 @@ const ProductForm = ({ productId, defaultValues, isEdit = false }: ProductFormPr
     try {
       if (isEdit && productId) {
         // Update existing product
-        await apiRequest({
-          url: `/api/admin/products/${productId}`,
+        const response = await fetch(`/api/admin/products/${productId}`, {
           method: 'PUT',
           headers: {
             'Content-Type': 'application/json',
           },
+          credentials: 'include',
           body: JSON.stringify(data),
         });
+        
+        if (!response.ok) {
+          throw new Error(`Failed to update product: ${response.statusText}`);
+        }
         
         toast({
           title: "Product updated",
@@ -149,14 +153,18 @@ const ProductForm = ({ productId, defaultValues, isEdit = false }: ProductFormPr
         
       } else {
         // Create new product
-        await apiRequest({
-          url: '/api/admin/products',
+        const response = await fetch('/api/admin/products', {
           method: 'POST',
           headers: {
             'Content-Type': 'application/json',
           },
+          credentials: 'include',
           body: JSON.stringify(data),
         });
+        
+        if (!response.ok) {
+          throw new Error(`Failed to create product: ${response.statusText}`);
+        }
         
         toast({
           title: "Product created",
@@ -167,6 +175,9 @@ const ProductForm = ({ productId, defaultValues, isEdit = false }: ProductFormPr
       // Invalidate queries to refresh data
       queryClient.invalidateQueries({ queryKey: ['/api/admin/products'] });
       queryClient.invalidateQueries({ queryKey: ['/api/products'] });
+      
+      // Force refetch to update the UI
+      queryClient.refetchQueries({ queryKey: ['/api/admin/products'] });
       
       // Navigate back to products list
       setLocation("/admin/products");

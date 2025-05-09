@@ -1,20 +1,60 @@
 import { useEffect, useState } from "react";
-import { useParams } from "wouter";
+import { useParams, useLocation } from "wouter";
 import { useQuery } from "@tanstack/react-query";
-import { apiRequest } from "@/lib/queryClient";
 import AdminLayout from "@/components/admin/AdminLayout";
 import ProductForm from "@/components/admin/ProductForm";
 import type { ProductFormValues } from "@/components/admin/ProductForm";
-import { Product } from "@shared/schema";
+import { useToast } from "@/hooks/use-toast";
+
+interface Product {
+  id: number;
+  name: string;
+  slug: string;
+  description: string;
+  price: number;
+  originalPrice: number | null;
+  features: string;
+  categoryId: number;
+  brandId: number;
+  featured: boolean;
+  mainImage: string;
+  galleryImages: string[];
+  inStock: boolean;
+  quantity: number;
+  createdAt: string;
+  updatedAt: string;
+}
 
 export default function ProductEdit() {
   const { id } = useParams();
+  const [, setLocation] = useLocation();
+  const { toast } = useToast();
   const [defaultValues, setDefaultValues] = useState<ProductFormValues>();
   const productId = parseInt(id as string);
 
   // Fetch the product data
   const { data: product, isLoading, error } = useQuery<Product>({
     queryKey: [`/api/admin/products/${productId}`],
+    queryFn: async () => {
+      const response = await fetch(`/api/admin/products/${productId}`, {
+        credentials: 'include'
+      });
+      
+      if (!response.ok) {
+        if (response.status === 404) {
+          toast({
+            variant: "destructive",
+            title: "Product Not Found",
+            description: "The product you're trying to edit doesn't exist."
+          });
+          setTimeout(() => setLocation("/admin/products"), 1500);
+          throw new Error('Product not found');
+        }
+        throw new Error('Failed to fetch product');
+      }
+      
+      return response.json();
+    },
     enabled: !isNaN(productId),
   });
 
