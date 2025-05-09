@@ -5,6 +5,8 @@ import { setupVite, serveStatic, log } from "./vite";
 import { pool } from "./db";
 import connectPgSimple from "connect-pg-simple";
 import { storage } from "./storage";
+import path from "path";
+import fs from "fs";
 
 // Declare session extend for TypeScript
 declare module "express-session" {
@@ -20,6 +22,50 @@ declare module "express-session" {
 const app = express();
 app.use(express.json());
 app.use(express.urlencoded({ extended: false }));
+
+// Direct route for serving SVG files - must come before other routes
+app.get('/uploads/products/:filename', (req, res) => {
+  const filePath = path.join(process.cwd(), 'public', 'uploads', 'products', req.params.filename);
+  if (fs.existsSync(filePath)) {
+    const ext = path.extname(filePath).toLowerCase();
+    if (ext === '.svg') {
+      res.setHeader('Content-Type', 'image/svg+xml');
+    } else if (ext === '.jpg' || ext === '.jpeg') {
+      res.setHeader('Content-Type', 'image/jpeg');
+    } else if (ext === '.png') {
+      res.setHeader('Content-Type', 'image/png');
+    } else if (ext === '.gif') {
+      res.setHeader('Content-Type', 'image/gif');
+    } else if (ext === '.webp') {
+      res.setHeader('Content-Type', 'image/webp');
+    }
+    res.sendFile(filePath);
+  } else {
+    res.status(404).send('File not found');
+  }
+});
+
+// Direct route for serving brand logo files
+app.get('/uploads/brands/:filename', (req, res) => {
+  const filePath = path.join(process.cwd(), 'public', 'uploads', 'brands', req.params.filename);
+  if (fs.existsSync(filePath)) {
+    const ext = path.extname(filePath).toLowerCase();
+    if (ext === '.svg') {
+      res.setHeader('Content-Type', 'image/svg+xml');
+    } else if (ext === '.jpg' || ext === '.jpeg') {
+      res.setHeader('Content-Type', 'image/jpeg');
+    } else if (ext === '.png') {
+      res.setHeader('Content-Type', 'image/png');
+    } else if (ext === '.gif') {
+      res.setHeader('Content-Type', 'image/gif');
+    } else if (ext === '.webp') {
+      res.setHeader('Content-Type', 'image/webp');
+    }
+    res.sendFile(filePath);
+  } else {
+    res.status(404).send('File not found');
+  }
+});
 
 // Initialize session store with PostgreSQL
 const PostgreSqlStore = connectPgSimple(session);

@@ -17,6 +17,8 @@ import {
   uploadProductGalleryImages, 
   serveUploadedFiles 
 } from "./utils/upload";
+import path from "path";
+import fs from "fs";
 
 // Authentication middleware
 const isAuthenticated = (req: Request, res: Response, next: NextFunction) => {
@@ -35,6 +37,43 @@ const isAdmin = (req: Request, res: Response, next: NextFunction) => {
 };
 
 export async function registerRoutes(app: Express): Promise<Server> {
+  // Direct route for serving specific files
+  app.get("/api/image/:type/:filename", (req, res) => {
+    const { type, filename } = req.params;
+    if (!type || !filename) {
+      return res.status(400).send("Invalid parameters");
+    }
+    
+    const validTypes = ["products", "brands"];
+    if (!validTypes.includes(type)) {
+      return res.status(400).send("Invalid file type");
+    }
+    
+    const filePath = path.join(process.cwd(), "public", "uploads", type, filename);
+    
+    if (!fs.existsSync(filePath)) {
+      return res.status(404).send("File not found");
+    }
+    
+    const ext = path.extname(filename).toLowerCase();
+    if (ext === ".svg") {
+      res.setHeader("Content-Type", "image/svg+xml");
+      return res.send(fs.readFileSync(filePath, "utf8"));
+    } else if (ext === ".jpg" || ext === ".jpeg") {
+      res.setHeader("Content-Type", "image/jpeg");
+    } else if (ext === ".png") {
+      res.setHeader("Content-Type", "image/png");
+    } else if (ext === ".gif") {
+      res.setHeader("Content-Type", "image/gif");
+    } else if (ext === ".webp") {
+      res.setHeader("Content-Type", "image/webp");
+    } else {
+      res.setHeader("Content-Type", "application/octet-stream");
+    }
+    
+    res.sendFile(filePath);
+  });
+  
   // Set up the static file serving for uploaded files - this must come before other routes
   serveUploadedFiles(app);
   // Authentication routes
