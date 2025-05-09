@@ -40,9 +40,13 @@ const ContactForm = () => {
   const onSubmit = async (values: z.infer<typeof formSchema>) => {
     setIsSubmitting(true);
     try {
-      await apiRequest('POST', '/api/contact', {
-        ...values,
-        createdAt: new Date().toISOString(),
+      await apiRequest({
+        url: '/api/contact',
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify(values),
       });
       
       toast({
