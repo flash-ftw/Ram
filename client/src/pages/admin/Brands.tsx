@@ -62,6 +62,8 @@ export default function AdminBrands() {
     description: "",
     website: "",
   });
+  const [logoFile, setLogoFile] = useState<File | null>(null);
+  const [logoPreview, setLogoPreview] = useState<string>("");
   const [isSubmitting, setIsSubmitting] = useState(false);
 
   const { data: brands, isLoading, error } = useQuery({
@@ -81,6 +83,8 @@ export default function AdminBrands() {
       description: "",
       website: "",
     });
+    setLogoFile(null);
+    setLogoPreview("");
     setCreateDialogOpen(true);
   };
 
@@ -92,6 +96,8 @@ export default function AdminBrands() {
       description: brand.description || "",
       website: brand.website || "",
     });
+    setLogoFile(null);
+    setLogoPreview("");
     setEditDialogOpen(true);
   };
 
@@ -107,13 +113,29 @@ export default function AdminBrands() {
       [name]: value,
     });
   };
+  
+  const handleLogoFileChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+    const file = e.target.files?.[0];
+    if (file) {
+      setLogoFile(file);
+      
+      // Create a preview URL
+      const reader = new FileReader();
+      reader.onloadend = () => {
+        if (typeof reader.result === 'string') {
+          setLogoPreview(reader.result);
+        }
+      };
+      reader.readAsDataURL(file);
+    }
+  };
 
   const handleCreateBrand = async () => {
-    if (!formData.name || !formData.logo) {
+    if (!formData.name || (!formData.logo && !logoFile)) {
       toast({
         variant: "destructive",
         title: "Error",
-        description: "Name and Logo URL are required fields."
+        description: "Name and either a Logo URL or Logo File are required."
       });
       return;
     }
@@ -121,19 +143,46 @@ export default function AdminBrands() {
     try {
       setIsSubmitting(true);
       
-      await apiRequest({
-        url: '/api/admin/brands',
-        method: 'POST',
-        body: JSON.stringify({
-          name: formData.name,
-          logo: formData.logo,
-          description: formData.description || null,
-          website: formData.website || null,
-        }),
-        headers: {
-          'Content-Type': 'application/json',
-        },
-      });
+      // If we have a file, use FormData to send it
+      if (logoFile) {
+        const formDataPayload = new FormData();
+        formDataPayload.append('name', formData.name);
+        formDataPayload.append('logo', logoFile);
+        
+        if (formData.description) {
+          formDataPayload.append('description', formData.description);
+        }
+        
+        if (formData.website) {
+          formDataPayload.append('website', formData.website);
+        }
+        
+        // Send direct fetch request since apiRequest doesn't handle FormData well
+        const response = await fetch('/api/admin/brands', {
+          method: 'POST',
+          credentials: 'include',
+          body: formDataPayload
+        });
+        
+        if (!response.ok) {
+          throw new Error(`Failed to create brand: ${response.statusText}`);
+        }
+      } else {
+        // Use JSON for URL-based logos
+        await apiRequest({
+          url: '/api/admin/brands',
+          method: 'POST',
+          body: JSON.stringify({
+            name: formData.name,
+            logo: formData.logo,
+            description: formData.description || null,
+            website: formData.website || null,
+          }),
+          headers: {
+            'Content-Type': 'application/json',
+          },
+        });
+      }
       
       queryClient.invalidateQueries({ queryKey: ['/api/brands'] });
       
@@ -158,11 +207,11 @@ export default function AdminBrands() {
   const handleUpdateBrand = async () => {
     if (!currentBrand) return;
     
-    if (!formData.name || !formData.logo) {
+    if (!formData.name || (!formData.logo && !logoFile)) {
       toast({
         variant: "destructive",
         title: "Error",
-        description: "Name and Logo URL are required fields."
+        description: "Name and either a Logo URL or Logo File are required."
       });
       return;
     }
@@ -170,19 +219,46 @@ export default function AdminBrands() {
     try {
       setIsSubmitting(true);
       
-      await apiRequest({
-        url: `/api/admin/brands/${currentBrand.id}`,
-        method: 'PUT',
-        body: JSON.stringify({
-          name: formData.name,
-          logo: formData.logo,
-          description: formData.description || null,
-          website: formData.website || null,
-        }),
-        headers: {
-          'Content-Type': 'application/json',
-        },
-      });
+      // If we have a file, use FormData to send it
+      if (logoFile) {
+        const formDataPayload = new FormData();
+        formDataPayload.append('name', formData.name);
+        formDataPayload.append('logo', logoFile);
+        
+        if (formData.description) {
+          formDataPayload.append('description', formData.description);
+        }
+        
+        if (formData.website) {
+          formDataPayload.append('website', formData.website);
+        }
+        
+        // Send direct fetch request since apiRequest doesn't handle FormData well
+        const response = await fetch(`/api/admin/brands/${currentBrand.id}`, {
+          method: 'PUT',
+          credentials: 'include',
+          body: formDataPayload
+        });
+        
+        if (!response.ok) {
+          throw new Error(`Failed to update brand: ${response.statusText}`);
+        }
+      } else {
+        // Use JSON for URL-based logos
+        await apiRequest({
+          url: `/api/admin/brands/${currentBrand.id}`,
+          method: 'PUT',
+          body: JSON.stringify({
+            name: formData.name,
+            logo: formData.logo,
+            description: formData.description || null,
+            website: formData.website || null,
+          }),
+          headers: {
+            'Content-Type': 'application/json',
+          },
+        });
+      }
       
       queryClient.invalidateQueries({ queryKey: ['/api/brands'] });
       
@@ -348,14 +424,37 @@ export default function AdminBrands() {
               />
             </div>
             <div className="space-y-2">
-              <Label htmlFor="logo">Logo URL</Label>
-              <Input
-                id="logo"
-                name="logo"
-                placeholder="https://example.com/logo.jpg"
-                value={formData.logo}
-                onChange={handleInputChange}
-              />
+              <Label htmlFor="logo-file">Logo</Label>
+              <div className="space-y-3">
+                <Input
+                  id="logo-file"
+                  type="file"
+                  accept="image/*"
+                  onChange={handleLogoFileChange}
+                />
+                <div className="text-sm text-muted-foreground">Or enter a logo URL</div>
+                <Input
+                  id="logo"
+                  name="logo"
+                  placeholder="https://example.com/logo.jpg"
+                  value={formData.logo}
+                  onChange={handleInputChange}
+                />
+                {(logoPreview || formData.logo) && (
+                  <div className="mt-2 border rounded p-2">
+                    <p className="text-sm font-medium mb-2">Preview:</p>
+                    <img 
+                      src={logoPreview || formData.logo} 
+                      alt="Logo preview" 
+                      className="h-16 w-auto object-contain"
+                      onError={(e) => {
+                        const target = e.target as HTMLImageElement;
+                        target.src = "https://via.placeholder.com/150?text=Preview+Not+Available";
+                      }}
+                    />
+                  </div>
+                )}
+              </div>
             </div>
             <div className="space-y-2">
               <Label htmlFor="website">Website (optional)</Label>
@@ -407,13 +506,36 @@ export default function AdminBrands() {
               />
             </div>
             <div className="space-y-2">
-              <Label htmlFor="edit-logo">Logo URL</Label>
-              <Input
-                id="edit-logo"
-                name="logo"
-                value={formData.logo}
-                onChange={handleInputChange}
-              />
+              <Label htmlFor="edit-logo-file">Logo</Label>
+              <div className="space-y-3">
+                <Input
+                  id="edit-logo-file"
+                  type="file"
+                  accept="image/*"
+                  onChange={handleLogoFileChange}
+                />
+                <div className="text-sm text-muted-foreground">Current logo or enter a new URL</div>
+                <Input
+                  id="edit-logo"
+                  name="logo"
+                  value={formData.logo}
+                  onChange={handleInputChange}
+                />
+                {(logoPreview || formData.logo) && (
+                  <div className="mt-2 border rounded p-2">
+                    <p className="text-sm font-medium mb-2">Preview:</p>
+                    <img 
+                      src={logoPreview || formData.logo} 
+                      alt="Logo preview" 
+                      className="h-16 w-auto object-contain"
+                      onError={(e) => {
+                        const target = e.target as HTMLImageElement;
+                        target.src = "https://via.placeholder.com/150?text=Preview+Not+Available";
+                      }}
+                    />
+                  </div>
+                )}
+              </div>
             </div>
             <div className="space-y-2">
               <Label htmlFor="edit-website">Website (optional)</Label>
