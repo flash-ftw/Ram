@@ -454,6 +454,10 @@ export class MemStorage implements IStorage {
     );
   }
   
+  async getAllAdminUsers(): Promise<User[]> {
+    return Array.from(this.users.values()).filter(user => user.isAdmin);
+  }
+  
   // Brand methods
   async getAllBrands(): Promise<Brand[]> {
     return Array.from(this.brandsMap.values()).sort((a, b) => 
