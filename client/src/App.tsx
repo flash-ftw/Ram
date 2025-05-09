@@ -18,6 +18,8 @@ import AdminDashboard from "@/pages/admin/Dashboard";
 import AdminProducts from "@/pages/admin/Products";
 import AdminCategories from "@/pages/admin/Categories";
 import AdminBrands from "@/pages/admin/Brands";
+import ProductNew from "@/pages/admin/ProductNew";
+import ProductEdit from "@/pages/admin/ProductEdit";
 
 function MainLayout({ children }: { children: React.ReactNode }) {
   return (
@@ -40,6 +42,8 @@ function Router() {
       <Switch>
         <Route path="/admin/login" component={AdminLogin} />
         <Route path="/admin/dashboard" component={AdminDashboard} />
+        <Route path="/admin/products/new" component={ProductNew} />
+        <Route path="/admin/products/edit/:id" component={ProductEdit} />
         <Route path="/admin/products" component={AdminProducts} />
         <Route path="/admin/categories" component={AdminCategories} />
         <Route path="/admin/brands" component={AdminBrands} />
