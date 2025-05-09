@@ -116,8 +116,8 @@ const ProductDetail = () => {
                 <img 
                   id="main-image" 
                   src={product.galleryImages && product.galleryImages.length > 0 
-                    ? product.galleryImages[selectedImage] 
-                    : product.mainImage
+                    ? getImageUrl(product.galleryImages[selectedImage])
+                    : getImageUrl(product.mainImage)
                   } 
                   alt={product.name} 
                   className="w-full h-full object-cover"
@@ -135,7 +135,7 @@ const ProductDetail = () => {
                         onClick={() => setSelectedImage(index)}
                       >
                         <img 
-                          src={image} 
+                          src={getImageUrl(image)} 
                           alt={`${product.name} view ${index + 1}`} 
                           className="w-full h-full object-cover"
                         />

@@ -3,6 +3,7 @@ import { useParams } from "wouter";
 import ProductDetailComponent from "@/components/products/ProductDetail";
 import { useProduct } from "@/hooks/useProduct";
 import { useCategories } from "@/hooks/useCategories";
+import { getImageUrl } from "@/lib/utils";
 
 const ProductDetail = () => {
   const { slug } = useParams();
@@ -30,7 +31,7 @@ const ProductDetail = () => {
         <meta property="og:title" content={title} />
         <meta property="og:description" content={description} />
         <meta property="og:type" content="product" />
-        {product?.mainImage && <meta property="og:image" content={product.mainImage} />}
+        {product?.mainImage && <meta property="og:image" content={getImageUrl(product.mainImage)} />}
         {category && <meta property="product:category" content={category.name} />}
         {product?.price && <meta property="product:price:amount" content={product.price.toString()} />}
         <meta property="product:price:currency" content="USD" />
