@@ -315,8 +315,22 @@ export class DatabaseStorage implements IStorage {
   }
 
   async updateProduct(id: number, data: Partial<InsertProduct>): Promise<Product | undefined> {
+    // Get current product to check if slug needs to be updated with name
+    const currentProduct = await this.getProductById(id);
+    if (!currentProduct) return undefined;
+
+    const updateData = {...data};
+    
+    // If name is being updated but slug is not provided, generate slug from name
+    if (data.name && !data.slug) {
+      updateData.slug = data.name
+        .toLowerCase()
+        .replace(/[^a-z0-9]+/g, '-')
+        .replace(/(^-|-$)/g, '');
+    }
+
     const [updatedProduct] = await db.update(products)
-      .set({...data, updatedAt: new Date()})
+      .set({...updateData, updatedAt: new Date()})
       .where(eq(products.id, id))
       .returning();
     return updatedProduct;
@@ -696,9 +710,19 @@ export class MemStorage implements IStorage {
     const product = this.productsMap.get(id);
     if (!product) return undefined;
     
+    const updateData = {...data};
+    
+    // If name is being updated but slug is not provided, generate slug from name
+    if (data.name && !data.slug) {
+      updateData.slug = data.name
+        .toLowerCase()
+        .replace(/[^a-z0-9]+/g, '-')
+        .replace(/(^-|-$)/g, '');
+    }
+    
     const updatedProduct: Product = { 
       ...product, 
-      ...data,
+      ...updateData,
       updatedAt: new Date()
     };
     this.productsMap.set(id, updatedProduct);
