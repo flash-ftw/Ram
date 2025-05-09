@@ -231,6 +231,42 @@ export async function registerRoutes(app: Express): Promise<Server> {
     }
   });
 
+  // Add PATCH endpoint for categories (for partial updates)
+  app.patch("/api/admin/categories/:id", isAuthenticated, isAdmin, async (req, res) => {
+    try {
+      const id = parseInt(req.params.id);
+      if (isNaN(id)) {
+        return res.status(400).json({ message: "Invalid category ID" });
+      }
+      
+      // Generate a slug if name is being updated
+      let categoryData = { ...req.body };
+      if (req.body.name) {
+        const slug = req.body.name
+          .toLowerCase()
+          .replace(/[^a-z0-9]+/g, '-')
+          .replace(/(^-|-$)/g, '');
+        categoryData.slug = slug;
+      }
+      
+      const validatedData = insertCategorySchema.partial().parse(categoryData);
+      const category = await storage.updateCategory(id, validatedData);
+      
+      if (!category) {
+        return res.status(404).json({ message: "Category not found" });
+      }
+      
+      res.setHeader('Content-Type', 'application/json');
+      res.json(category);
+    } catch (error) {
+      if (error instanceof z.ZodError) {
+        return res.status(400).json({ message: "Invalid category data", errors: error.errors });
+      }
+      console.error("Error updating category:", error);
+      res.status(500).json({ message: "Failed to update category" });
+    }
+  });
+
   app.delete("/api/admin/categories/:id", isAuthenticated, isAdmin, async (req, res) => {
     try {
       const id = parseInt(req.params.id);
