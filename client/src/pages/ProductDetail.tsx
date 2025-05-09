@@ -34,7 +34,7 @@ const ProductDetail = () => {
         {product?.mainImage && <meta property="og:image" content={getImageUrl(product.mainImage)} />}
         {category && <meta property="product:category" content={category.name} />}
         {product?.price && <meta property="product:price:amount" content={product.price.toString()} />}
-        <meta property="product:price:currency" content="USD" />
+        <meta property="product:price:currency" content="TND" />
       </Helmet>
       
       <ProductDetailComponent />

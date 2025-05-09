@@ -399,7 +399,7 @@ const ProductForm = ({ productId, defaultValues, isEdit = false }: ProductFormPr
                 name="originalPrice"
                 render={({ field }) => (
                   <FormItem>
-                    <FormLabel>Original Price ($) (Optional)</FormLabel>
+                    <FormLabel>Original Price (TND) (Optional)</FormLabel>
                     <FormControl>
                       <Input 
                         {...field} 

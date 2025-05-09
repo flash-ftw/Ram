@@ -123,8 +123,8 @@ const ProductCatalog = () => {
                     className="my-4"
                   />
                   <div className="flex justify-between mt-2 text-sm text-gray-500">
-                    <span>${priceRange[0]}</span>
-                    <span>${priceRange[1]}+</span>
+                    <span>{priceRange[0]} TND</span>
+                    <span>{priceRange[1]}+ TND</span>
                   </div>
                 </div>
               </div>
