@@ -245,6 +245,14 @@ export async function registerRoutes(app: Express): Promise<Server> {
   // Brands API - Admin endpoints
   app.post("/api/admin/brands", isAuthenticated, isAdmin, async (req, res) => {
     try {
+      // Validate the name field exists before generating slug
+      if (!req.body.name) {
+        return res.status(400).json({ 
+          message: "Invalid brand data", 
+          errors: [{ path: ["name"], message: "Name is required" }] 
+        });
+      }
+      
       // Generate a slug from the name
       const { name, ...rest } = req.body;
       const slug = name
@@ -419,6 +427,14 @@ export async function registerRoutes(app: Express): Promise<Server> {
 
   app.post("/api/admin/products", isAuthenticated, isAdmin, async (req, res) => {
     try {
+      // Validate the name field exists before generating slug
+      if (!req.body.name) {
+        return res.status(400).json({ 
+          message: "Invalid product data", 
+          errors: [{ path: ["name"], message: "Name is required" }] 
+        });
+      }
+      
       // Generate a slug from the name
       const { name, ...rest } = req.body;
       const slug = name
