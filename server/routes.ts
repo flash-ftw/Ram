@@ -443,7 +443,17 @@ export async function registerRoutes(app: Express): Promise<Server> {
         return res.status(400).json({ message: "Invalid product ID" });
       }
       
-      const validatedData = insertProductSchema.partial().parse(req.body);
+      // Generate a slug if name is being updated
+      let productData = { ...req.body };
+      if (req.body.name) {
+        const slug = req.body.name
+          .toLowerCase()
+          .replace(/[^a-z0-9]+/g, '-')
+          .replace(/(^-|-$)/g, '');
+        productData.slug = slug;
+      }
+      
+      const validatedData = insertProductSchema.partial().parse(productData);
       const product = await storage.updateProduct(id, validatedData);
       
       if (!product) {
