@@ -25,8 +25,10 @@ const productSchema = z.object({
   categoryId: z.coerce.number({ required_error: "Category is required" }),
   brandId: z.coerce.number({ required_error: "Brand is required" }),
   featured: z.boolean().default(false),
-  mainImage: z.string().url({ message: "Main image must be a valid URL" }),
-  galleryImages: z.array(z.string().url({ message: "Gallery image must be a valid URL" })).default([]),
+  mainImage: z.string().optional(), // Allow empty string for file upload
+  mainImageFile: z.instanceof(File).optional(), // For file upload
+  galleryImages: z.array(z.string()).default([]),
+  galleryImageFiles: z.array(z.instanceof(File)).optional(), // For multiple file uploads
   inStock: z.boolean().default(true),
   quantity: z.coerce.number().int().min(0, { message: "Quantity must be a non-negative integer" }),
 });
@@ -131,46 +133,70 @@ const ProductForm = ({ productId, defaultValues, isEdit = false }: ProductFormPr
     setIsSubmitting(true);
     
     try {
-      if (isEdit && productId) {
-        // Update existing product
-        const response = await fetch(`/api/admin/products/${productId}`, {
-          method: 'PUT',
-          headers: {
-            'Content-Type': 'application/json',
-          },
-          credentials: 'include',
-          body: JSON.stringify(data),
-        });
-        
-        if (!response.ok) {
-          throw new Error(`Failed to update product: ${response.statusText}`);
+      // Create FormData for file uploads
+      const formData = new FormData();
+      
+      // Add all the regular form data
+      Object.keys(data).forEach(key => {
+        if (key !== 'mainImageFile' && key !== 'galleryImageFiles') {
+          if (key === 'galleryImages') {
+            // Skip galleryImages array - we'll use the uploaded files instead
+            const dataValue = data[key as keyof typeof data];
+            if (Array.isArray(dataValue) && dataValue.length > 0) {
+              // If there are URLs that aren't data URIs (existing images), add them
+              dataValue.forEach((img, index) => {
+                if (!img.startsWith('data:')) {
+                  formData.append(`galleryImagesUrls[${index}]`, img);
+                }
+              });
+            }
+          } else {
+            const dataValue = data[key as keyof typeof data];
+            if (dataValue !== null && dataValue !== undefined) {
+              formData.append(key, String(dataValue));
+            }
+          }
         }
-        
-        toast({
-          title: "Product updated",
-          description: "The product has been updated successfully.",
-        });
-        
-      } else {
-        // Create new product
-        const response = await fetch('/api/admin/products', {
-          method: 'POST',
-          headers: {
-            'Content-Type': 'application/json',
-          },
-          credentials: 'include',
-          body: JSON.stringify(data),
-        });
-        
-        if (!response.ok) {
-          throw new Error(`Failed to create product: ${response.statusText}`);
-        }
-        
-        toast({
-          title: "Product created",
-          description: "The product has been created successfully.",
+      });
+      
+      // Add the main image file if present
+      if (data.mainImageFile) {
+        formData.append('mainImage', data.mainImageFile);
+      }
+      
+      // Add gallery image files if present
+      if (data.galleryImageFiles && data.galleryImageFiles.length > 0) {
+        Array.from(data.galleryImageFiles).forEach((file, index) => {
+          formData.append(`galleryImages`, file);
         });
       }
+      
+      let response;
+      
+      if (isEdit && productId) {
+        // Update existing product
+        response = await fetch(`/api/admin/products/${productId}`, {
+          method: 'PUT',
+          credentials: 'include',
+          body: formData, // No Content-Type header for multipart/form-data
+        });
+      } else {
+        // Create new product
+        response = await fetch('/api/admin/products', {
+          method: 'POST',
+          credentials: 'include',
+          body: formData, // No Content-Type header for multipart/form-data
+        });
+      }
+      
+      if (!response.ok) {
+        throw new Error(`Failed to ${isEdit ? 'update' : 'create'} product: ${response.statusText}`);
+      }
+      
+      toast({
+        title: isEdit ? "Product updated" : "Product created",
+        description: `The product has been ${isEdit ? 'updated' : 'created'} successfully.`,
+      });
       
       // Invalidate queries to refresh data
       queryClient.invalidateQueries({ queryKey: ['/api/admin/products'] });
@@ -435,23 +461,49 @@ const ProductForm = ({ productId, defaultValues, isEdit = false }: ProductFormPr
               
               <FormField
                 control={form.control}
-                name="mainImage"
-                render={({ field }) => (
+                name="mainImageFile"
+                render={({ field: { value, onChange, ...fieldProps } }) => (
                   <FormItem>
-                    <FormLabel>Main Product Image URL</FormLabel>
+                    <FormLabel>Main Product Image</FormLabel>
                     <FormControl>
-                      <Input {...field} placeholder="https://example.com/image.jpg" />
+                      <div className="space-y-2">
+                        <Input 
+                          type="file" 
+                          accept="image/*"
+                          onChange={(e) => {
+                            const file = e.target.files?.[0];
+                            if (file) {
+                              form.setValue("mainImageFile", file);
+                              
+                              // Create a preview URL
+                              const reader = new FileReader();
+                              reader.onloadend = () => {
+                                if (typeof reader.result === 'string') {
+                                  form.setValue("mainImage", reader.result);
+                                }
+                              };
+                              reader.readAsDataURL(file);
+                            }
+                          }}
+                          {...fieldProps}
+                        />
+                        {isEdit && (
+                          <FormDescription>
+                            Leave empty to keep the current image
+                          </FormDescription>
+                        )}
+                      </div>
                     </FormControl>
                     <FormMessage />
-                    {field.value && (
+                    {form.getValues("mainImage") && (
                       <div className="mt-2">
                         <img 
-                          src={field.value} 
+                          src={form.getValues("mainImage")} 
                           alt="Main product image preview" 
                           className="h-32 w-auto object-contain border rounded"
                           onError={(e) => {
                             const target = e.target as HTMLImageElement;
-                            target.src = "https://via.placeholder.com/150?text=Invalid+Image+URL";
+                            target.src = "https://via.placeholder.com/150?text=Preview+Not+Available";
                           }}
                         />
                       </div>
@@ -460,21 +512,67 @@ const ProductForm = ({ productId, defaultValues, isEdit = false }: ProductFormPr
                 )}
               />
               
-              <div className="space-y-2">
-                <FormLabel>Gallery Images</FormLabel>
-                <div className="flex gap-2">
-                  <Input 
-                    value={galleryImageUrl} 
-                    onChange={(e) => setGalleryImageUrl(e.target.value)}
-                    placeholder="https://example.com/gallery-image.jpg"
-                  />
-                  <Button 
-                    type="button" 
-                    onClick={addGalleryImage}
-                    variant="outline"
-                  >
-                    Add
-                  </Button>
+              <div className="space-y-4">
+                <FormField
+                  control={form.control}
+                  name="galleryImageFiles"
+                  render={({ field: { value, onChange, ...fieldProps } }) => (
+                    <FormItem>
+                      <FormLabel>Gallery Images</FormLabel>
+                      <FormControl>
+                        <div className="space-y-2">
+                          <Input 
+                            type="file" 
+                            accept="image/*"
+                            multiple
+                            onChange={(e) => {
+                              const files = Array.from(e.target.files || []);
+                              if (files.length > 0) {
+                                form.setValue("galleryImageFiles", files);
+                                
+                                // Create previews for all selected files
+                                files.forEach(file => {
+                                  const reader = new FileReader();
+                                  reader.onloadend = () => {
+                                    if (typeof reader.result === 'string') {
+                                      const currentGalleryImages = form.getValues("galleryImages") || [];
+                                      form.setValue("galleryImages", [...currentGalleryImages, reader.result]);
+                                    }
+                                  };
+                                  reader.readAsDataURL(file);
+                                });
+                              }
+                            }}
+                            {...fieldProps}
+                          />
+                          {isEdit && (
+                            <FormDescription>
+                              You can add more gallery images to the existing ones
+                            </FormDescription>
+                          )}
+                        </div>
+                      </FormControl>
+                      <FormMessage />
+                    </FormItem>
+                  )}
+                />
+                
+                <div className="space-y-2">
+                  <FormLabel>Or Add Gallery Image by URL</FormLabel>
+                  <div className="flex gap-2">
+                    <Input 
+                      value={galleryImageUrl} 
+                      onChange={(e) => setGalleryImageUrl(e.target.value)}
+                      placeholder="https://example.com/gallery-image.jpg"
+                    />
+                    <Button 
+                      type="button" 
+                      onClick={addGalleryImage}
+                      variant="outline"
+                    >
+                      Add
+                    </Button>
+                  </div>
                 </div>
                 
                 <div className="mt-4">
@@ -489,7 +587,7 @@ const ProductForm = ({ productId, defaultValues, isEdit = false }: ProductFormPr
                             className="h-24 w-full object-cover border rounded"
                             onError={(e) => {
                               const target = e.target as HTMLImageElement;
-                              target.src = "https://via.placeholder.com/150?text=Invalid+Image+URL";
+                              target.src = "https://via.placeholder.com/150?text=Preview+Not+Available";
                             }}
                           />
                           <Button
