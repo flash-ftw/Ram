@@ -27,3 +27,19 @@ export function getImageUrl(url: string): string {
   // For all other file types, return the original URL
   return url;
 }
+
+/**
+ * Formats a number as Tunisian Dinars (TND)
+ * @param amount The amount to format
+ * @param includeSymbol Whether to include the TND symbol
+ * @returns Formatted price string
+ */
+export function formatPrice(amount: number | null | undefined, includeSymbol: boolean = true): string {
+  if (amount === null || amount === undefined) return '';
+  
+  // Format with 3 decimal places which is standard for Tunisian Dinar
+  const formattedAmount = amount.toFixed(3);
+  
+  // Return with TND symbol if requested
+  return includeSymbol ? `${formattedAmount} TND` : formattedAmount;
+}

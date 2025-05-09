@@ -4,7 +4,7 @@ import { Badge } from "@/components/ui/badge";
 import { Button } from "@/components/ui/button";
 import { Card, CardContent } from "@/components/ui/card";
 import { Product } from "@shared/schema";
-import { getImageUrl } from "@/lib/utils";
+import { getImageUrl, formatPrice } from "@/lib/utils";
 
 interface ProductCardProps {
   product: Product;
@@ -38,7 +38,7 @@ const ProductCard = ({ product }: ProductCardProps) => {
           {product.description}
         </p>
         <div className="mt-3 flex justify-between items-center">
-          <span className="font-bold text-lg">${product.price.toFixed(2)}</span>
+          <span className="font-bold text-lg">{formatPrice(product.price)}</span>
           <Button 
             asChild
             variant="secondary" 
