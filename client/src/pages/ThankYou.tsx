@@ -86,7 +86,7 @@ const ThankYou = () => {
                 <h2 className="text-xl font-semibold mb-4">Informations Client</h2>
                 <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
                   <div>
-                    <h3 className="text-sm font-medium text-gray-500">Name</h3>
+                    <h3 className="text-sm font-medium text-gray-500">Nom</h3>
                     <p>{checkoutData.name}</p>
                   </div>
                   <div>
@@ -94,34 +94,34 @@ const ThankYou = () => {
                     <p>{checkoutData.email}</p>
                   </div>
                   <div>
-                    <h3 className="text-sm font-medium text-gray-500">Phone</h3>
+                    <h3 className="text-sm font-medium text-gray-500">Téléphone</h3>
                     <p>{checkoutData.phone}</p>
                   </div>
                   <div>
-                    <h3 className="text-sm font-medium text-gray-500">Delivery Location</h3>
+                    <h3 className="text-sm font-medium text-gray-500">Adresse de Livraison</h3>
                     <p>{checkoutData.location}</p>
                   </div>
                 </div>
               </div>
               
               <div>
-                <h2 className="text-xl font-semibold mb-4">What Happens Next?</h2>
+                <h2 className="text-xl font-semibold mb-4">Que se Passe-t-il Ensuite ?</h2>
                 <ol className="list-decimal list-inside space-y-2 text-gray-600">
-                  <li>We'll verify your payment and confirm your order.</li>
-                  <li>Our team will prepare your items for delivery or pickup.</li>
-                  <li>We'll contact you via WhatsApp or phone to arrange delivery.</li>
-                  <li>Your order will be delivered to your specified location.</li>
+                  <li>Nous vérifierons votre paiement et confirmerons votre commande.</li>
+                  <li>Notre équipe préparera vos articles pour la livraison ou le retrait.</li>
+                  <li>Nous vous contacterons via WhatsApp ou par téléphone pour organiser la livraison.</li>
+                  <li>Votre commande sera livrée à l'adresse que vous avez indiquée.</li>
                 </ol>
               </div>
             </div>
           ) : (
             <div className="text-center py-8">
-              <p className="text-gray-600 mb-4">Order details not found.</p>
+              <p className="text-gray-600 mb-4">Détails de la commande non trouvés.</p>
               <Button 
                 onClick={() => setLocation('/products')}
                 className="bg-yellow-500 hover:bg-yellow-600 text-black"
               >
-                Browse Products
+                Parcourir les Produits
               </Button>
             </div>
           )}
@@ -135,7 +135,7 @@ const ThankYou = () => {
           className="flex items-center gap-2"
         >
           <Home className="h-4 w-4" />
-          <span>Back to Home</span>
+          <span>Retour à l'Accueil</span>
         </Button>
         
         <Button 
@@ -143,7 +143,7 @@ const ThankYou = () => {
           className="bg-yellow-500 hover:bg-yellow-600 text-black flex items-center gap-2"
         >
           <ShoppingCart className="h-4 w-4" />
-          <span>Continue Shopping</span>
+          <span>Continuer les Achats</span>
         </Button>
       </div>
     </div>
