@@ -60,35 +60,35 @@ export function useProducts(params: ProductsQueryParams = {}) {
   }
   
   // Ajout des filtres pour spécifications motos
-  if (params.motorType) {
+  if (params.motorType && params.motorType !== "all") {
     queryParams.append('motorType', params.motorType);
   }
   
-  if (params.displacement) {
+  if (params.displacement && params.displacement !== "all") {
     queryParams.append('displacement', params.displacement);
   }
   
-  if (params.cooling) {
+  if (params.cooling && params.cooling !== "all") {
     queryParams.append('cooling', params.cooling);
   }
   
-  if (params.fuelSystem) {
+  if (params.fuelSystem && params.fuelSystem !== "all") {
     queryParams.append('fuelSystem', params.fuelSystem);
   }
   
-  if (params.transmission) {
+  if (params.transmission && params.transmission !== "all") {
     queryParams.append('transmission', params.transmission);
   }
   
-  if (params.startType) {
+  if (params.startType && params.startType !== "all") {
     queryParams.append('startType', params.startType);
   }
   
-  if (params.brakes) {
+  if (params.brakes && params.brakes !== "all") {
     queryParams.append('brakes', params.brakes);
   }
   
-  if (params.wheelSize) {
+  if (params.wheelSize && params.wheelSize !== "all") {
     queryParams.append('wheelSize', params.wheelSize);
   }
   
