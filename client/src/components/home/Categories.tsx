@@ -38,7 +38,7 @@ const Categories = () => {
               <div key={category.id} className="relative rounded-md overflow-hidden group h-80 shadow-xl border-2 border-yellow-500 transform transition-all duration-300 hover:-translate-y-2">
                 <div className="absolute inset-0 bg-gradient-to-t from-black via-black/70 to-transparent"></div>
                 <img 
-                  src={category.image || `https://images.unsplash.com/photo-1635073908681-644ef98c1aff?ixlib=rb-4.0.3&auto=format&fit=crop&w=600&h=400`} 
+                  src={category.image} 
                   alt={`${category.name} Category`} 
                   className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-110"
                 />

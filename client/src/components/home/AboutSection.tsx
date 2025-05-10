@@ -9,7 +9,7 @@ const AboutSection = () => {
             <div className="relative">
               <div className="absolute -top-4 -left-4 w-full h-full border-2 border-yellow-500 rounded-lg"></div>
               <img 
-                src="https://images.unsplash.com/photo-1558981403-c5f9899a28bc?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&h=600" 
+                src="/motorcycle-showroom.jpg" 
                 alt="Our Motorcycle Showroom" 
                 className="rounded-lg shadow-lg w-full h-auto relative z-10"
               />
