@@ -1,5 +1,5 @@
 import { useState } from "react";
-import { useParams, Link } from "wouter";
+import { useParams, Link, useLocation } from "wouter";
 import { 
   Star, 
   StarHalf, 
@@ -8,19 +8,34 @@ import {
   Twitter, 
   Instagram, 
   Heart, 
-  ShoppingCart 
+  ShoppingCart, 
+  Check,
+  AlertCircle
 } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { Badge } from "@/components/ui/badge";
+import { useToast } from "@/hooks/use-toast";
 import { useProduct } from "@/hooks/useProduct";
 import { useCategories } from "@/hooks/useCategories";
+import { useCart } from "@/contexts/CartContext";
 import { getImageUrl, formatPrice } from "@/lib/utils";
 
 const ProductDetail = () => {
   const { slug } = useParams();
+  const [, setLocation] = useLocation();
   const { data: product, isLoading } = useProduct(slug as string);
   const { data: categories = [] } = useCategories();
+  const { addItem } = useCart();
+  const { toast } = useToast();
   const [selectedImage, setSelectedImage] = useState(0);
+  const [quantity, setQuantity] = useState(1);
+  const [isAddingToCart, setIsAddingToCart] = useState(false);
+  
+  const handleQuantityChange = (newQuantity: number) => {
+    if (newQuantity >= 1) {
+      setQuantity(newQuantity);
+    }
+  };
 
   if (isLoading) {
     return (

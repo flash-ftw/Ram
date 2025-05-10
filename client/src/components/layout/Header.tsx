@@ -1,6 +1,6 @@
 import { useState, useEffect } from "react";
 import { Link, useLocation } from "wouter";
-import { Menu, Search, X, ChevronDown, Settings, User } from "lucide-react";
+import { Menu, Search, X, ChevronDown, Settings, User, ShoppingCart } from "lucide-react";
 import { Input } from "@/components/ui/input";
 import { Button } from "@/components/ui/button";
 import {
@@ -10,6 +10,7 @@ import {
   DropdownMenuTrigger,
 } from "@/components/ui/dropdown-menu";
 import { useCategories } from "@/hooks/useCategories";
+import { useCart } from "@/contexts/CartContext";
 import MotorcycleIcon from "@/components/ui/motorcycle-icon";
 
 const Header = () => {
@@ -17,6 +18,7 @@ const Header = () => {
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
   const [searchQuery, setSearchQuery] = useState("");
   const { data: categories } = useCategories();
+  const { state: cartState } = useCart();
 
   const handleSearch = (e: React.FormEvent) => {
     e.preventDefault();
@@ -131,6 +133,21 @@ const Header = () => {
             </form>
           </div>
           
+          {/* Cart Button */}
+          <div className="flex items-center">
+            <Link href="/cart" className="relative mr-4 group">
+              <ShoppingCart 
+                size={24} 
+                className={`${location === "/cart" ? "text-yellow-500" : "text-white hover:text-yellow-500"} group-hover:scale-110 transition-transform`} 
+              />
+              {cartState.items.length > 0 && (
+                <span className="absolute -top-2 -right-2 bg-yellow-500 text-black w-5 h-5 rounded-full flex items-center justify-center text-xs font-bold">
+                  {cartState.items.length}
+                </span>
+              )}
+            </Link>
+          </div>
+          
           {/* Mobile Menu Button */}
           <div className="flex md:hidden">
             <Button 
@@ -189,6 +206,21 @@ const Header = () => {
                 <path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92z"/>
               </svg>
               Contact
+            </Link>
+            <Link 
+              href="/cart" 
+              className="flex items-center px-3 py-2 rounded-md text-base font-medium text-white hover:bg-yellow-500 hover:text-black transition-colors"
+              onClick={() => setMobileMenuOpen(false)}
+            >
+              <div className="relative mr-3">
+                <ShoppingCart size={18} />
+                {cartState.items.length > 0 && (
+                  <span className="absolute -top-2 -right-2 bg-yellow-500 text-black w-4 h-4 rounded-full flex items-center justify-center text-[10px] font-bold">
+                    {cartState.items.length}
+                  </span>
+                )}
+              </div>
+              Cart
             </Link>
           </div>
           <div className="px-5 py-4">
