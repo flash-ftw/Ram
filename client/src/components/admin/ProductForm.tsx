@@ -31,6 +31,24 @@ const productSchema = z.object({
   galleryImageFiles: z.array(z.instanceof(File)).optional(), // For multiple file uploads
   inStock: z.boolean().default(true),
   quantity: z.coerce.number().int().min(0, { message: "Quantity must be a non-negative integer" }),
+  
+  // Nouveaux champs pour motos thermiques
+  motorType: z.string().optional(), // 2 temps / 4 temps
+  displacement: z.string().optional(), // 49cc / 70cc / 102cc / 110cc / 125cc
+  cooling: z.string().optional(), // Refroidi par air / Refroidi par eau
+  fuelSystem: z.string().optional(), // Carburateur / EFI (injection électronique de carburant)
+  transmission: z.string().optional(), // Manuelle / Semi-automatique / Automatique (CVT)
+  starter: z.string().optional(), // Kick / Démarrage électrique
+  ignition: z.string().optional(), // CDI
+  headlight: z.string().optional(), // LED / Halogène
+  brakes: z.string().optional(), // Tambour / Disque (avant et/ou arrière)
+  maxSpeed: z.coerce.number().int().min(0).optional(), // Vitesse maximale en km/h
+  fuelCapacity: z.coerce.number().min(0).optional(), // Capacité du réservoir en litres
+  weight: z.coerce.number().int().min(0).optional(), // Poids en kg
+  wheelSize: z.string().optional(), // 10" / 12" / 14" / 15"
+  tires: z.string().optional(), // Sans chambre à air / Avec chambre à air
+  fuelConsumption: z.coerce.number().min(0).optional(), // Consommation de carburant en L/100 km
+  dashboard: z.string().optional(), // Analogique / Numérique
 });
 
 export type ProductFormValues = z.infer<typeof productSchema>;
@@ -86,6 +104,24 @@ const ProductForm = ({ productId, defaultValues, isEdit = false }: ProductFormPr
       galleryImages: [],
       inStock: true,
       quantity: 0,
+      
+      // Nouveaux champs pour motos thermiques
+      motorType: "",
+      displacement: "",
+      cooling: "",
+      fuelSystem: "",
+      transmission: "",
+      starter: "",
+      ignition: "",
+      headlight: "",
+      brakes: "",
+      maxSpeed: undefined,
+      fuelCapacity: undefined,
+      weight: undefined,
+      wheelSize: "",
+      tires: "",
+      fuelConsumption: undefined,
+      dashboard: "",
     },
   });
 
