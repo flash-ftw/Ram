@@ -1,6 +1,7 @@
 import { Link } from "wouter";
-import { Bike, ChevronRight } from "lucide-react";
+import { ChevronRight } from "lucide-react";
 import { Button } from "@/components/ui/button";
+import MotorcycleIcon from "@/components/ui/motorcycle-icon";
 
 const Hero = () => {
   return (
@@ -14,7 +15,7 @@ const Hero = () => {
         <div className="container mx-auto px-4 h-full flex items-center">
           <div className="max-w-2xl">
             <div className="flex items-center mb-4">
-              <Bike className="w-10 h-10 text-yellow-500 mr-2" />
+              <MotorcycleIcon className="text-yellow-500 mr-2" size={40} />
               <span className="text-xl font-semibold text-yellow-500">PREMIUM SELECTION</span>
             </div>
             <h1 className="text-5xl sm:text-6xl font-bold mb-4 leading-tight">
