@@ -196,6 +196,19 @@ export class DatabaseStorage implements IStorage {
     search?: string;
     limit?: number;
     offset?: number;
+    // Nouveaux filtres pour spécifications motos
+    motorType?: string;
+    displacement?: string;
+    cooling?: string;
+    fuelSystem?: string;
+    transmission?: string;
+    startType?: string;
+    brakes?: string;
+    wheelSize?: string;
+    maxSpeedMin?: number;
+    maxSpeedMax?: number;
+    weightMin?: number;
+    weightMax?: number;
   } = {}): Promise<Product[]> {
     let query = db.select().from(products);
     
@@ -626,6 +639,19 @@ export class MemStorage implements IStorage {
     search?: string;
     limit?: number;
     offset?: number;
+    // Nouveaux filtres pour spécifications motos
+    motorType?: string;
+    displacement?: string;
+    cooling?: string;
+    fuelSystem?: string;
+    transmission?: string;
+    startType?: string;
+    brakes?: string;
+    wheelSize?: string;
+    maxSpeedMin?: number;
+    maxSpeedMax?: number;
+    weightMin?: number;
+    weightMax?: number;
   } = {}): Promise<Product[]> {
     let filteredProducts = Array.from(this.productsMap.values());
     
