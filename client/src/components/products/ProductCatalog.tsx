@@ -19,7 +19,7 @@ const ProductCatalog = () => {
   const [selectedCategories, setSelectedCategories] = useState<string[]>(
     categorySlug ? [categorySlug] : []
   );
-  const [priceRange, setPriceRange] = useState<number[]>([0, 50000]);
+  const [priceRange, setPriceRange] = useState<number[]>([0, 20000]);
   const [sortBy, setSortBy] = useState<string>("featured");
   const [currentPage, setCurrentPage] = useState(1);
 
@@ -115,8 +115,8 @@ const ProductCatalog = () => {
                 <h4 className="font-medium text-gray-700 mb-3">Gamme de Prix</h4>
                 <div className="px-2">
                   <Slider
-                    defaultValue={[0, 50000]}
-                    max={50000}
+                    defaultValue={[0, 20000]}
+                    max={20000}
                     step={100}
                     value={priceRange}
                     onValueChange={handlePriceChange}
