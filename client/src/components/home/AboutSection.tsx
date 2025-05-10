@@ -11,10 +11,11 @@ const AboutSection = () => {
               <div 
                 className="rounded-lg shadow-lg w-full h-80 bg-gray-800 relative z-10 flex items-center justify-center"
               >
-                <div className="text-center text-gray-500">
-                  <Settings className="w-16 h-16 mx-auto mb-4 text-yellow-500" />
-                  <p className="text-lg font-medium">Showroom de Motos</p>
-                </div>
+                <img 
+                  src="/logo.png" 
+                  alt="Rammeh MotoScoot Logo" 
+                  className="w-auto max-h-64 object-contain" 
+                />
               </div>
               <div className="absolute -bottom-4 -right-4 bg-yellow-500 text-black py-2 px-4 rounded-lg font-bold z-20">
                 Depuis 2015
