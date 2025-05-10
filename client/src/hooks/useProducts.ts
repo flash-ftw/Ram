@@ -11,9 +11,42 @@ interface ProductsQueryParams {
 }
 
 export function useProducts(params: ProductsQueryParams = {}) {
-  // Pour résoudre le problème d'affichage des produits, utilisons l'URL directe
-  // sans paramètres, ce qui nous a permis d'afficher les produits précédemment
-  const endpoint = `/api/products`;
+  // Reconstruct proper filtering with improved error handling
+  const queryParams = new URLSearchParams();
+  
+  // Only add the featured filter if it's explicitly true
+  if (params.featured === true) {
+    queryParams.append('featured', 'true');
+  }
+  
+  // Add category filters
+  if (params.categories && params.categories.length > 0) {
+    params.categories.forEach(category => {
+      queryParams.append('category', category);
+    });
+  }
+  
+  // Add price range filters
+  if (params.minPrice !== undefined && params.minPrice >= 0) {
+    queryParams.append('minPrice', params.minPrice.toString());
+  }
+  
+  if (params.maxPrice !== undefined && params.maxPrice > 0) {
+    queryParams.append('maxPrice', params.maxPrice.toString());
+  }
+  
+  // Add sort parameter
+  if (params.sortBy) {
+    queryParams.append('sortBy', params.sortBy);
+  }
+  
+  // Add search parameter
+  if (params.search) {
+    queryParams.append('search', params.search);
+  }
+  
+  const queryString = queryParams.toString();
+  const endpoint = `/api/products${queryString ? `?${queryString}` : ''}`;
   
   console.log("Requête API produits:", endpoint);
 
