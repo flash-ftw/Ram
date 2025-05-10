@@ -239,6 +239,56 @@ export class DatabaseStorage implements IStorage {
       );
     }
     
+    // Filtrer par spécifications de motos
+    if (options.motorType) {
+      whereConditions.push(eq(products.motorType, options.motorType));
+    }
+    
+    if (options.displacement) {
+      whereConditions.push(eq(products.displacement, options.displacement));
+    }
+    
+    if (options.cooling) {
+      whereConditions.push(eq(products.cooling, options.cooling));
+    }
+    
+    if (options.fuelSystem) {
+      whereConditions.push(eq(products.fuelSystem, options.fuelSystem));
+    }
+    
+    if (options.transmission) {
+      whereConditions.push(eq(products.transmission, options.transmission));
+    }
+    
+    if (options.startType) {
+      whereConditions.push(eq(products.starter, options.startType));
+    }
+    
+    if (options.brakes) {
+      whereConditions.push(eq(products.brakes, options.brakes));
+    }
+    
+    if (options.wheelSize) {
+      whereConditions.push(eq(products.wheelSize, options.wheelSize));
+    }
+    
+    // Filtres numériques avec min/max
+    if (options.maxSpeedMin !== undefined && options.maxSpeedMin > 0) {
+      whereConditions.push(gte(products.maxSpeed, options.maxSpeedMin));
+    }
+    
+    if (options.maxSpeedMax !== undefined && options.maxSpeedMax > 0) {
+      whereConditions.push(lte(products.maxSpeed, options.maxSpeedMax));
+    }
+    
+    if (options.weightMin !== undefined && options.weightMin > 0) {
+      whereConditions.push(gte(products.weight, options.weightMin));
+    }
+    
+    if (options.weightMax !== undefined && options.weightMax > 0) {
+      whereConditions.push(lte(products.weight, options.weightMax));
+    }
+    
     // Filter by categories
     if (options.categories && options.categories.length > 0) {
       // Get category IDs from slugs
@@ -715,6 +765,80 @@ export class MemStorage implements IStorage {
       filteredProducts = filteredProducts.filter(product => 
         product.name.toLowerCase().includes(searchLower) || 
         product.description.toLowerCase().includes(searchLower)
+      );
+    }
+    
+    // Filtrer par spécifications de motos
+    if (options.motorType) {
+      filteredProducts = filteredProducts.filter(product => 
+        product.motorType === options.motorType
+      );
+    }
+    
+    if (options.displacement) {
+      filteredProducts = filteredProducts.filter(product => 
+        product.displacement === options.displacement
+      );
+    }
+    
+    if (options.cooling) {
+      filteredProducts = filteredProducts.filter(product => 
+        product.cooling === options.cooling
+      );
+    }
+    
+    if (options.fuelSystem) {
+      filteredProducts = filteredProducts.filter(product => 
+        product.fuelSystem === options.fuelSystem
+      );
+    }
+    
+    if (options.transmission) {
+      filteredProducts = filteredProducts.filter(product => 
+        product.transmission === options.transmission
+      );
+    }
+    
+    if (options.startType) {
+      filteredProducts = filteredProducts.filter(product => 
+        product.starter === options.startType
+      );
+    }
+    
+    if (options.brakes) {
+      filteredProducts = filteredProducts.filter(product => 
+        product.brakes === options.brakes
+      );
+    }
+    
+    if (options.wheelSize) {
+      filteredProducts = filteredProducts.filter(product => 
+        product.wheelSize === options.wheelSize
+      );
+    }
+    
+    // Filtres numériques avec min/max
+    if (options.maxSpeedMin !== undefined && options.maxSpeedMin > 0) {
+      filteredProducts = filteredProducts.filter(product => 
+        product.maxSpeed !== null && product.maxSpeed >= options.maxSpeedMin!
+      );
+    }
+    
+    if (options.maxSpeedMax !== undefined && options.maxSpeedMax > 0) {
+      filteredProducts = filteredProducts.filter(product => 
+        product.maxSpeed !== null && product.maxSpeed <= options.maxSpeedMax!
+      );
+    }
+    
+    if (options.weightMin !== undefined && options.weightMin > 0) {
+      filteredProducts = filteredProducts.filter(product => 
+        product.weight !== null && product.weight >= options.weightMin!
+      );
+    }
+    
+    if (options.weightMax !== undefined && options.weightMax > 0) {
+      filteredProducts = filteredProducts.filter(product => 
+        product.weight !== null && product.weight <= options.weightMax!
       );
     }
     
