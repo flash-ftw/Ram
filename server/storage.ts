@@ -205,6 +205,7 @@ export class DatabaseStorage implements IStorage {
     featured?: boolean;
     categories?: string[];
     categoryId?: number;  // Ajout du filtre par ID de catégorie
+    brandId?: number;     // Ajout du filtre par ID de marque
     brands?: string[];
     minPrice?: number;
     maxPrice?: number;
@@ -253,6 +254,16 @@ export class DatabaseStorage implements IStorage {
           ilike(products.description, `%${options.search}%`)
         )
       );
+    }
+    
+    // Filtre direct par categoryId (numérique)
+    if (options.categoryId !== undefined) {
+      whereConditions.push(eq(products.categoryId, options.categoryId));
+    }
+
+    // Filtre direct par brandId (numérique)
+    if (options.brandId !== undefined) {
+      whereConditions.push(eq(products.brandId, options.brandId));
     }
     
     // Filtrer par spécifications de motos
@@ -703,6 +714,8 @@ export class MemStorage implements IStorage {
   async deleteCategory(id: number): Promise<boolean> {
     return this.categoriesMap.delete(id);
   }
+    categoryId?: number;  // Ajout du filtre par ID de catégorie
+    brandId?: number;     // Ajout du filtre par ID de marque
   
   // Product methods
   async getProducts(options: {
