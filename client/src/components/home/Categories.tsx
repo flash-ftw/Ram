@@ -53,7 +53,7 @@ const Categories = () => {
                 <div className="absolute inset-x-0 bottom-0 p-6 bg-gradient-to-t from-black to-transparent">
                   <h3 className="text-white text-2xl font-bold mb-2">{category.name}</h3>
                   <span className="inline-flex items-center text-yellow-500 font-medium group-hover:text-yellow-400 transition-colors">
-                    Explore Collection
+                    Explorer la Collection
                     <ArrowRight className="ml-2 w-4 h-4 group-hover:ml-3 transition-all" />
                   </span>
                 </div>

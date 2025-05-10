@@ -13,11 +13,11 @@ import { Button } from "@/components/ui/button";
 import { ArrowRight, MessageSquare, Send } from "lucide-react";
 
 const formSchema = z.object({
-  firstName: z.string().min(2, { message: "First name must be at least 2 characters." }),
-  lastName: z.string().min(2, { message: "Last name must be at least 2 characters." }),
-  email: z.string().email({ message: "Please enter a valid email address." }),
-  subject: z.string().min(1, { message: "Please select a subject." }),
-  message: z.string().min(10, { message: "Message must be at least 10 characters." }),
+  firstName: z.string().min(2, { message: "Le prénom doit comporter au moins 2 caractères." }),
+  lastName: z.string().min(2, { message: "Le nom doit comporter au moins 2 caractères." }),
+  email: z.string().email({ message: "Veuillez entrer une adresse email valide." }),
+  subject: z.string().min(1, { message: "Veuillez sélectionner un sujet." }),
+  message: z.string().min(10, { message: "Le message doit comporter au moins 10 caractères." }),
   subscribe: z.boolean().default(false),
 });
 
@@ -50,15 +50,15 @@ const ContactForm = () => {
       });
       
       toast({
-        title: "Message Sent!",
-        description: "We'll get back to you as soon as possible.",
+        title: "Message Envoyé !",
+        description: "Nous vous répondrons dès que possible.",
       });
       
       form.reset();
     } catch (error) {
       toast({
-        title: "Something went wrong.",
-        description: "Your message couldn't be sent. Please try again.",
+        title: "Une erreur s'est produite.",
+        description: "Votre message n'a pas pu être envoyé. Veuillez réessayer.",
         variant: "destructive",
       });
     } finally {
@@ -73,13 +73,13 @@ const ContactForm = () => {
           <div className="text-center mb-12">
             <div className="flex items-center justify-center mb-4">
               <MessageSquare className="text-yellow-500 mr-2" size={28} />
-              <span className="text-yellow-500 text-lg uppercase font-semibold tracking-wider">Get In Touch</span>
+              <span className="text-yellow-500 text-lg uppercase font-semibold tracking-wider">Contactez-Nous</span>
             </div>
             <h2 className="text-4xl font-bold mb-4 moto-heading inline-block after:bottom-[-10px] after:w-24 after:left-1/2 after:-translate-x-1/2">
-              Contact Rammeh MotoScoot
+              Contacter Rammeh MotoScoot
             </h2>
             <p className="text-gray-300 max-w-2xl mx-auto mt-6">
-              Questions about our motorcycles or services? Need to schedule a test ride? Fill out the form below and our team will get back to you as soon as possible.
+              Des questions sur nos motos ou nos services ? Besoin de planifier un essai ? Remplissez le formulaire ci-dessous et notre équipe vous répondra dès que possible.
             </p>
           </div>
           
@@ -92,7 +92,7 @@ const ContactForm = () => {
                     name="firstName"
                     render={({ field }) => (
                       <FormItem>
-                        <FormLabel className="text-sm font-medium text-white">First Name</FormLabel>
+                        <FormLabel className="text-sm font-medium text-white">Prénom</FormLabel>
                         <FormControl>
                           <Input 
                             {...field} 
@@ -109,7 +109,7 @@ const ContactForm = () => {
                     name="lastName"
                     render={({ field }) => (
                       <FormItem>
-                        <FormLabel className="text-sm font-medium text-white">Last Name</FormLabel>
+                        <FormLabel className="text-sm font-medium text-white">Nom</FormLabel>
                         <FormControl>
                           <Input 
                             {...field} 
@@ -127,7 +127,7 @@ const ContactForm = () => {
                   name="email"
                   render={({ field }) => (
                     <FormItem>
-                      <FormLabel className="text-sm font-medium text-white">Email Address</FormLabel>
+                      <FormLabel className="text-sm font-medium text-white">Adresse Email</FormLabel>
                       <FormControl>
                         <Input 
                           {...field} 
