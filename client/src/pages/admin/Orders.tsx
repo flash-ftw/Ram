@@ -96,8 +96,26 @@ const Orders = () => {
   // Parse JSON items for display
   const parseOrderItems = (order: Order) => {
     try {
-      const items = JSON.parse(order.items);
-      setOrderItems(items);
+      // Check if items is already an object (pre-parsed by API)
+      if (typeof order.items === 'string') {
+        try {
+          // Try to parse as JSON
+          const items = JSON.parse(order.items);
+          setOrderItems(items);
+        } catch (innerError) {
+          // If direct parsing fails, try to see if it's a double-stringified JSON
+          try {
+            const items = JSON.parse(JSON.parse(order.items));
+            setOrderItems(items);
+          } catch (deepError) {
+            console.error("Error deep-parsing order items:", deepError);
+            setOrderItems([]);
+          }
+        }
+      } else {
+        // Items is already an object
+        setOrderItems(order.items as unknown as OrderItem[]);
+      }
     } catch (error) {
       console.error("Error parsing order items:", error);
       setOrderItems([]);
