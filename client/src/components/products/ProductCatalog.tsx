@@ -40,12 +40,12 @@ const ProductCatalog = () => {
     sortBy,
     search: searchQuery || undefined,
     // Filtres de spécifications motos
-    motorType: motorType || undefined,
-    displacement: displacement || undefined,
-    cooling: cooling || undefined,
-    fuelSystem: fuelSystem || undefined,
-    transmission: transmission || undefined,
-    brakes: brakes || undefined,
+    motorType: motorType === "all" ? undefined : motorType,
+    displacement: displacement === "all" ? undefined : displacement,
+    cooling: cooling === "all" ? undefined : cooling,
+    fuelSystem: fuelSystem === "all" ? undefined : fuelSystem,
+    transmission: transmission === "all" ? undefined : transmission,
+    brakes: brakes === "all" ? undefined : brakes,
     maxSpeedMin: maxSpeedRange[0] > 0 ? maxSpeedRange[0] : undefined,
     maxSpeedMax: maxSpeedRange[1] < 150 ? maxSpeedRange[1] : undefined,
   });
