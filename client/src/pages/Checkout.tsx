@@ -53,22 +53,56 @@ const Checkout = () => {
   });
 
   // Handle form submission
-  const onSubmit = (data: CheckoutFormValues) => {
+  const onSubmit = async (data: CheckoutFormValues) => {
     setIsSubmitting(true);
     
-    // Simulate processing
-    setTimeout(() => {
-      setIsSubmitting(false);
-      setShowBankDetails(true);
+    try {
+      // Prepare order data
+      const orderData = {
+        customerName: data.name,
+        customerEmail: data.email,
+        customerPhone: data.phone,
+        deliveryLocation: data.location,
+        notes: data.notes || null,
+        totalAmount: cartState.total,
+        items: JSON.stringify(cartState.items),
+        status: "PENDING",
+        paymentMethod: "bank_transfer",
+        paymentConfirmed: false
+      };
       
-      // Store form data in localStorage for ThankYou page
+      // Submit the order to the API
+      const response = await fetch('/api/orders', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify(orderData),
+      });
+      
+      if (!response.ok) {
+        throw new Error('Failed to create order');
+      }
+      
+      const orderResponse = await response.json();
+      
+      // Store order data in localStorage for ThankYou page
       localStorage.setItem("checkout_data", JSON.stringify({
         ...data,
         cartItems: cartState.items,
         totalAmount: cartState.total,
         date: new Date().toISOString(),
+        orderId: orderResponse.id
       }));
-    }, 1000);
+      
+      setIsSubmitting(false);
+      setShowBankDetails(true);
+    } catch (error) {
+      console.error('Error creating order:', error);
+      setIsSubmitting(false);
+      // Could add error state and display a message to the user
+      alert('There was a problem creating your order. Please try again.');
+    }
   };
 
   // Create a WhatsApp message with order details
@@ -79,6 +113,7 @@ const Checkout = () => {
     ).join("\\n");
     
     const message = `*New Order from Rammeh MotoScoot*\\n\\n` +
+      `*Order ID:* ${data.orderId || 'N/A'}\\n` +
       `*Customer:* ${data.name}\\n` +
       `*Phone:* ${data.phone}\\n` +
       `*Email:* ${data.email}\\n` +

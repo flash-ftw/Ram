@@ -43,3 +43,18 @@ export function formatPrice(amount: number | null | undefined, includeSymbol: bo
   // Return with TND symbol if requested
   return includeSymbol ? `${formattedAmount} TND` : formattedAmount;
 }
+
+/**
+ * Formats a date for display
+ * @param date The date to format
+ * @returns Formatted date string in local format
+ */
+export function formatDate(date: Date): string {
+  return new Intl.DateTimeFormat('default', {
+    year: 'numeric',
+    month: 'short',
+    day: 'numeric',
+    hour: '2-digit',
+    minute: '2-digit'
+  }).format(date);
+}

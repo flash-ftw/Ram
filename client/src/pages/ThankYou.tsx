@@ -56,6 +56,12 @@ const ThankYou = () => {
             <div className="space-y-6">
               <div>
                 <h2 className="text-xl font-semibold mb-4">Order Summary</h2>
+                {checkoutData.orderId && (
+                  <div className="mb-4 p-3 bg-yellow-50 border border-yellow-200 rounded-md">
+                    <span className="font-medium text-yellow-800">Order ID: </span>
+                    <span className="font-mono">{checkoutData.orderId}</span>
+                  </div>
+                )}
                 <div className="border-t border-b border-gray-200 py-4 space-y-3">
                   {checkoutData.cartItems?.map((item: any) => (
                     <div key={item.product.id} className="flex justify-between">
