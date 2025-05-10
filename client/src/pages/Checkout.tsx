@@ -130,9 +130,9 @@ const Checkout = () => {
     return (
       <div className="container mx-auto px-4 py-16 max-w-6xl">
         <div className="text-center">
-          <p className="mb-6">Your cart is empty. Please add some products before checkout.</p>
+          <p className="mb-6">Votre panier est vide. Veuillez ajouter des produits avant de passer à la caisse.</p>
           <Button onClick={() => setLocation('/products')} className="bg-yellow-500 hover:bg-yellow-600 text-black">
-            Browse Products
+            Parcourir les Produits
           </Button>
         </div>
       </div>
@@ -144,40 +144,40 @@ const Checkout = () => {
     return (
       <div className="container mx-auto px-4 py-16 max-w-4xl">
         <Helmet>
-          <title>Payment Details | Rammeh MotoScoot</title>
-          <meta name="description" content="Complete your payment for your motorcycle products." />
+          <title>Détails de Paiement | Rammeh MotoScoot</title>
+          <meta name="description" content="Complétez votre paiement pour vos produits moto." />
         </Helmet>
         
         <div className="mb-8">
-          <h1 className="text-3xl font-bold mb-2">Bank Transfer Details</h1>
-          <p className="text-gray-600">Please make a transfer to the following bank account:</p>
+          <h1 className="text-3xl font-bold mb-2">Détails du Virement Bancaire</h1>
+          <p className="text-gray-600">Veuillez effectuer un virement vers le compte bancaire suivant :</p>
         </div>
         
         <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
           <Card className="bg-white shadow-md rounded-lg overflow-hidden">
             <CardHeader className="bg-yellow-500 text-black">
-              <CardTitle className="text-xl">Bank Account Information</CardTitle>
+              <CardTitle className="text-xl">Informations du Compte Bancaire</CardTitle>
             </CardHeader>
             <CardContent className="p-6">
               <ul className="space-y-4">
                 <li className="flex justify-between">
-                  <span className="font-medium">Bank Name:</span>
+                  <span className="font-medium">Nom de la Banque :</span>
                   <span>Banque Nationale</span>
                 </li>
                 <li className="flex justify-between">
-                  <span className="font-medium">Account Name:</span>
+                  <span className="font-medium">Nom du Compte :</span>
                   <span>Rammeh MotoScoot</span>
                 </li>
                 <li className="flex justify-between">
-                  <span className="font-medium">Account Number:</span>
+                  <span className="font-medium">Numéro de Compte :</span>
                   <span className="font-mono">0182739465010</span>
                 </li>
                 <li className="flex justify-between">
-                  <span className="font-medium">IBAN:</span>
+                  <span className="font-medium">IBAN :</span>
                   <span className="font-mono">TN59 1273 9465 0100 8271 0429</span>
                 </li>
                 <li className="flex justify-between">
-                  <span className="font-medium">Amount:</span>
+                  <span className="font-medium">Montant :</span>
                   <span className="font-bold text-yellow-500">{formatPrice(cartState.total)}</span>
                 </li>
               </ul>
