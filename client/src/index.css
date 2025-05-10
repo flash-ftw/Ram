@@ -4,52 +4,52 @@
 
 :root {
   --background: 0 0% 100%;
-  --foreground: 20 14.3% 4.1%;
+  --foreground: 0 0% 10%;
   --muted: 60 4.8% 95.9%;
   --muted-foreground: 25 5.3% 44.7%;
   --popover: 0 0% 100%;
-  --popover-foreground: 20 14.3% 4.1%;
+  --popover-foreground: 0 0% 10%;
   --card: 0 0% 100%;
-  --card-foreground: 20 14.3% 4.1%;
+  --card-foreground: 0 0% 10%;
   --border: 20 5.9% 90%;
   --input: 20 5.9% 90%;
-  --primary: 207 90% 54%;
-  --primary-foreground: 211 100% 99%;
-  --secondary: 60 4.8% 95.9%;
-  --secondary-foreground: 24 9.8% 10%;
-  --accent: 60 4.8% 95.9%;
-  --accent-foreground: 24 9.8% 10%;
+  --primary: 50 100% 50%; /* Yellow */
+  --primary-foreground: 0 0% 10%; /* Black text on yellow */
+  --secondary: 0 0% 10%; /* Black */
+  --secondary-foreground: 0 0% 100%; /* White text on black */
+  --accent: 0 0% 80%; /* Gray */
+  --accent-foreground: 0 0% 10%;
   --destructive: 0 84.2% 60.2%;
   --destructive-foreground: 60 9.1% 97.8%;
-  --ring: 20 14.3% 4.1%;
+  --ring: 50 100% 50%; /* Yellow */
   --radius: 0.5rem;
-  --chart-1: 207 90% 54%;
-  --chart-2: 35 100% 50%;
-  --chart-3: 142 70% 45%;
-  --chart-4: 266 70% 65%;
-  --chart-5: 0 85% 60%;
+  --chart-1: 50 100% 50%; /* Yellow */
+  --chart-2: 0 0% 10%;   /* Black */
+  --chart-3: 0 0% 70%;   /* Gray */
+  --chart-4: 50 80% 60%;  /* Light yellow */
+  --chart-5: 0 0% 30%;    /* Dark gray */
 }
 
 .dark {
-  --background: 240 10% 3.9%;
-  --foreground: 0 0% 98%;
-  --muted: 240 3.7% 15.9%;
-  --muted-foreground: 240 5% 64.9%;
-  --popover: 240 10% 3.9%;
-  --popover-foreground: 0 0% 98%;
-  --card: 240 10% 3.9%;
-  --card-foreground: 0 0% 98%;
-  --border: 240 3.7% 15.9%;
-  --input: 240 3.7% 15.9%;
-  --primary: 207 90% 54%;
-  --primary-foreground: 211 100% 99%;
-  --secondary: 240 3.7% 15.9%;
-  --secondary-foreground: 0 0% 98%;
-  --accent: 240 3.7% 15.9%;
-  --accent-foreground: 0 0% 98%;
+  --background: 0 0% 10%; /* Black background */
+  --foreground: 0 0% 95%; /* Light text */
+  --muted: 0 0% 15%;
+  --muted-foreground: 0 0% 70%;
+  --popover: 0 0% 10%;
+  --popover-foreground: 0 0% 95%;
+  --card: 0 0% 15%; /* Slightly lighter than background */
+  --card-foreground: 0 0% 95%;
+  --border: 0 0% 20%;
+  --input: 0 0% 20%;
+  --primary: 50 100% 50%; /* Yellow */
+  --primary-foreground: 0 0% 10%; /* Black text on yellow */
+  --secondary: 0 0% 30%; /* Dark gray */
+  --secondary-foreground: 0 0% 95%;
+  --accent: 50 70% 45%; /* Darker yellow */
+  --accent-foreground: 0 0% 10%;
   --destructive: 0 62.8% 30.6%;
   --destructive-foreground: 0 0% 98%;
-  --ring: 240 4.9% 83.9%;
+  --ring: 50 100% 50%; /* Yellow */
   --radius: 0.5rem;
 }
 
@@ -81,4 +81,30 @@
 
 .category-filter::-webkit-scrollbar-thumb {
   @apply bg-gray-300 rounded-full;
+}
+
+/* Motorcycle theme specific styles */
+.moto-card {
+  @apply border-2 border-yellow-500 overflow-hidden transition-all duration-300;
+}
+
+.moto-card:hover {
+  @apply shadow-[0_0_15px_rgba(255,204,0,0.6)] -translate-y-1;
+}
+
+.moto-heading {
+  @apply font-bold relative;
+}
+
+.moto-heading::after {
+  content: '';
+  @apply absolute bottom-0 left-0 h-1 bg-yellow-500 w-16;
+}
+
+.moto-btn {
+  @apply rounded-full font-bold transition-all duration-300;
+}
+
+.moto-badge {
+  @apply bg-yellow-500 text-black font-bold px-3 py-1 rounded-full text-xs uppercase;
 }

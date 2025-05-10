@@ -28,13 +28,22 @@ const Header = () => {
   };
 
   return (
-    <header className="bg-white shadow-sm sticky top-0 z-50">
+    <header className="bg-black text-white shadow-md sticky top-0 z-50">
       <div className="container mx-auto px-4 sm:px-6 lg:px-8">
         <div className="flex justify-between items-center h-16">
           {/* Logo */}
           <div className="flex-shrink-0 flex items-center">
-            <Link href="/" className="text-primary font-bold text-xl md:text-2xl">
-              ModernShowroom
+            <Link href="/" className="flex items-center">
+              <span className="text-yellow-500 mr-2">
+                <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+                  <path d="M20.38 9.78l-1.3-2.26c-.17-.3-.51-.48-.87-.48h-2.83l-1.32-1.41a1.15 1.15 0 0 0-.85-.36h-2.42a1.15 1.15 0 0 0-.85.36L8.62 7.04H5.79c-.36 0-.7.18-.87.48L3.62 9.78C3.23 10.5 3 11.11 3 12v3a1 1 0 0 0 1 1h1.5a2.5 2.5 0 0 0 5 0h3a2.5 2.5 0 0 0 5 0H20a1 1 0 0 0 1-1v-3c0-.89-.23-1.5-.62-2.22Z" />
+                  <circle cx="7.5" cy="16" r="1.5" />
+                  <circle cx="16.5" cy="16" r="1.5" />
+                </svg>
+              </span>
+              <span className="font-bold text-xl md:text-2xl">
+                <span className="text-yellow-500">Rammeh</span> <span className="text-white">MotoScoot</span>
+              </span>
             </Link>
           </div>
           
@@ -42,23 +51,23 @@ const Header = () => {
           <nav className="hidden md:flex space-x-8">
             <Link 
               href="/" 
-              className={`px-3 py-2 font-medium ${location === "/" ? "text-primary" : "text-gray-800 hover:text-primary"}`}
+              className={`px-3 py-2 font-medium ${location === "/" ? "text-yellow-500" : "text-white hover:text-yellow-500"} transition-colors`}
             >
               Home
             </Link>
             <DropdownMenu>
-              <DropdownMenuTrigger className="flex items-center px-3 py-2 font-medium text-gray-800 hover:text-primary focus:outline-none">
+              <DropdownMenuTrigger className="flex items-center px-3 py-2 font-medium text-white hover:text-yellow-500 focus:outline-none transition-colors">
                 Products
                 <svg className="ml-1 w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
                   <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M19 9l-7 7-7-7"></path>
                 </svg>
               </DropdownMenuTrigger>
-              <DropdownMenuContent>
-                <DropdownMenuItem asChild>
+              <DropdownMenuContent className="bg-black border border-yellow-500 text-white">
+                <DropdownMenuItem asChild className="hover:bg-yellow-500 hover:text-black">
                   <Link href="/products" className="w-full">All Products</Link>
                 </DropdownMenuItem>
                 {categories?.map((category) => (
-                  <DropdownMenuItem key={category.id} asChild>
+                  <DropdownMenuItem key={category.id} asChild className="hover:bg-yellow-500 hover:text-black">
                     <Link href={`/products?category=${category.slug}`} className="w-full">
                       {category.name}
                     </Link>
@@ -68,13 +77,13 @@ const Header = () => {
             </DropdownMenu>
             <Link 
               href="/about" 
-              className={`px-3 py-2 font-medium ${location === "/about" ? "text-primary" : "text-gray-800 hover:text-primary"}`}
+              className={`px-3 py-2 font-medium ${location === "/about" ? "text-yellow-500" : "text-white hover:text-yellow-500"} transition-colors`}
             >
               About
             </Link>
             <Link 
               href="/contact" 
-              className={`px-3 py-2 font-medium ${location === "/contact" ? "text-primary" : "text-gray-800 hover:text-primary"}`}
+              className={`px-3 py-2 font-medium ${location === "/contact" ? "text-yellow-500" : "text-white hover:text-yellow-500"} transition-colors`}
             >
               Contact
             </Link>
