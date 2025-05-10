@@ -212,14 +212,72 @@ const ProductDetail = () => {
                 )}
               </div>
               
+              {/* Quantity Selector */}
+              <div className="mt-6 flex items-center">
+                <span className="text-gray-700 mr-4">Quantity:</span>
+                <div className="flex items-center border border-gray-300 rounded-md">
+                  <button 
+                    onClick={() => handleQuantityChange(quantity - 1)}
+                    className="px-4 py-2 border-r border-gray-300 text-gray-600 hover:bg-gray-100 focus:outline-none"
+                    disabled={quantity <= 1}
+                  >
+                    -
+                  </button>
+                  <span className="px-4 py-2 text-gray-700">{quantity}</span>
+                  <button 
+                    onClick={() => handleQuantityChange(quantity + 1)}
+                    className="px-4 py-2 border-l border-gray-300 text-gray-600 hover:bg-gray-100 focus:outline-none"
+                  >
+                    +
+                  </button>
+                </div>
+              </div>
+              
               <div className="mt-8 flex flex-col sm:flex-row space-y-4 sm:space-y-0 sm:space-x-4">
-                <Button className="flex-1 bg-primary hover:bg-blue-600 text-white font-medium py-3 px-6 flex items-center justify-center">
+                <Button 
+                  onClick={() => {
+                    setIsAddingToCart(true);
+                    
+                    try {
+                      // Add to cart
+                      addItem(product, quantity);
+                      
+                      // Show success toast
+                      toast({
+                        title: "Added to Cart",
+                        description: `${quantity} ${quantity > 1 ? 'items' : 'item'} added to your cart.`,
+                        variant: "default",
+                        duration: 3000,
+                      });
+                      
+                      // Reset quantity
+                      setQuantity(1);
+                    } catch (error) {
+                      // Show error toast
+                      toast({
+                        title: "Error",
+                        description: "Could not add item to cart. Please try again.",
+                        variant: "destructive",
+                      });
+                    } finally {
+                      setIsAddingToCart(false);
+                    }
+                  }}
+                  disabled={isAddingToCart}
+                  className="flex-1 bg-yellow-500 hover:bg-yellow-600 text-black font-medium py-3 px-6 flex items-center justify-center"
+                >
                   <ShoppingCart className="mr-2" size={18} />
-                  Add to Cart
+                  {isAddingToCart ? 'Adding...' : 'Add to Cart'}
                 </Button>
-                <Button variant="outline" className="flex-1 bg-white hover:bg-gray-100 text-gray-800 font-medium py-3 px-6 border border-gray-300 flex items-center justify-center">
-                  <Heart className="mr-2" size={18} />
-                  Add to Wishlist
+                <Button 
+                  onClick={() => {
+                    addItem(product, quantity);
+                    setLocation('/cart');
+                  }}
+                  variant="outline" 
+                  className="flex-1 bg-white hover:bg-gray-100 text-gray-800 font-medium py-3 px-6 border border-gray-300 flex items-center justify-center"
+                >
+                  Buy Now
                 </Button>
               </div>
               

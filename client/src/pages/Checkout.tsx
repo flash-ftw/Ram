@@ -1,297 +1,399 @@
-import { Helmet } from 'react-helmet';
-import { useState } from 'react';
-import { useLocation } from 'wouter';
-import { z } from 'zod';
-import { useForm } from 'react-hook-form';
-import { zodResolver } from '@hookform/resolvers/zod';
-import { CreditCard, ChevronsRight, ShoppingBag, Check, Phone } from 'lucide-react';
-import { Button } from '@/components/ui/button';
-import { Input } from '@/components/ui/input';
-import { Textarea } from '@/components/ui/textarea';
-import { Form, FormControl, FormField, FormItem, FormLabel, FormMessage } from '@/components/ui/form';
-import { useCart } from '@/contexts/CartContext';
-import { formatPrice } from '@/lib/utils';
-import MotorcycleIcon from '@/components/ui/motorcycle-icon';
+import { useState } from "react";
+import { useLocation } from "wouter";
+import { Helmet } from "react-helmet";
+import { z } from "zod";
+import { zodResolver } from "@hookform/resolvers/zod";
+import { useForm } from "react-hook-form";
+import { ArrowLeft, CreditCard, LucidePhone, MapPin, Send } from "lucide-react";
 
-// Form schema for checkout
+import { Button } from "@/components/ui/button";
+import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
+import { Input } from "@/components/ui/input";
+import { 
+  Form, 
+  FormControl, 
+  FormField, 
+  FormItem, 
+  FormLabel, 
+  FormMessage 
+} from "@/components/ui/form";
+import { Textarea } from "@/components/ui/textarea";
+import { Separator } from "@/components/ui/separator";
+import { useCart } from "@/contexts/CartContext";
+import { formatPrice } from "@/lib/utils";
+import { Alert, AlertDescription, AlertTitle } from "@/components/ui/alert";
+
+// Form validation schema
 const checkoutSchema = z.object({
-  fullName: z.string().min(3, { message: 'Please enter your full name' }),
-  email: z.string().email({ message: 'Please enter a valid email' }),
-  phone: z.string().min(8, { message: 'Please enter a valid phone number' }),
-  address: z.string().min(5, { message: 'Please enter your delivery address' }),
+  name: z.string().min(2, { message: "Name must be at least 2 characters." }),
+  email: z.string().email({ message: "Please enter a valid email address." }),
+  phone: z.string().min(8, { message: "Please enter a valid phone number." }),
+  location: z.string().min(5, { message: "Please provide your full address." }),
   notes: z.string().optional(),
 });
 
 type CheckoutFormValues = z.infer<typeof checkoutSchema>;
 
 const Checkout = () => {
-  const { state, clearCart } = useCart();
   const [, setLocation] = useLocation();
-  const [step, setStep] = useState<'form' | 'confirmation'>('form');
-  const [formData, setFormData] = useState<CheckoutFormValues | null>(null);
-
+  const { state: cartState } = useCart();
+  const [isSubmitting, setIsSubmitting] = useState(false);
+  const [showBankDetails, setShowBankDetails] = useState(false);
+  
   // Initialize form
   const form = useForm<CheckoutFormValues>({
     resolver: zodResolver(checkoutSchema),
     defaultValues: {
-      fullName: '',
-      email: '',
-      phone: '',
-      address: '',
-      notes: '',
+      name: "",
+      email: "",
+      phone: "",
+      location: "",
+      notes: "",
     },
   });
 
+  // Handle form submission
   const onSubmit = (data: CheckoutFormValues) => {
-    setFormData(data);
-    setStep('confirmation');
-  };
-
-  const handleFinishOrder = () => {
-    clearCart();
-    setLocation('/thank-you');
-  };
-
-  // Helper function to open WhatsApp
-  const openWhatsApp = () => {
-    // Format items list for WhatsApp message
-    const itemsList = state.items
-      .map(item => `${item.product.name} x${item.quantity}`)
-      .join('\\n');
+    setIsSubmitting(true);
     
-    const customerInfo = `
-Name: ${formData?.fullName}
-Email: ${formData?.email}
-Phone: ${formData?.phone}
-Address: ${formData?.address}
-`;
-
-    const message = `*New Order from Rammeh MotoScoot Website*\\n\\n*Customer Details:*\\n${customerInfo}\\n*Order Items:*\\n${itemsList}\\n\\n*Total:* ${formatPrice(state.total)}\\n\\nI have made a payment and attached the receipt.`;
-    
-    // Open WhatsApp with pre-filled message
-    window.open(`https://wa.me/+21600000000?text=${encodeURIComponent(message)}`, '_blank');
+    // Simulate processing
+    setTimeout(() => {
+      setIsSubmitting(false);
+      setShowBankDetails(true);
+      
+      // Store form data in localStorage for ThankYou page
+      localStorage.setItem("checkout_data", JSON.stringify({
+        ...data,
+        cartItems: cartState.items,
+        totalAmount: cartState.total,
+        date: new Date().toISOString(),
+      }));
+    }, 1000);
   };
 
-  // If cart is empty, redirect to cart page
-  if (state.items.length === 0 && step === 'form') {
-    setLocation('/cart');
-    return null;
+  // Create a WhatsApp message with order details
+  const generateWhatsAppMessage = () => {
+    const data = JSON.parse(localStorage.getItem("checkout_data") || "{}");
+    const itemsList = cartState.items.map(item => 
+      `${item.product.name} x${item.quantity} - ${formatPrice(item.product.price * item.quantity)}`
+    ).join("\\n");
+    
+    const message = `*New Order from Rammeh MotoScoot*\\n\\n` +
+      `*Customer:* ${data.name}\\n` +
+      `*Phone:* ${data.phone}\\n` +
+      `*Email:* ${data.email}\\n` +
+      `*Location:* ${data.location}\\n\\n` +
+      `*Order Items:*\\n${itemsList}\\n\\n` +
+      `*Total Amount:* ${formatPrice(cartState.total)}\\n\\n` +
+      `I've completed the bank transfer and I'm attaching the receipt.`;
+    
+    return encodeURIComponent(message);
+  };
+
+  // Redirect if cart is empty
+  if (cartState.items.length === 0) {
+    return (
+      <div className="container mx-auto px-4 py-16 max-w-6xl">
+        <div className="text-center">
+          <p className="mb-6">Your cart is empty. Please add some products before checkout.</p>
+          <Button onClick={() => setLocation('/products')} className="bg-yellow-500 hover:bg-yellow-600 text-black">
+            Browse Products
+          </Button>
+        </div>
+      </div>
+    );
   }
 
-  return (
-    <>
-      <Helmet>
-        <title>Checkout - Rammeh MotoScoot</title>
-        <meta name="description" content="Complete your purchase and arrange delivery of your motorcycle products." />
-      </Helmet>
-
-      <section className="bg-gray-100 py-12">
-        <div className="container mx-auto px-4">
-          <div className="flex items-center mb-6">
-            {step === 'form' ? (
-              <>
-                <ShoppingBag size={28} className="text-yellow-500 mr-2" />
-                <h1 className="text-3xl font-bold">Checkout</h1>
-              </>
-            ) : (
-              <>
-                <CreditCard size={28} className="text-yellow-500 mr-2" />
-                <h1 className="text-3xl font-bold">Payment Information</h1>
-              </>
-            )}
-          </div>
-
-          {step === 'form' ? (
-            <div className="grid grid-cols-1 lg:grid-cols-3 gap-6">
-              <div className="lg:col-span-2">
-                <div className="bg-white rounded-lg shadow-md p-6">
-                  <h2 className="text-xl font-semibold mb-4">Customer Information</h2>
-                  
-                  <Form {...form}>
-                    <form onSubmit={form.handleSubmit(onSubmit)} className="space-y-6">
-                      <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
-                        <FormField
-                          control={form.control}
-                          name="fullName"
-                          render={({ field }) => (
-                            <FormItem>
-                              <FormLabel>Full Name</FormLabel>
-                              <FormControl>
-                                <Input placeholder="Enter your full name" {...field} />
-                              </FormControl>
-                              <FormMessage />
-                            </FormItem>
-                          )}
-                        />
-                        
-                        <FormField
-                          control={form.control}
-                          name="email"
-                          render={({ field }) => (
-                            <FormItem>
-                              <FormLabel>Email Address</FormLabel>
-                              <FormControl>
-                                <Input type="email" placeholder="your@email.com" {...field} />
-                              </FormControl>
-                              <FormMessage />
-                            </FormItem>
-                          )}
-                        />
-                      </div>
-                      
-                      <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
-                        <FormField
-                          control={form.control}
-                          name="phone"
-                          render={({ field }) => (
-                            <FormItem>
-                              <FormLabel>Phone Number</FormLabel>
-                              <FormControl>
-                                <Input placeholder="Enter your phone number" {...field} />
-                              </FormControl>
-                              <FormMessage />
-                            </FormItem>
-                          )}
-                        />
-                      </div>
-                      
-                      <FormField
-                        control={form.control}
-                        name="address"
-                        render={({ field }) => (
-                          <FormItem>
-                            <FormLabel>Delivery Address</FormLabel>
-                            <FormControl>
-                              <Textarea 
-                                placeholder="Enter your full address" 
-                                className="min-h-[100px]" 
-                                {...field} 
-                              />
-                            </FormControl>
-                            <FormMessage />
-                          </FormItem>
-                        )}
-                      />
-                      
-                      <FormField
-                        control={form.control}
-                        name="notes"
-                        render={({ field }) => (
-                          <FormItem>
-                            <FormLabel>Additional Notes (Optional)</FormLabel>
-                            <FormControl>
-                              <Textarea 
-                                placeholder="Any special instructions or information we should know" 
-                                className="min-h-[100px]" 
-                                {...field} 
-                              />
-                            </FormControl>
-                            <FormMessage />
-                          </FormItem>
-                        )}
-                      />
-                      
-                      <Button 
-                        type="submit" 
-                        className="w-full bg-yellow-500 hover:bg-yellow-600 text-black font-bold py-3"
-                      >
-                        Continue to Payment <ChevronsRight className="ml-1" size={16} />
-                      </Button>
-                    </form>
-                  </Form>
-                </div>
-              </div>
+  // Display bank details after form submission
+  if (showBankDetails) {
+    return (
+      <div className="container mx-auto px-4 py-16 max-w-4xl">
+        <Helmet>
+          <title>Payment Details | Rammeh MotoScoot</title>
+          <meta name="description" content="Complete your payment for your motorcycle products." />
+        </Helmet>
+        
+        <div className="mb-8">
+          <h1 className="text-3xl font-bold mb-2">Bank Transfer Details</h1>
+          <p className="text-gray-600">Please make a transfer to the following bank account:</p>
+        </div>
+        
+        <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
+          <Card className="bg-white shadow-md rounded-lg overflow-hidden">
+            <CardHeader className="bg-yellow-500 text-black">
+              <CardTitle className="text-xl">Bank Account Information</CardTitle>
+            </CardHeader>
+            <CardContent className="p-6">
+              <ul className="space-y-4">
+                <li className="flex justify-between">
+                  <span className="font-medium">Bank Name:</span>
+                  <span>Banque Nationale</span>
+                </li>
+                <li className="flex justify-between">
+                  <span className="font-medium">Account Name:</span>
+                  <span>Rammeh MotoScoot</span>
+                </li>
+                <li className="flex justify-between">
+                  <span className="font-medium">Account Number:</span>
+                  <span className="font-mono">0182739465010</span>
+                </li>
+                <li className="flex justify-between">
+                  <span className="font-medium">IBAN:</span>
+                  <span className="font-mono">TN59 1273 9465 0100 8271 0429</span>
+                </li>
+                <li className="flex justify-between">
+                  <span className="font-medium">Amount:</span>
+                  <span className="font-bold text-yellow-500">{formatPrice(cartState.total)}</span>
+                </li>
+              </ul>
               
-              <div className="lg:col-span-1">
-                <div className="bg-white rounded-lg shadow-md p-6">
-                  <h2 className="text-xl font-semibold mb-4">Order Summary</h2>
-                  
-                  <div className="divide-y divide-gray-200">
-                    {state.items.map((item) => (
-                      <div key={item.product.id} className="py-3 flex justify-between">
-                        <div>
-                          <p className="font-medium">{item.product.name}</p>
-                          <p className="text-sm text-gray-600">Qty: {item.quantity}</p>
-                        </div>
-                        <p className="font-medium text-yellow-600">
-                          {formatPrice(item.product.price * item.quantity)}
-                        </p>
-                      </div>
-                    ))}
-                  </div>
-                  
-                  <div className="border-t border-gray-200 mt-4 pt-4">
-                    <div className="flex justify-between items-center">
-                      <span className="text-lg font-semibold">Total</span>
-                      <span className="text-xl font-bold text-yellow-500">{formatPrice(state.total)}</span>
-                    </div>
-                  </div>
-                </div>
-              </div>
-            </div>
-          ) : (
-            <div className="bg-white rounded-lg shadow-md p-8 max-w-3xl mx-auto">
-              <div className="flex justify-center mb-6">
-                <MotorcycleIcon size={64} className="text-yellow-500" />
-              </div>
-              
-              <h2 className="text-2xl font-bold text-center mb-6">Make Your Payment</h2>
-              
-              <div className="border rounded-lg p-4 mb-6 bg-gray-50">
-                <h3 className="text-lg font-semibold mb-2">Order Details</h3>
-                <ul className="divide-y divide-gray-200">
-                  {state.items.map((item) => (
-                    <li key={item.product.id} className="py-2 flex justify-between">
-                      <span>{item.product.name} x {item.quantity}</span>
-                      <span className="font-medium">{formatPrice(item.product.price * item.quantity)}</span>
-                    </li>
-                  ))}
-                </ul>
-                <div className="pt-2 mt-2 border-t border-gray-200 flex justify-between">
-                  <span className="font-bold">Total:</span>
-                  <span className="font-bold text-yellow-500">{formatPrice(state.total)}</span>
-                </div>
-              </div>
-              
-              <div className="border rounded-lg p-6 mb-6 bg-yellow-50">
-                <h3 className="text-lg font-semibold mb-4 text-center">Bank Transfer Information</h3>
-                <div className="space-y-2">
-                  <p><strong>Bank Name:</strong> Tunisian National Bank</p>
-                  <p><strong>Account Name:</strong> Rammeh MotoScoot</p>
-                  <p><strong>Account Number:</strong> 0100 2233 4455 6677</p>
-                  <p><strong>IBAN:</strong> TN59 0100 2233 4455 6677 8899</p>
-                  <p><strong>Reference:</strong> Order-{new Date().getTime().toString().substring(5)}</p>
-                </div>
-                <div className="mt-4 p-3 bg-yellow-100 rounded-md text-sm">
-                  <p>
-                    <strong>Note:</strong> Please make the transfer using the information above and send us the receipt 
-                    via WhatsApp for faster processing.
-                  </p>
-                </div>
-              </div>
-              
-              <div className="space-y-4">
-                <Button
-                  onClick={openWhatsApp}
-                  className="w-full bg-green-500 hover:bg-green-600 text-white py-3 font-bold flex items-center justify-center"
-                >
-                  <Phone className="mr-2" size={20} />
-                  Contact via WhatsApp
-                </Button>
+              <Alert className="mt-6 border-yellow-500">
+                <CreditCard className="h-4 w-4 text-yellow-500" />
+                <AlertTitle>Payment Instructions</AlertTitle>
+                <AlertDescription>
+                  Please include your name and phone number in the transfer description. 
+                  After completing the transfer, contact us via WhatsApp with your receipt.
+                </AlertDescription>
+              </Alert>
+            </CardContent>
+          </Card>
+          
+          <div className="flex flex-col space-y-6">
+            <Card className="bg-white shadow-md rounded-lg overflow-hidden">
+              <CardHeader className="bg-yellow-500 text-black">
+                <CardTitle className="text-xl">Next Steps</CardTitle>
+              </CardHeader>
+              <CardContent className="p-6">
+                <ol className="list-decimal list-inside space-y-4 mb-6">
+                  <li>Make the bank transfer for the exact amount</li>
+                  <li>Take a screenshot or photo of your transfer receipt</li>
+                  <li>Send us the receipt via WhatsApp with your order details</li>
+                  <li>We'll process your order and contact you within 24 hours</li>
+                </ol>
                 
                 <Button
-                  onClick={handleFinishOrder}
-                  className="w-full bg-yellow-500 hover:bg-yellow-600 text-black py-3 font-bold flex items-center justify-center"
+                  onClick={() => {
+                    // Tunisian phone number format: +216 XX XXX XXX
+                    window.open(`https://wa.me/21699123456?text=${generateWhatsAppMessage()}`, '_blank');
+                    // Navigate to thank you page after a short delay
+                    setTimeout(() => {
+                      setLocation('/thank-you');
+                    }, 500);
+                  }}
+                  className="w-full bg-green-600 hover:bg-green-700 text-white flex items-center justify-center gap-2"
                 >
-                  <Check className="mr-2" size={20} />
-                  Complete Order
+                  <LucidePhone className="h-4 w-4" />
+                  <span>Contact via WhatsApp</span>
                 </Button>
-              </div>
+              </CardContent>
+            </Card>
+            
+            <div className="flex space-x-4">
+              <Button
+                variant="outline"
+                onClick={() => setShowBankDetails(false)}
+                className="flex-1 flex items-center justify-center gap-2"
+              >
+                <ArrowLeft className="h-4 w-4" />
+                <span>Back to Form</span>
+              </Button>
+              
+              <Button
+                onClick={() => setLocation('/thank-you')}
+                className="flex-1 bg-yellow-500 hover:bg-yellow-600 text-black flex items-center justify-center gap-2"
+              >
+                <Send className="h-4 w-4" />
+                <span>Complete Order</span>
+              </Button>
             </div>
-          )}
+          </div>
         </div>
-      </section>
-    </>
+      </div>
+    );
+  }
+
+  // Display checkout form
+  return (
+    <div className="container mx-auto px-4 py-16 max-w-6xl">
+      <Helmet>
+        <title>Checkout | Rammeh MotoScoot</title>
+        <meta name="description" content="Complete your order from Rammeh MotoScoot." />
+      </Helmet>
+      
+      <div className="mb-8">
+        <h1 className="text-3xl font-bold mb-2">Checkout</h1>
+        <p className="text-gray-600">Please fill in your details to complete your order</p>
+      </div>
+      
+      <div className="grid grid-cols-1 lg:grid-cols-3 gap-8">
+        <div className="lg:col-span-2">
+          <Card className="bg-white shadow-md rounded-lg overflow-hidden">
+            <CardContent className="p-6">
+              <Form {...form}>
+                <form onSubmit={form.handleSubmit(onSubmit)} className="space-y-6">
+                  <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+                    <FormField
+                      control={form.control}
+                      name="name"
+                      render={({ field }) => (
+                        <FormItem>
+                          <FormLabel>Full Name</FormLabel>
+                          <FormControl>
+                            <Input placeholder="Enter your full name" {...field} />
+                          </FormControl>
+                          <FormMessage />
+                        </FormItem>
+                      )}
+                    />
+                    
+                    <FormField
+                      control={form.control}
+                      name="email"
+                      render={({ field }) => (
+                        <FormItem>
+                          <FormLabel>Email Address</FormLabel>
+                          <FormControl>
+                            <Input type="email" placeholder="Enter your email" {...field} />
+                          </FormControl>
+                          <FormMessage />
+                        </FormItem>
+                      )}
+                    />
+                  </div>
+                  
+                  <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+                    <FormField
+                      control={form.control}
+                      name="phone"
+                      render={({ field }) => (
+                        <FormItem>
+                          <FormLabel>Phone Number</FormLabel>
+                          <FormControl>
+                            <Input placeholder="Enter your phone number" {...field} />
+                          </FormControl>
+                          <FormMessage />
+                        </FormItem>
+                      )}
+                    />
+                    
+                    <FormField
+                      control={form.control}
+                      name="location"
+                      render={({ field }) => (
+                        <FormItem>
+                          <FormLabel>Delivery Location</FormLabel>
+                          <FormControl>
+                            <Input placeholder="Enter your full address" {...field} />
+                          </FormControl>
+                          <FormMessage />
+                        </FormItem>
+                      )}
+                    />
+                  </div>
+                  
+                  <FormField
+                    control={form.control}
+                    name="notes"
+                    render={({ field }) => (
+                      <FormItem>
+                        <FormLabel>Order Notes (Optional)</FormLabel>
+                        <FormControl>
+                          <Textarea 
+                            placeholder="Any special instructions for delivery or order" 
+                            className="h-24 resize-none"
+                            {...field} 
+                          />
+                        </FormControl>
+                        <FormMessage />
+                      </FormItem>
+                    )}
+                  />
+                  
+                  <div className="flex justify-between">
+                    <Button
+                      type="button"
+                      variant="outline"
+                      onClick={() => setLocation('/cart')}
+                      className="flex items-center gap-2"
+                    >
+                      <ArrowLeft className="h-4 w-4" />
+                      <span>Back to Cart</span>
+                    </Button>
+                    
+                    <Button 
+                      type="submit" 
+                      disabled={isSubmitting}
+                      className="bg-yellow-500 hover:bg-yellow-600 text-black flex items-center gap-2"
+                    >
+                      <span>Continue to Payment</span>
+                      {isSubmitting ? (
+                        <div className="h-4 w-4 border-2 border-black border-t-transparent rounded-full animate-spin" />
+                      ) : (
+                        <MapPin className="h-4 w-4" />
+                      )}
+                    </Button>
+                  </div>
+                </form>
+              </Form>
+            </CardContent>
+          </Card>
+        </div>
+        
+        <div className="lg:col-span-1">
+          <Card className="bg-white shadow-md rounded-lg overflow-hidden">
+            <CardHeader className="bg-yellow-500/10">
+              <CardTitle className="text-xl">Order Summary</CardTitle>
+            </CardHeader>
+            <CardContent className="p-6">
+              <div className="space-y-4">
+                {cartState.items.map((item) => (
+                  <div key={item.product.id} className="flex justify-between">
+                    <div>
+                      <p className="font-medium">{item.product.name}</p>
+                      <p className="text-sm text-gray-500">
+                        {item.quantity} × {formatPrice(item.product.price)}
+                      </p>
+                    </div>
+                    <p className="font-medium">
+                      {formatPrice(item.product.price * item.quantity)}
+                    </p>
+                  </div>
+                ))}
+                
+                <Separator />
+                
+                <div className="flex justify-between text-sm">
+                  <span className="text-gray-600">Subtotal</span>
+                  <span className="font-medium">{formatPrice(cartState.total)}</span>
+                </div>
+                
+                <div className="flex justify-between text-sm">
+                  <span className="text-gray-600">Shipping</span>
+                  <span className="font-medium">To be calculated</span>
+                </div>
+                
+                <Separator />
+                
+                <div className="flex justify-between text-lg font-bold">
+                  <span>Total</span>
+                  <span className="text-yellow-500">{formatPrice(cartState.total)}</span>
+                </div>
+              </div>
+            </CardContent>
+          </Card>
+          
+          <Card className="bg-white shadow-md rounded-lg overflow-hidden mt-6">
+            <CardContent className="p-6">
+              <h3 className="font-medium mb-2">Payment Method</h3>
+              <p className="text-sm text-gray-600">
+                We accept bank transfers only. After submitting your details, 
+                you'll receive our bank information for payment.
+              </p>
+            </CardContent>
+          </Card>
+        </div>
+      </div>
+    </div>
   );
 };
 
