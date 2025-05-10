@@ -135,7 +135,7 @@ const Header = () => {
           
           {/* Cart Button */}
           <div className="flex items-center">
-            <Link href="/cart" className="relative mr-4 group">
+            <Link href="/cart" className="relative mr-4 group" aria-label="Panier">
               <ShoppingCart 
                 size={24} 
                 className={`${location === "/cart" ? "text-yellow-500" : "text-white hover:text-yellow-500"} group-hover:scale-110 transition-transform`} 
@@ -175,7 +175,7 @@ const Header = () => {
                 <path d="m3 9 9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"/>
                 <polyline points="9 22 9 12 15 12 15 22"/>
               </svg>
-              Home
+              Accueil
             </Link>
             <Link 
               href="/products" 
@@ -183,7 +183,7 @@ const Header = () => {
               onClick={() => setMobileMenuOpen(false)}
             >
               <MotorcycleIcon size={18} className="mr-3" />
-              Products
+              Produits
             </Link>
             <Link 
               href="/about" 
@@ -195,7 +195,7 @@ const Header = () => {
                 <path d="M12 16v-4"/>
                 <path d="M12 8h.01"/>
               </svg>
-              About
+              À Propos
             </Link>
             <Link 
               href="/contact" 
@@ -220,14 +220,14 @@ const Header = () => {
                   </span>
                 )}
               </div>
-              Cart
+              Panier
             </Link>
           </div>
           <div className="px-5 py-4">
             <form className="relative" onSubmit={handleSearch}>
               <Input
                 type="text"
-                placeholder="Search products..."
+                placeholder="Rechercher des produits..."
                 className="w-full py-2 px-4 pr-10 rounded-lg border border-yellow-500 bg-gray-900 text-white focus-visible:ring-yellow-500"
                 value={searchQuery}
                 onChange={(e) => setSearchQuery(e.target.value)}

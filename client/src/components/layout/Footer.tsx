@@ -48,7 +48,7 @@ const Footer = () => {
                 <span className="text-white group-hover:tracking-wider transition-all duration-300">MotoScoot</span>
               </h3>
             </div>
-            <p className="text-gray-400 mb-4 hover:text-gray-300 transition-colors">Your premier destination for motorcycles and accessories since 2015.</p>
+            <p className="text-gray-400 mb-4 hover:text-gray-300 transition-colors">Votre destination privilégiée pour les motos et accessoires depuis 2015.</p>
             <div className="flex space-x-5">
               <a 
                 href="#" 
@@ -77,7 +77,7 @@ const Footer = () => {
           {/* Quick Links */}
           <div>
             <h3 className="text-lg font-semibold mb-4 text-yellow-500 relative inline-block after:content-[''] after:absolute after:w-8 after:h-[2px] after:bg-yellow-500 after:bottom-[-4px] after:left-0">
-              Quick Links
+              Liens Rapides
             </h3>
             <ul className="space-y-3">
               <li>
@@ -86,7 +86,7 @@ const Footer = () => {
                   className="group flex items-center text-gray-400 hover:text-yellow-500 transition-colors"
                 >
                   <Home size={16} className="mr-2 text-yellow-500 group-hover:scale-110 transition-transform" />
-                  <span className="group-hover:translate-x-1 transition-transform">Home</span>
+                  <span className="group-hover:translate-x-1 transition-transform">Accueil</span>
                 </Link>
               </li>
               <li>
@@ -95,7 +95,7 @@ const Footer = () => {
                   className="group flex items-center text-gray-400 hover:text-yellow-500 transition-colors"
                 >
                   <ShoppingBag size={16} className="mr-2 text-yellow-500 group-hover:scale-110 transition-transform" />
-                  <span className="group-hover:translate-x-1 transition-transform">Shop All</span>
+                  <span className="group-hover:translate-x-1 transition-transform">Tous les Produits</span>
                 </Link>
               </li>
               <li>
@@ -107,7 +107,7 @@ const Footer = () => {
                     size={16}
                     className="mr-2 text-yellow-500 group-hover:scale-110 transition-transform"
                   />
-                  <span className="group-hover:translate-x-1 transition-transform">Featured Bikes</span>
+                  <span className="group-hover:translate-x-1 transition-transform">Motos Vedettes</span>
                 </Link>
               </li>
               <li>
@@ -116,7 +116,7 @@ const Footer = () => {
                   className="group flex items-center text-gray-400 hover:text-yellow-500 transition-colors"
                 >
                   <Info size={16} className="mr-2 text-yellow-500 group-hover:scale-110 transition-transform" />
-                  <span className="group-hover:translate-x-1 transition-transform">About Us</span>
+                  <span className="group-hover:translate-x-1 transition-transform">À Propos</span>
                 </Link>
               </li>
               <li>
@@ -134,7 +134,7 @@ const Footer = () => {
           {/* Categories */}
           <div>
             <h3 className="text-lg font-semibold mb-4 text-yellow-500 relative inline-block after:content-[''] after:absolute after:w-8 after:h-[2px] after:bg-yellow-500 after:bottom-[-4px] after:left-0">
-              Categories
+              Catégories
             </h3>
             <ul className="space-y-3">
               {categories?.map((category) => (
@@ -154,12 +154,12 @@ const Footer = () => {
           {/* Contact Info */}
           <div>
             <h3 className="text-lg font-semibold mb-4 text-yellow-500 relative inline-block after:content-[''] after:absolute after:w-8 after:h-[2px] after:bg-yellow-500 after:bottom-[-4px] after:left-0">
-              Contact Info
+              Coordonnées
             </h3>
             <ul className="space-y-3">
               <li className="flex items-start group">
                 <MapPin className="mt-1 mr-3 text-yellow-500 flex-shrink-0 group-hover:scale-110 transition-transform" size={18} />
-                <span className="text-gray-400 group-hover:text-gray-300 transition-colors">123 Motorcycle Ave, Speed District, Tunis, 1001</span>
+                <span className="text-gray-400 group-hover:text-gray-300 transition-colors">123 Avenue des Motos, Quartier Speed, Tunis, 1001</span>
               </li>
               <li className="flex items-center group">
                 <Phone className="mr-3 text-yellow-500 flex-shrink-0 group-hover:scale-110 transition-transform" size={18} />
@@ -172,8 +172,8 @@ const Footer = () => {
               <li className="flex items-start group">
                 <Clock className="mt-1 mr-3 text-yellow-500 flex-shrink-0 group-hover:scale-110 transition-transform" size={18} />
                 <span className="text-gray-400 group-hover:text-gray-300 transition-colors">
-                  Mon-Fri: 9AM - 7PM<br />
-                  Sat: 10AM - 5PM | Sun: Closed
+                  Lun-Ven: 9h - 19h<br />
+                  Sam: 10h - 17h | Dim: Fermé
                 </span>
               </li>
             </ul>
