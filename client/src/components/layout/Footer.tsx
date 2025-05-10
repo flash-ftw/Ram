@@ -7,7 +7,6 @@ import {
   MapPin, 
   Phone, 
   Clock,
-  Bike,
   Gift,
   Settings,
   Wrench,
@@ -18,6 +17,7 @@ import {
   MessageSquare
 } from "lucide-react";
 import { useCategories } from "@/hooks/useCategories";
+import MotorcycleIcon from "@/components/ui/motorcycle-icon";
 
 const Footer = () => {
   const { data: categories } = useCategories();
