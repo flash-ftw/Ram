@@ -145,23 +145,23 @@ const ContactForm = () => {
                   name="subject"
                   render={({ field }) => (
                     <FormItem>
-                      <FormLabel className="text-sm font-medium text-white">Subject</FormLabel>
+                      <FormLabel className="text-sm font-medium text-white">Sujet</FormLabel>
                       <Select 
                         onValueChange={field.onChange} 
                         defaultValue={field.value}
                       >
                         <FormControl>
                           <SelectTrigger className="bg-gray-800 border-gray-700 text-white focus:ring-yellow-500">
-                            <SelectValue placeholder="Select a subject" />
+                            <SelectValue placeholder="Sélectionnez un sujet" />
                           </SelectTrigger>
                         </FormControl>
                         <SelectContent className="bg-gray-800 border-gray-700 text-white">
-                          <SelectItem value="motorcycle-inquiry">Motorcycle Inquiry</SelectItem>
-                          <SelectItem value="test-ride">Schedule Test Ride</SelectItem>
-                          <SelectItem value="service">Service & Maintenance</SelectItem>
-                          <SelectItem value="parts">Parts & Accessories</SelectItem>
-                          <SelectItem value="financing">Financing Options</SelectItem>
-                          <SelectItem value="other">Other</SelectItem>
+                          <SelectItem value="motorcycle-inquiry">Renseignements sur les Motos</SelectItem>
+                          <SelectItem value="test-ride">Programmer un Essai</SelectItem>
+                          <SelectItem value="service">Service & Entretien</SelectItem>
+                          <SelectItem value="parts">Pièces & Accessoires</SelectItem>
+                          <SelectItem value="financing">Options de Financement</SelectItem>
+                          <SelectItem value="other">Autre</SelectItem>
                         </SelectContent>
                       </Select>
                       <FormMessage className="text-yellow-500" />
@@ -180,7 +180,7 @@ const ContactForm = () => {
                           {...field} 
                           rows={5} 
                           className="w-full rounded-lg resize-none bg-gray-800 border-gray-700 text-white focus-visible:ring-yellow-500"
-                          placeholder="Tell us about your motorcycle interests, questions, or how we can help you..."
+                          placeholder="Parlez-nous de vos intérêts pour les motos, vos questions, ou comment nous pouvons vous aider..."
                         />
                       </FormControl>
                       <FormMessage className="text-yellow-500" />
@@ -202,7 +202,7 @@ const ContactForm = () => {
                       </FormControl>
                       <div className="space-y-1 leading-none">
                         <FormLabel className="text-sm text-gray-300">
-                          Subscribe to our newsletter for motorcycle news, events, and exclusive offers
+                          S'abonner à notre newsletter pour recevoir les actualités moto, événements et offres exclusives
                         </FormLabel>
                       </div>
                     </FormItem>
@@ -215,7 +215,7 @@ const ContactForm = () => {
                     className="inline-flex items-center px-8 py-3 shadow-md text-base font-semibold text-black bg-yellow-500 hover:bg-yellow-400 transition-colors duration-300"
                     disabled={isSubmitting}
                   >
-                    {isSubmitting ? 'Sending...' : 'Send Message'}
+                    {isSubmitting ? 'Envoi en cours...' : 'Envoyer le Message'}
                     <Send className="ml-2 -mr-1 w-5 h-5" />
                   </Button>
                 </div>

@@ -82,11 +82,11 @@ const ProductCatalog = () => {
           {/* Filters Sidebar */}
           <div className="lg:w-1/4">
             <div className="bg-gray-50 rounded-lg p-5 shadow-sm sticky top-24">
-              <h3 className="font-semibold text-lg mb-4">Filters</h3>
+              <h3 className="font-semibold text-lg mb-4">Filtres</h3>
               
               {/* Categories Filter */}
               <div className="mb-6">
-                <h4 className="font-medium text-gray-700 mb-3">Categories</h4>
+                <h4 className="font-medium text-gray-700 mb-3">Catégories</h4>
                 <div className="space-y-2 category-filter max-h-48 overflow-y-auto pr-2">
                   <div className="flex items-center space-x-2">
                     <Checkbox 
@@ -94,7 +94,7 @@ const ProductCatalog = () => {
                       checked={selectedCategories.length === 0}
                       onCheckedChange={() => setSelectedCategories([])}
                     />
-                    <Label htmlFor="all" className="text-gray-700">All Products</Label>
+                    <Label htmlFor="all" className="text-gray-700">Tous les Produits</Label>
                   </div>
                   
                   {categories.map((category) => (
@@ -112,7 +112,7 @@ const ProductCatalog = () => {
               
               {/* Price Range Filter */}
               <div className="mb-6">
-                <h4 className="font-medium text-gray-700 mb-3">Price Range</h4>
+                <h4 className="font-medium text-gray-700 mb-3">Gamme de Prix</h4>
                 <div className="px-2">
                   <Slider
                     defaultValue={[0, 1000]}
@@ -131,17 +131,17 @@ const ProductCatalog = () => {
               
               {/* Sort By */}
               <div className="mb-6">
-                <h4 className="font-medium text-gray-700 mb-3">Sort By</h4>
+                <h4 className="font-medium text-gray-700 mb-3">Trier Par</h4>
                 <Select value={sortBy} onValueChange={setSortBy}>
                   <SelectTrigger className="w-full">
-                    <SelectValue placeholder="Select sort order" />
+                    <SelectValue placeholder="Sélectionner l'ordre de tri" />
                   </SelectTrigger>
                   <SelectContent>
-                    <SelectItem value="featured">Featured</SelectItem>
-                    <SelectItem value="price-asc">Price: Low to High</SelectItem>
-                    <SelectItem value="price-desc">Price: High to Low</SelectItem>
-                    <SelectItem value="newest">Newest First</SelectItem>
-                    <SelectItem value="bestselling">Best Selling</SelectItem>
+                    <SelectItem value="featured">En Vedette</SelectItem>
+                    <SelectItem value="price-asc">Prix: Croissant</SelectItem>
+                    <SelectItem value="price-desc">Prix: Décroissant</SelectItem>
+                    <SelectItem value="newest">Plus Récent</SelectItem>
+                    <SelectItem value="bestselling">Meilleures Ventes</SelectItem>
                   </SelectContent>
                 </Select>
               </div>
@@ -151,7 +151,7 @@ const ProductCatalog = () => {
                 className="w-full bg-primary hover:bg-blue-600 text-white font-medium"
                 onClick={applyFilters}
               >
-                Apply Filters
+                Appliquer les Filtres
               </Button>
             </div>
           </div>
