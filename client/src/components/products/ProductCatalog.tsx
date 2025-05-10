@@ -9,6 +9,7 @@ import { ChevronLeft, ChevronRight } from "lucide-react";
 import ProductCard from "@/components/products/ProductCard";
 import { useProducts } from "@/hooks/useProducts";
 import { useCategories } from "@/hooks/useCategories";
+import { useBrands } from "@/hooks/useBrands";
 
 const ProductCatalog = () => {
   const [location] = useLocation();
@@ -19,6 +20,7 @@ const ProductCatalog = () => {
   const [selectedCategories, setSelectedCategories] = useState<string[]>(
     categorySlug ? [categorySlug] : []
   );
+  const [selectedBrands, setSelectedBrands] = useState<string[]>([]);
   const [priceRange, setPriceRange] = useState<number[]>([0, 20000]);
   const [sortBy, setSortBy] = useState<string>("featured");
   
@@ -35,6 +37,7 @@ const ProductCatalog = () => {
   // Fetch all products with filters
   const { data: products = [], isLoading } = useProducts({
     categories: selectedCategories,
+    brands: selectedBrands,
     minPrice: priceRange[0],
     maxPrice: priceRange[1],
     sortBy,
@@ -52,6 +55,9 @@ const ProductCatalog = () => {
 
   // Fetch all categories
   const { data: categories = [] } = useCategories();
+  
+  // Fetch all brands
+  const { data: brands = [] } = useBrands();
 
   // Pagination
   const productsPerPage = 6;
@@ -66,6 +72,7 @@ const ProductCatalog = () => {
     setCurrentPage(1);
   }, [
     selectedCategories, 
+    selectedBrands,
     priceRange, 
     sortBy, 
     searchQuery, 
@@ -84,6 +91,16 @@ const ProductCatalog = () => {
         return prev.filter(slug => slug !== categorySlug);
       } else {
         return [...prev, categorySlug];
+      }
+    });
+  };
+  
+  const handleBrandChange = (brandSlug: string) => {
+    setSelectedBrands(prev => {
+      if (prev.includes(brandSlug)) {
+        return prev.filter(slug => slug !== brandSlug);
+      } else {
+        return [...prev, brandSlug];
       }
     });
   };
@@ -120,21 +137,47 @@ const ProductCatalog = () => {
                 <div className="space-y-2 category-filter max-h-48 overflow-y-auto pr-2">
                   <div className="flex items-center space-x-2">
                     <Checkbox 
-                      id="all"
+                      id="all-categories"
                       checked={selectedCategories.length === 0}
                       onCheckedChange={() => setSelectedCategories([])}
                     />
-                    <Label htmlFor="all" className="text-gray-700">Tous les Produits</Label>
+                    <Label htmlFor="all-categories" className="text-gray-700">Toutes les Catégories</Label>
                   </div>
                   
                   {categories.map((category) => (
                     <div key={category.id} className="flex items-center space-x-2">
                       <Checkbox 
-                        id={category.slug}
+                        id={`category-${category.slug}`}
                         checked={selectedCategories.includes(category.slug)}
                         onCheckedChange={() => handleCategoryChange(category.slug)}
                       />
-                      <Label htmlFor={category.slug} className="text-gray-700">{category.name}</Label>
+                      <Label htmlFor={`category-${category.slug}`} className="text-gray-700">{category.name}</Label>
+                    </div>
+                  ))}
+                </div>
+              </div>
+              
+              {/* Brands Filter */}
+              <div className="mb-6">
+                <h4 className="font-medium text-gray-700 mb-3">Marques</h4>
+                <div className="space-y-2 brand-filter max-h-48 overflow-y-auto pr-2">
+                  <div className="flex items-center space-x-2">
+                    <Checkbox 
+                      id="all-brands"
+                      checked={selectedBrands.length === 0}
+                      onCheckedChange={() => setSelectedBrands([])}
+                    />
+                    <Label htmlFor="all-brands" className="text-gray-700">Toutes les Marques</Label>
+                  </div>
+                  
+                  {brands.map((brand) => (
+                    <div key={brand.id} className="flex items-center space-x-2">
+                      <Checkbox 
+                        id={`brand-${brand.slug}`}
+                        checked={selectedBrands.includes(brand.slug)}
+                        onCheckedChange={() => handleBrandChange(brand.slug)}
+                      />
+                      <Label htmlFor={`brand-${brand.slug}`} className="text-gray-700">{brand.name}</Label>
                     </div>
                   ))}
                 </div>
