@@ -14,13 +14,13 @@ const FeaturedProducts = () => {
         <div className="text-center mb-12">
           <div className="flex items-center justify-center mb-4">
             <MotorcycleIcon className="text-yellow-500 mr-2" size={28} />
-            <span className="text-yellow-500 text-lg uppercase font-semibold tracking-wider">Hot Rides</span>
+            <span className="text-yellow-500 text-lg uppercase font-semibold tracking-wider">Motos Tendance</span>
           </div>
           <h2 className="text-4xl font-bold mb-4 moto-heading inline-block after:bottom-[-10px] after:w-24 after:left-1/2 after:-translate-x-1/2">
-            Featured Motorcycles
+            Motos Vedettes
           </h2>
           <p className="text-gray-400 max-w-2xl mx-auto mt-6">
-            Our most popular and high-performance bikes selected for their exceptional power, design, and engineering excellence.
+            Nos motos les plus populaires et performantes sélectionnées pour leur puissance exceptionnelle, leur design et leur excellence technique.
           </p>
         </div>
         
@@ -52,7 +52,7 @@ const FeaturedProducts = () => {
         <div className="mt-12 text-center">
           <Button asChild variant="outline" className="inline-flex items-center px-8 py-4 border-2 border-yellow-500 rounded-lg text-yellow-500 bg-transparent hover:bg-yellow-500 hover:text-black font-bold transition-all duration-300">
             <Link href="/products">
-              View All Motorcycles
+              Voir Toutes les Motos
               <ArrowRight className="ml-2 w-5 h-5" />
             </Link>
           </Button>

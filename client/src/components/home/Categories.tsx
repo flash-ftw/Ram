@@ -11,13 +11,13 @@ const Categories = () => {
         <div className="text-center mb-14">
           <div className="flex items-center justify-center mb-4">
             <Layers className="text-yellow-500 mr-2" size={28} />
-            <span className="text-yellow-500 text-lg uppercase font-semibold tracking-wider">Browse Options</span>
+            <span className="text-yellow-500 text-lg uppercase font-semibold tracking-wider">Parcourir les Options</span>
           </div>
           <h2 className="text-4xl font-bold mb-4 moto-heading inline-block after:bottom-[-10px] after:w-24 after:left-1/2 after:-translate-x-1/2">
-            Motorcycle Categories
+            Catégories de Motos
           </h2>
           <p className="text-gray-400 max-w-2xl mx-auto mt-6">
-            Explore our wide range of motorcycles and accessories to find the perfect ride for your adventures.
+            Explorez notre large gamme de motos et d'accessoires pour trouver la moto parfaite pour vos aventures.
           </p>
         </div>
         

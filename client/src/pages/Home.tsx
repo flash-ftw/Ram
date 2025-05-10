@@ -9,10 +9,10 @@ const Home = () => {
   return (
     <>
       <Helmet>
-        <title>Rammeh MotoScoot - Premium Motorcycles & Accessories</title>
-        <meta name="description" content="Discover our premium collection of motorcycles, parts, gear, and accessories. Your one-stop shop for all motorcycle enthusiasts in Tunisia." />
-        <meta property="og:title" content="Rammeh MotoScoot - Premium Motorcycles & Accessories" />
-        <meta property="og:description" content="Tunisia's leading motorcycle showroom offering high-quality bikes, parts, gear, and accessories with excellent service and maintenance." />
+        <title>Rammeh MotoScoot - Motos & Accessoires Premium</title>
+        <meta name="description" content="Découvrez notre collection premium de motos, pièces, équipements et accessoires. Votre magasin unique pour tous les passionnés de moto en Tunisie." />
+        <meta property="og:title" content="Rammeh MotoScoot - Motos & Accessoires Premium" />
+        <meta property="og:description" content="Le principal showroom de motos en Tunisie offrant des motos, pièces, équipements et accessoires de haute qualité avec un excellent service et maintenance." />
         <meta property="og:type" content="website" />
       </Helmet>
       

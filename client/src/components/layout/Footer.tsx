@@ -181,12 +181,12 @@ const Footer = () => {
         </div>
         
         <div className="border-t border-gray-700 mt-12 pt-8 flex flex-col md:flex-row md:justify-between items-center">
-          <p className="text-gray-400 text-sm mb-4 md:mb-0">&copy; 2023 Rammeh MotoScoot. All rights reserved.</p>
+          <p className="text-gray-400 text-sm mb-4 md:mb-0">&copy; 2023 Rammeh MotoScoot. Tous droits réservés.</p>
           <div className="flex flex-wrap justify-center space-x-6">
-            <a href="#" className="text-gray-400 hover:text-yellow-500 text-sm transition">Privacy Policy</a>
-            <a href="#" className="text-gray-400 hover:text-yellow-500 text-sm transition">Terms of Service</a>
-            <a href="#" className="text-gray-400 hover:text-yellow-500 text-sm transition">Shipping Policy</a>
-            <a href="#" className="text-gray-400 hover:text-yellow-500 text-sm transition">Return Policy</a>
+            <a href="#" className="text-gray-400 hover:text-yellow-500 text-sm transition">Politique de Confidentialité</a>
+            <a href="#" className="text-gray-400 hover:text-yellow-500 text-sm transition">Conditions d'Utilisation</a>
+            <a href="#" className="text-gray-400 hover:text-yellow-500 text-sm transition">Politique d'Expédition</a>
+            <a href="#" className="text-gray-400 hover:text-yellow-500 text-sm transition">Politique de Retour</a>
           </div>
         </div>
       </div>
