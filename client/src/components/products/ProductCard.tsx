@@ -32,9 +32,10 @@ const ProductCard = ({ product }: ProductCardProps) => {
       </Link>
       <CardContent className="p-5 bg-black text-white">
         <Badge variant="outline" className="text-xs font-semibold uppercase tracking-wide border-yellow-500 text-yellow-500">
-          {product.categoryId === 1 ? 'Motos' : 
-           product.categoryId === 2 ? 'Accessoires' : 
-           product.categoryId === 3 ? 'Équipements' : 'Pièces'}
+          {product.categoryId === 17 ? 'Moteur Thermique' : 
+           product.categoryId === 18 ? 'Moteur Electrique' : 
+           product.categoryId === 7 ? 'Casques' : 
+           product.categoryId === 14 ? 'Motos' : 'Catégorie'}
         </Badge>
         <h3 className="mt-2 text-lg font-semibold">
           <Link href={`/product/${product.slug}`} className="hover:text-yellow-500 transition-colors">
