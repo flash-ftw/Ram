@@ -11,39 +11,9 @@ interface ProductsQueryParams {
 }
 
 export function useProducts(params: ProductsQueryParams = {}) {
-  // Build query string from params
-  const queryParams = new URLSearchParams();
-  
-  // Réactivons progressivement les paramètres
-  // Ne pas ajouter featured=false, cela semble causer un problème
-  if (params.featured === true) {  // Changement important : vérifier strictement true
-    queryParams.append('featured', 'true');
-  }
-  
-  if (params.categories && params.categories.length > 0) {
-    params.categories.forEach(category => {
-      queryParams.append('category', category);
-    });
-  }
-  
-  if (params.minPrice !== undefined) {
-    queryParams.append('minPrice', params.minPrice.toString());
-  }
-  
-  if (params.maxPrice !== undefined) {
-    queryParams.append('maxPrice', params.maxPrice.toString());
-  }
-  
-  if (params.sortBy) {
-    queryParams.append('sortBy', params.sortBy);
-  }
-  
-  if (params.search) {
-    queryParams.append('search', params.search);
-  }
-  
-  const queryString = queryParams.toString();
-  const endpoint = `/api/products${queryString ? `?${queryString}` : ''}`;
+  // Pour résoudre le problème d'affichage des produits, utilisons l'URL directe
+  // sans paramètres, ce qui nous a permis d'afficher les produits précédemment
+  const endpoint = `/api/products`;
   
   console.log("Requête API produits:", endpoint);
 
