@@ -14,11 +14,9 @@ export function useProducts(params: ProductsQueryParams = {}) {
   // Build query string from params
   const queryParams = new URLSearchParams();
   
-  // Commentez temporairement ces paramètres pour déboguer
-  // Si les produits apparaissent, nous pourrons réactiver progressivement
-  // ces paramètres pour identifier celui qui pose problème
-  /*
-  if (params.featured) {
+  // Réactivons progressivement les paramètres
+  // Ne pas ajouter featured=false, cela semble causer un problème
+  if (params.featured === true) {  // Changement important : vérifier strictement true
     queryParams.append('featured', 'true');
   }
   
@@ -43,10 +41,9 @@ export function useProducts(params: ProductsQueryParams = {}) {
   if (params.search) {
     queryParams.append('search', params.search);
   }
-  */
   
-  // Utilisons la route API directe sans paramètres pour déboguer
-  const endpoint = `/api/products`;
+  const queryString = queryParams.toString();
+  const endpoint = `/api/products${queryString ? `?${queryString}` : ''}`;
   
   console.log("Requête API produits:", endpoint);
 
