@@ -1,4 +1,4 @@
-import { pgTable, text, serial, integer, boolean, doublePrecision, timestamp, jsonb } from "drizzle-orm/pg-core";
+import { pgTable, text, serial, integer, boolean, doublePrecision, timestamp, jsonb, primaryKey, varchar } from "drizzle-orm/pg-core";
 import { createInsertSchema } from "drizzle-zod";
 import { z } from "zod";
 import { relations, sql } from "drizzle-orm";
@@ -86,6 +86,25 @@ export const products = pgTable("products", {
   galleryImages: text("gallery_images").array().notNull(),
   inStock: boolean("in_stock").default(true).notNull(),
   quantity: integer("quantity").default(0),
+  
+  // Nouveaux champs pour motos thermiques
+  motorType: text("motor_type"), // 2 temps / 4 temps
+  displacement: text("displacement"), // 49cc / 70cc / 102cc / 110cc / 125cc
+  cooling: text("cooling"), // Refroidi par air / Refroidi par eau
+  fuelSystem: text("fuel_system"), // Carburateur / EFI (injection électronique de carburant)
+  transmission: text("transmission"), // Manuelle / Semi-automatique / Automatique (CVT)
+  starter: text("starter"), // Kick / Démarrage électrique
+  ignition: text("ignition"), // CDI
+  headlight: text("headlight"), // LED / Halogène
+  brakes: text("brakes"), // Tambour / Disque (avant et/ou arrière)
+  maxSpeed: integer("max_speed"), // Vitesse maximale en km/h
+  fuelCapacity: doublePrecision("fuel_capacity"), // Capacité du réservoir en litres
+  weight: integer("weight"), // Poids en kg
+  wheelSize: text("wheel_size"), // 10" / 12" / 14" / 15"
+  tires: text("tires"), // Sans chambre à air / Avec chambre à air
+  fuelConsumption: doublePrecision("fuel_consumption"), // Consommation de carburant en L/100 km
+  dashboard: text("dashboard"), // Analogique / Numérique
+  
   createdAt: timestamp("created_at").defaultNow().notNull(),
   updatedAt: timestamp("updated_at").defaultNow().notNull(),
 });
@@ -104,6 +123,24 @@ export const insertProductSchema = createInsertSchema(products).pick({
   galleryImages: true,
   inStock: true,
   quantity: true,
+  
+  // Nouveaux champs pour motos thermiques
+  motorType: true,
+  displacement: true,
+  cooling: true,
+  fuelSystem: true,
+  transmission: true,
+  starter: true,
+  ignition: true,
+  headlight: true,
+  brakes: true,
+  maxSpeed: true,
+  fuelCapacity: true,
+  weight: true,
+  wheelSize: true,
+  tires: true,
+  fuelConsumption: true,
+  dashboard: true,
 });
 
 export type InsertProduct = z.infer<typeof insertProductSchema>;
@@ -190,3 +227,10 @@ export const insertOrderSchema = createInsertSchema(orders).pick({
 
 export type InsertOrder = z.infer<typeof insertOrderSchema>;
 export type Order = typeof orders.$inferSelect;
+
+// Session table schema (to prevent it from being deleted by drizzle)
+export const sessions = pgTable("session", {
+  sid: varchar("sid").primaryKey(),
+  sess: jsonb("sess").notNull(),
+  expire: timestamp("expire", { mode: "date" }).notNull(),
+});
