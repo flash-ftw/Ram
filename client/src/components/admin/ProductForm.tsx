@@ -646,7 +646,429 @@ const ProductForm = ({ productId, defaultValues, isEdit = false }: ProductFormPr
             </div>
           </div>
           
-          <div className="flex justify-end">
+          {/* Caractéristiques techniques pour motos thermiques */}
+          <div className="space-y-4 mt-8">
+            <h3 className="text-lg font-medium border-b pb-2">Caractéristiques Techniques (Motos Thermiques)</h3>
+            
+            <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
+              {/* Type de moteur */}
+              <FormField
+                control={form.control}
+                name="motorType"
+                render={({ field }) => (
+                  <FormItem>
+                    <FormLabel>Type de moteur</FormLabel>
+                    <Select 
+                      onValueChange={field.onChange}
+                      defaultValue={field.value || ""}
+                    >
+                      <FormControl>
+                        <SelectTrigger>
+                          <SelectValue placeholder="Sélectionner" />
+                        </SelectTrigger>
+                      </FormControl>
+                      <SelectContent>
+                        <SelectItem value="">Non applicable</SelectItem>
+                        <SelectItem value="2 temps">2 temps</SelectItem>
+                        <SelectItem value="4 temps">4 temps</SelectItem>
+                      </SelectContent>
+                    </Select>
+                    <FormMessage />
+                  </FormItem>
+                )}
+              />
+              
+              {/* Cylindrée */}
+              <FormField
+                control={form.control}
+                name="displacement"
+                render={({ field }) => (
+                  <FormItem>
+                    <FormLabel>Cylindrée</FormLabel>
+                    <Select 
+                      onValueChange={field.onChange}
+                      defaultValue={field.value || ""}
+                    >
+                      <FormControl>
+                        <SelectTrigger>
+                          <SelectValue placeholder="Sélectionner" />
+                        </SelectTrigger>
+                      </FormControl>
+                      <SelectContent>
+                        <SelectItem value="">Non applicable</SelectItem>
+                        <SelectItem value="49cc">49cc</SelectItem>
+                        <SelectItem value="70cc">70cc</SelectItem>
+                        <SelectItem value="102cc">102cc</SelectItem>
+                        <SelectItem value="110cc">110cc</SelectItem>
+                        <SelectItem value="125cc">125cc</SelectItem>
+                      </SelectContent>
+                    </Select>
+                    <FormMessage />
+                  </FormItem>
+                )}
+              />
+              
+              {/* Refroidissement */}
+              <FormField
+                control={form.control}
+                name="cooling"
+                render={({ field }) => (
+                  <FormItem>
+                    <FormLabel>Refroidissement</FormLabel>
+                    <Select 
+                      onValueChange={field.onChange}
+                      defaultValue={field.value || ""}
+                    >
+                      <FormControl>
+                        <SelectTrigger>
+                          <SelectValue placeholder="Sélectionner" />
+                        </SelectTrigger>
+                      </FormControl>
+                      <SelectContent>
+                        <SelectItem value="">Non applicable</SelectItem>
+                        <SelectItem value="Refroidi par air">Refroidi par air</SelectItem>
+                        <SelectItem value="Refroidi par eau">Refroidi par eau</SelectItem>
+                      </SelectContent>
+                    </Select>
+                    <FormMessage />
+                  </FormItem>
+                )}
+              />
+              
+              {/* Système d'alimentation */}
+              <FormField
+                control={form.control}
+                name="fuelSystem"
+                render={({ field }) => (
+                  <FormItem>
+                    <FormLabel>Système d'alimentation</FormLabel>
+                    <Select 
+                      onValueChange={field.onChange}
+                      defaultValue={field.value || ""}
+                    >
+                      <FormControl>
+                        <SelectTrigger>
+                          <SelectValue placeholder="Sélectionner" />
+                        </SelectTrigger>
+                      </FormControl>
+                      <SelectContent>
+                        <SelectItem value="">Non applicable</SelectItem>
+                        <SelectItem value="Carburateur">Carburateur</SelectItem>
+                        <SelectItem value="EFI">EFI (injection électronique)</SelectItem>
+                      </SelectContent>
+                    </Select>
+                    <FormMessage />
+                  </FormItem>
+                )}
+              />
+              
+              {/* Transmission */}
+              <FormField
+                control={form.control}
+                name="transmission"
+                render={({ field }) => (
+                  <FormItem>
+                    <FormLabel>Transmission</FormLabel>
+                    <Select 
+                      onValueChange={field.onChange}
+                      defaultValue={field.value || ""}
+                    >
+                      <FormControl>
+                        <SelectTrigger>
+                          <SelectValue placeholder="Sélectionner" />
+                        </SelectTrigger>
+                      </FormControl>
+                      <SelectContent>
+                        <SelectItem value="">Non applicable</SelectItem>
+                        <SelectItem value="Manuelle">Manuelle</SelectItem>
+                        <SelectItem value="Semi-automatique">Semi-automatique</SelectItem>
+                        <SelectItem value="Automatique (CVT)">Automatique (CVT)</SelectItem>
+                      </SelectContent>
+                    </Select>
+                    <FormMessage />
+                  </FormItem>
+                )}
+              />
+              
+              {/* Démarrage */}
+              <FormField
+                control={form.control}
+                name="starter"
+                render={({ field }) => (
+                  <FormItem>
+                    <FormLabel>Démarrage</FormLabel>
+                    <Select 
+                      onValueChange={field.onChange}
+                      defaultValue={field.value || ""}
+                    >
+                      <FormControl>
+                        <SelectTrigger>
+                          <SelectValue placeholder="Sélectionner" />
+                        </SelectTrigger>
+                      </FormControl>
+                      <SelectContent>
+                        <SelectItem value="">Non applicable</SelectItem>
+                        <SelectItem value="Kick">Kick</SelectItem>
+                        <SelectItem value="Démarrage électrique">Démarrage électrique</SelectItem>
+                      </SelectContent>
+                    </Select>
+                    <FormMessage />
+                  </FormItem>
+                )}
+              />
+              
+              {/* Allumage */}
+              <FormField
+                control={form.control}
+                name="ignition"
+                render={({ field }) => (
+                  <FormItem>
+                    <FormLabel>Allumage</FormLabel>
+                    <Select 
+                      onValueChange={field.onChange}
+                      defaultValue={field.value || ""}
+                    >
+                      <FormControl>
+                        <SelectTrigger>
+                          <SelectValue placeholder="Sélectionner" />
+                        </SelectTrigger>
+                      </FormControl>
+                      <SelectContent>
+                        <SelectItem value="">Non applicable</SelectItem>
+                        <SelectItem value="CDI">CDI</SelectItem>
+                      </SelectContent>
+                    </Select>
+                    <FormMessage />
+                  </FormItem>
+                )}
+              />
+              
+              {/* Phare */}
+              <FormField
+                control={form.control}
+                name="headlight"
+                render={({ field }) => (
+                  <FormItem>
+                    <FormLabel>Phare</FormLabel>
+                    <Select 
+                      onValueChange={field.onChange}
+                      defaultValue={field.value || ""}
+                    >
+                      <FormControl>
+                        <SelectTrigger>
+                          <SelectValue placeholder="Sélectionner" />
+                        </SelectTrigger>
+                      </FormControl>
+                      <SelectContent>
+                        <SelectItem value="">Non applicable</SelectItem>
+                        <SelectItem value="LED">LED</SelectItem>
+                        <SelectItem value="Halogène">Halogène</SelectItem>
+                      </SelectContent>
+                    </Select>
+                    <FormMessage />
+                  </FormItem>
+                )}
+              />
+              
+              {/* Freins */}
+              <FormField
+                control={form.control}
+                name="brakes"
+                render={({ field }) => (
+                  <FormItem>
+                    <FormLabel>Freins</FormLabel>
+                    <Select 
+                      onValueChange={field.onChange}
+                      defaultValue={field.value || ""}
+                    >
+                      <FormControl>
+                        <SelectTrigger>
+                          <SelectValue placeholder="Sélectionner" />
+                        </SelectTrigger>
+                      </FormControl>
+                      <SelectContent>
+                        <SelectItem value="">Non applicable</SelectItem>
+                        <SelectItem value="Tambour">Tambour</SelectItem>
+                        <SelectItem value="Disque (avant)">Disque (avant)</SelectItem>
+                        <SelectItem value="Disque (arrière)">Disque (arrière)</SelectItem>
+                        <SelectItem value="Disque (avant et arrière)">Disque (avant et arrière)</SelectItem>
+                      </SelectContent>
+                    </Select>
+                    <FormMessage />
+                  </FormItem>
+                )}
+              />
+            </div>
+            
+            <div className="grid grid-cols-1 md:grid-cols-3 gap-4 mt-4">
+              {/* Vitesse maximale */}
+              <FormField
+                control={form.control}
+                name="maxSpeed"
+                render={({ field }) => (
+                  <FormItem>
+                    <FormLabel>Vitesse maximale (km/h)</FormLabel>
+                    <FormControl>
+                      <Input
+                        type="number"
+                        placeholder="Ex: 80"
+                        value={field.value === undefined ? "" : field.value}
+                        onChange={(e) => field.onChange(e.target.value ? Number(e.target.value) : undefined)}
+                      />
+                    </FormControl>
+                    <FormMessage />
+                  </FormItem>
+                )}
+              />
+              
+              {/* Capacité du réservoir */}
+              <FormField
+                control={form.control}
+                name="fuelCapacity"
+                render={({ field }) => (
+                  <FormItem>
+                    <FormLabel>Capacité du réservoir (litres)</FormLabel>
+                    <FormControl>
+                      <Input
+                        type="number"
+                        step="0.1"
+                        placeholder="Ex: 4.5"
+                        value={field.value === undefined ? "" : field.value}
+                        onChange={(e) => field.onChange(e.target.value ? Number(e.target.value) : undefined)}
+                      />
+                    </FormControl>
+                    <FormMessage />
+                  </FormItem>
+                )}
+              />
+              
+              {/* Poids */}
+              <FormField
+                control={form.control}
+                name="weight"
+                render={({ field }) => (
+                  <FormItem>
+                    <FormLabel>Poids (kg)</FormLabel>
+                    <FormControl>
+                      <Input
+                        type="number"
+                        placeholder="Ex: 100"
+                        value={field.value === undefined ? "" : field.value}
+                        onChange={(e) => field.onChange(e.target.value ? Number(e.target.value) : undefined)}
+                      />
+                    </FormControl>
+                    <FormMessage />
+                  </FormItem>
+                )}
+              />
+              
+              {/* Taille des roues */}
+              <FormField
+                control={form.control}
+                name="wheelSize"
+                render={({ field }) => (
+                  <FormItem>
+                    <FormLabel>Taille des roues</FormLabel>
+                    <Select 
+                      onValueChange={field.onChange}
+                      defaultValue={field.value || ""}
+                    >
+                      <FormControl>
+                        <SelectTrigger>
+                          <SelectValue placeholder="Sélectionner" />
+                        </SelectTrigger>
+                      </FormControl>
+                      <SelectContent>
+                        <SelectItem value="">Non applicable</SelectItem>
+                        <SelectItem value="10&quot;">10"</SelectItem>
+                        <SelectItem value="12&quot;">12"</SelectItem>
+                        <SelectItem value="14&quot;">14"</SelectItem>
+                        <SelectItem value="15&quot;">15"</SelectItem>
+                      </SelectContent>
+                    </Select>
+                    <FormMessage />
+                  </FormItem>
+                )}
+              />
+              
+              {/* Pneus */}
+              <FormField
+                control={form.control}
+                name="tires"
+                render={({ field }) => (
+                  <FormItem>
+                    <FormLabel>Pneus</FormLabel>
+                    <Select 
+                      onValueChange={field.onChange}
+                      defaultValue={field.value || ""}
+                    >
+                      <FormControl>
+                        <SelectTrigger>
+                          <SelectValue placeholder="Sélectionner" />
+                        </SelectTrigger>
+                      </FormControl>
+                      <SelectContent>
+                        <SelectItem value="">Non applicable</SelectItem>
+                        <SelectItem value="Sans chambre à air">Sans chambre à air</SelectItem>
+                        <SelectItem value="Avec chambre à air">Avec chambre à air</SelectItem>
+                      </SelectContent>
+                    </Select>
+                    <FormMessage />
+                  </FormItem>
+                )}
+              />
+              
+              {/* Consommation de carburant */}
+              <FormField
+                control={form.control}
+                name="fuelConsumption"
+                render={({ field }) => (
+                  <FormItem>
+                    <FormLabel>Consommation (L/100 km)</FormLabel>
+                    <FormControl>
+                      <Input
+                        type="number"
+                        step="0.1"
+                        placeholder="Ex: 2.5"
+                        value={field.value === undefined ? "" : field.value}
+                        onChange={(e) => field.onChange(e.target.value ? Number(e.target.value) : undefined)}
+                      />
+                    </FormControl>
+                    <FormMessage />
+                  </FormItem>
+                )}
+              />
+              
+              {/* Tableau de bord */}
+              <FormField
+                control={form.control}
+                name="dashboard"
+                render={({ field }) => (
+                  <FormItem>
+                    <FormLabel>Tableau de bord</FormLabel>
+                    <Select 
+                      onValueChange={field.onChange}
+                      defaultValue={field.value || ""}
+                    >
+                      <FormControl>
+                        <SelectTrigger>
+                          <SelectValue placeholder="Sélectionner" />
+                        </SelectTrigger>
+                      </FormControl>
+                      <SelectContent>
+                        <SelectItem value="">Non applicable</SelectItem>
+                        <SelectItem value="Analogique">Analogique</SelectItem>
+                        <SelectItem value="Numérique">Numérique</SelectItem>
+                      </SelectContent>
+                    </Select>
+                    <FormMessage />
+                  </FormItem>
+                )}
+              />
+            </div>
+          </div>
+          
+          <div className="flex justify-end mt-8">
             <Button 
               type="button" 
               variant="outline" 
