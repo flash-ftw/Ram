@@ -1,7 +1,7 @@
-import { pgTable, text, serial, integer, boolean, doublePrecision, timestamp } from "drizzle-orm/pg-core";
+import { pgTable, text, serial, integer, boolean, doublePrecision, timestamp, jsonb } from "drizzle-orm/pg-core";
 import { createInsertSchema } from "drizzle-zod";
 import { z } from "zod";
-import { relations } from "drizzle-orm";
+import { relations, sql } from "drizzle-orm";
 
 export const users = pgTable("users", {
   id: serial("id").primaryKey(),
@@ -144,3 +144,49 @@ export const insertContactSubmissionSchema = createInsertSchema(contactSubmissio
 
 export type InsertContactSubmission = z.infer<typeof insertContactSubmissionSchema>;
 export type ContactSubmission = typeof contactSubmissions.$inferSelect;
+
+// Order status enum
+export const OrderStatus = {
+  PENDING: "pending",
+  CONFIRMED: "confirmed", 
+  PROCESSING: "processing",
+  SHIPPED: "shipped",
+  DELIVERED: "delivered",
+  CANCELLED: "cancelled"
+} as const;
+
+export type OrderStatusType = (typeof OrderStatus)[keyof typeof OrderStatus];
+
+// Order schema
+export const orders = pgTable("orders", {
+  id: serial("id").primaryKey(),
+  customerName: text("customer_name").notNull(),
+  customerEmail: text("customer_email").notNull(),
+  customerPhone: text("customer_phone").notNull(),
+  deliveryLocation: text("delivery_location").notNull(),
+  notes: text("notes"),
+  status: text("status").$type<OrderStatusType>().default(OrderStatus.PENDING).notNull(),
+  totalAmount: doublePrecision("total_amount").notNull(),
+  // Store the order items as JSON to avoid complex relational structure
+  items: jsonb("items").notNull(),
+  paymentMethod: text("payment_method").default("bank_transfer").notNull(),
+  paymentConfirmed: boolean("payment_confirmed").default(false).notNull(),
+  createdAt: timestamp("created_at").defaultNow().notNull(),
+  updatedAt: timestamp("updated_at").default(sql`CURRENT_TIMESTAMP`).notNull(),
+});
+
+export const insertOrderSchema = createInsertSchema(orders).pick({
+  customerName: true,
+  customerEmail: true,
+  customerPhone: true,
+  deliveryLocation: true,
+  notes: true,
+  status: true,
+  totalAmount: true,
+  items: true,
+  paymentMethod: true,
+  paymentConfirmed: true,
+});
+
+export type InsertOrder = z.infer<typeof insertOrderSchema>;
+export type Order = typeof orders.$inferSelect;
