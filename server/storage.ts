@@ -204,6 +204,7 @@ export class DatabaseStorage implements IStorage {
   async getProducts(options: {
     featured?: boolean;
     categories?: string[];
+    categoryId?: number;  // Ajout du filtre par ID de catégorie
     brands?: string[];
     minPrice?: number;
     maxPrice?: number;
@@ -735,7 +736,21 @@ export class MemStorage implements IStorage {
       filteredProducts = filteredProducts.filter(product => product.featured);
     }
     
-    // Filter by categories
+    // Filtre direct par categoryId (numérique)
+    if (options.categoryId !== undefined) {
+      filteredProducts = filteredProducts.filter(product => 
+        product.categoryId === options.categoryId
+      );
+    }
+
+    // Filtre direct par brandId (numérique)
+    if (options.brandId !== undefined) {
+      filteredProducts = filteredProducts.filter(product => 
+        product.brandId === options.brandId
+      );
+    }
+    
+    // Filter by categories (slug)
     if (options.categories && options.categories.length > 0) {
       // Get category IDs from slugs
       const categoryIds: number[] = [];
@@ -753,7 +768,7 @@ export class MemStorage implements IStorage {
       }
     }
 
-    // Filter by brands
+    // Filter by brands (slug)
     if (options.brands && options.brands.length > 0) {
       // Get brand IDs from slugs
       const brandIds: number[] = [];
