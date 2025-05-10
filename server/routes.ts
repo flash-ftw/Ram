@@ -592,6 +592,8 @@ export async function registerRoutes(app: Express): Promise<Server> {
         featured,
         categories,
         brands,
+        categoryId,     // Ajout du filtre par ID de catégorie
+        brandId,        // Ajout du filtre par ID de marque
         minPrice,
         maxPrice,
         sortBy,

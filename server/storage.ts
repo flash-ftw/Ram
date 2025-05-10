@@ -54,12 +54,27 @@ export interface IStorage {
     featured?: boolean;
     categories?: string[];
     brands?: string[];
+    categoryId?: number;  // Ajout du filtre par ID de catégorie
+    brandId?: number;     // Ajout du filtre par ID de marque
     minPrice?: number;
     maxPrice?: number;
     sortBy?: string;
     search?: string;
     limit?: number;
     offset?: number;
+    // Filtres pour spécifications motos
+    motorType?: string;
+    displacement?: string;
+    cooling?: string;
+    fuelSystem?: string;
+    transmission?: string;
+    startType?: string;
+    brakes?: string;
+    wheelSize?: string;
+    maxSpeedMin?: number;
+    maxSpeedMax?: number;
+    weightMin?: number;
+    weightMax?: number;
   }): Promise<Product[]>;
   getAllProducts(): Promise<Product[]>;
   getProductById(id: number): Promise<Product | undefined>;
