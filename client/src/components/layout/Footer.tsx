@@ -37,7 +37,27 @@ const Footer = () => {
           <div>
             <div className="flex items-center mb-4 group">
               <div className="text-yellow-500 mr-3 relative">
-                <Bike size={28} className="group-hover:scale-110 transition-transform" />
+                <svg 
+                  xmlns="http://www.w3.org/2000/svg" 
+                  width="32" 
+                  height="32" 
+                  viewBox="0 0 24 24" 
+                  fill="none" 
+                  stroke="currentColor" 
+                  strokeWidth="2" 
+                  strokeLinecap="round" 
+                  strokeLinejoin="round"
+                  className="group-hover:scale-110 transition-transform"
+                >
+                  <path d="M4 16.5h11" />
+                  <path d="M4 16.5a2 2 0 1 0 4 0 2 2 0 1 0-4 0z" />
+                  <path d="M15 16.5a2 2 0 1 0 4 0 2 2 0 1 0-4 0z" />
+                  <path d="M17 16.5h0.5a2 2 0 0 0 2-2v-2.5c0-.8-.7-1.5-1.5-1.5h-7a2 2 0 0 1-2-2v0" />
+                  <path d="M7 10.5l-2.5-2s-1-1.5-.5-2.5c.5-1 2-.5 3 0l3.5 2.5" />
+                  <path d="M11 5.5h4" />
+                  <path d="M12 8.5v-3" />
+                  <path d="M9 12.5V9.5l3-1 .5 2" />
+                </svg>
                 <span className="absolute -bottom-1 -right-1 w-2 h-2 bg-yellow-500 rounded-full"></span>
               </div>
               <h3 className="text-xl font-bold">
@@ -100,7 +120,27 @@ const Footer = () => {
                   href="/#featured" 
                   className="group flex items-center text-gray-400 hover:text-yellow-500 transition-colors"
                 >
-                  <Bike size={16} className="mr-2 text-yellow-500 group-hover:scale-110 transition-transform" />
+                  <svg 
+                    xmlns="http://www.w3.org/2000/svg" 
+                    width="16" 
+                    height="16" 
+                    viewBox="0 0 24 24" 
+                    fill="none" 
+                    stroke="currentColor" 
+                    strokeWidth="2" 
+                    strokeLinecap="round" 
+                    strokeLinejoin="round"
+                    className="mr-2 text-yellow-500 group-hover:scale-110 transition-transform"
+                  >
+                    <path d="M4 16.5h11" />
+                    <path d="M4 16.5a2 2 0 1 0 4 0 2 2 0 1 0-4 0z" />
+                    <path d="M15 16.5a2 2 0 1 0 4 0 2 2 0 1 0-4 0z" />
+                    <path d="M17 16.5h0.5a2 2 0 0 0 2-2v-2.5c0-.8-.7-1.5-1.5-1.5h-7a2 2 0 0 1-2-2v0" />
+                    <path d="M7 10.5l-2.5-2s-1-1.5-.5-2.5c.5-1 2-.5 3 0l3.5 2.5" />
+                    <path d="M11 5.5h4" />
+                    <path d="M12 8.5v-3" />
+                    <path d="M9 12.5V9.5l3-1 .5 2" />
+                  </svg>
                   <span className="group-hover:translate-x-1 transition-transform">Featured Bikes</span>
                 </Link>
               </li>
