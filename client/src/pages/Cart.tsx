@@ -37,14 +37,14 @@ const Cart = () => {
           <meta name="description" content="Consultez votre panier et passez à la caisse pour vos produits moto." />
         </Helmet>
         
-        <h1 className="text-3xl font-bold text-center mb-6">Your Cart</h1>
+        <h1 className="text-3xl font-bold text-center mb-6">Votre Panier</h1>
         
         <Card className="bg-white shadow-md rounded-lg p-8 text-center">
           <div className="flex flex-col items-center justify-center space-y-4 py-12">
             <ShoppingCart size={64} className="text-gray-300" />
-            <h2 className="text-2xl font-semibold text-gray-700">Your cart is empty</h2>
+            <h2 className="text-2xl font-semibold text-gray-700">Votre panier est vide</h2>
             <p className="text-gray-500 max-w-md">
-              Looks like you haven't added any products to your cart yet.
+              Il semble que vous n'ayez pas encore ajouté de produits à votre panier.
             </p>
             <Button 
               onClick={() => setLocation('/products')}
