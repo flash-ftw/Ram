@@ -1,4 +1,5 @@
 import { Medal, Users, Globe, Package, Wrench, Settings, Award, Clock } from "lucide-react";
+import logoPath from "../../assets/logo.png";
 
 const AboutSection = () => {
   return (
@@ -12,7 +13,7 @@ const AboutSection = () => {
                 className="rounded-lg shadow-lg w-full h-80 bg-gray-800 relative z-10 flex items-center justify-center"
               >
                 <img 
-                  src="logo.png" 
+                  src={logoPath} 
                   alt="Rammeh MotoScoot Logo" 
                   className="w-auto max-h-64 object-contain" 
                 />
