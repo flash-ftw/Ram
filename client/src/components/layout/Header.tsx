@@ -63,19 +63,19 @@ const Header = () => {
                   <polyline points="9 22 9 12 15 12 15 22"/>
                 </svg>
               </span>
-              Home
+              Accueil
             </Link>
             <DropdownMenu>
               <DropdownMenuTrigger className="flex items-center px-3 py-2 font-medium text-white hover:text-yellow-500 focus:outline-none transition-colors group">
                 <span className="inline-block mr-1 group-hover:scale-110 transition-transform">
                   <MotorcycleIcon size={18} className="inline-block" />
                 </span>
-                Products
+                Produits
                 <ChevronDown size={14} className="ml-1 opacity-70 group-hover:translate-y-[2px] transition-transform" />
               </DropdownMenuTrigger>
               <DropdownMenuContent className="bg-black border border-yellow-500 text-white animate-in fade-in-50 zoom-in-95 duration-200">
                 <DropdownMenuItem asChild className="hover:bg-yellow-500 hover:text-black">
-                  <Link href="/products" className="w-full">All Products</Link>
+                  <Link href="/products" className="w-full">Tous les Produits</Link>
                 </DropdownMenuItem>
                 {categories?.map((category) => (
                   <DropdownMenuItem key={category.id} asChild className="hover:bg-yellow-500 hover:text-black">
@@ -97,7 +97,7 @@ const Header = () => {
                   <path d="M12 8h.01"/>
                 </svg>
               </span>
-              About
+              À Propos
             </Link>
             <Link 
               href="/contact" 
@@ -117,7 +117,7 @@ const Header = () => {
             <form className="relative w-full" onSubmit={handleSearch}>
               <Input
                 type="text"
-                placeholder="Search products..."
+                placeholder="Rechercher des produits..."
                 className="w-full py-2 px-4 pr-10 rounded-lg border border-yellow-500 bg-gray-900 text-white focus-visible:ring-yellow-500"
                 value={searchQuery}
                 onChange={(e) => setSearchQuery(e.target.value)}
