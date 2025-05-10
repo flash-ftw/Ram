@@ -50,7 +50,7 @@ const Cart = () => {
               onClick={() => setLocation('/products')}
               className="mt-4 bg-yellow-500 hover:bg-yellow-600 text-black"
             >
-              Browse Products
+              Parcourir les Produits
             </Button>
           </div>
         </Card>
@@ -61,18 +61,18 @@ const Cart = () => {
   return (
     <div className="container mx-auto px-4 py-16 max-w-6xl">
       <Helmet>
-        <title>Your Cart | Rammeh MotoScoot</title>
-        <meta name="description" content="View your cart and checkout your motorcycle products." />
+        <title>Votre Panier | Rammeh MotoScoot</title>
+        <meta name="description" content="Consultez votre panier et passez à la caisse pour vos produits moto." />
       </Helmet>
       
       <div className="flex justify-between items-center mb-6">
-        <h1 className="text-3xl font-bold">Your Cart</h1>
+        <h1 className="text-3xl font-bold">Votre Panier</h1>
         <Button 
           variant="ghost" 
           className="text-gray-600 hover:text-gray-900"
           onClick={() => clearCart()}
         >
-          Clear Cart
+          Vider le Panier
         </Button>
       </div>
       
@@ -84,13 +84,13 @@ const Cart = () => {
                 <thead className="bg-gray-50 border-b">
                   <tr>
                     <th className="px-6 py-4 text-left text-sm font-medium text-gray-500 tracking-wider">
-                      Product
+                      Produit
                     </th>
                     <th className="px-6 py-4 text-center text-sm font-medium text-gray-500 tracking-wider">
-                      Quantity
+                      Quantité
                     </th>
                     <th className="px-6 py-4 text-right text-sm font-medium text-gray-500 tracking-wider">
-                      Price
+                      Prix
                     </th>
                     <th className="px-6 py-4 text-right text-sm font-medium text-gray-500 tracking-wider">
                       Total
@@ -164,17 +164,17 @@ const Cart = () => {
         <div className="lg:col-span-1">
           <Card className="bg-white shadow-md rounded-lg">
             <CardContent className="p-6">
-              <h2 className="text-xl font-bold mb-4">Order Summary</h2>
+              <h2 className="text-xl font-bold mb-4">Résumé de la Commande</h2>
               
               <div className="space-y-4">
                 <div className="flex justify-between">
-                  <span className="text-gray-600">Subtotal</span>
+                  <span className="text-gray-600">Sous-total</span>
                   <span className="font-medium">{formatPrice(cartState.total)}</span>
                 </div>
                 
                 <div className="flex justify-between">
-                  <span className="text-gray-600">Shipping</span>
-                  <span className="font-medium">To be calculated</span>
+                  <span className="text-gray-600">Livraison</span>
+                  <span className="font-medium">À calculer</span>
                 </div>
                 
                 <Separator />
@@ -188,12 +188,12 @@ const Cart = () => {
                   onClick={() => setLocation('/checkout')}
                   className="w-full bg-yellow-500 hover:bg-yellow-600 text-black mt-4 flex items-center justify-center gap-2 transition-all duration-300 hover:gap-3"
                 >
-                  <span>Proceed to Checkout</span>
+                  <span>Passer à la Caisse</span>
                   <ArrowRight size={16} />
                 </Button>
                 
                 <p className="text-xs text-gray-500 text-center mt-2">
-                  By proceeding to checkout, you agree to our terms and conditions.
+                  En passant à la caisse, vous acceptez nos conditions générales.
                 </p>
               </div>
             </CardContent>
