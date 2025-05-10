@@ -22,6 +22,7 @@ import AdminDashboard from "@/pages/admin/Dashboard";
 import AdminProducts from "@/pages/admin/Products";
 import AdminCategories from "@/pages/admin/Categories";
 import AdminBrands from "@/pages/admin/Brands";
+import AdminOrders from "@/pages/admin/Orders";
 import ProductNew from "@/pages/admin/ProductNew";
 import ProductEdit from "@/pages/admin/ProductEdit";
 
@@ -51,6 +52,7 @@ function Router() {
         <Route path="/admin/products" component={AdminProducts} />
         <Route path="/admin/categories" component={AdminCategories} />
         <Route path="/admin/brands" component={AdminBrands} />
+        <Route path="/admin/orders" component={AdminOrders} />
         <Route path="/admin/*">
           {() => {
             window.location.href = "/admin/dashboard";

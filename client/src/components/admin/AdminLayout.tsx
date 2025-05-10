@@ -10,7 +10,7 @@ import {
   MessageSquare, 
   LogOut, 
   Settings, 
-  ChevronDown, 
+  ShoppingBag,
   Menu, 
   X 
 } from "lucide-react";
@@ -96,6 +96,7 @@ export default function AdminLayout({ children, title }: AdminLayoutProps) {
     { title: "Products", icon: <Package className="h-5 w-5" />, path: "/admin/products" },
     { title: "Categories", icon: <Tag className="h-5 w-5" />, path: "/admin/categories" },
     { title: "Brands", icon: <Settings className="h-5 w-5" />, path: "/admin/brands" },
+    { title: "Orders", icon: <ShoppingBag className="h-5 w-5" />, path: "/admin/orders" },
     { title: "Messages", icon: <MessageSquare className="h-5 w-5" />, path: "/admin/contact-submissions" },
   ];
 

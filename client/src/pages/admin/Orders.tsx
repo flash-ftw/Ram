@@ -244,7 +244,7 @@ const Orders = () => {
   };
 
   return (
-    <AdminLayout>
+    <AdminLayout title="Manage Orders">
       <Helmet>
         <title>Manage Orders | Rammeh MotoScoot Admin</title>
       </Helmet>
