@@ -238,7 +238,7 @@ const Checkout = () => {
                 className="flex-1 bg-yellow-500 hover:bg-yellow-600 text-black flex items-center justify-center gap-2"
               >
                 <Send className="h-4 w-4" />
-                <span>Complete Order</span>
+                <span>Finaliser la Commande</span>
               </Button>
             </div>
           </div>
@@ -272,7 +272,7 @@ const Checkout = () => {
                       name="name"
                       render={({ field }) => (
                         <FormItem>
-                          <FormLabel>Full Name</FormLabel>
+                          <FormLabel>Nom Complet</FormLabel>
                           <FormControl>
                             <Input placeholder="Enter your full name" {...field} />
                           </FormControl>
@@ -352,7 +352,7 @@ const Checkout = () => {
                       className="flex items-center gap-2"
                     >
                       <ArrowLeft className="h-4 w-4" />
-                      <span>Back to Cart</span>
+                      <span>Retour au Panier</span>
                     </Button>
                     
                     <Button 
@@ -360,7 +360,7 @@ const Checkout = () => {
                       disabled={isSubmitting}
                       className="bg-yellow-500 hover:bg-yellow-600 text-black flex items-center gap-2"
                     >
-                      <span>Continue to Payment</span>
+                      <span>Continuer vers le Paiement</span>
                       {isSubmitting ? (
                         <div className="h-4 w-4 border-2 border-black border-t-transparent rounded-full animate-spin" />
                       ) : (
@@ -377,7 +377,7 @@ const Checkout = () => {
         <div className="lg:col-span-1">
           <Card className="bg-white shadow-md rounded-lg overflow-hidden">
             <CardHeader className="bg-yellow-500/10">
-              <CardTitle className="text-xl">Order Summary</CardTitle>
+              <CardTitle className="text-xl">Résumé de la Commande</CardTitle>
             </CardHeader>
             <CardContent className="p-6">
               <div className="space-y-4">
