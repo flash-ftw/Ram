@@ -171,7 +171,7 @@ const ProductCatalog = () => {
                       <SelectValue placeholder="Tous" />
                     </SelectTrigger>
                     <SelectContent>
-                      <SelectItem value="">Tous</SelectItem>
+                      <SelectItem value="all">Tous</SelectItem>
                       <SelectItem value="2 temps">2 temps</SelectItem>
                       <SelectItem value="4 temps">4 temps</SelectItem>
                     </SelectContent>
@@ -186,7 +186,7 @@ const ProductCatalog = () => {
                       <SelectValue placeholder="Toutes" />
                     </SelectTrigger>
                     <SelectContent>
-                      <SelectItem value="">Toutes</SelectItem>
+                      <SelectItem value="all">Toutes</SelectItem>
                       <SelectItem value="49cc">49cc</SelectItem>
                       <SelectItem value="70cc">70cc</SelectItem>
                       <SelectItem value="102cc">102cc</SelectItem>
@@ -204,7 +204,7 @@ const ProductCatalog = () => {
                       <SelectValue placeholder="Toutes" />
                     </SelectTrigger>
                     <SelectContent>
-                      <SelectItem value="">Toutes</SelectItem>
+                      <SelectItem value="all">Toutes</SelectItem>
                       <SelectItem value="Manuelle">Manuelle</SelectItem>
                       <SelectItem value="Semi-automatique">Semi-automatique</SelectItem>
                       <SelectItem value="Automatique (CVT)">Automatique (CVT)</SelectItem>
@@ -220,7 +220,7 @@ const ProductCatalog = () => {
                       <SelectValue placeholder="Tous" />
                     </SelectTrigger>
                     <SelectContent>
-                      <SelectItem value="">Tous</SelectItem>
+                      <SelectItem value="all">Tous</SelectItem>
                       <SelectItem value="Refroidi par air">Refroidi par air</SelectItem>
                       <SelectItem value="Refroidi par eau">Refroidi par eau</SelectItem>
                     </SelectContent>
@@ -235,7 +235,7 @@ const ProductCatalog = () => {
                       <SelectValue placeholder="Tous" />
                     </SelectTrigger>
                     <SelectContent>
-                      <SelectItem value="">Tous</SelectItem>
+                      <SelectItem value="all">Tous</SelectItem>
                       <SelectItem value="Tambour">Tambour</SelectItem>
                       <SelectItem value="Disque (avant)">Disque (avant)</SelectItem>
                       <SelectItem value="Disque (arrière)">Disque (arrière)</SelectItem>
