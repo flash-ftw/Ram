@@ -1,8 +1,9 @@
 import { Link } from "wouter";
-import { ArrowRight, Bike } from "lucide-react";
+import { ArrowRight } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import ProductCard from "@/components/products/ProductCard";
 import { useProducts } from "@/hooks/useProducts";
+import MotorcycleIcon from "@/components/ui/motorcycle-icon";
 
 const FeaturedProducts = () => {
   const { data: products = [], isLoading } = useProducts({ featured: true });
@@ -12,7 +13,7 @@ const FeaturedProducts = () => {
       <div className="container mx-auto px-4 sm:px-6 lg:px-8">
         <div className="text-center mb-12">
           <div className="flex items-center justify-center mb-4">
-            <Bike className="text-yellow-500 mr-2" size={28} />
+            <MotorcycleIcon className="text-yellow-500 mr-2" size={28} />
             <span className="text-yellow-500 text-lg uppercase font-semibold tracking-wider">Hot Rides</span>
           </div>
           <h2 className="text-4xl font-bold mb-4 moto-heading inline-block after:bottom-[-10px] after:w-24 after:left-1/2 after:-translate-x-1/2">

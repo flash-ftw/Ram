@@ -1,10 +1,11 @@
 import { Link } from "wouter";
-import { ArrowRight, Bike, ShoppingCart } from "lucide-react";
+import { ArrowRight, ShoppingCart } from "lucide-react";
 import { Badge } from "@/components/ui/badge";
 import { Button } from "@/components/ui/button";
 import { Card, CardContent } from "@/components/ui/card";
 import { Product } from "@shared/schema";
 import { getImageUrl, formatPrice } from "@/lib/utils";
+import MotorcycleIcon from "@/components/ui/motorcycle-icon";
 
 interface ProductCardProps {
   product: Product;
@@ -52,7 +53,7 @@ const ProductCard = ({ product }: ProductCardProps) => {
             className="border-yellow-500 text-yellow-500 hover:bg-yellow-500 hover:text-black px-3 py-1 rounded-lg transition-all duration-300"
           >
             <Link href={`/product/${product.slug}`} className="flex items-center">
-              <Bike className="w-4 h-4 mr-1" /> Details <ArrowRight className="w-3 h-3 ml-1" />
+              <MotorcycleIcon size={16} className="mr-1" /> Details <ArrowRight className="w-3 h-3 ml-1" />
             </Link>
           </Button>
         </div>
