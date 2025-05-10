@@ -94,7 +94,7 @@ const ProductDetail = () => {
                 <svg className="w-4 h-4 mr-2" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg">
                   <path d="M10.707 2.293a1 1 0 00-1.414 0l-7 7a1 1 0 001.414 1.414L4 10.414V17a1 1 0 001 1h2a1 1 0 001-1v-2a1 1 0 011-1h2a1 1 0 011 1v2a1 1 0 001 1h2a1 1 0 001-1v-6.586l.293.293a1 1 0 001.414-1.414l-7-7z"></path>
                 </svg>
-                Home
+                Accueil
               </Link>
             </li>
             <li>
@@ -106,7 +106,7 @@ const ProductDetail = () => {
                   href={category ? `/products?category=${category.slug}` : "/products"} 
                   className="text-gray-600 hover:text-gray-900"
                 >
-                  {category ? category.name : 'Products'}
+                  {category ? category.name : 'Produits'}
                 </Link>
               </div>
             </li>
@@ -164,7 +164,7 @@ const ProductDetail = () => {
             {/* Product Details */}
             <div className="md:w-1/2 p-8">
               <Badge variant="default" className="text-sm font-semibold uppercase tracking-wide">
-                {category?.name || 'Product'}
+                {category?.name || 'Produit'}
               </Badge>
               <h1 className="mt-2 text-3xl font-bold text-gray-900">{product.name}</h1>
               
@@ -176,7 +176,7 @@ const ProductDetail = () => {
                   <Star className="fill-current" />
                   <StarHalf className="fill-current" />
                 </div>
-                <span className="ml-2 text-gray-600">4.5 (128 reviews)</span>
+                <span className="ml-2 text-gray-600">4.5 (128 avis)</span>
               </div>
               
               <div className="mt-6">
@@ -187,7 +187,7 @@ const ProductDetail = () => {
               </div>
               
               <div className="mt-6">
-                <h2 className="text-lg font-medium text-gray-900">Features</h2>
+                <h2 className="text-lg font-medium text-gray-900">Caractéristiques</h2>
                 <ul className="mt-2 space-y-2">
                   {featuresArray.map((feature, index) => (
                     <li key={index} className="flex items-center text-gray-600">
@@ -206,7 +206,7 @@ const ProductDetail = () => {
                       {formatPrice(product.originalPrice)}
                     </span>
                     <span className="ml-3 px-2 py-1 text-xs font-semibold text-white bg-green-500 rounded">
-                      Save {Math.round((1 - product.price / product.originalPrice) * 100)}%
+                      Économisez {Math.round((1 - product.price / product.originalPrice) * 100)}%
                     </span>
                   </>
                 )}
@@ -214,7 +214,7 @@ const ProductDetail = () => {
               
               {/* Quantity Selector */}
               <div className="mt-6 flex items-center">
-                <span className="text-gray-700 mr-4">Quantity:</span>
+                <span className="text-gray-700 mr-4">Quantité :</span>
                 <div className="flex items-center border border-gray-300 rounded-md">
                   <button 
                     onClick={() => handleQuantityChange(quantity - 1)}
@@ -244,8 +244,8 @@ const ProductDetail = () => {
                       
                       // Show success toast
                       toast({
-                        title: "Added to Cart",
-                        description: `${quantity} ${quantity > 1 ? 'items' : 'item'} added to your cart.`,
+                        title: "Ajouté au Panier",
+                        description: `${quantity} ${quantity > 1 ? 'articles' : 'article'} ajouté à votre panier.`,
                         variant: "default",
                         duration: 3000,
                       });
