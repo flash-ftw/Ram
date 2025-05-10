@@ -10,7 +10,7 @@ import { Textarea } from "@/components/ui/textarea";
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select";
 import { Checkbox } from "@/components/ui/checkbox";
 import { Button } from "@/components/ui/button";
-import { ArrowRight } from "lucide-react";
+import { ArrowRight, MessageSquare, Send } from "lucide-react";
 
 const formSchema = z.object({
   firstName: z.string().min(2, { message: "First name must be at least 2 characters." }),
@@ -67,17 +67,23 @@ const ContactForm = () => {
   };
 
   return (
-    <section className="py-16 bg-gray-50">
+    <section className="py-20 bg-black text-white">
       <div className="container mx-auto px-4 sm:px-6 lg:px-8">
         <div className="max-w-4xl mx-auto">
           <div className="text-center mb-12">
-            <h2 className="text-3xl font-bold mb-4">Contact Us</h2>
-            <p className="text-gray-600 max-w-2xl mx-auto">
-              Have questions about our products or need assistance? Fill out the form below and our team will get back to you shortly.
+            <div className="flex items-center justify-center mb-4">
+              <MessageSquare className="text-yellow-500 mr-2" size={28} />
+              <span className="text-yellow-500 text-lg uppercase font-semibold tracking-wider">Get In Touch</span>
+            </div>
+            <h2 className="text-4xl font-bold mb-4 moto-heading inline-block after:bottom-[-10px] after:w-24 after:left-1/2 after:-translate-x-1/2">
+              Contact Rammeh MotoScoot
+            </h2>
+            <p className="text-gray-300 max-w-2xl mx-auto mt-6">
+              Questions about our motorcycles or services? Need to schedule a test ride? Fill out the form below and our team will get back to you as soon as possible.
             </p>
           </div>
           
-          <div className="bg-white rounded-lg shadow-lg p-8">
+          <div className="bg-gray-900 rounded-lg shadow-xl border border-yellow-500 p-10">
             <Form {...form}>
               <form onSubmit={form.handleSubmit(onSubmit)} className="space-y-6">
                 <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
@@ -86,11 +92,14 @@ const ContactForm = () => {
                     name="firstName"
                     render={({ field }) => (
                       <FormItem>
-                        <FormLabel className="text-sm font-medium text-gray-700">First Name</FormLabel>
+                        <FormLabel className="text-sm font-medium text-white">First Name</FormLabel>
                         <FormControl>
-                          <Input {...field} className="w-full rounded-lg" />
+                          <Input 
+                            {...field} 
+                            className="w-full rounded-lg bg-gray-800 border-gray-700 text-white focus-visible:ring-yellow-500" 
+                          />
                         </FormControl>
-                        <FormMessage />
+                        <FormMessage className="text-yellow-500" />
                       </FormItem>
                     )}
                   />
@@ -100,11 +109,14 @@ const ContactForm = () => {
                     name="lastName"
                     render={({ field }) => (
                       <FormItem>
-                        <FormLabel className="text-sm font-medium text-gray-700">Last Name</FormLabel>
+                        <FormLabel className="text-sm font-medium text-white">Last Name</FormLabel>
                         <FormControl>
-                          <Input {...field} className="w-full rounded-lg" />
+                          <Input 
+                            {...field} 
+                            className="w-full rounded-lg bg-gray-800 border-gray-700 text-white focus-visible:ring-yellow-500" 
+                          />
                         </FormControl>
-                        <FormMessage />
+                        <FormMessage className="text-yellow-500" />
                       </FormItem>
                     )}
                   />
@@ -115,11 +127,15 @@ const ContactForm = () => {
                   name="email"
                   render={({ field }) => (
                     <FormItem>
-                      <FormLabel className="text-sm font-medium text-gray-700">Email Address</FormLabel>
+                      <FormLabel className="text-sm font-medium text-white">Email Address</FormLabel>
                       <FormControl>
-                        <Input {...field} type="email" className="w-full rounded-lg" />
+                        <Input 
+                          {...field} 
+                          type="email" 
+                          className="w-full rounded-lg bg-gray-800 border-gray-700 text-white focus-visible:ring-yellow-500" 
+                        />
                       </FormControl>
-                      <FormMessage />
+                      <FormMessage className="text-yellow-500" />
                     </FormItem>
                   )}
                 />
@@ -129,25 +145,26 @@ const ContactForm = () => {
                   name="subject"
                   render={({ field }) => (
                     <FormItem>
-                      <FormLabel className="text-sm font-medium text-gray-700">Subject</FormLabel>
+                      <FormLabel className="text-sm font-medium text-white">Subject</FormLabel>
                       <Select 
                         onValueChange={field.onChange} 
                         defaultValue={field.value}
                       >
                         <FormControl>
-                          <SelectTrigger>
+                          <SelectTrigger className="bg-gray-800 border-gray-700 text-white focus:ring-yellow-500">
                             <SelectValue placeholder="Select a subject" />
                           </SelectTrigger>
                         </FormControl>
-                        <SelectContent>
-                          <SelectItem value="product-inquiry">Product Inquiry</SelectItem>
-                          <SelectItem value="order-status">Order Status</SelectItem>
-                          <SelectItem value="returns">Returns & Exchanges</SelectItem>
-                          <SelectItem value="feedback">Feedback</SelectItem>
+                        <SelectContent className="bg-gray-800 border-gray-700 text-white">
+                          <SelectItem value="motorcycle-inquiry">Motorcycle Inquiry</SelectItem>
+                          <SelectItem value="test-ride">Schedule Test Ride</SelectItem>
+                          <SelectItem value="service">Service & Maintenance</SelectItem>
+                          <SelectItem value="parts">Parts & Accessories</SelectItem>
+                          <SelectItem value="financing">Financing Options</SelectItem>
                           <SelectItem value="other">Other</SelectItem>
                         </SelectContent>
                       </Select>
-                      <FormMessage />
+                      <FormMessage className="text-yellow-500" />
                     </FormItem>
                   )}
                 />
@@ -157,15 +174,16 @@ const ContactForm = () => {
                   name="message"
                   render={({ field }) => (
                     <FormItem>
-                      <FormLabel className="text-sm font-medium text-gray-700">Message</FormLabel>
+                      <FormLabel className="text-sm font-medium text-white">Message</FormLabel>
                       <FormControl>
                         <Textarea 
                           {...field} 
                           rows={5} 
-                          className="w-full rounded-lg resize-none"
+                          className="w-full rounded-lg resize-none bg-gray-800 border-gray-700 text-white focus-visible:ring-yellow-500"
+                          placeholder="Tell us about your motorcycle interests, questions, or how we can help you..."
                         />
                       </FormControl>
-                      <FormMessage />
+                      <FormMessage className="text-yellow-500" />
                     </FormItem>
                   )}
                 />
@@ -179,11 +197,12 @@ const ContactForm = () => {
                         <Checkbox
                           checked={field.value}
                           onCheckedChange={field.onChange}
+                          className="border-yellow-500 text-yellow-500 focus-visible:ring-yellow-500 data-[state=checked]:bg-yellow-500 data-[state=checked]:text-black"
                         />
                       </FormControl>
                       <div className="space-y-1 leading-none">
-                        <FormLabel className="text-sm text-gray-600">
-                          Subscribe to our newsletter for product updates and exclusive offers
+                        <FormLabel className="text-sm text-gray-300">
+                          Subscribe to our newsletter for motorcycle news, events, and exclusive offers
                         </FormLabel>
                       </div>
                     </FormItem>
@@ -193,11 +212,11 @@ const ContactForm = () => {
                 <div className="text-center">
                   <Button 
                     type="submit" 
-                    className="inline-flex items-center px-6 py-3 shadow-sm text-base font-medium text-white bg-primary hover:bg-blue-600"
+                    className="inline-flex items-center px-8 py-3 shadow-md text-base font-semibold text-black bg-yellow-500 hover:bg-yellow-400 transition-colors duration-300"
                     disabled={isSubmitting}
                   >
                     {isSubmitting ? 'Sending...' : 'Send Message'}
-                    <ArrowRight className="ml-2 -mr-1 w-5 h-5" />
+                    <Send className="ml-2 -mr-1 w-5 h-5" />
                   </Button>
                 </div>
               </form>
