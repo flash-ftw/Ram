@@ -298,6 +298,142 @@ const ProductDetail = () => {
               </div>
             </div>
           </div>
+          
+          {/* Section de spécifications techniques pour les motos */}
+          {(product.motorType || product.displacement || product.cooling || product.transmission) && (
+            <div className="mt-8 p-8 border-t border-gray-200">
+              <h2 className="text-2xl font-bold text-gray-900 mb-6">Spécifications Techniques</h2>
+              
+              <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+                {/* Colonne 1: Moteur et performances */}
+                <div className="space-y-4">
+                  <h3 className="text-lg font-semibold border-b pb-2">Moteur et Performance</h3>
+                  
+                  {product.motorType && (
+                    <div className="flex justify-between">
+                      <span className="text-gray-600">Type de moteur:</span>
+                      <span className="font-medium">{product.motorType}</span>
+                    </div>
+                  )}
+                  
+                  {product.displacement && (
+                    <div className="flex justify-between">
+                      <span className="text-gray-600">Cylindrée:</span>
+                      <span className="font-medium">{product.displacement}</span>
+                    </div>
+                  )}
+                  
+                  {product.cooling && (
+                    <div className="flex justify-between">
+                      <span className="text-gray-600">Refroidissement:</span>
+                      <span className="font-medium">{product.cooling}</span>
+                    </div>
+                  )}
+                  
+                  {product.fuelSystem && (
+                    <div className="flex justify-between">
+                      <span className="text-gray-600">Alimentation:</span>
+                      <span className="font-medium">{product.fuelSystem}</span>
+                    </div>
+                  )}
+                  
+                  {product.ignition && (
+                    <div className="flex justify-between">
+                      <span className="text-gray-600">Allumage:</span>
+                      <span className="font-medium">{product.ignition}</span>
+                    </div>
+                  )}
+                  
+                  {product.maxSpeed && (
+                    <div className="flex justify-between">
+                      <span className="text-gray-600">Vitesse max:</span>
+                      <span className="font-medium">{product.maxSpeed} km/h</span>
+                    </div>
+                  )}
+                </div>
+                
+                {/* Colonne 2: Transmission et châssis */}
+                <div className="space-y-4">
+                  <h3 className="text-lg font-semibold border-b pb-2">Transmission et Châssis</h3>
+                  
+                  {product.transmission && (
+                    <div className="flex justify-between">
+                      <span className="text-gray-600">Transmission:</span>
+                      <span className="font-medium">{product.transmission}</span>
+                    </div>
+                  )}
+                  
+                  {product.starter && (
+                    <div className="flex justify-between">
+                      <span className="text-gray-600">Démarrage:</span>
+                      <span className="font-medium">{product.starter}</span>
+                    </div>
+                  )}
+                  
+                  {product.brakes && (
+                    <div className="flex justify-between">
+                      <span className="text-gray-600">Freins:</span>
+                      <span className="font-medium">{product.brakes}</span>
+                    </div>
+                  )}
+                  
+                  {product.wheelSize && (
+                    <div className="flex justify-between">
+                      <span className="text-gray-600">Taille des roues:</span>
+                      <span className="font-medium">{product.wheelSize}</span>
+                    </div>
+                  )}
+                  
+                  {product.tires && (
+                    <div className="flex justify-between">
+                      <span className="text-gray-600">Pneus:</span>
+                      <span className="font-medium">{product.tires}</span>
+                    </div>
+                  )}
+                </div>
+                
+                {/* Colonne 3: Dimensions et autres */}
+                <div className="space-y-4">
+                  <h3 className="text-lg font-semibold border-b pb-2">Dimensions et Autres</h3>
+                  
+                  {product.weight && (
+                    <div className="flex justify-between">
+                      <span className="text-gray-600">Poids:</span>
+                      <span className="font-medium">{product.weight} kg</span>
+                    </div>
+                  )}
+                  
+                  {product.fuelCapacity && (
+                    <div className="flex justify-between">
+                      <span className="text-gray-600">Réservoir:</span>
+                      <span className="font-medium">{product.fuelCapacity} litres</span>
+                    </div>
+                  )}
+                  
+                  {product.fuelConsumption && (
+                    <div className="flex justify-between">
+                      <span className="text-gray-600">Consommation:</span>
+                      <span className="font-medium">{product.fuelConsumption} L/100km</span>
+                    </div>
+                  )}
+                  
+                  {product.headlight && (
+                    <div className="flex justify-between">
+                      <span className="text-gray-600">Phare:</span>
+                      <span className="font-medium">{product.headlight}</span>
+                    </div>
+                  )}
+                  
+                  {product.dashboard && (
+                    <div className="flex justify-between">
+                      <span className="text-gray-600">Tableau de bord:</span>
+                      <span className="font-medium">{product.dashboard}</span>
+                    </div>
+                  )}
+                </div>
+              </div>
+            </div>
+          )}
         </div>
       </div>
     </section>
