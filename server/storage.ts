@@ -836,6 +836,74 @@ export class MemStorage implements IStorage {
   async deleteContactSubmission(id: number): Promise<boolean> {
     return this.contactSubmissionsMap.delete(id);
   }
+  
+  // Order methods
+  async getAllOrders(): Promise<Order[]> {
+    return Array.from(this.ordersMap.values()).sort((a, b) => 
+      new Date(b.createdAt).getTime() - new Date(a.createdAt).getTime()
+    );
+  }
+  
+  async getOrderById(id: number): Promise<Order | undefined> {
+    return this.ordersMap.get(id);
+  }
+  
+  async createOrder(order: InsertOrder): Promise<Order> {
+    const id = this.orderId++;
+    const now = new Date();
+    const newOrder: Order = {
+      ...order,
+      id,
+      status: order.status || OrderStatus.PENDING,
+      paymentMethod: order.paymentMethod || 'bank_transfer',
+      paymentConfirmed: order.paymentConfirmed || false,
+      createdAt: now,
+      updatedAt: now
+    };
+    this.ordersMap.set(id, newOrder);
+    return newOrder;
+  }
+  
+  async updateOrder(id: number, data: Partial<InsertOrder>): Promise<Order | undefined> {
+    const order = this.ordersMap.get(id);
+    if (!order) return undefined;
+    
+    const now = new Date();
+    const updatedOrder: Order = {
+      ...order,
+      ...data,
+      updatedAt: now
+    };
+    this.ordersMap.set(id, updatedOrder);
+    return updatedOrder;
+  }
+  
+  async updateOrderStatus(id: number, status: OrderStatusType): Promise<boolean> {
+    const order = this.ordersMap.get(id);
+    if (!order) return false;
+    
+    const now = new Date();
+    order.status = status;
+    order.updatedAt = now;
+    this.ordersMap.set(id, order);
+    return true;
+  }
+  
+  async markOrderAsPaid(id: number): Promise<boolean> {
+    const order = this.ordersMap.get(id);
+    if (!order) return false;
+    
+    const now = new Date();
+    order.paymentConfirmed = true;
+    order.status = OrderStatus.CONFIRMED;
+    order.updatedAt = now;
+    this.ordersMap.set(id, order);
+    return true;
+  }
+  
+  async deleteOrder(id: number): Promise<boolean> {
+    return this.ordersMap.delete(id);
+  }
 }
 
 // Create and export the storage implementation based on environment

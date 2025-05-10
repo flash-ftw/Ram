@@ -7,7 +7,9 @@ import {
   insertProductSchema, 
   insertCategorySchema, 
   insertBrandSchema, 
-  insertUserSchema 
+  insertUserSchema,
+  insertOrderSchema,
+  OrderStatus
 } from "@shared/schema";
 import bcrypt from "bcryptjs";
 import { 
@@ -865,6 +867,145 @@ export async function registerRoutes(app: Express): Promise<Server> {
     } catch (error) {
       console.error("Error deleting contact submission:", error);
       res.status(500).json({ message: "Failed to delete contact submission" });
+    }
+  });
+
+  // Orders API - Public endpoint for creating orders
+  app.post("/api/orders", async (req, res) => {
+    try {
+      // Validate order data
+      const orderData = insertOrderSchema.parse(req.body);
+      const order = await storage.createOrder(orderData);
+      res.status(201).json(order);
+    } catch (error) {
+      if (error instanceof z.ZodError) {
+        return res.status(400).json({ message: "Invalid order data", errors: error.errors });
+      }
+      console.error("Error creating order:", error);
+      res.status(500).json({ message: "Failed to create order" });
+    }
+  });
+
+  // Orders API - Admin endpoints
+  app.get("/api/admin/orders", isAuthenticated, isAdmin, async (req, res) => {
+    try {
+      const orders = await storage.getAllOrders();
+      res.json(orders);
+    } catch (error) {
+      console.error("Error fetching orders:", error);
+      res.status(500).json({ message: "Failed to fetch orders" });
+    }
+  });
+
+  app.get("/api/admin/orders/:id", isAuthenticated, isAdmin, async (req, res) => {
+    try {
+      const id = parseInt(req.params.id);
+      if (isNaN(id)) {
+        return res.status(400).json({ message: "Invalid order ID" });
+      }
+      
+      const order = await storage.getOrderById(id);
+      if (!order) {
+        return res.status(404).json({ message: "Order not found" });
+      }
+      
+      res.json(order);
+    } catch (error) {
+      console.error("Error fetching order by ID:", error);
+      res.status(500).json({ message: "Failed to fetch order" });
+    }
+  });
+
+  app.patch("/api/admin/orders/:id", isAuthenticated, isAdmin, async (req, res) => {
+    try {
+      const id = parseInt(req.params.id);
+      if (isNaN(id)) {
+        return res.status(400).json({ message: "Invalid order ID" });
+      }
+      
+      const validatedData = insertOrderSchema.partial().parse(req.body);
+      const order = await storage.updateOrder(id, validatedData);
+      
+      if (!order) {
+        return res.status(404).json({ message: "Order not found" });
+      }
+      
+      res.json(order);
+    } catch (error) {
+      if (error instanceof z.ZodError) {
+        return res.status(400).json({ message: "Invalid order data", errors: error.errors });
+      }
+      console.error("Error updating order:", error);
+      res.status(500).json({ message: "Failed to update order" });
+    }
+  });
+
+  app.patch("/api/admin/orders/:id/status", isAuthenticated, isAdmin, async (req, res) => {
+    try {
+      const id = parseInt(req.params.id);
+      if (isNaN(id)) {
+        return res.status(400).json({ message: "Invalid order ID" });
+      }
+      
+      const { status } = req.body;
+      if (!status || !Object.values(OrderStatus).includes(status)) {
+        return res.status(400).json({ 
+          message: "Invalid status value", 
+          validValues: Object.values(OrderStatus) 
+        });
+      }
+      
+      const result = await storage.updateOrderStatus(id, status);
+      if (!result) {
+        return res.status(404).json({ message: "Order not found" });
+      }
+      
+      // Get the updated order to return
+      const updatedOrder = await storage.getOrderById(id);
+      res.json(updatedOrder);
+    } catch (error) {
+      console.error("Error updating order status:", error);
+      res.status(500).json({ message: "Failed to update order status" });
+    }
+  });
+
+  app.patch("/api/admin/orders/:id/payment", isAuthenticated, isAdmin, async (req, res) => {
+    try {
+      const id = parseInt(req.params.id);
+      if (isNaN(id)) {
+        return res.status(400).json({ message: "Invalid order ID" });
+      }
+      
+      const result = await storage.markOrderAsPaid(id);
+      if (!result) {
+        return res.status(404).json({ message: "Order not found" });
+      }
+      
+      // Get the updated order to return
+      const updatedOrder = await storage.getOrderById(id);
+      res.json(updatedOrder);
+    } catch (error) {
+      console.error("Error marking order as paid:", error);
+      res.status(500).json({ message: "Failed to mark order as paid" });
+    }
+  });
+
+  app.delete("/api/admin/orders/:id", isAuthenticated, isAdmin, async (req, res) => {
+    try {
+      const id = parseInt(req.params.id);
+      if (isNaN(id)) {
+        return res.status(400).json({ message: "Invalid order ID" });
+      }
+      
+      const result = await storage.deleteOrder(id);
+      if (!result) {
+        return res.status(404).json({ message: "Order not found" });
+      }
+      
+      res.status(204).end();
+    } catch (error) {
+      console.error("Error deleting order:", error);
+      res.status(500).json({ message: "Failed to delete order" });
     }
   });
 
