@@ -17,11 +17,11 @@ const ProductDetail = () => {
   
   const title = product 
     ? `${product.name} - Rammeh MotoScoot`
-    : "Motorcycle - Rammeh MotoScoot";
+    : "Moto - Rammeh MotoScoot";
   
   const description = product
     ? `${product.description.slice(0, 155)}...`
-    : "View our high-performance motorcycles with detailed specifications, features, and technical information.";
+    : "Découvrez nos motos à haute performance avec des spécifications détaillées, caractéristiques et informations techniques.";
 
   return (
     <>

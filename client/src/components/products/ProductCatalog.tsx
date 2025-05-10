@@ -177,9 +177,9 @@ const ProductCatalog = () => {
               </div>
             ) : products.length === 0 ? (
               <div className="text-center py-12">
-                <h3 className="text-xl font-semibold text-gray-700 mb-2">No products found</h3>
+                <h3 className="text-xl font-semibold text-gray-700 mb-2">Aucun produit trouvé</h3>
                 <p className="text-gray-500">
-                  Try adjusting your filters or search criteria to find what you're looking for.
+                  Essayez d'ajuster vos filtres ou critères de recherche pour trouver ce que vous cherchez.
                 </p>
               </div>
             ) : (

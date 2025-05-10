@@ -24,7 +24,7 @@ const ProductCard = ({ product }: ProductCardProps) => {
           {product.featured && (
             <div className="absolute top-0 right-0 m-3">
               <Badge className="moto-badge">
-                Featured
+                En Vedette
               </Badge>
             </div>
           )}
@@ -32,9 +32,9 @@ const ProductCard = ({ product }: ProductCardProps) => {
       </Link>
       <CardContent className="p-5 bg-black text-white">
         <Badge variant="outline" className="text-xs font-semibold uppercase tracking-wide border-yellow-500 text-yellow-500">
-          {product.categoryId === 1 ? 'Motorcycles' : 
-           product.categoryId === 2 ? 'Accessories' : 
-           product.categoryId === 3 ? 'Gear' : 'Parts'}
+          {product.categoryId === 1 ? 'Motos' : 
+           product.categoryId === 2 ? 'Accessoires' : 
+           product.categoryId === 3 ? 'Équipements' : 'Pièces'}
         </Badge>
         <h3 className="mt-2 text-lg font-semibold">
           <Link href={`/product/${product.slug}`} className="hover:text-yellow-500 transition-colors">
@@ -53,7 +53,7 @@ const ProductCard = ({ product }: ProductCardProps) => {
             className="border-yellow-500 text-yellow-500 hover:bg-yellow-500 hover:text-black px-3 py-1 rounded-lg transition-all duration-300"
           >
             <Link href={`/product/${product.slug}`} className="flex items-center">
-              <MotorcycleIcon size={16} className="mr-1" /> Details <ArrowRight className="w-3 h-3 ml-1" />
+              <MotorcycleIcon size={16} className="mr-1" /> Détails <ArrowRight className="w-3 h-3 ml-1" />
             </Link>
           </Button>
         </div>
