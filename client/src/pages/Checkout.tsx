@@ -101,7 +101,7 @@ const Checkout = () => {
       console.error('Error creating order:', error);
       setIsSubmitting(false);
       // Could add error state and display a message to the user
-      alert('There was a problem creating your order. Please try again.');
+      alert('Un problème est survenu lors de la création de votre commande. Veuillez réessayer.');
     }
   };
 
@@ -112,15 +112,15 @@ const Checkout = () => {
       `${item.product.name} x${item.quantity} - ${formatPrice(item.product.price * item.quantity)}`
     ).join("\\n");
     
-    const message = `*New Order from Rammeh MotoScoot*\\n\\n` +
-      `*Order ID:* ${data.orderId || 'N/A'}\\n` +
-      `*Customer:* ${data.name}\\n` +
-      `*Phone:* ${data.phone}\\n` +
+    const message = `*Nouvelle Commande de Rammeh MotoScoot*\\n\\n` +
+      `*ID Commande:* ${data.orderId || 'N/A'}\\n` +
+      `*Client:* ${data.name}\\n` +
+      `*Téléphone:* ${data.phone}\\n` +
       `*Email:* ${data.email}\\n` +
-      `*Location:* ${data.location}\\n\\n` +
-      `*Order Items:*\\n${itemsList}\\n\\n` +
-      `*Total Amount:* ${formatPrice(cartState.total)}\\n\\n` +
-      `I've completed the bank transfer and I'm attaching the receipt.`;
+      `*Adresse:* ${data.location}\\n\\n` +
+      `*Articles Commandés:*\\n${itemsList}\\n\\n` +
+      `*Montant Total:* ${formatPrice(cartState.total)}\\n\\n` +
+      `J'ai effectué le virement bancaire et je vous joins le reçu.`;
     
     return encodeURIComponent(message);
   };
@@ -251,13 +251,13 @@ const Checkout = () => {
   return (
     <div className="container mx-auto px-4 py-16 max-w-6xl">
       <Helmet>
-        <title>Checkout | Rammeh MotoScoot</title>
-        <meta name="description" content="Complete your order from Rammeh MotoScoot." />
+        <title>Paiement | Rammeh MotoScoot</title>
+        <meta name="description" content="Complétez votre commande sur Rammeh MotoScoot." />
       </Helmet>
       
       <div className="mb-8">
-        <h1 className="text-3xl font-bold mb-2">Checkout</h1>
-        <p className="text-gray-600">Please fill in your details to complete your order</p>
+        <h1 className="text-3xl font-bold mb-2">Paiement</h1>
+        <p className="text-gray-600">Veuillez remplir vos coordonnées pour finaliser votre commande</p>
       </div>
       
       <div className="grid grid-cols-1 lg:grid-cols-3 gap-8">
@@ -331,10 +331,10 @@ const Checkout = () => {
                     name="notes"
                     render={({ field }) => (
                       <FormItem>
-                        <FormLabel>Order Notes (Optional)</FormLabel>
+                        <FormLabel>Notes de Commande (Optionnel)</FormLabel>
                         <FormControl>
                           <Textarea 
-                            placeholder="Any special instructions for delivery or order" 
+                            placeholder="Instructions spéciales pour la livraison ou la commande" 
                             className="h-24 resize-none"
                             {...field} 
                           />
