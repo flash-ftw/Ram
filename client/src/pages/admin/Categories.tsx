@@ -63,10 +63,10 @@ export default function AdminCategories() {
   const [isSubmitting, setIsSubmitting] = useState(false);
 
   const { data: categories, isLoading, error } = useQuery({
-    queryKey: ['/api/categories'],
+    queryKey: ['/api/admin/categories'],
     queryFn: async () => {
       return await apiRequest<Category[]>({
-        url: '/api/categories',
+        url: '/api/admin/categories',
         method: 'GET'
       });
     }
@@ -130,7 +130,7 @@ export default function AdminCategories() {
         },
       });
       
-      queryClient.invalidateQueries({ queryKey: ['/api/categories'] });
+      queryClient.invalidateQueries({ queryKey: ['/api/admin/categories'] });
       
       toast({
         title: "Success",
@@ -178,7 +178,7 @@ export default function AdminCategories() {
         },
       });
       
-      queryClient.invalidateQueries({ queryKey: ['/api/categories'] });
+      queryClient.invalidateQueries({ queryKey: ['/api/admin/categories'] });
       
       toast({
         title: "Success",
@@ -209,7 +209,7 @@ export default function AdminCategories() {
         method: 'DELETE',
       });
       
-      queryClient.invalidateQueries({ queryKey: ['/api/categories'] });
+      queryClient.invalidateQueries({ queryKey: ['/api/admin/categories'] });
       
       toast({
         title: "Success",
