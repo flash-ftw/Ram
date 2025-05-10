@@ -209,7 +209,7 @@ const Checkout = () => {
                 <Button
                   onClick={() => {
                     // Tunisian phone number format: +216 XX XXX XXX
-                    window.open(`https://wa.me/21699123456?text=${generateWhatsAppMessage()}`, '_blank');
+                    window.open(`https://wa.me/21658274563?text=${generateWhatsAppMessage()}`, '_blank');
                     // Navigate to thank you page after a short delay
                     setTimeout(() => {
                       setLocation('/thank-you');

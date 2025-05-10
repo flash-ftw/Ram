@@ -1,7 +1,7 @@
 import { useEffect } from "react";
 import { Link, useLocation } from "wouter";
 import { Helmet } from "react-helmet";
-import { CheckCircle, Home, ShoppingCart } from "lucide-react";
+import { CheckCircle, Home, ShoppingCart, MessageCircle, Phone as LucidePhone } from "lucide-react";
 
 import { Button } from "@/components/ui/button";
 import { Card, CardContent } from "@/components/ui/card";
@@ -128,23 +128,36 @@ const ThankYou = () => {
         </CardContent>
       </Card>
       
-      <div className="flex flex-col sm:flex-row gap-4 justify-center">
-        <Button 
-          onClick={() => setLocation('/')}
-          variant="outline"
-          className="flex items-center gap-2"
-        >
-          <Home className="h-4 w-4" />
-          <span>Retour à l'Accueil</span>
-        </Button>
-        
-        <Button 
-          onClick={() => setLocation('/products')}
-          className="bg-yellow-500 hover:bg-yellow-600 text-black flex items-center gap-2"
-        >
-          <ShoppingCart className="h-4 w-4" />
-          <span>Continuer les Achats</span>
-        </Button>
+      <div className="space-y-4">
+        <div className="text-center mb-2">
+          <Button 
+            onClick={() => window.open('https://wa.me/21658274563', '_blank')}
+            className="bg-green-600 hover:bg-green-700 text-white flex items-center gap-2 mx-auto"
+          >
+            <MessageCircle className="h-4 w-4" />
+            <span>Nous Contacter sur WhatsApp</span>
+          </Button>
+          <p className="text-sm text-gray-500 mt-2">Vous avez des questions ? Contactez-nous au +216 58 274 563</p>
+        </div>
+      
+        <div className="flex flex-col sm:flex-row gap-4 justify-center">
+          <Button 
+            onClick={() => setLocation('/')}
+            variant="outline"
+            className="flex items-center gap-2"
+          >
+            <Home className="h-4 w-4" />
+            <span>Retour à l'Accueil</span>
+          </Button>
+          
+          <Button 
+            onClick={() => setLocation('/products')}
+            className="bg-yellow-500 hover:bg-yellow-600 text-black flex items-center gap-2"
+          >
+            <ShoppingCart className="h-4 w-4" />
+            <span>Continuer les Achats</span>
+          </Button>
+        </div>
       </div>
     </div>
   );

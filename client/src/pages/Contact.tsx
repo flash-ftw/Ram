@@ -46,9 +46,9 @@ const Contact = () => {
                 <div className="mt-4">
                   <h3 className="font-semibold mb-2 text-white">Informations de Contact :</h3>
                   <p className="text-gray-300">
-                    Téléphone : +216 71 234 567<br />
+                    Téléphone : +216 58 274 563<br />
                     Email : info@rammehmotoscoot.tn<br />
-                    WhatsApp : +216 50 123 456
+                    WhatsApp : +216 58 274 563
                   </p>
                 </div>
               </div>
