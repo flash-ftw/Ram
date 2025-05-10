@@ -5,16 +5,16 @@ const About = () => {
   return (
     <>
       <Helmet>
-        <title>About Us - Rammeh MotoScoot</title>
-        <meta name="description" content="Learn about Rammeh MotoScoot, Tunisia's premier motorcycle showroom, our passion for motorcycles, and our commitment to exceptional service since 2015." />
-        <meta property="og:title" content="About Us - Rammeh MotoScoot" />
-        <meta property="og:description" content="Learn about Rammeh MotoScoot, Tunisia's premier motorcycle showroom, our passion for motorcycles, and our commitment to exceptional service since 2015." />
+        <title>À Propos - Rammeh MotoScoot</title>
+        <meta name="description" content="Découvrez Rammeh MotoScoot, le premier showroom de motos en Tunisie, notre passion pour les motos, et notre engagement pour un service exceptionnel depuis 2015." />
+        <meta property="og:title" content="À Propos - Rammeh MotoScoot" />
+        <meta property="og:description" content="Découvrez Rammeh MotoScoot, le premier showroom de motos en Tunisie, notre passion pour les motos, et notre engagement pour un service exceptionnel depuis 2015." />
         <meta property="og:type" content="website" />
       </Helmet>
       
       <div className="py-12 bg-gray-900 text-white">
         <div className="container mx-auto px-4">
-          <h1 className="text-4xl font-bold text-center mb-2 moto-heading inline-block after:bottom-[-10px] after:w-24 after:left-1/2 after:-translate-x-1/2">About Rammeh MotoScoot</h1>
+          <h1 className="text-4xl font-bold text-center mb-2 moto-heading inline-block after:bottom-[-10px] after:w-24 after:left-1/2 after:-translate-x-1/2">À Propos de Rammeh MotoScoot</h1>
         </div>
       </div>
       
@@ -23,22 +23,22 @@ const About = () => {
       <section className="py-16 bg-gray-900 text-white">
         <div className="container mx-auto px-4 sm:px-6 lg:px-8">
           <div className="max-w-3xl mx-auto">
-            <h2 className="text-3xl font-bold mb-8 text-center moto-heading inline-block after:bottom-[-10px] after:w-24 after:left-1/2 after:-translate-x-1/2">Our Motorcycle Journey</h2>
+            <h2 className="text-3xl font-bold mb-8 text-center moto-heading inline-block after:bottom-[-10px] after:w-24 after:left-1/2 after:-translate-x-1/2">Notre Aventure Moto</h2>
             <div className="prose prose-lg prose-invert mx-auto text-gray-300">
               <p>
-                Rammeh MotoScoot was born in 2015 out of pure passion for motorcycles and the open road. What started as a small workshop run by motorcycle enthusiasts has grown into one of Tunisia's premier destinations for motorcycles, parts, accessories, and expert service.
+                Rammeh MotoScoot est né en 2015 d'une passion pure pour les motos et la route. Ce qui a commencé comme un petit atelier géré par des passionnés de moto s'est transformé en l'une des destinations principales de Tunisie pour les motos, les pièces, les accessoires et un service expert.
               </p>
               <p>
-                Our team consists of certified technicians, experienced riders, and motorcycle aficionados who live and breathe the culture. We carefully select each motorcycle and accessory in our inventory based on performance, reliability, and value - because we would never sell something we wouldn't ride ourselves.
+                Notre équipe est composée de techniciens certifiés, de motards expérimentés et d'aficionados de la moto qui vivent et respirent cette culture. Nous sélectionnons soigneusement chaque moto et accessoire de notre inventaire en fonction des performances, de la fiabilité et de la valeur - car nous ne vendrions jamais quelque chose que nous ne conduirions pas nous-mêmes.
               </p>
               <p>
-                At Rammeh MotoScoot, we've built our reputation on exceptional service. Whether you're a seasoned rider looking for your next high-performance machine, a novice purchasing your first bike, or someone seeking expert maintenance, our team provides personalized attention and expert advice.
+                Chez Rammeh MotoScoot, nous avons bâti notre réputation sur un service exceptionnel. Que vous soyez un motard chevronné à la recherche de votre prochaine machine haute performance, un novice achetant votre première moto, ou quelqu'un cherchant un entretien expert, notre équipe vous offre une attention personnalisée et des conseils d'experts.
               </p>
               <p>
-                We're proud to represent some of the world's finest motorcycle brands while supporting Tunisia's growing community of riders. Our state-of-the-art showroom in Tunis showcases the latest models, while our service department ensures your bike performs at its absolute best.
+                Nous sommes fiers de représenter certaines des plus prestigieuses marques de motos du monde tout en soutenant la communauté croissante de motards en Tunisie. Notre showroom ultramoderne à Tunis présente les derniers modèles, tandis que notre département de service assure que votre moto fonctionne à son meilleur niveau.
               </p>
               <p>
-                Visit us today and discover why thousands of riders throughout Tunisia trust Rammeh MotoScoot for all their motorcycling needs.
+                Visitez-nous aujourd'hui et découvrez pourquoi des milliers de motards à travers la Tunisie font confiance à Rammeh MotoScoot pour tous leurs besoins en matière de moto.
               </p>
             </div>
           </div>
