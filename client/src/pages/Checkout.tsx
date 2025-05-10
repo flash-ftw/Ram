@@ -274,7 +274,7 @@ const Checkout = () => {
                         <FormItem>
                           <FormLabel>Nom Complet</FormLabel>
                           <FormControl>
-                            <Input placeholder="Enter your full name" {...field} />
+                            <Input placeholder="Entrez votre nom complet" {...field} />
                           </FormControl>
                           <FormMessage />
                         </FormItem>
@@ -286,9 +286,9 @@ const Checkout = () => {
                       name="email"
                       render={({ field }) => (
                         <FormItem>
-                          <FormLabel>Email Address</FormLabel>
+                          <FormLabel>Adresse Email</FormLabel>
                           <FormControl>
-                            <Input type="email" placeholder="Enter your email" {...field} />
+                            <Input type="email" placeholder="Entrez votre adresse email" {...field} />
                           </FormControl>
                           <FormMessage />
                         </FormItem>
@@ -302,9 +302,9 @@ const Checkout = () => {
                       name="phone"
                       render={({ field }) => (
                         <FormItem>
-                          <FormLabel>Phone Number</FormLabel>
+                          <FormLabel>Numéro de Téléphone</FormLabel>
                           <FormControl>
-                            <Input placeholder="Enter your phone number" {...field} />
+                            <Input placeholder="Entrez votre numéro de téléphone" {...field} />
                           </FormControl>
                           <FormMessage />
                         </FormItem>
@@ -316,9 +316,9 @@ const Checkout = () => {
                       name="location"
                       render={({ field }) => (
                         <FormItem>
-                          <FormLabel>Delivery Location</FormLabel>
+                          <FormLabel>Adresse de Livraison</FormLabel>
                           <FormControl>
-                            <Input placeholder="Enter your full address" {...field} />
+                            <Input placeholder="Entrez votre adresse complète" {...field} />
                           </FormControl>
                           <FormMessage />
                         </FormItem>
