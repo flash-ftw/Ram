@@ -8,6 +8,20 @@ interface ProductsQueryParams {
   maxPrice?: number;
   sortBy?: string;
   search?: string;
+  
+  // Nouveaux filtres pour spécifications motos
+  motorType?: string;
+  displacement?: string;
+  cooling?: string;
+  fuelSystem?: string;
+  transmission?: string;
+  startType?: string;
+  brakes?: string;
+  wheelSize?: string;
+  maxSpeedMin?: number;
+  maxSpeedMax?: number;
+  weightMin?: number;
+  weightMax?: number;
 }
 
 export function useProducts(params: ProductsQueryParams = {}) {
@@ -43,6 +57,56 @@ export function useProducts(params: ProductsQueryParams = {}) {
   // Add search parameter
   if (params.search) {
     queryParams.append('search', params.search);
+  }
+  
+  // Ajout des filtres pour spécifications motos
+  if (params.motorType) {
+    queryParams.append('motorType', params.motorType);
+  }
+  
+  if (params.displacement) {
+    queryParams.append('displacement', params.displacement);
+  }
+  
+  if (params.cooling) {
+    queryParams.append('cooling', params.cooling);
+  }
+  
+  if (params.fuelSystem) {
+    queryParams.append('fuelSystem', params.fuelSystem);
+  }
+  
+  if (params.transmission) {
+    queryParams.append('transmission', params.transmission);
+  }
+  
+  if (params.startType) {
+    queryParams.append('startType', params.startType);
+  }
+  
+  if (params.brakes) {
+    queryParams.append('brakes', params.brakes);
+  }
+  
+  if (params.wheelSize) {
+    queryParams.append('wheelSize', params.wheelSize);
+  }
+  
+  // Filtres numériques avec min/max
+  if (params.maxSpeedMin !== undefined && params.maxSpeedMin >= 0) {
+    queryParams.append('maxSpeedMin', params.maxSpeedMin.toString());
+  }
+  
+  if (params.maxSpeedMax !== undefined && params.maxSpeedMax > 0) {
+    queryParams.append('maxSpeedMax', params.maxSpeedMax.toString());
+  }
+  
+  if (params.weightMin !== undefined && params.weightMin >= 0) {
+    queryParams.append('weightMin', params.weightMin.toString());
+  }
+  
+  if (params.weightMax !== undefined && params.weightMax > 0) {
+    queryParams.append('weightMax', params.weightMax.toString());
   }
   
   const queryString = queryParams.toString();

@@ -543,6 +543,33 @@ export async function registerRoutes(app: Express): Promise<Server> {
       const sortBy = req.query.sortBy as string | undefined;
       const search = req.query.search as string | undefined;
       
+      // Nouveaux filtres pour spécifications motos
+      const motorType = req.query.motorType as string | undefined;
+      const displacement = req.query.displacement as string | undefined;
+      const cooling = req.query.cooling as string | undefined;
+      const fuelSystem = req.query.fuelSystem as string | undefined;
+      const transmission = req.query.transmission as string | undefined;
+      const startType = req.query.startType as string | undefined;
+      const brakes = req.query.brakes as string | undefined;
+      const wheelSize = req.query.wheelSize as string | undefined;
+      
+      // Filtres numériques pour spécifications motos
+      const maxSpeedMin = req.query.maxSpeedMin ? 
+        parseInt(req.query.maxSpeedMin as string) : 
+        undefined;
+      
+      const maxSpeedMax = req.query.maxSpeedMax ? 
+        parseInt(req.query.maxSpeedMax as string) : 
+        undefined;
+      
+      const weightMin = req.query.weightMin ? 
+        parseInt(req.query.weightMin as string) : 
+        undefined;
+      
+      const weightMax = req.query.weightMax ? 
+        parseInt(req.query.weightMax as string) : 
+        undefined;
+      
       // Pagination
       const limit = req.query.limit ? parseInt(req.query.limit as string) : undefined;
       const offset = req.query.offset ? parseInt(req.query.offset as string) : undefined;
@@ -556,7 +583,20 @@ export async function registerRoutes(app: Express): Promise<Server> {
         sortBy,
         search,
         limit,
-        offset
+        offset,
+        // Nouveaux filtres pour spécifications motos
+        motorType,
+        displacement,
+        cooling,
+        fuelSystem,
+        transmission,
+        startType,
+        brakes,
+        wheelSize,
+        maxSpeedMin,
+        maxSpeedMax,
+        weightMin,
+        weightMax
       });
       
       res.json(products);

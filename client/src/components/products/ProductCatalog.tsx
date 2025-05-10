@@ -21,6 +21,15 @@ const ProductCatalog = () => {
   );
   const [priceRange, setPriceRange] = useState<number[]>([0, 20000]);
   const [sortBy, setSortBy] = useState<string>("featured");
+  
+  // États pour les filtres de motos
+  const [motorType, setMotorType] = useState<string>("");
+  const [displacement, setDisplacement] = useState<string>("");
+  const [cooling, setCooling] = useState<string>("");
+  const [transmission, setTransmission] = useState<string>("");
+  const [fuelSystem, setFuelSystem] = useState<string>("");
+  const [brakes, setBrakes] = useState<string>("");
+  const [maxSpeedRange, setMaxSpeedRange] = useState<number[]>([0, 150]);
   const [currentPage, setCurrentPage] = useState(1);
 
   // Fetch all products with filters
@@ -30,6 +39,15 @@ const ProductCatalog = () => {
     maxPrice: priceRange[1],
     sortBy,
     search: searchQuery || undefined,
+    // Filtres de spécifications motos
+    motorType: motorType || undefined,
+    displacement: displacement || undefined,
+    cooling: cooling || undefined,
+    fuelSystem: fuelSystem || undefined,
+    transmission: transmission || undefined,
+    brakes: brakes || undefined,
+    maxSpeedMin: maxSpeedRange[0] > 0 ? maxSpeedRange[0] : undefined,
+    maxSpeedMax: maxSpeedRange[1] < 150 ? maxSpeedRange[1] : undefined,
   });
 
   // Fetch all categories
@@ -46,7 +64,19 @@ const ProductCatalog = () => {
   // Reset page when filters change
   useEffect(() => {
     setCurrentPage(1);
-  }, [selectedCategories, priceRange, sortBy, searchQuery]);
+  }, [
+    selectedCategories, 
+    priceRange, 
+    sortBy, 
+    searchQuery, 
+    motorType, 
+    displacement, 
+    cooling, 
+    transmission, 
+    fuelSystem, 
+    brakes, 
+    maxSpeedRange
+  ]);
 
   const handleCategoryChange = (categorySlug: string) => {
     setSelectedCategories(prev => {
@@ -125,6 +155,111 @@ const ProductCatalog = () => {
                   <div className="flex justify-between mt-2 text-sm text-gray-500">
                     <span>{priceRange[0]} TND</span>
                     <span>{priceRange[1]}+ TND</span>
+                  </div>
+                </div>
+              </div>
+              
+              {/* Spécifications Techniques Moto */}
+              <div className="mb-6 border-t pt-4 mt-4">
+                <h4 className="font-medium text-gray-700 mb-3">Spécifications Moto</h4>
+                
+                {/* Type de moteur */}
+                <div className="mb-4">
+                  <Label htmlFor="motor-type" className="text-sm text-gray-600 mb-1 block">Type de moteur</Label>
+                  <Select value={motorType} onValueChange={setMotorType}>
+                    <SelectTrigger className="w-full">
+                      <SelectValue placeholder="Tous" />
+                    </SelectTrigger>
+                    <SelectContent>
+                      <SelectItem value="">Tous</SelectItem>
+                      <SelectItem value="2 temps">2 temps</SelectItem>
+                      <SelectItem value="4 temps">4 temps</SelectItem>
+                    </SelectContent>
+                  </Select>
+                </div>
+                
+                {/* Cylindrée */}
+                <div className="mb-4">
+                  <Label htmlFor="displacement" className="text-sm text-gray-600 mb-1 block">Cylindrée</Label>
+                  <Select value={displacement} onValueChange={setDisplacement}>
+                    <SelectTrigger className="w-full">
+                      <SelectValue placeholder="Toutes" />
+                    </SelectTrigger>
+                    <SelectContent>
+                      <SelectItem value="">Toutes</SelectItem>
+                      <SelectItem value="49cc">49cc</SelectItem>
+                      <SelectItem value="70cc">70cc</SelectItem>
+                      <SelectItem value="102cc">102cc</SelectItem>
+                      <SelectItem value="110cc">110cc</SelectItem>
+                      <SelectItem value="125cc">125cc</SelectItem>
+                    </SelectContent>
+                  </Select>
+                </div>
+                
+                {/* Transmission */}
+                <div className="mb-4">
+                  <Label htmlFor="transmission" className="text-sm text-gray-600 mb-1 block">Transmission</Label>
+                  <Select value={transmission} onValueChange={setTransmission}>
+                    <SelectTrigger className="w-full">
+                      <SelectValue placeholder="Toutes" />
+                    </SelectTrigger>
+                    <SelectContent>
+                      <SelectItem value="">Toutes</SelectItem>
+                      <SelectItem value="Manuelle">Manuelle</SelectItem>
+                      <SelectItem value="Semi-automatique">Semi-automatique</SelectItem>
+                      <SelectItem value="Automatique (CVT)">Automatique (CVT)</SelectItem>
+                    </SelectContent>
+                  </Select>
+                </div>
+                
+                {/* Refroidissement */}
+                <div className="mb-4">
+                  <Label htmlFor="cooling" className="text-sm text-gray-600 mb-1 block">Refroidissement</Label>
+                  <Select value={cooling} onValueChange={setCooling}>
+                    <SelectTrigger className="w-full">
+                      <SelectValue placeholder="Tous" />
+                    </SelectTrigger>
+                    <SelectContent>
+                      <SelectItem value="">Tous</SelectItem>
+                      <SelectItem value="Refroidi par air">Refroidi par air</SelectItem>
+                      <SelectItem value="Refroidi par eau">Refroidi par eau</SelectItem>
+                    </SelectContent>
+                  </Select>
+                </div>
+                
+                {/* Freins */}
+                <div className="mb-4">
+                  <Label htmlFor="brakes" className="text-sm text-gray-600 mb-1 block">Freins</Label>
+                  <Select value={brakes} onValueChange={setBrakes}>
+                    <SelectTrigger className="w-full">
+                      <SelectValue placeholder="Tous" />
+                    </SelectTrigger>
+                    <SelectContent>
+                      <SelectItem value="">Tous</SelectItem>
+                      <SelectItem value="Tambour">Tambour</SelectItem>
+                      <SelectItem value="Disque (avant)">Disque (avant)</SelectItem>
+                      <SelectItem value="Disque (arrière)">Disque (arrière)</SelectItem>
+                      <SelectItem value="Disque (avant et arrière)">Disque (avant et arrière)</SelectItem>
+                    </SelectContent>
+                  </Select>
+                </div>
+                
+                {/* Vitesse Max */}
+                <div className="mb-4">
+                  <Label className="text-sm text-gray-600 mb-1 block">Vitesse Max (km/h)</Label>
+                  <div className="px-2">
+                    <Slider
+                      defaultValue={[0, 150]}
+                      max={150}
+                      step={5}
+                      value={maxSpeedRange}
+                      onValueChange={setMaxSpeedRange}
+                      className="my-4"
+                    />
+                    <div className="flex justify-between mt-2 text-sm text-gray-500">
+                      <span>{maxSpeedRange[0]} km/h</span>
+                      <span>{maxSpeedRange[1]} km/h</span>
+                    </div>
                   </div>
                 </div>
               </div>
