@@ -31,6 +31,11 @@ export async function apiRequest<T = any>({
 
   await throwIfResNotOk(res);
   
+  // Check if there's content to parse (204 responses have no content)
+  if (res.status === 204 || res.headers.get('content-length') === '0') {
+    return {} as T;
+  }
+  
   // Return the parsed JSON response
   return await res.json();
 }
@@ -50,6 +55,12 @@ export const getQueryFn: <T>(options: {
     }
 
     await throwIfResNotOk(res);
+    
+    // Check if there's content to parse (204 responses have no content)
+    if (res.status === 204 || res.headers.get('content-length') === '0') {
+      return {} as T;
+    }
+    
     return await res.json();
   };
 
