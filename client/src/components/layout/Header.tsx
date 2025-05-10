@@ -95,7 +95,7 @@ const Header = () => {
               <Input
                 type="text"
                 placeholder="Search products..."
-                className="w-full py-2 px-4 pr-10 rounded-lg border border-gray-300"
+                className="w-full py-2 px-4 pr-10 rounded-lg border border-yellow-500 bg-gray-900 text-white focus-visible:ring-yellow-500"
                 value={searchQuery}
                 onChange={(e) => setSearchQuery(e.target.value)}
               />
@@ -103,7 +103,7 @@ const Header = () => {
                 type="submit" 
                 size="icon" 
                 variant="ghost" 
-                className="absolute right-1 top-1/2 transform -translate-y-1/2 text-gray-400"
+                className="absolute right-1 top-1/2 transform -translate-y-1/2 text-yellow-500 hover:bg-transparent hover:text-yellow-400"
               >
                 <Search size={18} />
               </Button>
@@ -112,7 +112,12 @@ const Header = () => {
           
           {/* Mobile Menu Button */}
           <div className="flex md:hidden">
-            <Button variant="ghost" size="icon" onClick={toggleMobileMenu}>
+            <Button 
+              variant="ghost" 
+              size="icon" 
+              onClick={toggleMobileMenu}
+              className="text-yellow-500 hover:text-yellow-400 hover:bg-transparent"
+            >
               {mobileMenuOpen ? <X size={24} /> : <Menu size={24} />}
             </Button>
           </div>
@@ -121,32 +126,32 @@ const Header = () => {
       
       {/* Mobile Menu */}
       {mobileMenuOpen && (
-        <div className="md:hidden">
+        <div className="md:hidden bg-black border-t border-yellow-500">
           <div className="px-2 pt-2 pb-3 space-y-1 sm:px-3">
             <Link 
               href="/" 
-              className="block px-3 py-2 rounded-md text-base font-medium text-gray-800 hover:bg-gray-100"
+              className="block px-3 py-2 rounded-md text-base font-medium text-white hover:bg-yellow-500 hover:text-black transition-colors"
               onClick={() => setMobileMenuOpen(false)}
             >
               Home
             </Link>
             <Link 
               href="/products" 
-              className="block px-3 py-2 rounded-md text-base font-medium text-gray-800 hover:bg-gray-100"
+              className="block px-3 py-2 rounded-md text-base font-medium text-white hover:bg-yellow-500 hover:text-black transition-colors"
               onClick={() => setMobileMenuOpen(false)}
             >
               Products
             </Link>
             <Link 
               href="/about" 
-              className="block px-3 py-2 rounded-md text-base font-medium text-gray-800 hover:bg-gray-100"
+              className="block px-3 py-2 rounded-md text-base font-medium text-white hover:bg-yellow-500 hover:text-black transition-colors"
               onClick={() => setMobileMenuOpen(false)}
             >
               About
             </Link>
             <Link 
               href="/contact" 
-              className="block px-3 py-2 rounded-md text-base font-medium text-gray-800 hover:bg-gray-100"
+              className="block px-3 py-2 rounded-md text-base font-medium text-white hover:bg-yellow-500 hover:text-black transition-colors"
               onClick={() => setMobileMenuOpen(false)}
             >
               Contact
@@ -157,7 +162,7 @@ const Header = () => {
               <Input
                 type="text"
                 placeholder="Search products..."
-                className="w-full py-2 px-4 pr-10 rounded-lg border border-gray-300"
+                className="w-full py-2 px-4 pr-10 rounded-lg border border-yellow-500 bg-gray-900 text-white"
                 value={searchQuery}
                 onChange={(e) => setSearchQuery(e.target.value)}
               />
@@ -165,7 +170,7 @@ const Header = () => {
                 type="submit" 
                 size="icon" 
                 variant="ghost" 
-                className="absolute right-1 top-1/2 transform -translate-y-1/2 text-gray-400"
+                className="absolute right-1 top-1/2 transform -translate-y-1/2 text-yellow-500"
               >
                 <Search size={18} />
               </Button>

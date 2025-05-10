@@ -1,5 +1,5 @@
 import { Link } from "wouter";
-import { ShoppingCart } from "lucide-react";
+import { ArrowRight, MotorbikeIcon, ShoppingCart } from "lucide-react";
 import { Badge } from "@/components/ui/badge";
 import { Button } from "@/components/ui/button";
 import { Card, CardContent } from "@/components/ui/card";
