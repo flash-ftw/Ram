@@ -520,12 +520,26 @@ export async function registerRoutes(app: Express): Promise<Server> {
     try {
       const featured = req.query.featured === 'true';
       
+      // Support de filtre par categoryId (numérique)
+      let categoryId: number | undefined = undefined;
+      if (req.query.categoryId) {
+        categoryId = parseInt(req.query.categoryId as string);
+      }
+      
+      // Support de filtre par brandId (numérique)
+      let brandId: number | undefined = undefined;
+      if (req.query.brandId) {
+        brandId = parseInt(req.query.brandId as string);
+      }
+      
+      // Support de filtre par categorie via slug (pour compatibilité)
       const categories = req.query.category ? 
         Array.isArray(req.query.category) ? 
           req.query.category as string[] : 
           [req.query.category as string] : 
         undefined;
       
+      // Support de filtre par marque via slug (pour compatibilité)
       const brands = req.query.brand ? 
         Array.isArray(req.query.brand) ? 
           req.query.brand as string[] : 

@@ -289,7 +289,17 @@ export class DatabaseStorage implements IStorage {
       whereConditions.push(lte(products.weight, options.weightMax));
     }
     
-    // Filter by categories
+    // Filtre direct par categoryId (numérique)
+    if (options.categoryId !== undefined) {
+      whereConditions.push(eq(products.categoryId, options.categoryId));
+    }
+
+    // Filtre direct par brandId (numérique)
+    if (options.brandId !== undefined) {
+      whereConditions.push(eq(products.brandId, options.brandId));
+    }
+    
+    // Filter by categories (slug)
     if (options.categories && options.categories.length > 0) {
       // Get category IDs from slugs
       const categoryPromises = options.categories.map(slug => this.getCategoryBySlug(slug));
@@ -305,7 +315,7 @@ export class DatabaseStorage implements IStorage {
       }
     }
     
-    // Filter by brands
+    // Filter by brands (slug)
     if (options.brands && options.brands.length > 0) {
       // Get brand IDs from slugs
       const brandPromises = options.brands.map(slug => this.getBrandBySlug(slug));
