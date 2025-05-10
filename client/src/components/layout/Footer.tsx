@@ -6,7 +6,16 @@ import {
   Mail, 
   MapPin, 
   Phone, 
-  Clock
+  Clock,
+  Bike,
+  Gift,
+  Settings,
+  Wrench,
+  ChevronUp,
+  Home,
+  ShoppingBag,
+  Info,
+  MessageSquare
 } from "lucide-react";
 import { useCategories } from "@/hooks/useCategories";
 
@@ -26,86 +35,91 @@ const Footer = () => {
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
           {/* Company Info */}
           <div>
-            <div className="flex items-center mb-4">
-              <span className="text-yellow-500 mr-2">
-                <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
-                  <path d="M20.38 9.78l-1.3-2.26c-.17-.3-.51-.48-.87-.48h-2.83l-1.32-1.41a1.15 1.15 0 0 0-.85-.36h-2.42a1.15 1.15 0 0 0-.85.36L8.62 7.04H5.79c-.36 0-.7.18-.87.48L3.62 9.78C3.23 10.5 3 11.11 3 12v3a1 1 0 0 0 1 1h1.5a2.5 2.5 0 0 0 5 0h3a2.5 2.5 0 0 0 5 0H20a1 1 0 0 0 1-1v-3c0-.89-.23-1.5-.62-2.22Z" />
-                  <circle cx="7.5" cy="16" r="1.5" />
-                  <circle cx="16.5" cy="16" r="1.5" />
-                </svg>
-              </span>
+            <div className="flex items-center mb-4 group">
+              <div className="text-yellow-500 mr-3 relative">
+                <Bike size={28} className="group-hover:scale-110 transition-transform" />
+                <span className="absolute -bottom-1 -right-1 w-2 h-2 bg-yellow-500 rounded-full"></span>
+              </div>
               <h3 className="text-xl font-bold">
-                <span className="text-yellow-500">Rammeh</span> <span className="text-white">MotoScoot</span>
+                <span className="text-yellow-500 group-hover:text-yellow-400 transition-colors">Rammeh</span>{" "}
+                <span className="text-white group-hover:tracking-wider transition-all duration-300">MotoScoot</span>
               </h3>
             </div>
-            <p className="text-gray-400 mb-4">Your premier destination for motorcycles and accessories since 2015.</p>
-            <div className="flex space-x-4">
+            <p className="text-gray-400 mb-4 hover:text-gray-300 transition-colors">Your premier destination for motorcycles and accessories since 2015.</p>
+            <div className="flex space-x-5">
               <a 
                 href="#" 
-                className="text-yellow-500 hover:text-yellow-400 transition" 
+                className="text-yellow-500 hover:text-yellow-400 hover:scale-125 transition-all duration-300" 
                 aria-label="Facebook"
               >
-                <Facebook size={18} />
+                <Facebook size={20} />
               </a>
               <a 
                 href="#" 
-                className="text-yellow-500 hover:text-yellow-400 transition" 
+                className="text-yellow-500 hover:text-yellow-400 hover:scale-125 transition-all duration-300" 
                 aria-label="Twitter"
               >
-                <Twitter size={18} />
+                <Twitter size={20} />
               </a>
               <a 
                 href="#" 
-                className="text-yellow-500 hover:text-yellow-400 transition" 
+                className="text-yellow-500 hover:text-yellow-400 hover:scale-125 transition-all duration-300" 
                 aria-label="Instagram"
               >
-                <Instagram size={18} />
+                <Instagram size={20} />
               </a>
             </div>
           </div>
           
           {/* Quick Links */}
           <div>
-            <h3 className="text-lg font-semibold mb-4 text-yellow-500">Quick Links</h3>
-            <ul className="space-y-2">
+            <h3 className="text-lg font-semibold mb-4 text-yellow-500 relative inline-block after:content-[''] after:absolute after:w-8 after:h-[2px] after:bg-yellow-500 after:bottom-[-4px] after:left-0">
+              Quick Links
+            </h3>
+            <ul className="space-y-3">
               <li>
                 <Link 
                   href="/" 
-                  className="text-gray-400 hover:text-yellow-500 transition"
+                  className="group flex items-center text-gray-400 hover:text-yellow-500 transition-colors"
                 >
-                  Home
+                  <Home size={16} className="mr-2 text-yellow-500 group-hover:scale-110 transition-transform" />
+                  <span className="group-hover:translate-x-1 transition-transform">Home</span>
                 </Link>
               </li>
               <li>
                 <Link 
                   href="/products" 
-                  className="text-gray-400 hover:text-yellow-500 transition"
+                  className="group flex items-center text-gray-400 hover:text-yellow-500 transition-colors"
                 >
-                  Shop All
+                  <ShoppingBag size={16} className="mr-2 text-yellow-500 group-hover:scale-110 transition-transform" />
+                  <span className="group-hover:translate-x-1 transition-transform">Shop All</span>
                 </Link>
               </li>
               <li>
                 <Link 
                   href="/#featured" 
-                  className="text-gray-400 hover:text-yellow-500 transition"
+                  className="group flex items-center text-gray-400 hover:text-yellow-500 transition-colors"
                 >
-                  Featured Bikes
+                  <Bike size={16} className="mr-2 text-yellow-500 group-hover:scale-110 transition-transform" />
+                  <span className="group-hover:translate-x-1 transition-transform">Featured Bikes</span>
                 </Link>
               </li>
               <li>
                 <Link 
                   href="/about" 
-                  className="text-gray-400 hover:text-yellow-500 transition"
+                  className="group flex items-center text-gray-400 hover:text-yellow-500 transition-colors"
                 >
-                  About Us
+                  <Info size={16} className="mr-2 text-yellow-500 group-hover:scale-110 transition-transform" />
+                  <span className="group-hover:translate-x-1 transition-transform">About Us</span>
                 </Link>
               </li>
               <li>
                 <Link 
                   href="/contact" 
-                  className="text-gray-400 hover:text-yellow-500 transition"
+                  className="group flex items-center text-gray-400 hover:text-yellow-500 transition-colors"
                 >
-                  Contact
+                  <MessageSquare size={16} className="mr-2 text-yellow-500 group-hover:scale-110 transition-transform" />
+                  <span className="group-hover:translate-x-1 transition-transform">Contact</span>
                 </Link>
               </li>
             </ul>
@@ -113,15 +127,18 @@ const Footer = () => {
           
           {/* Categories */}
           <div>
-            <h3 className="text-lg font-semibold mb-4 text-yellow-500">Categories</h3>
-            <ul className="space-y-2">
+            <h3 className="text-lg font-semibold mb-4 text-yellow-500 relative inline-block after:content-[''] after:absolute after:w-8 after:h-[2px] after:bg-yellow-500 after:bottom-[-4px] after:left-0">
+              Categories
+            </h3>
+            <ul className="space-y-3">
               {categories?.map((category) => (
                 <li key={category.id}>
                   <Link 
                     href={`/products?category=${category.slug}`}
-                    className="text-gray-400 hover:text-yellow-500 transition"
+                    className="group flex items-center text-gray-400 hover:text-yellow-500 transition-colors"
                   >
-                    {category.name}
+                    <Settings size={16} className="mr-2 text-yellow-500 group-hover:rotate-45 transition-transform duration-300" />
+                    <span className="group-hover:translate-x-1 transition-transform">{category.name}</span>
                   </Link>
                 </li>
               ))}
@@ -130,23 +147,25 @@ const Footer = () => {
           
           {/* Contact Info */}
           <div>
-            <h3 className="text-lg font-semibold mb-4 text-yellow-500">Contact Info</h3>
+            <h3 className="text-lg font-semibold mb-4 text-yellow-500 relative inline-block after:content-[''] after:absolute after:w-8 after:h-[2px] after:bg-yellow-500 after:bottom-[-4px] after:left-0">
+              Contact Info
+            </h3>
             <ul className="space-y-3">
-              <li className="flex items-start">
-                <MapPin className="mt-1 mr-3 text-yellow-500 flex-shrink-0" size={18} />
-                <span className="text-gray-400">123 Motorcycle Ave, Speed District, Tunis, 1001</span>
+              <li className="flex items-start group">
+                <MapPin className="mt-1 mr-3 text-yellow-500 flex-shrink-0 group-hover:scale-110 transition-transform" size={18} />
+                <span className="text-gray-400 group-hover:text-gray-300 transition-colors">123 Motorcycle Ave, Speed District, Tunis, 1001</span>
               </li>
-              <li className="flex items-center">
-                <Phone className="mr-3 text-yellow-500 flex-shrink-0" size={18} />
-                <span className="text-gray-400">(+216) 71-123-456</span>
+              <li className="flex items-center group">
+                <Phone className="mr-3 text-yellow-500 flex-shrink-0 group-hover:scale-110 transition-transform" size={18} />
+                <span className="text-gray-400 group-hover:text-gray-300 transition-colors">(+216) 71-123-456</span>
               </li>
-              <li className="flex items-center">
-                <Mail className="mr-3 text-yellow-500 flex-shrink-0" size={18} />
-                <span className="text-gray-400">info@rammehmotoscoot.com</span>
+              <li className="flex items-center group">
+                <Mail className="mr-3 text-yellow-500 flex-shrink-0 group-hover:scale-110 transition-transform" size={18} />
+                <span className="text-gray-400 group-hover:text-gray-300 transition-colors">info@rammehmotoscoot.com</span>
               </li>
-              <li className="flex items-start">
-                <Clock className="mt-1 mr-3 text-yellow-500 flex-shrink-0" size={18} />
-                <span className="text-gray-400">
+              <li className="flex items-start group">
+                <Clock className="mt-1 mr-3 text-yellow-500 flex-shrink-0 group-hover:scale-110 transition-transform" size={18} />
+                <span className="text-gray-400 group-hover:text-gray-300 transition-colors">
                   Mon-Fri: 9AM - 7PM<br />
                   Sat: 10AM - 5PM | Sun: Closed
                 </span>
@@ -169,12 +188,11 @@ const Footer = () => {
       {/* Back to Top Button */}
       <button 
         onClick={scrollToTop}
-        className="fixed bottom-6 right-6 bg-yellow-500 hover:bg-yellow-600 text-black p-3 rounded-full shadow-lg transition-all hover:scale-110"
+        className="fixed bottom-6 right-6 bg-yellow-500 hover:bg-yellow-600 text-black p-3 rounded-full shadow-lg transition-all hover:scale-110 group animate-bounce"
         aria-label="Back to top"
       >
-        <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
-          <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M5 15l7-7 7 7"></path>
-        </svg>
+        <ChevronUp size={20} className="group-hover:rotate-180 transition-transform duration-500" />
+        <span className="absolute -top-1 -right-1 h-3 w-3 rounded-full bg-white animate-ping"></span>
       </button>
     </footer>
   );
