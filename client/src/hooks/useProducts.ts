@@ -4,6 +4,9 @@ import { Product } from "@shared/schema";
 interface ProductsQueryParams {
   featured?: boolean;
   categories?: string[];
+  categoryId?: number;
+  brands?: string[];
+  brandId?: number;
   minPrice?: number;
   maxPrice?: number;
   sortBy?: string;
@@ -38,6 +41,23 @@ export function useProducts(params: ProductsQueryParams = {}) {
     params.categories.forEach(category => {
       queryParams.append('category', category);
     });
+  }
+  
+  // Add categoryId filter (direct numeric filtering)
+  if (params.categoryId !== undefined) {
+    queryParams.append('categoryId', params.categoryId.toString());
+  }
+  
+  // Add brand filters
+  if (params.brands && params.brands.length > 0) {
+    params.brands.forEach(brand => {
+      queryParams.append('brand', brand);
+    });
+  }
+  
+  // Add brandId filter (direct numeric filtering)
+  if (params.brandId !== undefined) {
+    queryParams.append('brandId', params.brandId.toString());
   }
   
   // Add price range filters
