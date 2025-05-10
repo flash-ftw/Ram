@@ -184,10 +184,10 @@ const Checkout = () => {
               
               <Alert className="mt-6 border-yellow-500">
                 <CreditCard className="h-4 w-4 text-yellow-500" />
-                <AlertTitle>Payment Instructions</AlertTitle>
+                <AlertTitle>Instructions de Paiement</AlertTitle>
                 <AlertDescription>
-                  Please include your name and phone number in the transfer description. 
-                  After completing the transfer, contact us via WhatsApp with your receipt.
+                  Veuillez inclure votre nom et numéro de téléphone dans la description du virement.
+                  Après avoir effectué le virement, contactez-nous via WhatsApp avec votre reçu.
                 </AlertDescription>
               </Alert>
             </CardContent>
@@ -196,14 +196,14 @@ const Checkout = () => {
           <div className="flex flex-col space-y-6">
             <Card className="bg-white shadow-md rounded-lg overflow-hidden">
               <CardHeader className="bg-yellow-500 text-black">
-                <CardTitle className="text-xl">Next Steps</CardTitle>
+                <CardTitle className="text-xl">Prochaines Étapes</CardTitle>
               </CardHeader>
               <CardContent className="p-6">
                 <ol className="list-decimal list-inside space-y-4 mb-6">
-                  <li>Make the bank transfer for the exact amount</li>
-                  <li>Take a screenshot or photo of your transfer receipt</li>
-                  <li>Send us the receipt via WhatsApp with your order details</li>
-                  <li>We'll process your order and contact you within 24 hours</li>
+                  <li>Effectuez le virement bancaire du montant exact</li>
+                  <li>Prenez une capture d'écran ou une photo de votre reçu de virement</li>
+                  <li>Envoyez-nous le reçu via WhatsApp avec les détails de votre commande</li>
+                  <li>Nous traiterons votre commande et vous contacterons dans les 24 heures</li>
                 </ol>
                 
                 <Button
@@ -218,7 +218,7 @@ const Checkout = () => {
                   className="w-full bg-green-600 hover:bg-green-700 text-white flex items-center justify-center gap-2"
                 >
                   <LucidePhone className="h-4 w-4" />
-                  <span>Contact via WhatsApp</span>
+                  <span>Contacter via WhatsApp</span>
                 </Button>
               </CardContent>
             </Card>
@@ -230,7 +230,7 @@ const Checkout = () => {
                 className="flex-1 flex items-center justify-center gap-2"
               >
                 <ArrowLeft className="h-4 w-4" />
-                <span>Back to Form</span>
+                <span>Retour au Formulaire</span>
               </Button>
               
               <Button
