@@ -32,17 +32,17 @@ const ThankYou = () => {
   return (
     <div className="container mx-auto px-4 py-16 max-w-4xl">
       <Helmet>
-        <title>Order Confirmed | Rammeh MotoScoot</title>
-        <meta name="description" content="Thank you for your order with Rammeh MotoScoot!" />
+        <title>Commande Confirmée | Rammeh MotoScoot</title>
+        <meta name="description" content="Merci pour votre commande chez Rammeh MotoScoot !" />
       </Helmet>
       
       <div className="text-center mb-8">
         <div className="mx-auto w-20 h-20 rounded-full bg-green-100 flex items-center justify-center mb-6">
           <CheckCircle className="h-10 w-10 text-green-600" />
         </div>
-        <h1 className="text-3xl font-bold mb-2">Thank You for Your Order!</h1>
+        <h1 className="text-3xl font-bold mb-2">Merci pour Votre Commande !</h1>
         <p className="text-gray-600 max-w-xl mx-auto">
-          We've received your order and will process it as soon as we confirm your payment.
+          Nous avons bien reçu votre commande et la traiterons dès que nous aurons confirmé votre paiement.
         </p>
       </div>
       
@@ -55,10 +55,10 @@ const ThankYou = () => {
           {hasOrderData ? (
             <div className="space-y-6">
               <div>
-                <h2 className="text-xl font-semibold mb-4">Order Summary</h2>
+                <h2 className="text-xl font-semibold mb-4">Résumé de la Commande</h2>
                 {checkoutData.orderId && (
                   <div className="mb-4 p-3 bg-yellow-50 border border-yellow-200 rounded-md">
-                    <span className="font-medium text-yellow-800">Order ID: </span>
+                    <span className="font-medium text-yellow-800">ID Commande : </span>
                     <span className="font-mono">{checkoutData.orderId}</span>
                   </div>
                 )}
@@ -83,7 +83,7 @@ const ThankYou = () => {
               </div>
               
               <div>
-                <h2 className="text-xl font-semibold mb-4">Customer Information</h2>
+                <h2 className="text-xl font-semibold mb-4">Informations Client</h2>
                 <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
                   <div>
                     <h3 className="text-sm font-medium text-gray-500">Name</h3>
