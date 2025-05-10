@@ -37,11 +37,19 @@ const Categories = () => {
             {categories.map((category) => (
               <div key={category.id} className="relative rounded-md overflow-hidden group h-80 shadow-xl border-2 border-yellow-500 transform transition-all duration-300 hover:-translate-y-2">
                 <div className="absolute inset-0 bg-gradient-to-t from-black via-black/70 to-transparent"></div>
-                <img 
-                  src={category.image} 
-                  alt={`${category.name} Category`} 
-                  className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-110"
-                />
+                {category.image ? (
+                  <img 
+                    src={category.image} 
+                    alt={`${category.name} Category`} 
+                    className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-110"
+                  />
+                ) : (
+                  <div className="w-full h-full bg-gray-800 flex items-center justify-center">
+                    <span className="text-3xl text-yellow-500">
+                      <Layers size={48} />
+                    </span>
+                  </div>
+                )}
                 <div className="absolute inset-x-0 bottom-0 p-6 bg-gradient-to-t from-black to-transparent">
                   <h3 className="text-white text-2xl font-bold mb-2">{category.name}</h3>
                   <span className="inline-flex items-center text-yellow-500 font-medium group-hover:text-yellow-400 transition-colors">

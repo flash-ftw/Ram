@@ -7,8 +7,8 @@ const Products = () => {
   const categorySlug = searchParams.get('category');
   const searchQuery = searchParams.get('search');
   
-  let title = "All Products - ModernShowroom";
-  let description = "Browse our extensive collection of quality products for every need and style.";
+  let title = "All Motorcycles - Rammeh MotoScoot";
+  let description = "Browse our extensive collection of motorcycles, parts, and accessories for every rider.";
   
   if (categorySlug) {
     // Capitalize first letter and add spaces between camelCase
@@ -16,11 +16,11 @@ const Products = () => {
       .replace(/-/g, ' ')
       .replace(/\b\w/g, (c) => c.toUpperCase());
     
-    title = `${categoryName} - ModernShowroom`;
-    description = `Explore our collection of premium ${categoryName.toLowerCase()} products.`;
+    title = `${categoryName} - Rammeh MotoScoot`;
+    description = `Explore our collection of premium ${categoryName.toLowerCase()} motorcycles and accessories.`;
   } else if (searchQuery) {
-    title = `Search Results for "${searchQuery}" - ModernShowroom`;
-    description = `Browse products matching your search for "${searchQuery}".`;
+    title = `Search Results for "${searchQuery}" - Rammeh MotoScoot`;
+    description = `Browse motorcycles and accessories matching your search for "${searchQuery}".`;
   }
 
   return (

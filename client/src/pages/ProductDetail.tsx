@@ -16,12 +16,12 @@ const ProductDetail = () => {
     : null;
   
   const title = product 
-    ? `${product.name} - ModernShowroom`
-    : "Product - ModernShowroom";
+    ? `${product.name} - Rammeh MotoScoot`
+    : "Motorcycle - Rammeh MotoScoot";
   
   const description = product
     ? `${product.description.slice(0, 155)}...`
-    : "View our premium quality product details, features, and specifications.";
+    : "View our high-performance motorcycles with detailed specifications, features, and technical information.";
 
   return (
     <>

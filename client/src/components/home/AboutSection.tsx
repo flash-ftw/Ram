@@ -8,11 +8,14 @@ const AboutSection = () => {
           <div className="lg:w-1/2 mb-10 lg:mb-0">
             <div className="relative">
               <div className="absolute -top-4 -left-4 w-full h-full border-2 border-yellow-500 rounded-lg"></div>
-              <img 
-                src="/motorcycle-showroom.jpg" 
-                alt="Our Motorcycle Showroom" 
-                className="rounded-lg shadow-lg w-full h-auto relative z-10"
-              />
+              <div 
+                className="rounded-lg shadow-lg w-full h-80 bg-gray-800 relative z-10 flex items-center justify-center"
+              >
+                <div className="text-center text-gray-500">
+                  <Settings className="w-16 h-16 mx-auto mb-4 text-yellow-500" />
+                  <p className="text-lg font-medium">Motorcycle Showroom</p>
+                </div>
+              </div>
               <div className="absolute -bottom-4 -right-4 bg-yellow-500 text-black py-2 px-4 rounded-lg font-bold z-20">
                 Est. 2015
               </div>
