@@ -9,10 +9,10 @@ const Home = () => {
   return (
     <>
       <Helmet>
-        <title>ModernShowroom - Premium Products for Your Space</title>
-        <meta name="description" content="Discover our curated collection of high-quality furniture, electronics, lighting, and decor that combine style, functionality, and craftsmanship." />
-        <meta property="og:title" content="ModernShowroom - Premium Products for Your Space" />
-        <meta property="og:description" content="Discover our curated collection of high-quality products that combine style, functionality, and craftsmanship." />
+        <title>Rammeh MotoScoot - Premium Motorcycles & Accessories</title>
+        <meta name="description" content="Discover our premium collection of motorcycles, parts, gear, and accessories. Your one-stop shop for all motorcycle enthusiasts in Tunisia." />
+        <meta property="og:title" content="Rammeh MotoScoot - Premium Motorcycles & Accessories" />
+        <meta property="og:description" content="Tunisia's leading motorcycle showroom offering high-quality bikes, parts, gear, and accessories with excellent service and maintenance." />
         <meta property="og:type" content="website" />
       </Helmet>
       

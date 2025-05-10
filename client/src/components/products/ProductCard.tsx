@@ -1,5 +1,5 @@
 import { Link } from "wouter";
-import { ArrowRight, MotorbikeIcon, ShoppingCart } from "lucide-react";
+import { ArrowRight, Bike, ShoppingCart } from "lucide-react";
 import { Badge } from "@/components/ui/badge";
 import { Button } from "@/components/ui/button";
 import { Card, CardContent } from "@/components/ui/card";
@@ -12,41 +12,47 @@ interface ProductCardProps {
 
 const ProductCard = ({ product }: ProductCardProps) => {
   return (
-    <Card className="product-card bg-white rounded-lg overflow-hidden shadow-md hover:shadow-xl">
+    <Card className="moto-card bg-black rounded-lg overflow-hidden shadow-md">
       <Link href={`/product/${product.slug}`}>
-        <div className="relative w-full h-64">
+        <div className="relative w-full h-64 overflow-hidden">
           <img 
             src={getImageUrl(product.mainImage)} 
             alt={product.name} 
-            className="w-full h-full object-cover"
+            className="w-full h-full object-cover transform transition-transform duration-500 hover:scale-110"
           />
+          {product.featured && (
+            <div className="absolute top-0 right-0 m-3">
+              <Badge className="moto-badge">
+                Featured
+              </Badge>
+            </div>
+          )}
         </div>
       </Link>
-      <CardContent className="p-5">
-        <Badge variant="default" className="text-xs font-semibold uppercase tracking-wide">
-          {/* We'll replace this with actual category name later */}
-          {product.categoryId === 1 ? 'Furniture' : 
-           product.categoryId === 2 ? 'Electronics' : 
-           product.categoryId === 3 ? 'Lighting' : 'Decor'}
+      <CardContent className="p-5 bg-black text-white">
+        <Badge variant="outline" className="text-xs font-semibold uppercase tracking-wide border-yellow-500 text-yellow-500">
+          {product.categoryId === 1 ? 'Motorcycles' : 
+           product.categoryId === 2 ? 'Accessories' : 
+           product.categoryId === 3 ? 'Gear' : 'Parts'}
         </Badge>
         <h3 className="mt-2 text-lg font-semibold">
-          <Link href={`/product/${product.slug}`} className="hover:text-primary transition-colors">
+          <Link href={`/product/${product.slug}`} className="hover:text-yellow-500 transition-colors">
             {product.name}
           </Link>
         </h3>
-        <p className="mt-1 text-gray-500 line-clamp-2">
+        <p className="mt-1 text-gray-400 line-clamp-2">
           {product.description}
         </p>
         <div className="mt-3 flex justify-between items-center">
-          <span className="font-bold text-lg">{formatPrice(product.price)}</span>
+          <span className="font-bold text-lg text-yellow-500">{formatPrice(product.price)}</span>
           <Button 
             asChild
-            variant="secondary" 
+            variant="outline" 
             size="sm"
-            className="bg-gray-100 hover:bg-gray-200 text-gray-800 px-3 py-1 rounded-lg transition"
+            className="border-yellow-500 text-yellow-500 hover:bg-yellow-500 hover:text-black px-3 py-1 rounded-lg transition-all duration-300"
           >
-            <Link href={`/product/${product.slug}`}>
-              <ShoppingCart className="w-4 h-4 mr-1" /> View
+            <Link href={`/product/${product.slug}`} className="flex items-center">
+              <Bike className="w-4 h-4 mr-1" /> Details <ArrowRight className="w-3 h-3 ml-1" />
             </Link>
           </Button>
         </div>
