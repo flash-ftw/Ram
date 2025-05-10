@@ -13,7 +13,12 @@ import {
   type InsertBrand,
   contactSubmissions,
   type ContactSubmission,
-  type InsertContactSubmission
+  type InsertContactSubmission,
+  orders,
+  OrderStatus,
+  type Order,
+  type InsertOrder,
+  type OrderStatusType
 } from "@shared/schema";
 import { sampleCategories, sampleProducts, sampleBrands } from "./products";
 import { db } from "./db";
@@ -70,6 +75,15 @@ export interface IStorage {
   createContactSubmission(submission: InsertContactSubmission): Promise<ContactSubmission>;
   markContactSubmissionAsRead(id: number): Promise<boolean>;
   deleteContactSubmission(id: number): Promise<boolean>;
+  
+  // Order methods
+  getAllOrders(): Promise<Order[]>;
+  getOrderById(id: number): Promise<Order | undefined>;
+  createOrder(order: InsertOrder): Promise<Order>;
+  updateOrder(id: number, data: Partial<InsertOrder>): Promise<Order | undefined>;
+  updateOrderStatus(id: number, status: OrderStatusType): Promise<boolean>;
+  markOrderAsPaid(id: number): Promise<boolean>;
+  deleteOrder(id: number): Promise<boolean>;
 }
 
 export class DatabaseStorage implements IStorage {
@@ -368,6 +382,55 @@ export class DatabaseStorage implements IStorage {
     const result = await db.delete(contactSubmissions).where(eq(contactSubmissions.id, id));
     return result.rowCount > 0;
   }
+  
+  // Order methods
+  async getAllOrders(): Promise<Order[]> {
+    return await db.select().from(orders).orderBy(desc(orders.createdAt));
+  }
+  
+  async getOrderById(id: number): Promise<Order | undefined> {
+    const [order] = await db.select().from(orders).where(eq(orders.id, id));
+    return order;
+  }
+  
+  async createOrder(order: InsertOrder): Promise<Order> {
+    const [createdOrder] = await db.insert(orders).values(order).returning();
+    return createdOrder;
+  }
+  
+  async updateOrder(id: number, data: Partial<InsertOrder>): Promise<Order | undefined> {
+    const [updatedOrder] = await db.update(orders)
+      .set({ ...data, updatedAt: new Date() })
+      .where(eq(orders.id, id))
+      .returning();
+    return updatedOrder;
+  }
+  
+  async updateOrderStatus(id: number, status: OrderStatusType): Promise<boolean> {
+    const result = await db.update(orders)
+      .set({ 
+        status, 
+        updatedAt: new Date() 
+      })
+      .where(eq(orders.id, id));
+    return result.rowCount > 0;
+  }
+  
+  async markOrderAsPaid(id: number): Promise<boolean> {
+    const result = await db.update(orders)
+      .set({ 
+        paymentConfirmed: true,
+        status: OrderStatus.CONFIRMED,
+        updatedAt: new Date() 
+      })
+      .where(eq(orders.id, id));
+    return result.rowCount > 0;
+  }
+  
+  async deleteOrder(id: number): Promise<boolean> {
+    const result = await db.delete(orders).where(eq(orders.id, id));
+    return result.rowCount > 0;
+  }
 }
 
 export class MemStorage implements IStorage {
@@ -376,11 +439,13 @@ export class MemStorage implements IStorage {
   private categoriesMap: Map<number, Category>;
   private productsMap: Map<number, Product>;
   private contactSubmissionsMap: Map<number, ContactSubmission>;
+  private ordersMap: Map<number, Order>;
   currentId: number;
   brandId: number;
   categoryId: number;
   productId: number;
   submissionId: number;
+  orderId: number;
 
   constructor() {
     this.users = new Map();
@@ -388,11 +453,13 @@ export class MemStorage implements IStorage {
     this.categoriesMap = new Map();
     this.productsMap = new Map();
     this.contactSubmissionsMap = new Map();
+    this.ordersMap = new Map();
     this.currentId = 1;
     this.brandId = 1;
     this.categoryId = 1;
     this.productId = 1;
     this.submissionId = 1;
+    this.orderId = 1;
     
     // Initialize with sample data
     this.initializeSampleData();
