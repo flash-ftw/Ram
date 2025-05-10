@@ -255,8 +255,8 @@ const ProductDetail = () => {
                     } catch (error) {
                       // Show error toast
                       toast({
-                        title: "Error",
-                        description: "Could not add item to cart. Please try again.",
+                        title: "Erreur",
+                        description: "Impossible d'ajouter l'article au panier. Veuillez réessayer.",
                         variant: "destructive",
                       });
                     } finally {
@@ -267,7 +267,7 @@ const ProductDetail = () => {
                   className="flex-1 bg-yellow-500 hover:bg-yellow-600 text-black font-medium py-3 px-6 flex items-center justify-center"
                 >
                   <ShoppingCart className="mr-2" size={18} />
-                  {isAddingToCart ? 'Adding...' : 'Add to Cart'}
+                  {isAddingToCart ? 'Ajout en cours...' : 'Ajouter au Panier'}
                 </Button>
                 <Button 
                   onClick={() => {
@@ -277,21 +277,21 @@ const ProductDetail = () => {
                   variant="outline" 
                   className="flex-1 bg-white hover:bg-gray-100 text-gray-800 font-medium py-3 px-6 border border-gray-300 flex items-center justify-center"
                 >
-                  Buy Now
+                  Acheter Maintenant
                 </Button>
               </div>
               
               {/* Social Sharing */}
               <div className="mt-8 pt-6 border-t border-gray-200">
-                <h2 className="text-sm font-medium text-gray-900">Share this product</h2>
+                <h2 className="text-sm font-medium text-gray-900">Partager ce produit</h2>
                 <div className="mt-2 flex space-x-4">
-                  <button className="text-gray-500 hover:text-primary" aria-label="Share on Facebook">
+                  <button className="text-gray-500 hover:text-primary" aria-label="Partager sur Facebook">
                     <Facebook size={18} />
                   </button>
-                  <button className="text-gray-500 hover:text-primary" aria-label="Share on Twitter">
+                  <button className="text-gray-500 hover:text-primary" aria-label="Partager sur Twitter">
                     <Twitter size={18} />
                   </button>
-                  <button className="text-gray-500 hover:text-primary" aria-label="Share on Instagram">
+                  <button className="text-gray-500 hover:text-primary" aria-label="Partager sur Instagram">
                     <Instagram size={18} />
                   </button>
                 </div>

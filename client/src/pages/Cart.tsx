@@ -16,7 +16,7 @@ const Cart = () => {
   
   // SEO - Update page title
   useEffect(() => {
-    document.title = "Your Cart | Rammeh MotoScoot";
+    document.title = "Votre Panier | Rammeh MotoScoot";
   }, []);
 
   const handleQuantityChange = (productId: number, newQuantity: number) => {
@@ -33,8 +33,8 @@ const Cart = () => {
     return (
       <div className="container mx-auto px-4 py-16 max-w-6xl">
         <Helmet>
-          <title>Your Cart | Rammeh MotoScoot</title>
-          <meta name="description" content="View your cart and checkout your motorcycle products." />
+          <title>Votre Panier | Rammeh MotoScoot</title>
+          <meta name="description" content="Consultez votre panier et passez à la caisse pour vos produits moto." />
         </Helmet>
         
         <h1 className="text-3xl font-bold text-center mb-6">Your Cart</h1>
