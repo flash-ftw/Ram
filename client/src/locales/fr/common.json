@@ -47,6 +47,8 @@
   },
   "products": {
     "title": "Nos Produits",
+    "description": "Parcourez notre vaste collection de produits de qualité pour tous vos besoins et styles.",
+    "searchResults": "Résultats de recherche pour: \"{{query}}\"",
     "filter": "Filtrer",
     "sort": "Trier",
     "categories": "Catégories",

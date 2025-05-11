@@ -10,8 +10,12 @@ import ProductCard from "@/components/products/ProductCard";
 import { useProducts } from "@/hooks/useProducts";
 import { useCategories } from "@/hooks/useCategories";
 import { useBrands } from "@/hooks/useBrands";
+import { useTranslation } from "react-i18next";
+import { useLanguage } from "@/contexts/LanguageContext";
 
 const ProductCatalog = () => {
+  const { t } = useTranslation('common');
+  const { language, isRTL } = useLanguage();
   const [location] = useLocation();
   const searchParams = new URLSearchParams(window.location.search);
   const categorySlug = searchParams.get('category');
@@ -118,10 +122,14 @@ const ProductCatalog = () => {
     <section id="catalog" className="py-16 bg-white">
       <div className="container mx-auto px-4 sm:px-6 lg:px-8">
         <div className="text-center mb-12">
-          <h2 className="text-3xl font-bold mb-4">Product Catalog</h2>
-          <p className="text-gray-600 max-w-2xl mx-auto">
-            Browse our extensive collection of quality products for every need and style.
-            {searchQuery && <span className="block mt-2 text-primary">Search results for: "{searchQuery}"</span>}
+          <h2 className={`text-3xl font-bold mb-4 ${isRTL ? 'rtl' : ''}`}>{t('products.title')}</h2>
+          <p className={`text-gray-600 max-w-2xl mx-auto ${isRTL ? 'rtl' : ''}`}>
+            {t('products.description')}
+            {searchQuery && (
+              <span className="block mt-2 text-primary">
+                {t('products.searchResults', { query: searchQuery })}
+              </span>
+            )}
           </p>
         </div>
 
