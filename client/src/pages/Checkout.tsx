@@ -401,19 +401,19 @@ const Checkout = () => {
                 <Separator />
                 
                 <div className="flex justify-between text-sm">
-                  <span className="text-gray-600">Subtotal</span>
+                  <span className="text-gray-600">{t('checkout.orderSummary.subtotal')}</span>
                   <span className="font-medium">{formatPrice(cartState.total)}</span>
                 </div>
                 
                 <div className="flex justify-between text-sm">
-                  <span className="text-gray-600">Shipping</span>
-                  <span className="font-medium">To be calculated</span>
+                  <span className="text-gray-600">{t('checkout.orderSummary.shipping')}</span>
+                  <span className="font-medium">{t('checkout.orderSummary.shippingCalculation')}</span>
                 </div>
                 
                 <Separator />
                 
                 <div className="flex justify-between text-lg font-bold">
-                  <span>Total</span>
+                  <span>{t('checkout.orderSummary.total')}</span>
                   <span className="text-yellow-500">{formatPrice(cartState.total)}</span>
                 </div>
               </div>
@@ -422,10 +422,9 @@ const Checkout = () => {
           
           <Card className="bg-white shadow-md rounded-lg overflow-hidden mt-6">
             <CardContent className="p-6">
-              <h3 className="font-medium mb-2">Payment Method</h3>
+              <h3 className="font-medium mb-2">{t('checkout.paymentMethod.title')}</h3>
               <p className="text-sm text-gray-600">
-                We accept bank transfers only. After submitting your details, 
-                you'll receive our bank information for payment.
+                {t('checkout.paymentMethod.description')}
               </p>
             </CardContent>
           </Card>
