@@ -452,7 +452,7 @@ export class DatabaseStorage implements IStorage {
 
   async deleteProduct(id: number): Promise<boolean> {
     const result = await db.delete(products).where(eq(products.id, id));
-    return result.rowCount > 0;
+    return result.rowCount !== null && result.rowCount > 0;
   }
 
   // Contact submissions methods
@@ -480,7 +480,7 @@ export class DatabaseStorage implements IStorage {
 
   async deleteContactSubmission(id: number): Promise<boolean> {
     const result = await db.delete(contactSubmissions).where(eq(contactSubmissions.id, id));
-    return result.rowCount > 0;
+    return result.rowCount !== null && result.rowCount > 0;
   }
   
   // Order methods
@@ -513,7 +513,7 @@ export class DatabaseStorage implements IStorage {
         updatedAt: new Date() 
       })
       .where(eq(orders.id, id));
-    return result.rowCount > 0;
+    return result.rowCount !== null && result.rowCount > 0;
   }
   
   async markOrderAsPaid(id: number): Promise<boolean> {
@@ -524,12 +524,12 @@ export class DatabaseStorage implements IStorage {
         updatedAt: new Date() 
       })
       .where(eq(orders.id, id));
-    return result.rowCount > 0;
+    return result.rowCount !== null && result.rowCount > 0;
   }
   
   async deleteOrder(id: number): Promise<boolean> {
     const result = await db.delete(orders).where(eq(orders.id, id));
-    return result.rowCount > 0;
+    return result.rowCount !== null && result.rowCount > 0;
   }
 }
 
