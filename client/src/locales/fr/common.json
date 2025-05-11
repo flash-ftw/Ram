@@ -168,6 +168,12 @@
       "notes": "Notes de Commande (Optionnel)",
       "notesPlaceholder": "Instructions spéciales pour la livraison ou la commande"
     },
+    "formErrors": {
+      "nameMinLength": "Le nom doit contenir au moins 2 caractères.",
+      "emailInvalid": "Veuillez entrer une adresse email valide.",
+      "phoneInvalid": "Veuillez entrer un numéro de téléphone valide.",
+      "locationRequired": "Veuillez fournir votre adresse complète."
+    },
     "errors": {
       "orderCreationFailed": "Un problème est survenu lors de la création de votre commande. Veuillez réessayer."
     }

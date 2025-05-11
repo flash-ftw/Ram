@@ -26,11 +26,11 @@ import { formatPrice } from "@/lib/utils";
 import { Alert, AlertDescription, AlertTitle } from "@/components/ui/alert";
 
 // Form validation schema
-const checkoutSchema = (t: any) => z.object({
-  name: z.string().min(2, { message: t('checkout.formErrors.nameMinLength') }),
-  email: z.string().email({ message: t('checkout.formErrors.emailInvalid') }),
-  phone: z.string().min(8, { message: t('checkout.formErrors.phoneInvalid') }),
-  location: z.string().min(5, { message: t('checkout.formErrors.locationRequired') }),
+const checkoutSchema = z.object({
+  name: z.string().min(2),
+  email: z.string().email(),
+  phone: z.string().min(8),
+  location: z.string().min(5),
   notes: z.string().optional(),
 });
 
@@ -279,7 +279,9 @@ const Checkout = () => {
                           <FormControl>
                             <Input placeholder={t('checkout.formLabels.fullNamePlaceholder')} {...field} />
                           </FormControl>
-                          <FormMessage />
+                          <FormMessage>
+                            {form.formState.errors.name && t('checkout.formErrors.nameMinLength')}
+                          </FormMessage>
                         </FormItem>
                       )}
                     />
@@ -293,7 +295,9 @@ const Checkout = () => {
                           <FormControl>
                             <Input type="email" placeholder={t('checkout.formLabels.emailPlaceholder')} {...field} />
                           </FormControl>
-                          <FormMessage />
+                          <FormMessage>
+                            {form.formState.errors.email && t('checkout.formErrors.emailInvalid')}
+                          </FormMessage>
                         </FormItem>
                       )}
                     />
@@ -309,7 +313,9 @@ const Checkout = () => {
                           <FormControl>
                             <Input placeholder={t('checkout.formLabels.phonePlaceholder')} {...field} />
                           </FormControl>
-                          <FormMessage />
+                          <FormMessage>
+                            {form.formState.errors.phone && t('checkout.formErrors.phoneInvalid')}
+                          </FormMessage>
                         </FormItem>
                       )}
                     />
@@ -323,7 +329,9 @@ const Checkout = () => {
                           <FormControl>
                             <Input placeholder={t('checkout.formLabels.addressPlaceholder')} {...field} />
                           </FormControl>
-                          <FormMessage />
+                          <FormMessage>
+                            {form.formState.errors.location && t('checkout.formErrors.locationRequired')}
+                          </FormMessage>
                         </FormItem>
                       )}
                     />
