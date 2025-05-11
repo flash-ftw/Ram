@@ -188,10 +188,9 @@ const Checkout = () => {
               
               <Alert className="mt-6 border-yellow-500">
                 <CreditCard className="h-4 w-4 text-yellow-500" />
-                <AlertTitle>Instructions de Paiement</AlertTitle>
+                <AlertTitle>{t('checkout.paymentInstructions.title')}</AlertTitle>
                 <AlertDescription>
-                  Veuillez inclure votre nom et numéro de téléphone dans la description du virement.
-                  Après avoir effectué le virement, contactez-nous via WhatsApp avec votre reçu.
+                  {t('checkout.paymentInstructions.description')}
                 </AlertDescription>
               </Alert>
             </CardContent>
@@ -200,14 +199,14 @@ const Checkout = () => {
           <div className="flex flex-col space-y-6">
             <Card className="bg-white shadow-md rounded-lg overflow-hidden">
               <CardHeader className="bg-yellow-500 text-black">
-                <CardTitle className="text-xl">Prochaines Étapes</CardTitle>
+                <CardTitle className="text-xl">{t('checkout.nextSteps.title')}</CardTitle>
               </CardHeader>
               <CardContent className="p-6">
                 <ol className="list-decimal list-inside space-y-4 mb-6">
-                  <li>Effectuez le virement bancaire du montant exact</li>
-                  <li>Prenez une capture d'écran ou une photo de votre reçu de virement</li>
-                  <li>Envoyez-nous le reçu via WhatsApp avec les détails de votre commande</li>
-                  <li>Nous traiterons votre commande et vous contacterons dans les 24 heures</li>
+                  <li>{t('checkout.nextSteps.step1')}</li>
+                  <li>{t('checkout.nextSteps.step2')}</li>
+                  <li>{t('checkout.nextSteps.step3')}</li>
+                  <li>{t('checkout.nextSteps.step4')}</li>
                 </ol>
                 
                 <Button
@@ -222,7 +221,7 @@ const Checkout = () => {
                   className="w-full bg-green-600 hover:bg-green-700 text-white flex items-center justify-center gap-2"
                 >
                   <LucidePhone className="h-4 w-4" />
-                  <span>Contacter via WhatsApp</span>
+                  <span>{t('checkout.contactWhatsapp')}</span>
                 </Button>
               </CardContent>
             </Card>
@@ -234,7 +233,7 @@ const Checkout = () => {
                 className="flex-1 flex items-center justify-center gap-2"
               >
                 <ArrowLeft className="h-4 w-4" />
-                <span>Retour au Formulaire</span>
+                <span>{t('checkout.backToForm')}</span>
               </Button>
               
               <Button
@@ -242,7 +241,7 @@ const Checkout = () => {
                 className="flex-1 bg-yellow-500 hover:bg-yellow-600 text-black flex items-center justify-center gap-2"
               >
                 <Send className="h-4 w-4" />
-                <span>Finaliser la Commande</span>
+                <span>{t('checkout.finalizeOrder')}</span>
               </Button>
             </div>
           </div>
@@ -255,13 +254,13 @@ const Checkout = () => {
   return (
     <div className="container mx-auto px-4 py-16 max-w-6xl">
       <Helmet>
-        <title>Paiement | Rammeh MotoScoot</title>
-        <meta name="description" content="Complétez votre commande sur Rammeh MotoScoot." />
+        <title>{t('checkout.title')} | Rammeh MotoScoot</title>
+        <meta name="description" content={t('checkout.subtitle')} />
       </Helmet>
       
       <div className="mb-8">
-        <h1 className="text-3xl font-bold mb-2">Paiement</h1>
-        <p className="text-gray-600">Veuillez remplir vos coordonnées pour finaliser votre commande</p>
+        <h1 className="text-3xl font-bold mb-2">{t('checkout.title')}</h1>
+        <p className="text-gray-600">{t('checkout.subtitle')}</p>
       </div>
       
       <div className="grid grid-cols-1 lg:grid-cols-3 gap-8">
