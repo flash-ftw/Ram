@@ -116,7 +116,8 @@
     "description": "Description",
     "originalPrice": "Prix original",
     "relatedProducts": "Produits Similaires",
-    "reviews": "avis"
+    "reviews": "avis",
+    "save": "Économisez"
   },
   "cart": {
     "title": "Votre Panier",

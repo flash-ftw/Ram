@@ -208,7 +208,7 @@ const ProductDetail = () => {
                       {formatPrice(product.originalPrice)}
                     </span>
                     <span className="ml-3 px-2 py-1 text-xs font-semibold text-white bg-green-500 rounded">
-                      Économisez {Math.round((1 - product.price / product.originalPrice) * 100)}%
+                      {t('productDetail.save')} {Math.round((1 - product.price / product.originalPrice) * 100)}%
                     </span>
                   </>
                 )}
@@ -216,7 +216,7 @@ const ProductDetail = () => {
               
               {/* Quantity Selector */}
               <div className="mt-6 flex items-center">
-                <span className="text-gray-700 mr-4">Quantité :</span>
+                <span className="text-gray-700 mr-4">{t('productDetail.quantity')} :</span>
                 <div className="flex items-center border border-gray-300 rounded-md">
                   <button 
                     onClick={() => handleQuantityChange(quantity - 1)}
