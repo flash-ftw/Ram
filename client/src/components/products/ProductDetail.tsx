@@ -18,6 +18,7 @@ import { useToast } from "@/hooks/use-toast";
 import { useProduct } from "@/hooks/useProduct";
 import { useCategories } from "@/hooks/useCategories";
 import { useCart } from "@/contexts/CartContext";
+import { useTranslation } from "react-i18next";
 import { getImageUrl, formatPrice } from "@/lib/utils";
 
 const ProductDetail = () => {
@@ -176,18 +177,18 @@ const ProductDetail = () => {
                   <Star className="fill-current" />
                   <StarHalf className="fill-current" />
                 </div>
-                <span className="ml-2 text-gray-600">4.5 (128 avis)</span>
+                <span className="ml-2 text-gray-600">4.5 (128 {t('productDetail.reviews')})</span>
               </div>
               
               <div className="mt-6">
-                <h2 className="text-lg font-medium text-gray-900">Description</h2>
+                <h2 className="text-lg font-medium text-gray-900">{t('productDetail.description')}</h2>
                 <p className="mt-2 text-gray-600">
                   {product.description}
                 </p>
               </div>
               
               <div className="mt-6">
-                <h2 className="text-lg font-medium text-gray-900">Caractéristiques</h2>
+                <h2 className="text-lg font-medium text-gray-900">{t('productDetail.features')}</h2>
                 <ul className="mt-2 space-y-2">
                   {featuresArray.map((feature, index) => (
                     <li key={index} className="flex items-center text-gray-600">
