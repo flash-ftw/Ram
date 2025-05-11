@@ -14,13 +14,19 @@ import {
   Home,
   ShoppingBag,
   Info,
-  MessageSquare
+  MessageSquare,
+  Globe
 } from "lucide-react";
 import { useCategories } from "@/hooks/useCategories";
+import { useTranslation } from "react-i18next";
+import { useLanguage } from "@/contexts/LanguageContext";
+import LanguageSwitcher from "./LanguageSwitcher";
 import MotorcycleIcon from "@/components/ui/motorcycle-icon";
 
 const Footer = () => {
   const { data: categories } = useCategories();
+  const { t } = useTranslation('common');
+  const { isRTL } = useLanguage();
   
   const scrollToTop = () => {
     window.scrollTo({
@@ -77,55 +83,55 @@ const Footer = () => {
           {/* Quick Links */}
           <div>
             <h3 className="text-lg font-semibold mb-4 text-yellow-500 relative inline-block after:content-[''] after:absolute after:w-8 after:h-[2px] after:bg-yellow-500 after:bottom-[-4px] after:left-0">
-              Liens Rapides
+              {t('footer.quickLinks')}
             </h3>
             <ul className="space-y-3">
               <li>
                 <Link 
                   href="/" 
-                  className="group flex items-center text-gray-400 hover:text-yellow-500 transition-colors"
+                  className={`group flex items-center text-gray-400 hover:text-yellow-500 transition-colors ${isRTL ? 'flex-row-reverse' : ''}`}
                 >
-                  <Home size={16} className="mr-2 text-yellow-500 group-hover:scale-110 transition-transform" />
-                  <span className="group-hover:translate-x-1 transition-transform">Accueil</span>
+                  <Home size={16} className={`text-yellow-500 group-hover:scale-110 transition-transform ${isRTL ? 'ml-2' : 'mr-2'}`} />
+                  <span className={`group-hover:${isRTL ? '-translate-x-1' : 'translate-x-1'} transition-transform`}>{t('header.home')}</span>
                 </Link>
               </li>
               <li>
                 <Link 
                   href="/products" 
-                  className="group flex items-center text-gray-400 hover:text-yellow-500 transition-colors"
+                  className={`group flex items-center text-gray-400 hover:text-yellow-500 transition-colors ${isRTL ? 'flex-row-reverse' : ''}`}
                 >
-                  <ShoppingBag size={16} className="mr-2 text-yellow-500 group-hover:scale-110 transition-transform" />
-                  <span className="group-hover:translate-x-1 transition-transform">Tous les Produits</span>
+                  <ShoppingBag size={16} className={`text-yellow-500 group-hover:scale-110 transition-transform ${isRTL ? 'ml-2' : 'mr-2'}`} />
+                  <span className={`group-hover:${isRTL ? '-translate-x-1' : 'translate-x-1'} transition-transform`}>{t('header.products')}</span>
                 </Link>
               </li>
               <li>
                 <Link 
                   href="/#featured" 
-                  className="group flex items-center text-gray-400 hover:text-yellow-500 transition-colors"
+                  className={`group flex items-center text-gray-400 hover:text-yellow-500 transition-colors ${isRTL ? 'flex-row-reverse' : ''}`}
                 >
                   <MotorcycleIcon
                     size={16}
-                    className="mr-2 text-yellow-500 group-hover:scale-110 transition-transform"
+                    className={`text-yellow-500 group-hover:scale-110 transition-transform ${isRTL ? 'ml-2' : 'mr-2'}`}
                   />
-                  <span className="group-hover:translate-x-1 transition-transform">Motos Vedettes</span>
+                  <span className={`group-hover:${isRTL ? '-translate-x-1' : 'translate-x-1'} transition-transform`}>{t('home.featured.title')}</span>
                 </Link>
               </li>
               <li>
                 <Link 
                   href="/about" 
-                  className="group flex items-center text-gray-400 hover:text-yellow-500 transition-colors"
+                  className={`group flex items-center text-gray-400 hover:text-yellow-500 transition-colors ${isRTL ? 'flex-row-reverse' : ''}`}
                 >
-                  <Info size={16} className="mr-2 text-yellow-500 group-hover:scale-110 transition-transform" />
-                  <span className="group-hover:translate-x-1 transition-transform">À Propos</span>
+                  <Info size={16} className={`text-yellow-500 group-hover:scale-110 transition-transform ${isRTL ? 'ml-2' : 'mr-2'}`} />
+                  <span className={`group-hover:${isRTL ? '-translate-x-1' : 'translate-x-1'} transition-transform`}>{t('header.about')}</span>
                 </Link>
               </li>
               <li>
                 <Link 
                   href="/contact" 
-                  className="group flex items-center text-gray-400 hover:text-yellow-500 transition-colors"
+                  className={`group flex items-center text-gray-400 hover:text-yellow-500 transition-colors ${isRTL ? 'flex-row-reverse' : ''}`}
                 >
-                  <MessageSquare size={16} className="mr-2 text-yellow-500 group-hover:scale-110 transition-transform" />
-                  <span className="group-hover:translate-x-1 transition-transform">Contact</span>
+                  <MessageSquare size={16} className={`text-yellow-500 group-hover:scale-110 transition-transform ${isRTL ? 'ml-2' : 'mr-2'}`} />
+                  <span className={`group-hover:${isRTL ? '-translate-x-1' : 'translate-x-1'} transition-transform`}>{t('header.contact')}</span>
                 </Link>
               </li>
             </ul>
@@ -134,17 +140,17 @@ const Footer = () => {
           {/* Categories */}
           <div>
             <h3 className="text-lg font-semibold mb-4 text-yellow-500 relative inline-block after:content-[''] after:absolute after:w-8 after:h-[2px] after:bg-yellow-500 after:bottom-[-4px] after:left-0">
-              Catégories
+              {t('footer.categories')}
             </h3>
             <ul className="space-y-3">
               {categories?.map((category) => (
                 <li key={category.id}>
                   <Link 
                     href={`/products?category=${category.slug}`}
-                    className="group flex items-center text-gray-400 hover:text-yellow-500 transition-colors"
+                    className={`group flex items-center text-gray-400 hover:text-yellow-500 transition-colors ${isRTL ? 'flex-row-reverse' : ''}`}
                   >
-                    <Settings size={16} className="mr-2 text-yellow-500 group-hover:rotate-45 transition-transform duration-300" />
-                    <span className="group-hover:translate-x-1 transition-transform">{category.name}</span>
+                    <Settings size={16} className={`text-yellow-500 group-hover:rotate-45 transition-transform duration-300 ${isRTL ? 'ml-2' : 'mr-2'}`} />
+                    <span className={`group-hover:${isRTL ? '-translate-x-1' : 'translate-x-1'} transition-transform`}>{category.name}</span>
                   </Link>
                 </li>
               ))}
@@ -154,39 +160,38 @@ const Footer = () => {
           {/* Contact Info */}
           <div>
             <h3 className="text-lg font-semibold mb-4 text-yellow-500 relative inline-block after:content-[''] after:absolute after:w-8 after:h-[2px] after:bg-yellow-500 after:bottom-[-4px] after:left-0">
-              Coordonnées
+              {t('footer.contactInfo')}
             </h3>
             <ul className="space-y-3">
-              <li className="flex items-start group">
-                <MapPin className="mt-1 mr-3 text-yellow-500 flex-shrink-0 group-hover:scale-110 transition-transform" size={18} />
-                <span className="text-gray-400 group-hover:text-gray-300 transition-colors">123 Avenue des Motos, Quartier Speed, Tunis, 1001</span>
+              <li className={`flex items-start group ${isRTL ? 'flex-row-reverse text-right' : ''}`}>
+                <MapPin className={`mt-1 text-yellow-500 flex-shrink-0 group-hover:scale-110 transition-transform ${isRTL ? 'ml-3' : 'mr-3'}`} size={18} />
+                <span className="text-gray-400 group-hover:text-gray-300 transition-colors">{t('footer.address')}</span>
               </li>
-              <li className="flex items-center group">
-                <Phone className="mr-3 text-yellow-500 flex-shrink-0 group-hover:scale-110 transition-transform" size={18} />
-                <span className="text-gray-400 group-hover:text-gray-300 transition-colors">(+216) 58 274 563</span>
+              <li className={`flex items-center group ${isRTL ? 'flex-row-reverse text-right' : ''}`}>
+                <Phone className={`text-yellow-500 flex-shrink-0 group-hover:scale-110 transition-transform ${isRTL ? 'ml-3' : 'mr-3'}`} size={18} />
+                <span className="text-gray-400 group-hover:text-gray-300 transition-colors">{t('footer.phone')}</span>
               </li>
-              <li className="flex items-center group">
-                <Mail className="mr-3 text-yellow-500 flex-shrink-0 group-hover:scale-110 transition-transform" size={18} />
+              <li className={`flex items-center group ${isRTL ? 'flex-row-reverse text-right' : ''}`}>
+                <Mail className={`text-yellow-500 flex-shrink-0 group-hover:scale-110 transition-transform ${isRTL ? 'ml-3' : 'mr-3'}`} size={18} />
                 <span className="text-gray-400 group-hover:text-gray-300 transition-colors">info@rammehmotoscoot.com</span>
               </li>
-              <li className="flex items-start group">
-                <Clock className="mt-1 mr-3 text-yellow-500 flex-shrink-0 group-hover:scale-110 transition-transform" size={18} />
-                <span className="text-gray-400 group-hover:text-gray-300 transition-colors">
-                  Lun-Ven: 9h - 19h<br />
-                  Sam: 10h - 17h | Dim: Fermé
+              <li className={`flex items-start group ${isRTL ? 'flex-row-reverse text-right' : ''}`}>
+                <Clock className={`mt-1 text-yellow-500 flex-shrink-0 group-hover:scale-110 transition-transform ${isRTL ? 'ml-3' : 'mr-3'}`} size={18} />
+                <span className="text-gray-400 group-hover:text-gray-300 transition-colors" 
+                      dangerouslySetInnerHTML={{ __html: t('footer.hours') }}>
                 </span>
               </li>
             </ul>
           </div>
         </div>
         
-        <div className="border-t border-gray-700 mt-12 pt-8 flex flex-col md:flex-row md:justify-between items-center">
-          <p className="text-gray-400 text-sm mb-4 md:mb-0">&copy; 2023 Rammeh MotoScoot. Tous droits réservés.</p>
-          <div className="flex flex-wrap justify-center space-x-6">
-            <a href="#" className="text-gray-400 hover:text-yellow-500 text-sm transition">Politique de Confidentialité</a>
-            <a href="#" className="text-gray-400 hover:text-yellow-500 text-sm transition">Conditions d'Utilisation</a>
-            <a href="#" className="text-gray-400 hover:text-yellow-500 text-sm transition">Politique d'Expédition</a>
-            <a href="#" className="text-gray-400 hover:text-yellow-500 text-sm transition">Politique de Retour</a>
+        <div className={`border-t border-gray-700 mt-12 pt-8 flex flex-col md:flex-row md:justify-between items-center ${isRTL ? 'text-right' : ''}`}>
+          <p className="text-gray-400 text-sm mb-4 md:mb-0" dangerouslySetInnerHTML={{ __html: t('footer.copyright', { year: new Date().getFullYear() }) }}></p>
+          <div className={`flex flex-wrap justify-center ${isRTL ? 'space-x-reverse space-x-6 rtl:space-x-6' : 'space-x-6'}`}>
+            <a href="#" className="text-gray-400 hover:text-yellow-500 text-sm transition">{t('footer.privacy')}</a>
+            <a href="#" className="text-gray-400 hover:text-yellow-500 text-sm transition">{t('footer.terms')}</a>
+            <a href="#" className="text-gray-400 hover:text-yellow-500 text-sm transition">{t('footer.shipping')}</a>
+            <a href="#" className="text-gray-400 hover:text-yellow-500 text-sm transition">{t('footer.returns')}</a>
           </div>
         </div>
       </div>
@@ -194,8 +199,8 @@ const Footer = () => {
       {/* Back to Top Button */}
       <button 
         onClick={scrollToTop}
-        className="fixed bottom-6 right-6 bg-yellow-500 hover:bg-yellow-600 text-black p-3 rounded-full shadow-lg transition-all hover:scale-110 group animate-bounce"
-        aria-label="Back to top"
+        className={`fixed bottom-6 ${isRTL ? 'left-6' : 'right-6'} bg-yellow-500 hover:bg-yellow-600 text-black p-3 rounded-full shadow-lg transition-all hover:scale-110 group animate-bounce`}
+        aria-label={t('footer.backToTop')}
       >
         <ChevronUp size={20} className="group-hover:rotate-180 transition-transform duration-500" />
         <span className="absolute -top-1 -right-1 h-3 w-3 rounded-full bg-white animate-ping"></span>

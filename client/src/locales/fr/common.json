@@ -10,12 +10,19 @@
   },
   "footer": {
     "quickLinks": "Liens Rapides",
+    "categories": "Catégories",
+    "contactInfo": "Coordonnées",
     "contactUs": "Contactez-nous",
-    "phone": "Téléphone",
+    "phone": "(+216) 58 274 563",
     "email": "Email",
-    "address": "Adresse",
-    "copyright": "Tous droits réservés",
-    "backToTop": "Retour en haut"
+    "address": "123 Avenue des Motos, Quartier Speed, Tunis, 1001",
+    "hours": "Lun-Ven: 9h - 19h<br />Sam: 10h - 17h | Dim: Fermé",
+    "copyright": "&copy; {{year}} Rammeh MotoScoot. Tous droits réservés.",
+    "backToTop": "Retour en haut",
+    "privacy": "Politique de Confidentialité",
+    "terms": "Conditions d'Utilisation",
+    "shipping": "Politique d'Expédition",
+    "returns": "Politique de Retour"
   },
   "home": {
     "hero": {
