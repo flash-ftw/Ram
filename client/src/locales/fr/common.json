@@ -100,12 +100,35 @@
     "total": "Total"
   },
   "checkout": {
-    "title": "Finaliser la Commande",
+    "title": "Paiement",
+    "subtitle": "Veuillez remplir vos coordonnées pour finaliser votre commande",
+    "emptyCart": "Votre panier est vide. Veuillez ajouter des produits avant de passer à la caisse.",
+    "browseProducts": "Parcourir les Produits",
     "customerInfo": "Informations Client",
     "shippingInfo": "Informations de Livraison",
     "paymentInfo": "Informations de Paiement",
     "orderSummary": "Résumé de la Commande",
     "placeOrder": "Passer la Commande",
+    "bankTransferDetails": "Détails du Virement Bancaire",
+    "bankTransferInfo": "Veuillez effectuer un virement vers le compte bancaire suivant :",
+    "bankInfo": {
+      "bankName": "Nom de la Banque",
+      "accountName": "Nom du Compte",
+      "accountNumber": "Numéro de Compte",
+      "iban": "IBAN",
+      "amount": "Montant"
+    },
+    "paymentInstructions": {
+      "title": "Instructions de Paiement",
+      "description": "Veuillez inclure votre nom et numéro de téléphone dans la description du virement. Après avoir effectué le virement, contactez-nous via WhatsApp avec votre reçu."
+    },
+    "nextSteps": {
+      "title": "Prochaines Étapes",
+      "step1": "Effectuez le virement bancaire du montant exact",
+      "step2": "Prenez une capture d'écran ou une photo de votre reçu de virement",
+      "step3": "Envoyez-nous le reçu via WhatsApp avec les détails de votre commande",
+      "step4": "Nous traiterons votre commande et vous contacterons dans les 24 heures"
+    },
     "name": "Nom complet",
     "email": "Email",
     "phone": "Téléphone",
@@ -116,8 +139,27 @@
     "bankTransfer": "Virement Bancaire",
     "cashOnDelivery": "Paiement à la Livraison",
     "notes": "Notes supplémentaires",
+    "notesPlaceholder": "Instructions spéciales pour la livraison ou la commande",
     "termsAndConditions": "J'accepte les conditions générales",
-    "backToCart": "Retour au Panier"
+    "backToCart": "Retour au Panier",
+    "contactWhatsapp": "Contacter via WhatsApp",
+    "backToForm": "Retour au Formulaire",
+    "finalizeOrder": "Finaliser la Commande",
+    "continueToPayment": "Continuer vers le Paiement",
+    "formLabels": {
+      "fullName": "Nom Complet",
+      "fullNamePlaceholder": "Entrez votre nom complet",
+      "email": "Adresse Email",
+      "emailPlaceholder": "Entrez votre adresse email",
+      "phone": "Numéro de Téléphone",
+      "phonePlaceholder": "Entrez votre numéro de téléphone",
+      "deliveryAddress": "Adresse de Livraison",
+      "deliveryAddressPlaceholder": "Entrez votre adresse complète",
+      "notes": "Notes de Commande (Optionnel)"
+    },
+    "errors": {
+      "orderCreationFailed": "Un problème est survenu lors de la création de votre commande. Veuillez réessayer."
+    }
   },
   "thankYou": {
     "title": "Merci pour Votre Commande !",
