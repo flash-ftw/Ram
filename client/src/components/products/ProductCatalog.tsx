@@ -167,7 +167,7 @@ const ProductCatalog = () => {
               
               {/* Brands Filter */}
               <div className="mb-6">
-                <h4 className="font-medium text-gray-700 mb-3">Marques</h4>
+                <h4 className="font-medium text-gray-700 mb-3">{t('products.filter.brands')}</h4>
                 <div className="space-y-2 brand-filter max-h-48 overflow-y-auto pr-2">
                   <div className="flex items-center space-x-2">
                     <Checkbox 
@@ -175,7 +175,7 @@ const ProductCatalog = () => {
                       checked={selectedBrands.length === 0}
                       onCheckedChange={() => setSelectedBrands([])}
                     />
-                    <Label htmlFor="all-brands" className="text-gray-700">Toutes les Marques</Label>
+                    <Label htmlFor="all-brands" className="text-gray-700">{t('products.filter.allBrands')}</Label>
                   </div>
                   
                   {brands.map((brand) => (
@@ -193,7 +193,7 @@ const ProductCatalog = () => {
               
               {/* Price Range Filter */}
               <div className="mb-6">
-                <h4 className="font-medium text-gray-700 mb-3">Gamme de Prix</h4>
+                <h4 className="font-medium text-gray-700 mb-3">{t('products.filter.priceRange')}</h4>
                 <div className="px-2">
                   <Slider
                     defaultValue={[0, 20000]}
@@ -212,32 +212,32 @@ const ProductCatalog = () => {
               
               {/* Spécifications Techniques Moto */}
               <div className="mb-6 border-t pt-4 mt-4">
-                <h4 className="font-medium text-gray-700 mb-3">Spécifications Moto</h4>
+                <h4 className="font-medium text-gray-700 mb-3">{t('products.specs.motoSpecifications')}</h4>
                 
                 {/* Type de moteur */}
                 <div className="mb-4">
-                  <Label htmlFor="motor-type" className="text-sm text-gray-600 mb-1 block">Type de moteur</Label>
+                  <Label htmlFor="motor-type" className="text-sm text-gray-600 mb-1 block">{t('products.specs.engineType')}</Label>
                   <Select value={motorType} onValueChange={setMotorType}>
                     <SelectTrigger className="w-full">
-                      <SelectValue placeholder="Tous" />
+                      <SelectValue placeholder={t('products.filter.all')} />
                     </SelectTrigger>
                     <SelectContent>
-                      <SelectItem value="all">Tous</SelectItem>
-                      <SelectItem value="2 temps">2 temps</SelectItem>
-                      <SelectItem value="4 temps">4 temps</SelectItem>
+                      <SelectItem value="all">{t('products.filter.all')}</SelectItem>
+                      <SelectItem value="2 temps">{t('products.specs.twoStroke')}</SelectItem>
+                      <SelectItem value="4 temps">{t('products.specs.fourStroke')}</SelectItem>
                     </SelectContent>
                   </Select>
                 </div>
                 
                 {/* Cylindrée */}
                 <div className="mb-4">
-                  <Label htmlFor="displacement" className="text-sm text-gray-600 mb-1 block">Cylindrée</Label>
+                  <Label htmlFor="displacement" className="text-sm text-gray-600 mb-1 block">{t('products.specs.displacement')}</Label>
                   <Select value={displacement} onValueChange={setDisplacement}>
                     <SelectTrigger className="w-full">
-                      <SelectValue placeholder="Toutes" />
+                      <SelectValue placeholder={t('products.filter.all')} />
                     </SelectTrigger>
                     <SelectContent>
-                      <SelectItem value="all">Toutes</SelectItem>
+                      <SelectItem value="all">{t('products.filter.all')}</SelectItem>
                       <SelectItem value="49cc">49cc</SelectItem>
                       <SelectItem value="70cc">70cc</SelectItem>
                       <SelectItem value="102cc">102cc</SelectItem>
@@ -280,24 +280,24 @@ const ProductCatalog = () => {
                 
                 {/* Freins */}
                 <div className="mb-4">
-                  <Label htmlFor="brakes" className="text-sm text-gray-600 mb-1 block">Freins</Label>
+                  <Label htmlFor="brakes" className="text-sm text-gray-600 mb-1 block">{t('products.specs.brakes')}</Label>
                   <Select value={brakes} onValueChange={setBrakes}>
                     <SelectTrigger className="w-full">
-                      <SelectValue placeholder="Tous" />
+                      <SelectValue placeholder={t('products.filter.all')} />
                     </SelectTrigger>
                     <SelectContent>
-                      <SelectItem value="all">Tous</SelectItem>
-                      <SelectItem value="Tambour">Tambour</SelectItem>
-                      <SelectItem value="Disque (avant)">Disque (avant)</SelectItem>
-                      <SelectItem value="Disque (arrière)">Disque (arrière)</SelectItem>
-                      <SelectItem value="Disque (avant et arrière)">Disque (avant et arrière)</SelectItem>
+                      <SelectItem value="all">{t('products.filter.all')}</SelectItem>
+                      <SelectItem value="Tambour">{t('products.specs.drum')}</SelectItem>
+                      <SelectItem value="Disque (avant)">{t('products.specs.discFront')}</SelectItem>
+                      <SelectItem value="Disque (arrière)">{t('products.specs.discRear')}</SelectItem>
+                      <SelectItem value="Disque (avant et arrière)">{t('products.specs.discBoth')}</SelectItem>
                     </SelectContent>
                   </Select>
                 </div>
                 
                 {/* Vitesse Max */}
                 <div className="mb-4">
-                  <Label className="text-sm text-gray-600 mb-1 block">Vitesse Max (km/h)</Label>
+                  <Label className="text-sm text-gray-600 mb-1 block">{t('products.specs.maxSpeed')} (km/h)</Label>
                   <div className="px-2">
                     <Slider
                       defaultValue={[0, 150]}
