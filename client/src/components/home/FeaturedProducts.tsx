@@ -4,23 +4,27 @@ import { Button } from "@/components/ui/button";
 import ProductCard from "@/components/products/ProductCard";
 import { useProducts } from "@/hooks/useProducts";
 import MotorcycleIcon from "@/components/ui/motorcycle-icon";
+import { useTranslation } from "react-i18next";
+import { useLanguage } from "@/contexts/LanguageContext";
 
 const FeaturedProducts = () => {
   const { data: products = [], isLoading } = useProducts({ featured: true });
+  const { t } = useTranslation('common');
+  const { isRTL } = useLanguage();
 
   return (
     <section id="featured" className="py-16 bg-gradient-to-b from-black to-gray-900 text-white">
       <div className="container mx-auto px-4 sm:px-6 lg:px-8">
         <div className="text-center mb-12">
           <div className="flex items-center justify-center mb-4">
-            <MotorcycleIcon className="text-yellow-500 mr-2" size={28} />
-            <span className="text-yellow-500 text-lg uppercase font-semibold tracking-wider">Motos Tendance</span>
+            <MotorcycleIcon className={`text-yellow-500 ${isRTL ? 'ml-2' : 'mr-2'}`} size={28} />
+            <span className="text-yellow-500 text-lg uppercase font-semibold tracking-wider">{t('home.featured.trending')}</span>
           </div>
           <h2 className="text-4xl font-bold mb-4 moto-heading inline-block after:bottom-[-10px] after:w-24 after:left-1/2 after:-translate-x-1/2">
-            Motos Vedettes
+            {t('home.featured.title')}
           </h2>
           <p className="text-gray-400 max-w-2xl mx-auto mt-6">
-            Nos motos les plus populaires et performantes sélectionnées pour leur puissance exceptionnelle, leur design et leur excellence technique.
+            {t('home.featured.description')}
           </p>
         </div>
         
@@ -51,9 +55,10 @@ const FeaturedProducts = () => {
         
         <div className="mt-12 text-center">
           <Button asChild variant="outline" className="inline-flex items-center px-8 py-4 border-2 border-yellow-500 rounded-lg text-yellow-500 bg-transparent hover:bg-yellow-500 hover:text-black font-bold transition-all duration-300">
-            <Link href="/products">
-              Voir Toutes les Motos
-              <ArrowRight className="ml-2 w-5 h-5" />
+            <Link href="/products" className="flex items-center">
+              {t('home.featured.viewAll')}
+              {!isRTL && <ArrowRight className="ml-2 w-5 h-5" />}
+              {isRTL && <ArrowRight className="mr-2 w-5 h-5 rotate-180" />}
             </Link>
           </Button>
         </div>
