@@ -108,3 +108,50 @@
 .moto-badge {
   @apply bg-yellow-500 text-black font-bold px-3 py-1 rounded-full text-xs uppercase;
 }
+
+/* Styles pour la prise en charge de RTL (Arabe) */
+html.rtl {
+  direction: rtl;
+  text-align: right;
+}
+
+/* Inverser les marges et paddings dans le mode RTL */
+html.rtl .moto-heading::after {
+  left: auto;
+  right: 0;
+}
+
+/* Ajuster les éléments de navigation */
+html.rtl .flex-row {
+  flex-direction: row-reverse;
+}
+
+html.rtl .ml-auto {
+  margin-left: 0;
+  margin-right: auto;
+}
+
+html.rtl .mr-auto {
+  margin-right: 0;
+  margin-left: auto;
+}
+
+/* Ajuster la disposition des icônes */
+html.rtl .space-x-2 > * + * {
+  margin-left: 0;
+  margin-right: 0.5rem;
+}
+
+html.rtl .space-x-4 > * + * {
+  margin-left: 0;
+  margin-right: 1rem;
+}
+
+/* Inverser les icônes directionnelles */
+html.rtl .rotate-180 {
+  transform: rotate(0deg);
+}
+
+html.rtl .rotate-0 {
+  transform: rotate(180deg);
+}

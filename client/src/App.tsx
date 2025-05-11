@@ -85,14 +85,16 @@ function Router() {
 function App() {
   return (
     <QueryClientProvider client={queryClient}>
-      <CartProvider>
-        <TooltipProvider>
-          <Toaster />
-          <Router />
-          {/* Composant qui permet de retourner en haut de page à chaque navigation */}
-          <ScrollToTop />
-        </TooltipProvider>
-      </CartProvider>
+      <LanguageProvider>
+        <CartProvider>
+          <TooltipProvider>
+            <Toaster />
+            <Router />
+            {/* Composant qui permet de retourner en haut de page à chaque navigation */}
+            <ScrollToTop />
+          </TooltipProvider>
+        </CartProvider>
+      </LanguageProvider>
     </QueryClientProvider>
   );
 }
