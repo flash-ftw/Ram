@@ -249,31 +249,31 @@ const ProductCatalog = () => {
                 
                 {/* Transmission */}
                 <div className="mb-4">
-                  <Label htmlFor="transmission" className="text-sm text-gray-600 mb-1 block">Transmission</Label>
+                  <Label htmlFor="transmission" className="text-sm text-gray-600 mb-1 block">{t('products.specs.transmission')}</Label>
                   <Select value={transmission} onValueChange={setTransmission}>
                     <SelectTrigger className="w-full">
-                      <SelectValue placeholder="Toutes" />
+                      <SelectValue placeholder={t('products.filter.all')} />
                     </SelectTrigger>
                     <SelectContent>
-                      <SelectItem value="all">Toutes</SelectItem>
-                      <SelectItem value="Manuelle">Manuelle</SelectItem>
-                      <SelectItem value="Semi-automatique">Semi-automatique</SelectItem>
-                      <SelectItem value="Automatique (CVT)">Automatique (CVT)</SelectItem>
+                      <SelectItem value="all">{t('products.filter.all')}</SelectItem>
+                      <SelectItem value="Manuelle">{t('products.specs.manual')}</SelectItem>
+                      <SelectItem value="Semi-automatique">{t('products.specs.semiAuto')}</SelectItem>
+                      <SelectItem value="Automatique (CVT)">{t('products.specs.automatic')}</SelectItem>
                     </SelectContent>
                   </Select>
                 </div>
                 
                 {/* Refroidissement */}
                 <div className="mb-4">
-                  <Label htmlFor="cooling" className="text-sm text-gray-600 mb-1 block">Refroidissement</Label>
+                  <Label htmlFor="cooling" className="text-sm text-gray-600 mb-1 block">{t('products.specs.cooling')}</Label>
                   <Select value={cooling} onValueChange={setCooling}>
                     <SelectTrigger className="w-full">
-                      <SelectValue placeholder="Tous" />
+                      <SelectValue placeholder={t('products.filter.all')} />
                     </SelectTrigger>
                     <SelectContent>
-                      <SelectItem value="all">Tous</SelectItem>
-                      <SelectItem value="Refroidi par air">Refroidi par air</SelectItem>
-                      <SelectItem value="Refroidi par eau">Refroidi par eau</SelectItem>
+                      <SelectItem value="all">{t('products.filter.all')}</SelectItem>
+                      <SelectItem value="Refroidi par air">{t('products.specs.airCooled')}</SelectItem>
+                      <SelectItem value="Refroidi par eau">{t('products.specs.waterCooled')}</SelectItem>
                     </SelectContent>
                   </Select>
                 </div>

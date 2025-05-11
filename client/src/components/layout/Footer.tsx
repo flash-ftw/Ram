@@ -152,7 +152,9 @@ const Footer = () => {
                     className={`group flex items-center text-gray-400 hover:text-yellow-500 transition-colors ${isRTL ? 'flex-row-reverse' : ''}`}
                   >
                     <Settings size={16} className={`text-yellow-500 group-hover:rotate-45 transition-transform duration-300 ${isRTL ? 'ml-2' : 'mr-2'}`} />
-                    <span className={`group-hover:${isRTL ? '-translate-x-1' : 'translate-x-1'} transition-transform`}>{category.name}</span>
+                    <span className={`group-hover:${isRTL ? '-translate-x-1' : 'translate-x-1'} transition-transform`}>
+                      {t(`products.categories.${category.slug}`) || category.name}
+                    </span>
                   </Link>
                 </li>
               ))}
