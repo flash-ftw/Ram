@@ -39,8 +39,11 @@
       "description": "Nos motos les plus populaires et performantes sélectionnées pour leur puissance exceptionnelle, leur design et leur excellence technique."
     },
     "categories": {
-      "title": "Catégories",
-      "viewAll": "Voir Tout"
+      "title": "Catégories de Motos",
+      "viewAll": "Voir Tout",
+      "browse": "Parcourir les Options",
+      "description": "Explorez notre large gamme de motos et d'accessoires pour trouver la moto parfaite pour vos aventures.",
+      "exploreCollection": "Explorer la Collection"
     },
     "about": {
       "title": "À Propos de Nous",

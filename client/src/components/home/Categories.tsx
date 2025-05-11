@@ -1,23 +1,27 @@
 import { Link } from "wouter";
 import { ArrowRight, Layers } from "lucide-react";
 import { useCategories } from "@/hooks/useCategories";
+import { useTranslation } from "react-i18next";
+import { useLanguage } from "@/contexts/LanguageContext";
 
 const Categories = () => {
   const { data: categories = [], isLoading } = useCategories();
+  const { t } = useTranslation('common');
+  const { isRTL } = useLanguage();
 
   return (
     <section className="py-16 bg-gray-900 text-white">
       <div className="container mx-auto px-4 sm:px-6 lg:px-8">
         <div className="text-center mb-14">
           <div className="flex items-center justify-center mb-4">
-            <Layers className="text-yellow-500 mr-2" size={28} />
-            <span className="text-yellow-500 text-lg uppercase font-semibold tracking-wider">Parcourir les Options</span>
+            <Layers className={`text-yellow-500 ${isRTL ? 'ml-2' : 'mr-2'}`} size={28} />
+            <span className="text-yellow-500 text-lg uppercase font-semibold tracking-wider">{t('home.categories.browse')}</span>
           </div>
           <h2 className="text-4xl font-bold mb-4 moto-heading inline-block after:bottom-[-10px] after:w-24 after:left-1/2 after:-translate-x-1/2">
-            Catégories de Motos
+            {t('home.categories.title')}
           </h2>
           <p className="text-gray-400 max-w-2xl mx-auto mt-6">
-            Explorez notre large gamme de motos et d'accessoires pour trouver la moto parfaite pour vos aventures.
+            {t('home.categories.description')}
           </p>
         </div>
         
@@ -53,8 +57,9 @@ const Categories = () => {
                 <div className="absolute inset-x-0 bottom-0 p-6 bg-gradient-to-t from-black to-transparent">
                   <h3 className="text-white text-2xl font-bold mb-2">{category.name}</h3>
                   <span className="inline-flex items-center text-yellow-500 font-medium group-hover:text-yellow-400 transition-colors">
-                    Explorer la Collection
-                    <ArrowRight className="ml-2 w-4 h-4 group-hover:ml-3 transition-all" />
+                    {t('home.categories.exploreCollection')}
+                    {!isRTL && <ArrowRight className="ml-2 w-4 h-4 group-hover:ml-3 transition-all" />}
+                    {isRTL && <ArrowRight className="mr-2 w-4 h-4 group-hover:mr-3 rotate-180 transition-all" />}
                   </span>
                 </div>
                 <Link 
