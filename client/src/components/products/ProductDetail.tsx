@@ -269,7 +269,7 @@ const ProductDetail = () => {
                   className="flex-1 bg-yellow-500 hover:bg-yellow-600 text-black font-medium py-3 px-6 flex items-center justify-center"
                 >
                   <ShoppingCart className="mr-2" size={18} />
-                  {isAddingToCart ? 'Ajout en cours...' : 'Ajouter au Panier'}
+                  {isAddingToCart ? t('productDetail.addingToCart') : t('productDetail.addToCart')}
                 </Button>
                 <Button 
                   onClick={() => {
@@ -279,13 +279,13 @@ const ProductDetail = () => {
                   variant="outline" 
                   className="flex-1 bg-white hover:bg-gray-100 text-gray-800 font-medium py-3 px-6 border border-gray-300 flex items-center justify-center"
                 >
-                  Acheter Maintenant
+                  {t('productDetail.buyNow')}
                 </Button>
               </div>
               
               {/* Social Sharing */}
               <div className="mt-8 pt-6 border-t border-gray-200">
-                <h2 className="text-sm font-medium text-gray-900">Partager ce produit</h2>
+                <h2 className="text-sm font-medium text-gray-900">{t('productDetail.shareProduct')}</h2>
                 <div className="mt-2 flex space-x-4">
                   <button className="text-gray-500 hover:text-primary" aria-label="Partager sur Facebook">
                     <Facebook size={18} />
@@ -304,44 +304,44 @@ const ProductDetail = () => {
           {/* Section de spécifications techniques pour les motos */}
           {(product.motorType || product.displacement || product.cooling || product.transmission) && (
             <div className="mt-8 p-8 border-t border-gray-200">
-              <h2 className="text-2xl font-bold text-gray-900 mb-6">Spécifications Techniques</h2>
+              <h2 className="text-2xl font-bold text-gray-900 mb-6">{t('productDetail.specs.title')}</h2>
               
               <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
                 {/* Colonne 1: Moteur et performances */}
                 <div className="space-y-4">
-                  <h3 className="text-lg font-semibold border-b pb-2">Moteur et Performance</h3>
+                  <h3 className="text-lg font-semibold border-b pb-2">{t('productDetail.specs.enginePerformance')}</h3>
                   
                   {product.motorType && (
                     <div className="flex justify-between">
-                      <span className="text-gray-600">Type de moteur:</span>
+                      <span className="text-gray-600">{t('productDetail.specs.engineType')}:</span>
                       <span className="font-medium">{product.motorType}</span>
                     </div>
                   )}
                   
                   {product.displacement && (
                     <div className="flex justify-between">
-                      <span className="text-gray-600">Cylindrée:</span>
+                      <span className="text-gray-600">{t('productDetail.specs.displacement')}:</span>
                       <span className="font-medium">{product.displacement}</span>
                     </div>
                   )}
                   
                   {product.cooling && (
                     <div className="flex justify-between">
-                      <span className="text-gray-600">Refroidissement:</span>
+                      <span className="text-gray-600">{t('productDetail.specs.cooling')}:</span>
                       <span className="font-medium">{product.cooling}</span>
                     </div>
                   )}
                   
                   {product.fuelSystem && (
                     <div className="flex justify-between">
-                      <span className="text-gray-600">Alimentation:</span>
+                      <span className="text-gray-600">{t('productDetail.specs.fuelSystem')}:</span>
                       <span className="font-medium">{product.fuelSystem}</span>
                     </div>
                   )}
                   
                   {product.ignition && (
                     <div className="flex justify-between">
-                      <span className="text-gray-600">Allumage:</span>
+                      <span className="text-gray-600">{t('productDetail.specs.ignition')}:</span>
                       <span className="font-medium">{product.ignition}</span>
                     </div>
                   )}
