@@ -58,6 +58,22 @@
     "reset": "Réinitialiser",
     "noResults": "Aucun produit trouvé",
     "featured": "En Vedette",
+    "noProductsFound": "Aucun produit trouvé",
+    "tryAdjustingFilters": "Essayez d'ajuster vos filtres ou critères de recherche pour trouver ce que vous cherchez.",
+    "filter": {
+      "all": "Tous",
+      "brands": "Marques",
+      "allBrands": "Toutes les Marques",
+      "priceRange": "Gamme de Prix",
+      "sortBy": "Trier Par",
+      "selectSortOrder": "Sélectionner l'ordre de tri",
+      "featured": "En Vedette",
+      "priceLowToHigh": "Prix: Croissant",
+      "priceHighToLow": "Prix: Décroissant",
+      "newest": "Plus Récent",
+      "bestSelling": "Meilleures Ventes",
+      "applyFilters": "Appliquer les Filtres"
+    },
     "categories": {
       "thermal": "Moteur Thermique",
       "electric": "Moteur Électrique",
@@ -70,11 +86,24 @@
       "displacement": "Cylindrée",
       "cooling": "Refroidissement",
       "transmission": "Transmission",
+      "manual": "Manuelle",
+      "semiAuto": "Semi-automatique",
+      "automatic": "Automatique (CVT)",
       "startType": "Démarrage",
       "brakes": "Freins",
+      "drum": "Tambour",
+      "discFront": "Disque (avant)",
+      "discRear": "Disque (arrière)",
+      "discBoth": "Disque (avant et arrière)",
       "wheelSize": "Taille des Roues",
       "maxSpeed": "Vitesse Max",
-      "weight": "Poids"
+      "weight": "Poids",
+      "motoSpecifications": "Spécifications Moto",
+      "engineType": "Type de moteur",
+      "twoStroke": "2 temps",
+      "fourStroke": "4 temps",
+      "airCooled": "Refroidi par air",
+      "waterCooled": "Refroidi par eau"
     }
   },
   "productDetail": {
@@ -237,6 +266,10 @@
     "french": "Français",
     "arabic": "العربية",
     "switchLanguage": "Changer de langue"
+  },
+  "pagination": {
+    "previous": "Précédent",
+    "next": "Suivant"
   },
   "seo": {
     "siteName": "Rammeh MotoScoot",

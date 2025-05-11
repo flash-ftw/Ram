@@ -317,17 +317,17 @@ const ProductCatalog = () => {
               
               {/* Sort By */}
               <div className="mb-6">
-                <h4 className="font-medium text-gray-700 mb-3">Trier Par</h4>
+                <h4 className="font-medium text-gray-700 mb-3">{t('products.filter.sortBy')}</h4>
                 <Select value={sortBy} onValueChange={setSortBy}>
                   <SelectTrigger className="w-full">
-                    <SelectValue placeholder="Sélectionner l'ordre de tri" />
+                    <SelectValue placeholder={t('products.filter.selectSortOrder')} />
                   </SelectTrigger>
                   <SelectContent>
-                    <SelectItem value="featured">En Vedette</SelectItem>
-                    <SelectItem value="price-asc">Prix: Croissant</SelectItem>
-                    <SelectItem value="price-desc">Prix: Décroissant</SelectItem>
-                    <SelectItem value="newest">Plus Récent</SelectItem>
-                    <SelectItem value="bestselling">Meilleures Ventes</SelectItem>
+                    <SelectItem value="featured">{t('products.filter.featured')}</SelectItem>
+                    <SelectItem value="price-asc">{t('products.filter.priceLowToHigh')}</SelectItem>
+                    <SelectItem value="price-desc">{t('products.filter.priceHighToLow')}</SelectItem>
+                    <SelectItem value="newest">{t('products.filter.newest')}</SelectItem>
+                    <SelectItem value="bestselling">{t('products.filter.bestSelling')}</SelectItem>
                   </SelectContent>
                 </Select>
               </div>
@@ -337,7 +337,7 @@ const ProductCatalog = () => {
                 className="w-full bg-primary hover:bg-blue-600 text-white font-medium"
                 onClick={applyFilters}
               >
-                Appliquer les Filtres
+                {t('products.filter.applyFilters')}
               </Button>
             </div>
           </div>
@@ -363,9 +363,9 @@ const ProductCatalog = () => {
               </div>
             ) : products.length === 0 ? (
               <div className="text-center py-12">
-                <h3 className="text-xl font-semibold text-gray-700 mb-2">Aucun produit trouvé</h3>
+                <h3 className="text-xl font-semibold text-gray-700 mb-2">{t('products.noProductsFound')}</h3>
                 <p className="text-gray-500">
-                  Essayez d'ajuster vos filtres ou critères de recherche pour trouver ce que vous cherchez.
+                  {t('products.tryAdjustingFilters')}
                 </p>
               </div>
             ) : (
@@ -387,7 +387,7 @@ const ProductCatalog = () => {
                         disabled={currentPage === 1}
                         className="rounded-l-md border border-gray-300"
                       >
-                        <span className="sr-only">Previous</span>
+                        <span className="sr-only">{t('pagination.previous')}</span>
                         <ChevronLeft className="h-4 w-4" />
                       </Button>
                       
@@ -411,7 +411,7 @@ const ProductCatalog = () => {
                         disabled={currentPage === totalPages}
                         className="rounded-r-md border border-gray-300"
                       >
-                        <span className="sr-only">Next</span>
+                        <span className="sr-only">{t('pagination.next')}</span>
                         <ChevronRight className="h-4 w-4" />
                       </Button>
                     </nav>
