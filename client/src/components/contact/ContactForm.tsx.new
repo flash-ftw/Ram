@@ -28,7 +28,7 @@ const ContactForm = () => {
     message: z.string().min(10, { message: t('contact.form.errors.messageMin') }),
     subscribe: z.boolean().default(false),
   });
-  
+
   const form = useForm<z.infer<typeof formSchema>>({
     resolver: zodResolver(formSchema),
     defaultValues: {
@@ -54,15 +54,15 @@ const ContactForm = () => {
       });
       
       toast({
-        title: "Message Envoyé !",
-        description: "Nous vous répondrons dès que possible.",
+        title: t('contact.form.success.title'),
+        description: t('contact.form.success.message'),
       });
       
       form.reset();
     } catch (error) {
       toast({
-        title: "Une erreur s'est produite.",
-        description: "Votre message n'a pas pu être envoyé. Veuillez réessayer.",
+        title: t('contact.form.error.title'),
+        description: t('contact.form.error.message'),
         variant: "destructive",
       });
     } finally {
@@ -77,13 +77,13 @@ const ContactForm = () => {
           <div className="text-center mb-12">
             <div className="flex items-center justify-center mb-4">
               <MessageSquare className="text-yellow-500 mr-2" size={28} />
-              <span className="text-yellow-500 text-lg uppercase font-semibold tracking-wider">Contactez-Nous</span>
+              <span className="text-yellow-500 text-lg uppercase font-semibold tracking-wider">{t('contact.title')}</span>
             </div>
             <h2 className="text-4xl font-bold mb-4 moto-heading inline-block after:bottom-[-10px] after:w-24 after:left-1/2 after:-translate-x-1/2">
-              Contacter Rammeh MotoScoot
+              {t('contact.heading')}
             </h2>
             <p className="text-gray-300 max-w-2xl mx-auto mt-6">
-              Des questions sur nos motos ou nos services ? Besoin de planifier un essai ? Remplissez le formulaire ci-dessous et notre équipe vous répondra dès que possible.
+              {t('contact.description')}
             </p>
           </div>
           
@@ -96,7 +96,7 @@ const ContactForm = () => {
                     name="firstName"
                     render={({ field }) => (
                       <FormItem>
-                        <FormLabel className="text-sm font-medium text-white">Prénom</FormLabel>
+                        <FormLabel className="text-sm font-medium text-white">{t('contact.form.firstName')}</FormLabel>
                         <FormControl>
                           <Input 
                             {...field} 
@@ -113,7 +113,7 @@ const ContactForm = () => {
                     name="lastName"
                     render={({ field }) => (
                       <FormItem>
-                        <FormLabel className="text-sm font-medium text-white">Nom</FormLabel>
+                        <FormLabel className="text-sm font-medium text-white">{t('contact.form.lastName')}</FormLabel>
                         <FormControl>
                           <Input 
                             {...field} 
@@ -131,7 +131,7 @@ const ContactForm = () => {
                   name="email"
                   render={({ field }) => (
                     <FormItem>
-                      <FormLabel className="text-sm font-medium text-white">Adresse Email</FormLabel>
+                      <FormLabel className="text-sm font-medium text-white">{t('contact.form.email')}</FormLabel>
                       <FormControl>
                         <Input 
                           {...field} 
@@ -149,23 +149,23 @@ const ContactForm = () => {
                   name="subject"
                   render={({ field }) => (
                     <FormItem>
-                      <FormLabel className="text-sm font-medium text-white">Sujet</FormLabel>
+                      <FormLabel className="text-sm font-medium text-white">{t('contact.form.subject')}</FormLabel>
                       <Select 
                         onValueChange={field.onChange} 
                         defaultValue={field.value}
                       >
                         <FormControl>
                           <SelectTrigger className="bg-gray-800 border-gray-700 text-white focus:ring-yellow-500">
-                            <SelectValue placeholder="Sélectionnez un sujet" />
+                            <SelectValue placeholder={t('contact.form.subjectPlaceholder')} />
                           </SelectTrigger>
                         </FormControl>
                         <SelectContent className="bg-gray-800 border-gray-700 text-white">
-                          <SelectItem value="motorcycle-inquiry">Renseignements sur les Motos</SelectItem>
-                          <SelectItem value="test-ride">Programmer un Essai</SelectItem>
-                          <SelectItem value="service">Service & Entretien</SelectItem>
-                          <SelectItem value="parts">Pièces & Accessoires</SelectItem>
-                          <SelectItem value="financing">Options de Financement</SelectItem>
-                          <SelectItem value="other">Autre</SelectItem>
+                          <SelectItem value="motorcycle-inquiry">{t('contact.form.subjects.motorcycleInquiry')}</SelectItem>
+                          <SelectItem value="test-ride">{t('contact.form.subjects.testRide')}</SelectItem>
+                          <SelectItem value="service">{t('contact.form.subjects.service')}</SelectItem>
+                          <SelectItem value="parts">{t('contact.form.subjects.parts')}</SelectItem>
+                          <SelectItem value="financing">{t('contact.form.subjects.financing')}</SelectItem>
+                          <SelectItem value="other">{t('contact.form.subjects.other')}</SelectItem>
                         </SelectContent>
                       </Select>
                       <FormMessage className="text-yellow-500" />
@@ -178,13 +178,13 @@ const ContactForm = () => {
                   name="message"
                   render={({ field }) => (
                     <FormItem>
-                      <FormLabel className="text-sm font-medium text-white">Message</FormLabel>
+                      <FormLabel className="text-sm font-medium text-white">{t('contact.form.message')}</FormLabel>
                       <FormControl>
                         <Textarea 
                           {...field} 
                           rows={5} 
                           className="w-full rounded-lg resize-none bg-gray-800 border-gray-700 text-white focus-visible:ring-yellow-500"
-                          placeholder="Parlez-nous de vos intérêts pour les motos, vos questions, ou comment nous pouvons vous aider..."
+                          placeholder={t('contact.form.messagePlaceholder')}
                         />
                       </FormControl>
                       <FormMessage className="text-yellow-500" />
@@ -206,7 +206,7 @@ const ContactForm = () => {
                       </FormControl>
                       <div className="space-y-1 leading-none">
                         <FormLabel className="text-sm text-gray-300">
-                          S'abonner à notre newsletter pour recevoir les actualités moto, événements et offres exclusives
+                          {t('contact.form.subscribe')}
                         </FormLabel>
                       </div>
                     </FormItem>
@@ -219,7 +219,7 @@ const ContactForm = () => {
                     className="inline-flex items-center px-8 py-3 shadow-md text-base font-semibold text-black bg-yellow-500 hover:bg-yellow-400 transition-colors duration-300"
                     disabled={isSubmitting}
                   >
-                    {isSubmitting ? 'Envoi en cours...' : 'Envoyer le Message'}
+                    {isSubmitting ? t('contact.form.submitting') : t('contact.form.submit')}
                     <Send className="ml-2 -mr-1 w-5 h-5" />
                   </Button>
                 </div>

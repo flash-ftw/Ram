@@ -304,6 +304,12 @@
     "previous": "Précédent",
     "next": "Suivant"
   },
+  "social": {
+    "shareOnFacebook": "Partager sur Facebook",
+    "shareOnTwitter": "Partager sur Twitter",
+    "shareOnInstagram": "Partager sur Instagram",
+    "shareOnWhatsApp": "Partager sur WhatsApp"
+  },
   "seo": {
     "siteName": "Rammeh MotoScoot",
     "home": {

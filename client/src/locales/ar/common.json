@@ -304,6 +304,12 @@
     "previous": "السابق",
     "next": "التالي"
   },
+  "social": {
+    "shareOnFacebook": "مشاركة على فيسبوك",
+    "shareOnTwitter": "مشاركة على تويتر",
+    "shareOnInstagram": "مشاركة على انستغرام",
+    "shareOnWhatsApp": "مشاركة على واتساب"
+  },
   "seo": {
     "siteName": "رمح موتوسكوت",
     "home": {
