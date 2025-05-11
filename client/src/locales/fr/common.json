@@ -55,6 +55,14 @@
     "apply": "Appliquer",
     "reset": "Réinitialiser",
     "noResults": "Aucun produit trouvé",
+    "featured": "En Vedette",
+    "categories": {
+      "thermal": "Moteur Thermique",
+      "electric": "Moteur Électrique",
+      "helmets": "Casques",
+      "motorcycles": "Motos",
+      "category": "Catégorie"
+    },
     "specs": {
       "motorType": "Type de Moteur",
       "displacement": "Cylindrée",

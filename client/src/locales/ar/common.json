@@ -55,6 +55,14 @@
     "apply": "تطبيق",
     "reset": "إعادة ضبط",
     "noResults": "لم يتم العثور على منتجات",
+    "featured": "مميز",
+    "categories": {
+      "thermal": "محرك حراري",
+      "electric": "محرك كهربائي",
+      "helmets": "خوذات",
+      "motorcycles": "دراجات نارية",
+      "category": "فئة"
+    },
     "specs": {
       "motorType": "نوع المحرك",
       "displacement": "سعة المحرك",

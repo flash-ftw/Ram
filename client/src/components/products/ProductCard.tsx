@@ -6,12 +6,33 @@ import { Card, CardContent } from "@/components/ui/card";
 import { Product } from "@shared/schema";
 import { getImageUrl, formatPrice } from "@/lib/utils";
 import MotorcycleIcon from "@/components/ui/motorcycle-icon";
+import { useTranslation } from "react-i18next";
+import { useLanguage } from "@/contexts/LanguageContext";
 
 interface ProductCardProps {
   product: Product;
 }
 
 const ProductCard = ({ product }: ProductCardProps) => {
+  const { t } = useTranslation('common');
+  const { isRTL } = useLanguage();
+  
+  // Fonction pour obtenir la traduction de la catégorie
+  const getCategoryLabel = (categoryId: number) => {
+    switch(categoryId) {
+      case 17:
+        return t('products.categories.thermal');
+      case 18:
+        return t('products.categories.electric');
+      case 7:
+        return t('products.categories.helmets');
+      case 14:
+        return t('products.categories.motorcycles');
+      default:
+        return t('products.categories.category');
+    }
+  };
+  
   return (
     <Card className="moto-card bg-black rounded-lg overflow-hidden shadow-md">
       <Link href={`/product/${product.slug}`}>
@@ -22,20 +43,17 @@ const ProductCard = ({ product }: ProductCardProps) => {
             className="w-full h-full object-cover transform transition-transform duration-500 hover:scale-110"
           />
           {product.featured && (
-            <div className="absolute top-0 right-0 m-3">
+            <div className={`absolute top-0 ${isRTL ? 'left-0 m-3' : 'right-0 m-3'}`}>
               <Badge className="moto-badge">
-                En Vedette
+                {t('products.featured')}
               </Badge>
             </div>
           )}
         </div>
       </Link>
-      <CardContent className="p-5 bg-black text-white">
+      <CardContent className={`p-5 bg-black text-white ${isRTL ? 'text-right' : ''}`}>
         <Badge variant="outline" className="text-xs font-semibold uppercase tracking-wide border-yellow-500 text-yellow-500">
-          {product.categoryId === 17 ? 'Moteur Thermique' : 
-           product.categoryId === 18 ? 'Moteur Electrique' : 
-           product.categoryId === 7 ? 'Casques' : 
-           product.categoryId === 14 ? 'Motos' : 'Catégorie'}
+          {getCategoryLabel(product.categoryId)}
         </Badge>
         <h3 className="mt-2 text-lg font-semibold">
           <Link href={`/product/${product.slug}`} className="hover:text-yellow-500 transition-colors">
@@ -45,7 +63,7 @@ const ProductCard = ({ product }: ProductCardProps) => {
         <p className="mt-1 text-gray-400 line-clamp-2">
           {product.description}
         </p>
-        <div className="mt-3 flex justify-between items-center">
+        <div className={`mt-3 flex justify-between items-center ${isRTL ? 'flex-row-reverse' : ''}`}>
           <span className="font-bold text-lg text-yellow-500">{formatPrice(product.price)}</span>
           <Button 
             asChild
@@ -53,8 +71,10 @@ const ProductCard = ({ product }: ProductCardProps) => {
             size="sm"
             className="border-yellow-500 text-yellow-500 hover:bg-yellow-500 hover:text-black px-3 py-1 rounded-lg transition-all duration-300"
           >
-            <Link href={`/product/${product.slug}`} className="flex items-center">
-              <MotorcycleIcon size={16} className="mr-1" /> Détails <ArrowRight className="w-3 h-3 ml-1" />
+            <Link href={`/product/${product.slug}`} className={`flex items-center ${isRTL ? 'flex-row-reverse' : ''}`}>
+              <MotorcycleIcon size={16} className={isRTL ? 'ml-1' : 'mr-1'} /> 
+              {t('buttons.viewDetails')} 
+              <ArrowRight className={`w-3 h-3 ${isRTL ? 'mr-1' : 'ml-1'}`} />
             </Link>
           </Button>
         </div>
