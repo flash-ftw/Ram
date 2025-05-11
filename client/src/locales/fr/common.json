@@ -176,5 +176,23 @@
     "french": "Français",
     "arabic": "العربية",
     "switchLanguage": "Changer de langue"
+  },
+  "seo": {
+    "siteName": "Rammeh MotoScoot",
+    "home": {
+      "title": "Rammeh MotoScoot - Vente de Motos Neuves et Accessoires",
+      "description": "Découvrez notre sélection de motos neuves, pièces détachées et accessoires. Livraison dans toute la Tunisie. Service après-vente professionnel."
+    },
+    "products": {
+      "title": "Toutes les Motos - Rammeh MotoScoot",
+      "description": "Parcourez notre vaste collection de motos, pièces et accessoires pour chaque motard.",
+      "categoryDescription": "Explorez notre collection de {{category}} motos et accessoires premium.",
+      "searchTitle": "Résultats de recherche pour \"{{query}}\" - Rammeh MotoScoot",
+      "searchDescription": "Parcourez les motos et accessoires correspondant à votre recherche pour \"{{query}}\"."
+    },
+    "product": {
+      "defaultTitle": "Moto",
+      "defaultDescription": "Découvrez nos motos à haute performance avec des spécifications détaillées, caractéristiques et informations techniques."
+    }
   }
 }

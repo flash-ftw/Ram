@@ -4,8 +4,12 @@ import ProductDetailComponent from "@/components/products/ProductDetail";
 import { useProduct } from "@/hooks/useProduct";
 import { useCategories } from "@/hooks/useCategories";
 import { getImageUrl } from "@/lib/utils";
+import { useTranslation } from 'react-i18next';
+import { useLanguage } from '@/contexts/LanguageContext';
 
 const ProductDetail = () => {
+  const { t } = useTranslation('common');
+  const { language } = useLanguage();
   const { slug } = useParams();
   const { data: product } = useProduct(slug as string);
   const { data: categories = [] } = useCategories();
@@ -16,12 +20,12 @@ const ProductDetail = () => {
     : null;
   
   const title = product 
-    ? `${product.name} - Rammeh MotoScoot`
-    : "Moto - Rammeh MotoScoot";
+    ? `${product.name} - ${t('seo.siteName')}`
+    : `${t('seo.product.defaultTitle')} - ${t('seo.siteName')}`;
   
   const description = product
     ? `${product.description.slice(0, 155)}...`
-    : "Découvrez nos motos à haute performance avec des spécifications détaillées, caractéristiques et informations techniques.";
+    : t('seo.product.defaultDescription');
 
   return (
     <>
@@ -35,6 +39,7 @@ const ProductDetail = () => {
         {category && <meta property="product:category" content={category.name} />}
         {product?.price && <meta property="product:price:amount" content={product.price.toString()} />}
         <meta property="product:price:currency" content="TND" />
+        <html lang={language} dir={language === 'ar' ? 'rtl' : 'ltr'} />
       </Helmet>
       
       <ProductDetailComponent />
