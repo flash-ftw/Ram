@@ -33,8 +33,10 @@
       "description": "La première destination en Tunisie pour les motos haute performance, accessoires de qualité, équipements de protection et service expert."
     },
     "featured": {
-      "title": "Produits en Vedette",
-      "viewAll": "Voir Tout"
+      "title": "Motos Vedettes",
+      "viewAll": "Voir Toutes les Motos",
+      "trending": "Motos Tendance",
+      "description": "Nos motos les plus populaires et performantes sélectionnées pour leur puissance exceptionnelle, leur design et leur excellence technique."
     },
     "categories": {
       "title": "Catégories",
