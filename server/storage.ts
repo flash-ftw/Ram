@@ -164,7 +164,7 @@ export class DatabaseStorage implements IStorage {
 
   async deleteBrand(id: number): Promise<boolean> {
     const result = await db.delete(brands).where(eq(brands.id, id));
-    return result.rowCount > 0;
+    return result.rowCount !== null && result.rowCount > 0;
   }
 
   // Category methods
@@ -197,7 +197,7 @@ export class DatabaseStorage implements IStorage {
 
   async deleteCategory(id: number): Promise<boolean> {
     const result = await db.delete(categories).where(eq(categories.id, id));
-    return result.rowCount > 0;
+    return result.rowCount !== null && result.rowCount > 0;
   }
 
   // Product methods
