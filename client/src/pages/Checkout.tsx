@@ -275,9 +275,9 @@ const Checkout = () => {
                       name="name"
                       render={({ field }) => (
                         <FormItem>
-                          <FormLabel>Nom Complet</FormLabel>
+                          <FormLabel>{t('checkout.formLabels.fullName')}</FormLabel>
                           <FormControl>
-                            <Input placeholder="Entrez votre nom complet" {...field} />
+                            <Input placeholder={t('checkout.formLabels.fullNamePlaceholder')} {...field} />
                           </FormControl>
                           <FormMessage />
                         </FormItem>
@@ -289,9 +289,9 @@ const Checkout = () => {
                       name="email"
                       render={({ field }) => (
                         <FormItem>
-                          <FormLabel>Adresse Email</FormLabel>
+                          <FormLabel>{t('checkout.formLabels.email')}</FormLabel>
                           <FormControl>
-                            <Input type="email" placeholder="Entrez votre adresse email" {...field} />
+                            <Input type="email" placeholder={t('checkout.formLabels.emailPlaceholder')} {...field} />
                           </FormControl>
                           <FormMessage />
                         </FormItem>
@@ -305,9 +305,9 @@ const Checkout = () => {
                       name="phone"
                       render={({ field }) => (
                         <FormItem>
-                          <FormLabel>Numéro de Téléphone</FormLabel>
+                          <FormLabel>{t('checkout.formLabels.phone')}</FormLabel>
                           <FormControl>
-                            <Input placeholder="Entrez votre numéro de téléphone" {...field} />
+                            <Input placeholder={t('checkout.formLabels.phonePlaceholder')} {...field} />
                           </FormControl>
                           <FormMessage />
                         </FormItem>
@@ -319,9 +319,9 @@ const Checkout = () => {
                       name="location"
                       render={({ field }) => (
                         <FormItem>
-                          <FormLabel>Adresse de Livraison</FormLabel>
+                          <FormLabel>{t('checkout.formLabels.address')}</FormLabel>
                           <FormControl>
-                            <Input placeholder="Entrez votre adresse complète" {...field} />
+                            <Input placeholder={t('checkout.formLabels.addressPlaceholder')} {...field} />
                           </FormControl>
                           <FormMessage />
                         </FormItem>
@@ -334,10 +334,10 @@ const Checkout = () => {
                     name="notes"
                     render={({ field }) => (
                       <FormItem>
-                        <FormLabel>Notes de Commande (Optionnel)</FormLabel>
+                        <FormLabel>{t('checkout.formLabels.notes')}</FormLabel>
                         <FormControl>
                           <Textarea 
-                            placeholder="Instructions spéciales pour la livraison ou la commande" 
+                            placeholder={t('checkout.formLabels.notesPlaceholder')}
                             className="h-24 resize-none"
                             {...field} 
                           />
@@ -355,7 +355,7 @@ const Checkout = () => {
                       className="flex items-center gap-2"
                     >
                       <ArrowLeft className="h-4 w-4" />
-                      <span>Retour au Panier</span>
+                      <span>{t('checkout.backToCart')}</span>
                     </Button>
                     
                     <Button 
@@ -363,7 +363,7 @@ const Checkout = () => {
                       disabled={isSubmitting}
                       className="bg-yellow-500 hover:bg-yellow-600 text-black flex items-center gap-2"
                     >
-                      <span>Continuer vers le Paiement</span>
+                      <span>{t('checkout.continueToPayment')}</span>
                       {isSubmitting ? (
                         <div className="h-4 w-4 border-2 border-black border-t-transparent rounded-full animate-spin" />
                       ) : (
@@ -380,7 +380,7 @@ const Checkout = () => {
         <div className="lg:col-span-1">
           <Card className="bg-white shadow-md rounded-lg overflow-hidden">
             <CardHeader className="bg-yellow-500/10">
-              <CardTitle className="text-xl">Résumé de la Commande</CardTitle>
+              <CardTitle className="text-xl">{t('checkout.orderSummary.title')}</CardTitle>
             </CardHeader>
             <CardContent className="p-6">
               <div className="space-y-4">
