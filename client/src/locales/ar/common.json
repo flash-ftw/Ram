@@ -100,12 +100,35 @@
     "total": "الإجمالي"
   },
   "checkout": {
-    "title": "إتمام الطلب",
+    "title": "الدفع",
+    "subtitle": "يرجى ملء بياناتك لإتمام طلبك",
+    "emptyCart": "عربة التسوق فارغة. يرجى إضافة منتجات قبل متابعة عملية الشراء.",
+    "browseProducts": "تصفح المنتجات",
     "customerInfo": "معلومات العميل",
     "shippingInfo": "معلومات الشحن",
     "paymentInfo": "معلومات الدفع",
     "orderSummary": "ملخص الطلب",
     "placeOrder": "تأكيد الطلب",
+    "bankTransferDetails": "تفاصيل التحويل البنكي",
+    "bankTransferInfo": "يرجى إجراء تحويل بنكي إلى الحساب التالي:",
+    "bankInfo": {
+      "bankName": "اسم البنك",
+      "accountName": "اسم الحساب",
+      "accountNumber": "رقم الحساب",
+      "iban": "رقم الآيبان",
+      "amount": "المبلغ"
+    },
+    "paymentInstructions": {
+      "title": "تعليمات الدفع",
+      "description": "يرجى تضمين اسمك ورقم هاتفك في وصف التحويل. بعد إجراء التحويل، يرجى التواصل معنا عبر واتساب مع إرفاق إيصال الدفع."
+    },
+    "nextSteps": {
+      "title": "الخطوات التالية",
+      "step1": "قم بإجراء التحويل البنكي بالمبلغ المحدد",
+      "step2": "التقط صورة شاشة أو صورة لإيصال التحويل",
+      "step3": "أرسل لنا الإيصال عبر واتساب مع تفاصيل طلبك",
+      "step4": "سنقوم بمعالجة طلبك والتواصل معك خلال 24 ساعة"
+    },
     "name": "الاسم الكامل",
     "email": "البريد الإلكتروني",
     "phone": "الهاتف",
@@ -116,8 +139,27 @@
     "bankTransfer": "تحويل بنكي",
     "cashOnDelivery": "الدفع عند الاستلام",
     "notes": "ملاحظات إضافية",
+    "notesPlaceholder": "تعليمات خاصة للتوصيل أو الطلب",
     "termsAndConditions": "أوافق على الشروط والأحكام",
-    "backToCart": "العودة إلى عربة التسوق"
+    "backToCart": "العودة إلى عربة التسوق",
+    "contactWhatsapp": "التواصل عبر واتساب",
+    "backToForm": "العودة إلى النموذج",
+    "finalizeOrder": "إتمام الطلب",
+    "continueToPayment": "متابعة إلى الدفع",
+    "formLabels": {
+      "fullName": "الاسم الكامل",
+      "fullNamePlaceholder": "أدخل اسمك الكامل",
+      "email": "البريد الإلكتروني",
+      "emailPlaceholder": "أدخل بريدك الإلكتروني",
+      "phone": "رقم الهاتف",
+      "phonePlaceholder": "أدخل رقم هاتفك",
+      "deliveryAddress": "عنوان التوصيل",
+      "deliveryAddressPlaceholder": "أدخل عنوانك الكامل",
+      "notes": "ملاحظات الطلب (اختياري)"
+    },
+    "errors": {
+      "orderCreationFailed": "حدثت مشكلة أثناء إنشاء طلبك. يرجى المحاولة مرة أخرى."
+    }
   },
   "thankYou": {
     "title": "شكراً لطلبك!",
