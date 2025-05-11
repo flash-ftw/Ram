@@ -310,6 +310,46 @@
     "shareOnInstagram": "Partager sur Instagram",
     "shareOnWhatsApp": "Partager sur WhatsApp"
   },
+  "contact": {
+    "title": "Contactez-Nous",
+    "heading": "Contacter Rammeh MotoScoot",
+    "description": "Des questions sur nos motos ou nos services ? Besoin de planifier un essai ? Remplissez le formulaire ci-dessous et notre équipe vous répondra dès que possible.",
+    "form": {
+      "firstName": "Prénom",
+      "lastName": "Nom",
+      "email": "Adresse Email",
+      "subject": "Sujet",
+      "subjectPlaceholder": "Sélectionnez un sujet",
+      "message": "Message",
+      "messagePlaceholder": "Parlez-nous de vos intérêts pour les motos, vos questions, ou comment nous pouvons vous aider...",
+      "subscribe": "S'abonner à notre newsletter pour recevoir les actualités moto, événements et offres exclusives",
+      "submit": "Envoyer le Message",
+      "submitting": "Envoi en cours...",
+      "subjects": {
+        "motorcycleInquiry": "Renseignements sur les Motos",
+        "testRide": "Programmer un Essai",
+        "service": "Service & Entretien",
+        "parts": "Pièces & Accessoires",
+        "financing": "Options de Financement",
+        "other": "Autre"
+      },
+      "errors": {
+        "firstNameMin": "Le prénom doit comporter au moins 2 caractères.",
+        "lastNameMin": "Le nom doit comporter au moins 2 caractères.",
+        "emailInvalid": "Veuillez entrer une adresse email valide.",
+        "subjectRequired": "Veuillez sélectionner un sujet.",
+        "messageMin": "Le message doit comporter au moins 10 caractères."
+      },
+      "success": {
+        "title": "Message Envoyé !",
+        "message": "Nous vous répondrons dès que possible."
+      },
+      "error": {
+        "title": "Une erreur s'est produite.",
+        "message": "Votre message n'a pas pu être envoyé. Veuillez réessayer."
+      }
+    }
+  },
   "seo": {
     "siteName": "Rammeh MotoScoot",
     "home": {
