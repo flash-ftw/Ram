@@ -28,6 +28,7 @@ const ProductDetail = () => {
   const { data: categories = [] } = useCategories();
   const { addItem } = useCart();
   const { toast } = useToast();
+  const { t } = useTranslation('common');
   const [selectedImage, setSelectedImage] = useState(0);
   const [quantity, setQuantity] = useState(1);
   const [isAddingToCart, setIsAddingToCart] = useState(false);

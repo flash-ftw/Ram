@@ -26,11 +26,11 @@ import { formatPrice } from "@/lib/utils";
 import { Alert, AlertDescription, AlertTitle } from "@/components/ui/alert";
 
 // Form validation schema
-const checkoutSchema = z.object({
-  name: z.string().min(2, { message: "Name must be at least 2 characters." }),
-  email: z.string().email({ message: "Please enter a valid email address." }),
-  phone: z.string().min(8, { message: "Please enter a valid phone number." }),
-  location: z.string().min(5, { message: "Please provide your full address." }),
+const checkoutSchema = (t: any) => z.object({
+  name: z.string().min(2, { message: t('checkout.formErrors.nameMinLength') }),
+  email: z.string().email({ message: t('checkout.formErrors.emailInvalid') }),
+  phone: z.string().min(8, { message: t('checkout.formErrors.phoneInvalid') }),
+  location: z.string().min(5, { message: t('checkout.formErrors.locationRequired') }),
   notes: z.string().optional(),
 });
 

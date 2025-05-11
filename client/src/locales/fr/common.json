@@ -86,7 +86,8 @@
     "outOfStock": "Épuisé",
     "description": "Description",
     "originalPrice": "Prix original",
-    "relatedProducts": "Produits Similaires"
+    "relatedProducts": "Produits Similaires",
+    "reviews": "avis"
   },
   "cart": {
     "title": "Votre Panier",

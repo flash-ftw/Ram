@@ -86,7 +86,8 @@
     "outOfStock": "غير متوفر",
     "description": "الوصف",
     "originalPrice": "السعر الأصلي",
-    "relatedProducts": "منتجات ذات صلة"
+    "relatedProducts": "منتجات ذات صلة",
+    "reviews": "تقييم"
   },
   "cart": {
     "title": "عربة التسوق",
