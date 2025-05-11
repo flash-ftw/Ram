@@ -73,10 +73,10 @@ const ProductDetail = () => {
   if (!product) {
     return (
       <div className="container mx-auto px-4 py-16 text-center">
-        <h2 className="text-2xl font-bold mb-4">Product Not Found</h2>
-        <p className="text-gray-600 mb-8">The product you're looking for doesn't exist or has been removed.</p>
+        <h2 className="text-2xl font-bold mb-4">{t('productDetail.productNotFound')}</h2>
+        <p className="text-gray-600 mb-8">{t('productDetail.productNotFoundText')}</p>
         <Button asChild>
-          <Link href="/products">Browse Products</Link>
+          <Link href="/products">{t('productDetail.browseProducts')}</Link>
         </Button>
       </div>
     );
@@ -96,7 +96,7 @@ const ProductDetail = () => {
                 <svg className="w-4 h-4 mr-2" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg">
                   <path d="M10.707 2.293a1 1 0 00-1.414 0l-7 7a1 1 0 001.414 1.414L4 10.414V17a1 1 0 001 1h2a1 1 0 001-1v-2a1 1 0 011-1h2a1 1 0 011 1v2a1 1 0 001 1h2a1 1 0 001-1v-6.586l.293.293a1 1 0 001.414-1.414l-7-7z"></path>
                 </svg>
-                Accueil
+                {t('productDetail.home')}
               </Link>
             </li>
             <li>
@@ -108,7 +108,7 @@ const ProductDetail = () => {
                   href={category ? `/products?category=${category.slug}` : "/products"} 
                   className="text-gray-600 hover:text-gray-900"
                 >
-                  {category ? category.name : 'Produits'}
+                  {category ? category.name : t('productDetail.products')}
                 </Link>
               </div>
             </li>
@@ -166,7 +166,7 @@ const ProductDetail = () => {
             {/* Product Details */}
             <div className="md:w-1/2 p-8">
               <Badge variant="default" className="text-sm font-semibold uppercase tracking-wide">
-                {category?.name || 'Produit'}
+                {category?.name || t('productDetail.product')}
               </Badge>
               <h1 className="mt-2 text-3xl font-bold text-gray-900">{product.name}</h1>
               
@@ -246,8 +246,8 @@ const ProductDetail = () => {
                       
                       // Show success toast
                       toast({
-                        title: "Ajouté au Panier",
-                        description: `${quantity} ${quantity > 1 ? 'articles' : 'article'} ajouté à votre panier.`,
+                        title: t('productDetail.addedToCart'),
+                        description: t('productDetail.itemsAddedToCart', { quantity }),
                         variant: "default",
                         duration: 3000,
                       });
@@ -257,8 +257,8 @@ const ProductDetail = () => {
                     } catch (error) {
                       // Show error toast
                       toast({
-                        title: "Erreur",
-                        description: "Impossible d'ajouter l'article au panier. Veuillez réessayer.",
+                        title: t('productDetail.error'),
+                        description: t('productDetail.addToCartError'),
                         variant: "destructive",
                       });
                     } finally {
