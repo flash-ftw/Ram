@@ -287,13 +287,13 @@ const ProductDetail = () => {
               <div className="mt-8 pt-6 border-t border-gray-200">
                 <h2 className="text-sm font-medium text-gray-900">{t('productDetail.shareProduct')}</h2>
                 <div className="mt-2 flex space-x-4">
-                  <button className="text-gray-500 hover:text-primary" aria-label="Partager sur Facebook">
+                  <button className="text-gray-500 hover:text-primary" aria-label={t('social.shareOnFacebook')}>
                     <Facebook size={18} />
                   </button>
-                  <button className="text-gray-500 hover:text-primary" aria-label="Partager sur Twitter">
+                  <button className="text-gray-500 hover:text-primary" aria-label={t('social.shareOnTwitter')}>
                     <Twitter size={18} />
                   </button>
-                  <button className="text-gray-500 hover:text-primary" aria-label="Partager sur Instagram">
+                  <button className="text-gray-500 hover:text-primary" aria-label={t('social.shareOnInstagram')}>
                     <Instagram size={18} />
                   </button>
                 </div>
@@ -348,7 +348,7 @@ const ProductDetail = () => {
                   
                   {product.maxSpeed && (
                     <div className="flex justify-between">
-                      <span className="text-gray-600">Vitesse max:</span>
+                      <span className="text-gray-600">{t('productDetail.specs.maxSpeed')}:</span>
                       <span className="font-medium">{product.maxSpeed} km/h</span>
                     </div>
                   )}
@@ -356,18 +356,18 @@ const ProductDetail = () => {
                 
                 {/* Colonne 2: Transmission et châssis */}
                 <div className="space-y-4">
-                  <h3 className="text-lg font-semibold border-b pb-2">Transmission et Châssis</h3>
+                  <h3 className="text-lg font-semibold border-b pb-2">{t('productDetail.specs.transmissionChassis')}</h3>
                   
                   {product.transmission && (
                     <div className="flex justify-between">
-                      <span className="text-gray-600">Transmission:</span>
+                      <span className="text-gray-600">{t('productDetail.specs.transmission')}:</span>
                       <span className="font-medium">{product.transmission}</span>
                     </div>
                   )}
                   
                   {product.starter && (
                     <div className="flex justify-between">
-                      <span className="text-gray-600">Démarrage:</span>
+                      <span className="text-gray-600">{t('productDetail.specs.startType')}:</span>
                       <span className="font-medium">{product.starter}</span>
                     </div>
                   )}
@@ -396,11 +396,11 @@ const ProductDetail = () => {
                 
                 {/* Colonne 3: Dimensions et autres */}
                 <div className="space-y-4">
-                  <h3 className="text-lg font-semibold border-b pb-2">Dimensions et Autres</h3>
+                  <h3 className="text-lg font-semibold border-b pb-2">{t('productDetail.specs.dimensionsOther')}</h3>
                   
                   {product.weight && (
                     <div className="flex justify-between">
-                      <span className="text-gray-600">Poids:</span>
+                      <span className="text-gray-600">{t('productDetail.specs.weight')}:</span>
                       <span className="font-medium">{product.weight} kg</span>
                     </div>
                   )}
@@ -428,7 +428,7 @@ const ProductDetail = () => {
                   
                   {product.dashboard && (
                     <div className="flex justify-between">
-                      <span className="text-gray-600">Tableau de bord:</span>
+                      <span className="text-gray-600">{t('productDetail.specs.dashboard')}:</span>
                       <span className="font-medium">{product.dashboard}</span>
                     </div>
                   )}
