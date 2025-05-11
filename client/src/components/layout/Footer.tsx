@@ -41,8 +41,8 @@ const Footer = () => {
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
           {/* Company Info */}
           <div>
-            <div className="flex items-center mb-4 group">
-              <div className="text-yellow-500 mr-3 relative">
+            <div className={`flex items-center mb-4 group ${isRTL ? 'flex-row-reverse' : ''}`}>
+              <div className={`text-yellow-500 relative ${isRTL ? 'ml-3' : 'mr-3'}`}>
                 <MotorcycleIcon 
                   size={32} 
                   className="group-hover:scale-110 transition-transform" 
@@ -54,8 +54,10 @@ const Footer = () => {
                 <span className="text-white group-hover:tracking-wider transition-all duration-300">MotoScoot</span>
               </h3>
             </div>
-            <p className="text-gray-400 mb-4 hover:text-gray-300 transition-colors">Votre destination privilégiée pour les motos et accessoires depuis 2015.</p>
-            <div className="flex space-x-5">
+            <p className={`text-gray-400 mb-4 hover:text-gray-300 transition-colors ${isRTL ? 'text-right' : ''}`}>
+              {t('footer.companyDesc')}
+            </p>
+            <div className={`flex ${isRTL ? 'space-x-reverse space-x-5 justify-end' : 'space-x-5'}`}>
               <a 
                 href="#" 
                 className="text-yellow-500 hover:text-yellow-400 hover:scale-125 transition-all duration-300" 
