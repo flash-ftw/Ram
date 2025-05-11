@@ -1,0 +1,164 @@
+{
+  "header": {
+    "home": "Accueil",
+    "products": "Produits",
+    "about": "À propos",
+    "contact": "Contact",
+    "cart": "Panier",
+    "login": "Connexion",
+    "search": "Rechercher..."
+  },
+  "footer": {
+    "quickLinks": "Liens Rapides",
+    "contactUs": "Contactez-nous",
+    "phone": "Téléphone",
+    "email": "Email",
+    "address": "Adresse",
+    "copyright": "Tous droits réservés",
+    "backToTop": "Retour en haut"
+  },
+  "home": {
+    "hero": {
+      "title": "Découvrez Notre Collection",
+      "subtitle": "Des motos et scooters de qualité pour tous",
+      "cta": "Voir les Produits"
+    },
+    "featured": {
+      "title": "Produits en Vedette",
+      "viewAll": "Voir Tout"
+    },
+    "categories": {
+      "title": "Catégories",
+      "viewAll": "Voir Tout"
+    },
+    "about": {
+      "title": "À Propos de Nous",
+      "subtitle": "Votre Source de Confiance pour les Motos",
+      "cta": "En savoir plus"
+    }
+  },
+  "products": {
+    "title": "Nos Produits",
+    "filter": "Filtrer",
+    "sort": "Trier",
+    "categories": "Catégories",
+    "brands": "Marques",
+    "price": "Prix",
+    "apply": "Appliquer",
+    "reset": "Réinitialiser",
+    "noResults": "Aucun produit trouvé",
+    "specs": {
+      "motorType": "Type de Moteur",
+      "displacement": "Cylindrée",
+      "cooling": "Refroidissement",
+      "transmission": "Transmission",
+      "startType": "Démarrage",
+      "brakes": "Freins",
+      "wheelSize": "Taille des Roues",
+      "maxSpeed": "Vitesse Max",
+      "weight": "Poids"
+    }
+  },
+  "productDetail": {
+    "features": "Caractéristiques",
+    "specifications": "Spécifications",
+    "addToCart": "Ajouter au Panier",
+    "quantity": "Quantité",
+    "inStock": "En Stock",
+    "outOfStock": "Épuisé",
+    "description": "Description",
+    "originalPrice": "Prix original",
+    "relatedProducts": "Produits Similaires"
+  },
+  "cart": {
+    "title": "Votre Panier",
+    "empty": "Votre panier est vide",
+    "continueShopping": "Continuer vos achats",
+    "summary": "Résumé",
+    "subtotal": "Sous-total",
+    "checkout": "Passer à la caisse",
+    "remove": "Supprimer",
+    "quantity": "Quantité",
+    "total": "Total"
+  },
+  "checkout": {
+    "title": "Finaliser la Commande",
+    "customerInfo": "Informations Client",
+    "shippingInfo": "Informations de Livraison",
+    "paymentInfo": "Informations de Paiement",
+    "orderSummary": "Résumé de la Commande",
+    "placeOrder": "Passer la Commande",
+    "name": "Nom complet",
+    "email": "Email",
+    "phone": "Téléphone",
+    "address": "Adresse",
+    "city": "Ville",
+    "zipCode": "Code Postal",
+    "paymentMethod": "Méthode de Paiement",
+    "bankTransfer": "Virement Bancaire",
+    "cashOnDelivery": "Paiement à la Livraison",
+    "notes": "Notes supplémentaires",
+    "termsAndConditions": "J'accepte les conditions générales",
+    "backToCart": "Retour au Panier"
+  },
+  "thankYou": {
+    "title": "Merci pour Votre Commande !",
+    "subtitle": "Nous avons bien reçu votre commande et la traiterons dès que nous aurons confirmé votre paiement.",
+    "orderSummary": "Résumé de la Commande",
+    "orderId": "ID Commande",
+    "customerInfo": "Informations Client",
+    "total": "Total",
+    "whatsNext": "Que se Passe-t-il Ensuite ?",
+    "step1": "Nous vérifierons votre paiement et confirmerons votre commande.",
+    "step2": "Notre équipe préparera vos articles pour la livraison ou le retrait.",
+    "step3": "Nous vous contacterons via WhatsApp ou par téléphone pour organiser la livraison.",
+    "step4": "Votre commande sera livrée à l'adresse que vous avez indiquée.",
+    "contactWhatsApp": "Nous Contacter sur WhatsApp",
+    "contactPhone": "Vous avez des questions ? Contactez-nous au",
+    "backToHome": "Retour à l'Accueil",
+    "continueShopping": "Continuer les Achats"
+  },
+  "contact": {
+    "title": "Contactez-Nous",
+    "subtitle": "Nous sommes là pour vous aider",
+    "form": {
+      "firstName": "Prénom",
+      "lastName": "Nom",
+      "email": "Email",
+      "phone": "Téléphone",
+      "subject": "Sujet",
+      "message": "Message",
+      "subscribe": "S'abonner à la newsletter",
+      "submit": "Envoyer"
+    },
+    "info": {
+      "address": "Adresse",
+      "phone": "Téléphone",
+      "email": "Email",
+      "workingHours": "Heures d'ouverture"
+    }
+  },
+  "about": {
+    "title": "À Propos de Nous",
+    "subtitle": "Votre Source de Confiance pour les Motos",
+    "ourStory": "Notre Histoire",
+    "ourMission": "Notre Mission",
+    "whyChooseUs": "Pourquoi Nous Choisir"
+  },
+  "buttons": {
+    "viewDetails": "Voir les Détails",
+    "addToCart": "Ajouter au Panier",
+    "apply": "Appliquer",
+    "reset": "Réinitialiser",
+    "submit": "Soumettre",
+    "cancel": "Annuler",
+    "continue": "Continuer",
+    "back": "Retour",
+    "save": "Enregistrer"
+  },
+  "languages": {
+    "french": "Français",
+    "arabic": "العربية",
+    "switchLanguage": "Changer de langue"
+  }
+}

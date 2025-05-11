@@ -1,0 +1,164 @@
+{
+  "header": {
+    "home": "الرئيسية",
+    "products": "المنتجات",
+    "about": "نبذة عنا",
+    "contact": "اتصل بنا",
+    "cart": "عربة التسوق",
+    "login": "تسجيل الدخول",
+    "search": "بحث..."
+  },
+  "footer": {
+    "quickLinks": "روابط سريعة",
+    "contactUs": "اتصل بنا",
+    "phone": "الهاتف",
+    "email": "البريد الإلكتروني",
+    "address": "العنوان",
+    "copyright": "جميع الحقوق محفوظة",
+    "backToTop": "العودة إلى الأعلى"
+  },
+  "home": {
+    "hero": {
+      "title": "اكتشف مجموعتنا",
+      "subtitle": "دراجات نارية وسكوترات عالية الجودة للجميع",
+      "cta": "تصفح المنتجات"
+    },
+    "featured": {
+      "title": "منتجات مميزة",
+      "viewAll": "عرض الكل"
+    },
+    "categories": {
+      "title": "الفئات",
+      "viewAll": "عرض الكل"
+    },
+    "about": {
+      "title": "نبذة عنا",
+      "subtitle": "مصدرك الموثوق للدراجات النارية",
+      "cta": "اقرأ المزيد"
+    }
+  },
+  "products": {
+    "title": "منتجاتنا",
+    "filter": "تصفية",
+    "sort": "ترتيب",
+    "categories": "الفئات",
+    "brands": "العلامات التجارية",
+    "price": "السعر",
+    "apply": "تطبيق",
+    "reset": "إعادة ضبط",
+    "noResults": "لم يتم العثور على منتجات",
+    "specs": {
+      "motorType": "نوع المحرك",
+      "displacement": "سعة المحرك",
+      "cooling": "نظام التبريد",
+      "transmission": "ناقل الحركة",
+      "startType": "نظام التشغيل",
+      "brakes": "الفرامل",
+      "wheelSize": "حجم العجلات",
+      "maxSpeed": "السرعة القصوى",
+      "weight": "الوزن"
+    }
+  },
+  "productDetail": {
+    "features": "المميزات",
+    "specifications": "المواصفات",
+    "addToCart": "أضف إلى العربة",
+    "quantity": "الكمية",
+    "inStock": "متوفر",
+    "outOfStock": "غير متوفر",
+    "description": "الوصف",
+    "originalPrice": "السعر الأصلي",
+    "relatedProducts": "منتجات ذات صلة"
+  },
+  "cart": {
+    "title": "عربة التسوق",
+    "empty": "عربة التسوق فارغة",
+    "continueShopping": "مواصلة التسوق",
+    "summary": "الملخص",
+    "subtotal": "المجموع الفرعي",
+    "checkout": "إتمام الشراء",
+    "remove": "إزالة",
+    "quantity": "الكمية",
+    "total": "الإجمالي"
+  },
+  "checkout": {
+    "title": "إتمام الطلب",
+    "customerInfo": "معلومات العميل",
+    "shippingInfo": "معلومات الشحن",
+    "paymentInfo": "معلومات الدفع",
+    "orderSummary": "ملخص الطلب",
+    "placeOrder": "تأكيد الطلب",
+    "name": "الاسم الكامل",
+    "email": "البريد الإلكتروني",
+    "phone": "الهاتف",
+    "address": "العنوان",
+    "city": "المدينة",
+    "zipCode": "الرمز البريدي",
+    "paymentMethod": "طريقة الدفع",
+    "bankTransfer": "تحويل بنكي",
+    "cashOnDelivery": "الدفع عند الاستلام",
+    "notes": "ملاحظات إضافية",
+    "termsAndConditions": "أوافق على الشروط والأحكام",
+    "backToCart": "العودة إلى عربة التسوق"
+  },
+  "thankYou": {
+    "title": "شكراً لطلبك!",
+    "subtitle": "لقد استلمنا طلبك وسنقوم بمعالجته بمجرد تأكيد الدفع.",
+    "orderSummary": "ملخص الطلب",
+    "orderId": "رقم الطلب",
+    "customerInfo": "معلومات العميل",
+    "total": "الإجمالي",
+    "whatsNext": "ما الخطوة التالية؟",
+    "step1": "سنتحقق من الدفع الخاص بك ونؤكد طلبك.",
+    "step2": "سيقوم فريقنا بتجهيز المنتجات للتوصيل أو الاستلام.",
+    "step3": "سنتصل بك عبر الواتساب أو الهاتف لترتيب التوصيل.",
+    "step4": "سيتم توصيل طلبك إلى العنوان الذي حددته.",
+    "contactWhatsApp": "تواصل معنا عبر الواتساب",
+    "contactPhone": "لديك أسئلة؟ اتصل بنا على",
+    "backToHome": "العودة إلى الرئيسية",
+    "continueShopping": "مواصلة التسوق"
+  },
+  "contact": {
+    "title": "اتصل بنا",
+    "subtitle": "نحن هنا لمساعدتك",
+    "form": {
+      "firstName": "الاسم الأول",
+      "lastName": "اسم العائلة",
+      "email": "البريد الإلكتروني",
+      "phone": "الهاتف",
+      "subject": "الموضوع",
+      "message": "الرسالة",
+      "subscribe": "الاشتراك في النشرة الإخبارية",
+      "submit": "إرسال"
+    },
+    "info": {
+      "address": "العنوان",
+      "phone": "الهاتف",
+      "email": "البريد الإلكتروني",
+      "workingHours": "ساعات العمل"
+    }
+  },
+  "about": {
+    "title": "نبذة عنا",
+    "subtitle": "مصدرك الموثوق للدراجات النارية",
+    "ourStory": "قصتنا",
+    "ourMission": "مهمتنا",
+    "whyChooseUs": "لماذا تختارنا"
+  },
+  "buttons": {
+    "viewDetails": "عرض التفاصيل",
+    "addToCart": "أضف إلى العربة",
+    "apply": "تطبيق",
+    "reset": "إعادة ضبط",
+    "submit": "إرسال",
+    "cancel": "إلغاء",
+    "continue": "متابعة",
+    "back": "رجوع",
+    "save": "حفظ"
+  },
+  "languages": {
+    "french": "الفرنسية",
+    "arabic": "العربية",
+    "switchLanguage": "تغيير اللغة"
+  }
+}
