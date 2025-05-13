@@ -284,6 +284,25 @@
     "ourMission": "Notre Mission",
     "whyChooseUs": "Pourquoi Nous Choisir"
   },
+  "cart": {
+    "title": "Votre Panier",
+    "empty": "Votre panier est vide",
+    "emptyMessage": "Il semble que vous n'ayez pas encore ajouté de produits à votre panier.",
+    "browseProducts": "Parcourir les Produits",
+    "clearCart": "Vider le Panier",
+    "product": "Produit",
+    "quantity": "Quantité",
+    "price": "Prix",
+    "total": "Total",
+    "actions": "Actions",
+    "continueShopping": "Continuer vos Achats",
+    "orderSummary": "Résumé de la Commande",
+    "subtotal": "Sous-total",
+    "shipping": "Livraison",
+    "toCalculate": "À calculer",
+    "proceedToCheckout": "Passer à la Caisse",
+    "termsNotice": "En passant à la caisse, vous acceptez nos conditions générales."
+  },
   "buttons": {
     "viewDetails": "Voir les Détails",
     "addToCart": "Ajouter au Panier",
