@@ -1,4 +1,4 @@
-import React, { createContext, useContext, useState, useEffect, ReactNode } from 'react';
+import React, { createContext, useContext, useState, useEffect } from 'react';
 import i18n from 'i18next';
 import { initReactI18next } from 'react-i18next';
 import LanguageDetector from 'i18next-browser-languagedetector';
@@ -16,23 +16,15 @@ i18n
   .use(initReactI18next)
   .init({
     resources: {
-      fr: {
-        common: frCommon
-      },
-      ar: {
-        common: arCommon
-      }
+      fr: { common: frCommon },
+      ar: { common: arCommon }
     },
-    lng: 'fr', // Langue par défaut
+    lng: 'fr',
     fallbackLng: 'fr',
     ns: ['common'],
     defaultNS: 'common',
-    interpolation: {
-      escapeValue: false // Pas besoin d'échapper pour React
-    },
-    react: {
-      useSuspense: false
-    }
+    interpolation: { escapeValue: false },
+    react: { useSuspense: false }
   });
 
 // Interface du contexte
@@ -42,28 +34,26 @@ interface LanguageContextType {
   isRTL: boolean;
 }
 
-// Création du contexte
-const LanguageContext = createContext<LanguageContextType | undefined>(undefined);
+// Contexte avec une valeur par défaut
+const LanguageContext = createContext<LanguageContextType>({
+  language: 'fr',
+  setLanguage: () => {},
+  isRTL: false
+});
 
-// Props du provider
 interface LanguageProviderProps {
-  children: ReactNode;
+  children: React.ReactNode;
 }
 
-// Provider du contexte
 export function LanguageProvider({ children }: LanguageProviderProps) {
-  // État pour la langue actuelle
   const [language, setLanguageState] = useState<Language>('fr');
-  
-  // Déterminer si la langue est RTL (Right-to-Left)
   const isRTL = language === 'ar';
   
-  // Effet pour appliquer la direction du texte au document HTML
+  // Appliquer la direction du texte
   useEffect(() => {
     document.documentElement.dir = isRTL ? 'rtl' : 'ltr';
     document.documentElement.lang = language;
     
-    // Appliquer une classe pour les styles RTL
     if (isRTL) {
       document.documentElement.classList.add('rtl');
     } else {
@@ -71,15 +61,14 @@ export function LanguageProvider({ children }: LanguageProviderProps) {
     }
   }, [isRTL, language]);
   
-  // Fonction pour changer la langue
+  // Changer la langue
   const setLanguage = (lang: Language) => {
     i18n.changeLanguage(lang);
     setLanguageState(lang);
-    // Stocker la préférence de langue dans localStorage
     localStorage.setItem('language', lang);
   };
   
-  // Effet pour récupérer la langue depuis localStorage au chargement
+  // Récupérer la langue du localStorage
   useEffect(() => {
     const savedLanguage = localStorage.getItem('language') as Language;
     if (savedLanguage && (savedLanguage === 'fr' || savedLanguage === 'ar')) {
@@ -87,20 +76,20 @@ export function LanguageProvider({ children }: LanguageProviderProps) {
     }
   }, []);
   
+  const contextValue = {
+    language,
+    setLanguage,
+    isRTL
+  };
+  
   return (
-    <LanguageContext.Provider value={{ language, setLanguage, isRTL }}>
+    <LanguageContext.Provider value={contextValue}>
       {children}
     </LanguageContext.Provider>
   );
 }
 
-// Hook pour utiliser le contexte dans les composants
-const useLanguageHook = () => {
-  const context = useContext(LanguageContext);
-  if (context === undefined) {
-    throw new Error('useLanguage must be used within a LanguageProvider');
-  }
-  return context;
+// Hook pour utiliser le contexte
+export function useLanguage() {
+  return useContext(LanguageContext);
 }
-
-export const useLanguage = useLanguageHook;

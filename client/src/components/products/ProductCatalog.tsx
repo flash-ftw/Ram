@@ -141,7 +141,7 @@ const ProductCatalog = () => {
               
               {/* Categories Filter */}
               <div className="mb-6">
-                <h4 className="font-medium text-gray-700 mb-3">{t('products.categories')}</h4>
+                <h4 className="font-medium text-gray-700 mb-3">{t('products.categoriesTitle')}</h4>
                 <div className="space-y-2 category-filter max-h-48 overflow-y-auto pr-2">
                   <div className={`flex items-center ${isRTL ? 'space-x-reverse space-x-2' : 'space-x-2'}`}>
                     <Checkbox 

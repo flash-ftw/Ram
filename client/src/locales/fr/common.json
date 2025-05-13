@@ -57,7 +57,7 @@
     "searchResults": "Résultats de recherche pour: \"{{query}}\"",
     "filter": "Filtrer",
     "sort": "Trier",
-    "categories": "Catégories",
+    "categoriesTitle": "Catégories",
     "brands": "Marques",
     "price": "Prix",
     "apply": "Appliquer",

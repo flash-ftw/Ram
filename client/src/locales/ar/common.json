@@ -57,7 +57,7 @@
     "searchResults": "نتائج البحث عن: \"{{query}}\"",
     "filter": "تصفية",
     "sort": "ترتيب",
-    "categories": "الفئات",
+    "categoriesTitle": "الفئات",
     "brands": "العلامات التجارية",
     "price": "السعر",
     "apply": "تطبيق",
