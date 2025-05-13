@@ -66,6 +66,11 @@
     "featured": "مميز",
     "noProductsFound": "لم يتم العثور على منتجات",
     "tryAdjustingFilters": "حاول تعديل الفلاتر أو معايير البحث للعثور على ما تبحث عنه.",
+    "categories": {
+      "casques": "خوذات",
+      "moteur-electrique": "محرك كهربائي",
+      "moteur-thermique": "محرك حراري"
+    },
     "filter": {
       "all": "الكل",
       "brands": "العلامات التجارية",

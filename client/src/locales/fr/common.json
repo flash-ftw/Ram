@@ -66,6 +66,11 @@
     "featured": "En Vedette",
     "noProductsFound": "Aucun produit trouvé",
     "tryAdjustingFilters": "Essayez d'ajuster vos filtres ou critères de recherche pour trouver ce que vous cherchez.",
+    "categories": {
+      "casques": "Casques",
+      "moteur-electrique": "Moteur Électrique",
+      "moteur-thermique": "Moteur Thermique"
+    },
     "filter": {
       "all": "Tous",
       "brands": "Marques",
