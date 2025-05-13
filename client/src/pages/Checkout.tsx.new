@@ -25,17 +25,14 @@ import { useCart } from "@/contexts/CartContext";
 import { formatPrice } from "@/lib/utils";
 import { Alert, AlertDescription, AlertTitle } from "@/components/ui/alert";
 
-// Form schema for TypeScript type
-const formSchema = z.object({
+// Type for our form values
+type CheckoutFormValues = z.infer<typeof z.object({
   name: z.string(),
   email: z.string(),
   phone: z.string(),
   location: z.string(),
   notes: z.string().optional(),
-});
-
-// Type for our form values
-type CheckoutFormValues = z.infer<typeof formSchema>;
+})>;
 
 const Checkout = () => {
   const [, setLocation] = useLocation();
