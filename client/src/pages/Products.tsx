@@ -16,13 +16,18 @@ const Products = () => {
   let description = t('seo.products.description');
   
   if (categorySlug) {
-    // Capitalize first letter and add spaces between camelCase
-    const categoryName = categorySlug
-      .replace(/-/g, ' ')
-      .replace(/\b\w/g, (c) => c.toUpperCase());
+    // Use translated category name if available
+    const translatedCategory = t(`products.categories.${categorySlug}`);
+    
+    // Fallback to formatted slug if no translation is available
+    const categoryName = translatedCategory !== `products.categories.${categorySlug}` 
+      ? translatedCategory 
+      : categorySlug
+        .replace(/-/g, ' ')
+        .replace(/\b\w/g, (c) => c.toUpperCase());
     
     title = `${categoryName} - ${t('seo.siteName')}`;
-    description = t('seo.products.categoryDescription', { category: categoryName.toLowerCase() });
+    description = t('seo.products.categoryDescription', { category: categoryName });
   } else if (searchQuery) {
     title = t('seo.products.searchTitle', { query: searchQuery });
     description = t('seo.products.searchDescription', { query: searchQuery });

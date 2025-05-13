@@ -149,7 +149,7 @@ const ProductCatalog = () => {
                       checked={selectedCategories.length === 0}
                       onCheckedChange={() => setSelectedCategories([])}
                     />
-                    <Label htmlFor="all-categories" className="text-gray-700">Toutes les Catégories</Label>
+                    <Label htmlFor="all-categories" className="text-gray-700">{t('products.filter.allCategories')}</Label>
                   </div>
                   
                   {categories.map((category) => (
@@ -159,7 +159,9 @@ const ProductCatalog = () => {
                         checked={selectedCategories.includes(category.slug)}
                         onCheckedChange={() => handleCategoryChange(category.slug)}
                       />
-                      <Label htmlFor={`category-${category.slug}`} className="text-gray-700">{category.name}</Label>
+                      <Label htmlFor={`category-${category.slug}`} className="text-gray-700">
+                        {t(`products.categories.${category.slug}`) || category.name}
+                      </Label>
                     </div>
                   ))}
                 </div>
