@@ -95,10 +95,12 @@ export function LanguageProvider({ children }: LanguageProviderProps) {
 }
 
 // Hook pour utiliser le contexte dans les composants
-export const useLanguage = () => {
+const useLanguageHook = () => {
   const context = useContext(LanguageContext);
   if (context === undefined) {
     throw new Error('useLanguage must be used within a LanguageProvider');
   }
   return context;
 }
+
+export const useLanguage = useLanguageHook;
