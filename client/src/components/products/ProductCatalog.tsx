@@ -137,13 +137,13 @@ const ProductCatalog = () => {
           {/* Filters Sidebar */}
           <div className="lg:w-1/4">
             <div className="bg-gray-50 rounded-lg p-5 shadow-sm sticky top-24">
-              <h3 className="font-semibold text-lg mb-4">Filtres</h3>
+              <h3 className="font-semibold text-lg mb-4">{t('products.filter')}</h3>
               
               {/* Categories Filter */}
               <div className="mb-6">
-                <h4 className="font-medium text-gray-700 mb-3">Catégories</h4>
+                <h4 className="font-medium text-gray-700 mb-3">{t('products.categories')}</h4>
                 <div className="space-y-2 category-filter max-h-48 overflow-y-auto pr-2">
-                  <div className="flex items-center space-x-2">
+                  <div className={`flex items-center ${isRTL ? 'space-x-reverse space-x-2' : 'space-x-2'}`}>
                     <Checkbox 
                       id="all-categories"
                       checked={selectedCategories.length === 0}
@@ -153,7 +153,7 @@ const ProductCatalog = () => {
                   </div>
                   
                   {categories.map((category) => (
-                    <div key={category.id} className="flex items-center space-x-2">
+                    <div key={category.id} className={`flex items-center ${isRTL ? 'space-x-reverse space-x-2' : 'space-x-2'}`}>
                       <Checkbox 
                         id={`category-${category.slug}`}
                         checked={selectedCategories.includes(category.slug)}
@@ -171,7 +171,7 @@ const ProductCatalog = () => {
               <div className="mb-6">
                 <h4 className="font-medium text-gray-700 mb-3">{t('products.filter.brands')}</h4>
                 <div className="space-y-2 brand-filter max-h-48 overflow-y-auto pr-2">
-                  <div className="flex items-center space-x-2">
+                  <div className={`flex items-center ${isRTL ? 'space-x-reverse space-x-2' : 'space-x-2'}`}>
                     <Checkbox 
                       id="all-brands"
                       checked={selectedBrands.length === 0}
@@ -181,7 +181,7 @@ const ProductCatalog = () => {
                   </div>
                   
                   {brands.map((brand) => (
-                    <div key={brand.id} className="flex items-center space-x-2">
+                    <div key={brand.id} className={`flex items-center ${isRTL ? 'space-x-reverse space-x-2' : 'space-x-2'}`}>
                       <Checkbox 
                         id={`brand-${brand.slug}`}
                         checked={selectedBrands.includes(brand.slug)}
