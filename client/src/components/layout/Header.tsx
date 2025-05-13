@@ -85,7 +85,7 @@ const Header = () => {
                 {categories?.map((category) => (
                   <DropdownMenuItem key={category.id} asChild className="hover:bg-yellow-500 hover:text-black">
                     <Link href={`/products?category=${category.slug}`} className="w-full">
-                      {t(`products.categories.${category.slug}`) || category.name}
+                      {t(`products.categoryItems.${category.slug}`) || category.name}
                     </Link>
                   </DropdownMenuItem>
                 ))}

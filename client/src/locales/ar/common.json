@@ -66,7 +66,7 @@
     "featured": "مميز",
     "noProductsFound": "لم يتم العثور على منتجات",
     "tryAdjustingFilters": "حاول تعديل الفلاتر أو معايير البحث للعثور على ما تبحث عنه.",
-    "categories": {
+    "categoryItems": {
       "casques": "خوذات",
       "moteur-electrique": "محرك كهربائي",
       "moteur-thermique": "محرك حراري"
@@ -85,13 +85,6 @@
       "newest": "الأحدث",
       "bestSelling": "الأكثر مبيعًا",
       "applyFilters": "تطبيق الفلاتر"
-    },
-    "categories": {
-      "thermal": "محرك حراري",
-      "electric": "محرك كهربائي",
-      "helmets": "خوذات",
-      "motorcycles": "دراجات نارية",
-      "category": "فئة"
     },
     "specs": {
       "motorType": "نوع المحرك",

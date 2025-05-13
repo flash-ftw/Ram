@@ -66,7 +66,7 @@
     "featured": "En Vedette",
     "noProductsFound": "Aucun produit trouvé",
     "tryAdjustingFilters": "Essayez d'ajuster vos filtres ou critères de recherche pour trouver ce que vous cherchez.",
-    "categories": {
+    "categoryItems": {
       "casques": "Casques",
       "moteur-electrique": "Moteur Électrique",
       "moteur-thermique": "Moteur Thermique"
@@ -86,13 +86,7 @@
       "bestSelling": "Meilleures Ventes",
       "applyFilters": "Appliquer les Filtres"
     },
-    "categories": {
-      "thermal": "Moteur Thermique",
-      "electric": "Moteur Électrique",
-      "helmets": "Casques",
-      "motorcycles": "Motos",
-      "category": "Catégorie"
-    },
+
     "specs": {
       "motorType": "Type de Moteur",
       "displacement": "Cylindrée",

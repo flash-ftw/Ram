@@ -160,7 +160,7 @@ const ProductCatalog = () => {
                         onCheckedChange={() => handleCategoryChange(category.slug)}
                       />
                       <Label htmlFor={`category-${category.slug}`} className="text-gray-700">
-                        {t(`products.categories.${category.slug}`) || category.name}
+                        {t(`products.categoryItems.${category.slug}`) || category.name}
                       </Label>
                     </div>
                   ))}
