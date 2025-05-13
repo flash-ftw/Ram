@@ -21,15 +21,15 @@ const ProductCard = ({ product }: ProductCardProps) => {
   const getCategoryLabel = (categoryId: number) => {
     switch(categoryId) {
       case 17:
-        return t('products.categories.thermal');
+        return t('products.categoryItems.thermal');
       case 18:
-        return t('products.categories.electric');
+        return t('products.categoryItems.electric');
       case 7:
-        return t('products.categories.helmets');
+        return t('products.categoryItems.helmets');
       case 14:
-        return t('products.categories.motorcycles');
+        return t('products.categoryItems.motorcycles');
       default:
-        return t('products.categories.category');
+        return t('products.categoryItems.category');
     }
   };
   

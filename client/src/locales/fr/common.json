@@ -69,7 +69,12 @@
     "categoryItems": {
       "casques": "Casques",
       "moteur-electrique": "Moteur Électrique",
-      "moteur-thermique": "Moteur Thermique"
+      "moteur-thermique": "Moteur Thermique",
+      "thermal": "Moteur Thermique",
+      "electric": "Moteur Électrique",
+      "helmets": "Casques",
+      "motorcycles": "Motos",
+      "category": "Catégorie"
     },
     "filter": {
       "all": "Tous",

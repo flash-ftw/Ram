@@ -69,7 +69,12 @@
     "categoryItems": {
       "casques": "خوذات",
       "moteur-electrique": "محرك كهربائي",
-      "moteur-thermique": "محرك حراري"
+      "moteur-thermique": "محرك حراري",
+      "thermal": "محرك حراري",
+      "electric": "محرك كهربائي",
+      "helmets": "خوذات",
+      "motorcycles": "دراجات نارية",
+      "category": "فئة"
     },
     "filter": {
       "all": "الكل",

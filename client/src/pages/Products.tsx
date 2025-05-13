@@ -17,10 +17,10 @@ const Products = () => {
   
   if (categorySlug) {
     // Use translated category name if available
-    const translatedCategory = t(`products.categories.${categorySlug}`);
+    const translatedCategory = t(`products.categoryItems.${categorySlug}`);
     
     // Fallback to formatted slug if no translation is available
-    const categoryName = translatedCategory !== `products.categories.${categorySlug}` 
+    const categoryName = translatedCategory !== `products.categoryItems.${categorySlug}` 
       ? translatedCategory 
       : categorySlug
         .replace(/-/g, ' ')
