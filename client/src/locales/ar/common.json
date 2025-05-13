@@ -284,6 +284,25 @@
     "ourMission": "مهمتنا",
     "whyChooseUs": "لماذا تختارنا"
   },
+  "cart": {
+    "title": "سلة التسوق",
+    "empty": "سلة التسوق فارغة",
+    "emptyMessage": "يبدو أنك لم تضف أي منتجات إلى سلة التسوق بعد.",
+    "browseProducts": "تصفح المنتجات",
+    "clearCart": "تفريغ السلة",
+    "product": "المنتج",
+    "quantity": "الكمية",
+    "price": "السعر",
+    "total": "المجموع",
+    "actions": "إجراءات",
+    "continueShopping": "متابعة التسوق",
+    "orderSummary": "ملخص الطلب",
+    "subtotal": "المجموع الفرعي",
+    "shipping": "الشحن",
+    "toCalculate": "للحساب",
+    "proceedToCheckout": "المتابعة إلى الدفع",
+    "termsNotice": "من خلال المتابعة إلى الدفع، أنت توافق على شروطنا وأحكامنا."
+  },
   "buttons": {
     "viewDetails": "عرض التفاصيل",
     "addToCart": "أضف إلى العربة",
