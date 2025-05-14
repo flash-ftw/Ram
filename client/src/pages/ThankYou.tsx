@@ -57,10 +57,10 @@ const ThankYou = () => {
           {hasOrderData ? (
             <div className="space-y-6">
               <div>
-                <h2 className="text-xl font-semibold mb-4">Résumé de la Commande</h2>
+                <h2 className="text-xl font-semibold mb-4">{t('thankYou.orderSummary')}</h2>
                 {checkoutData.orderId && (
                   <div className="mb-4 p-3 bg-yellow-50 border border-yellow-200 rounded-md">
-                    <span className="font-medium text-yellow-800">ID Commande : </span>
+                    <span className="font-medium text-yellow-800">{t('thankYou.orderId')} : </span>
                     <span className="font-mono">{checkoutData.orderId}</span>
                   </div>
                 )}
@@ -77,7 +77,7 @@ const ThankYou = () => {
                   ))}
                 </div>
                 <div className="flex justify-between py-4">
-                  <span className="font-bold">Total</span>
+                  <span className="font-bold">{t('thankYou.total')}</span>
                   <span className="font-bold text-yellow-500">
                     {formatPrice(checkoutData.totalAmount)}
                   </span>
@@ -85,45 +85,45 @@ const ThankYou = () => {
               </div>
               
               <div>
-                <h2 className="text-xl font-semibold mb-4">Informations Client</h2>
+                <h2 className="text-xl font-semibold mb-4">{t('thankYou.customerInfo')}</h2>
                 <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
                   <div>
-                    <h3 className="text-sm font-medium text-gray-500">Nom</h3>
+                    <h3 className="text-sm font-medium text-gray-500">{t('checkout.form.name')}</h3>
                     <p>{checkoutData.name}</p>
                   </div>
                   <div>
-                    <h3 className="text-sm font-medium text-gray-500">Email</h3>
+                    <h3 className="text-sm font-medium text-gray-500">{t('checkout.form.email')}</h3>
                     <p>{checkoutData.email}</p>
                   </div>
                   <div>
-                    <h3 className="text-sm font-medium text-gray-500">Téléphone</h3>
+                    <h3 className="text-sm font-medium text-gray-500">{t('checkout.form.phone')}</h3>
                     <p>{checkoutData.phone}</p>
                   </div>
                   <div>
-                    <h3 className="text-sm font-medium text-gray-500">Adresse de Livraison</h3>
+                    <h3 className="text-sm font-medium text-gray-500">{t('checkout.form.location')}</h3>
                     <p>{checkoutData.location}</p>
                   </div>
                 </div>
               </div>
               
               <div>
-                <h2 className="text-xl font-semibold mb-4">Que se Passe-t-il Ensuite ?</h2>
+                <h2 className="text-xl font-semibold mb-4">{t('thankYou.whatsNext')}</h2>
                 <ol className="list-decimal list-inside space-y-2 text-gray-600">
-                  <li>Nous vérifierons votre paiement et confirmerons votre commande.</li>
-                  <li>Notre équipe préparera vos articles pour la livraison ou le retrait.</li>
-                  <li>Nous vous contacterons via WhatsApp ou par téléphone pour organiser la livraison.</li>
-                  <li>Votre commande sera livrée à l'adresse que vous avez indiquée.</li>
+                  <li>{t('thankYou.step1')}</li>
+                  <li>{t('thankYou.step2')}</li>
+                  <li>{t('thankYou.step3')}</li>
+                  <li>{t('thankYou.step4')}</li>
                 </ol>
               </div>
             </div>
           ) : (
             <div className="text-center py-8">
-              <p className="text-gray-600 mb-4">Détails de la commande non trouvés.</p>
+              <p className="text-gray-600 mb-4">{t('checkout.emptyCart')}</p>
               <Button 
                 onClick={() => setLocation('/products')}
                 className="bg-yellow-500 hover:bg-yellow-600 text-black"
               >
-                Parcourir les Produits
+                {t('checkout.browseProducts')}
               </Button>
             </div>
           )}
@@ -137,9 +137,9 @@ const ThankYou = () => {
             className="bg-green-600 hover:bg-green-700 text-white flex items-center gap-2 mx-auto"
           >
             <MessageCircle className="h-4 w-4" />
-            <span>Nous Contacter sur WhatsApp</span>
+            <span>{t('thankYou.contactWhatsApp')}</span>
           </Button>
-          <p className="text-sm text-gray-500 mt-2">Vous avez des questions ? Contactez-nous au +216 58 274 563</p>
+          <p className="text-sm text-gray-500 mt-2">{t('thankYou.contactPhone')} +216 58 274 563</p>
         </div>
       
         <div className="flex flex-col sm:flex-row gap-4 justify-center">
@@ -149,7 +149,7 @@ const ThankYou = () => {
             className="flex items-center gap-2"
           >
             <Home className="h-4 w-4" />
-            <span>Retour à l'Accueil</span>
+            <span>{t('thankYou.backToHome')}</span>
           </Button>
           
           <Button 
@@ -157,7 +157,7 @@ const ThankYou = () => {
             className="bg-yellow-500 hover:bg-yellow-600 text-black flex items-center gap-2"
           >
             <ShoppingCart className="h-4 w-4" />
-            <span>Continuer les Achats</span>
+            <span>{t('thankYou.continueShopping')}</span>
           </Button>
         </div>
       </div>
