@@ -41,10 +41,16 @@ const LanguageContext = createContext<LanguageContextType>({
   isRTL: false
 });
 
+// Hook pour utiliser le contexte - défini en premier pour éviter les erreurs de Hot Module Reloading
+export function useLanguage() {
+  return useContext(LanguageContext);
+}
+
 interface LanguageProviderProps {
   children: React.ReactNode;
 }
 
+// Le Provider défini après le hook
 export function LanguageProvider({ children }: LanguageProviderProps) {
   const [language, setLanguageState] = useState<Language>('fr');
   const isRTL = language === 'ar';
@@ -88,6 +94,3 @@ export function LanguageProvider({ children }: LanguageProviderProps) {
     </LanguageContext.Provider>
   );
 }
-
-// Hook pour utiliser le contexte
-export const useLanguage = () => useContext(LanguageContext);

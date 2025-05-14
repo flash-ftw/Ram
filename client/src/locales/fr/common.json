@@ -249,7 +249,8 @@
     },
     "errors": {
       "orderCreationFailed": "Un problème est survenu lors de la création de votre commande. Veuillez réessayer."
-    }
+    },
+    "errorTitle": "Erreur"
   },
   "thankYou": {
     "title": "Merci pour Votre Commande !",

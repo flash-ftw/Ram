@@ -248,7 +248,8 @@
     },
     "errors": {
       "orderCreationFailed": "حدثت مشكلة أثناء إنشاء طلبك. يرجى المحاولة مرة أخرى."
-    }
+    },
+    "errorTitle": "خطأ"
   },
   "thankYou": {
     "title": "شكراً لطلبك!",

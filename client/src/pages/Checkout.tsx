@@ -292,7 +292,7 @@ const Checkout = () => {
           <div className="lg:col-span-1">
             <Card className="bg-white shadow-md rounded-lg sticky top-24">
               <CardHeader>
-                <CardTitle>{t('checkout.orderSummary')}</CardTitle>
+                <CardTitle>{t('checkout.orderSummary.title')}</CardTitle>
               </CardHeader>
               <CardContent>
                 <div className="space-y-4">
