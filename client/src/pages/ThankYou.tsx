@@ -8,10 +8,12 @@ import { Card, CardContent } from "@/components/ui/card";
 import { useCart } from "@/contexts/CartContext";
 import { formatPrice } from "@/lib/utils";
 import MotorcycleIcon from "@/components/ui/motorcycle-icon";
+import { useTranslation } from "react-i18next";
 
 const ThankYou = () => {
   const [, setLocation] = useLocation();
   const { clearCart } = useCart();
+  const { t } = useTranslation();
   
   // Get checkout data from localStorage
   const checkoutData = JSON.parse(localStorage.getItem("checkout_data") || "{}");
@@ -32,17 +34,17 @@ const ThankYou = () => {
   return (
     <div className="container mx-auto px-4 py-16 max-w-4xl">
       <Helmet>
-        <title>Commande Confirmée | Rammeh MotoScoot</title>
-        <meta name="description" content="Merci pour votre commande chez Rammeh MotoScoot !" />
+        <title>{t('thankYou.title')} | Rammeh MotoScoot</title>
+        <meta name="description" content={t('thankYou.subtitle')} />
       </Helmet>
       
       <div className="text-center mb-8">
         <div className="mx-auto w-20 h-20 rounded-full bg-green-100 flex items-center justify-center mb-6">
           <CheckCircle className="h-10 w-10 text-green-600" />
         </div>
-        <h1 className="text-3xl font-bold mb-2">Merci pour Votre Commande !</h1>
+        <h1 className="text-3xl font-bold mb-2">{t('thankYou.title')}</h1>
         <p className="text-gray-600 max-w-xl mx-auto">
-          Nous avons bien reçu votre commande et la traiterons dès que nous aurons confirmé votre paiement.
+          {t('thankYou.subtitle')}
         </p>
       </div>
       
