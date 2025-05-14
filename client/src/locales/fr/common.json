@@ -217,6 +217,7 @@
     "termsNotice": "En continuant, vous acceptez nos conditions de vente et notre politique de confidentialité."
   },
   "checkout": {
+    "pageTitle": "Paiement",
     "title": "Paiement",
     "subtitle": "Veuillez remplir vos coordonnées pour finaliser votre commande",
     "emptyCart": "Votre panier est vide. Veuillez ajouter des produits avant de passer à la caisse.",
