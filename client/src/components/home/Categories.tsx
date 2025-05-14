@@ -2,12 +2,12 @@ import { Link } from "wouter";
 import { ArrowRight, Layers } from "lucide-react";
 import { useCategories } from "@/hooks/useCategories";
 import { useTranslation } from "react-i18next";
-import { useLanguage } from "@/contexts/LanguageContext";
+import i18n from "i18next";
 
 const Categories = () => {
   const { data: categories = [], isLoading } = useCategories();
   const { t } = useTranslation('common');
-  const { isRTL } = useLanguage();
+  const isRTL = i18n.language === 'ar';
 
   return (
     <section className="py-16 bg-gray-900 text-white">

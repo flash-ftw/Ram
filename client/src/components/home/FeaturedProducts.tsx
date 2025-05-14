@@ -5,12 +5,12 @@ import ProductCard from "@/components/products/ProductCard";
 import { useProducts } from "@/hooks/useProducts";
 import MotorcycleIcon from "@/components/ui/motorcycle-icon";
 import { useTranslation } from "react-i18next";
-import { useLanguage } from "@/contexts/LanguageContext";
+import i18n from "i18next";
 
 const FeaturedProducts = () => {
   const { data: products = [], isLoading } = useProducts({ featured: true });
   const { t } = useTranslation('common');
-  const { isRTL } = useLanguage();
+  const isRTL = i18n.language === 'ar';
 
   return (
     <section id="featured" className="py-16 bg-gradient-to-b from-black to-gray-900 text-white">

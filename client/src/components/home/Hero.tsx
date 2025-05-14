@@ -3,11 +3,11 @@ import { ChevronRight } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import MotorcycleIcon from "@/components/ui/motorcycle-icon";
 import { useTranslation } from "react-i18next";
-import { useLanguage } from "@/contexts/LanguageContext";
+import i18n from "i18next";
 
 const Hero = () => {
   const { t } = useTranslation('common');
-  const { isRTL } = useLanguage();
+  const isRTL = i18n.language === 'ar';
   
   return (
     <section className="relative bg-black text-white">
