@@ -171,6 +171,8 @@
       "transmissionChassis": "ناقل الحركة والهيكل",
       "transmission": "ناقل الحركة",
       "startType": "نظام التشغيل",
+      "brakes": "الفرامل",
+      "wheelSize": "حجم العجلات",
       "dimensionsOther": "الأبعاد وأخرى",
       "weight": "الوزن",
       "dashboard": "لوحة القيادة"

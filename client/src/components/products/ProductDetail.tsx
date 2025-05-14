@@ -381,14 +381,14 @@ const ProductDetail = () => {
                   
                   {product.wheelSize && (
                     <div className="flex justify-between">
-                      <span className="text-gray-600">Taille des roues:</span>
+                      <span className="text-gray-600">{t('productDetail.specs.wheelSize')}:</span>
                       <span className="font-medium">{product.wheelSize}</span>
                     </div>
                   )}
                   
                   {product.tires && (
                     <div className="flex justify-between">
-                      <span className="text-gray-600">Pneus:</span>
+                      <span className="text-gray-600">{t('productDetail.specs.tires')}:</span>
                       <span className="font-medium">{product.tires}</span>
                     </div>
                   )}
@@ -407,14 +407,14 @@ const ProductDetail = () => {
                   
                   {product.fuelCapacity && (
                     <div className="flex justify-between">
-                      <span className="text-gray-600">Réservoir:</span>
+                      <span className="text-gray-600">{t('productDetail.specs.fuelCapacity')}:</span>
                       <span className="font-medium">{product.fuelCapacity} litres</span>
                     </div>
                   )}
                   
                   {product.fuelConsumption && (
                     <div className="flex justify-between">
-                      <span className="text-gray-600">Consommation:</span>
+                      <span className="text-gray-600">{t('productDetail.specs.fuelConsumption')}:</span>
                       <span className="font-medium">{product.fuelConsumption} L/100km</span>
                     </div>
                   )}

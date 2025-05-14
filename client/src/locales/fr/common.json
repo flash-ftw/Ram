@@ -173,6 +173,7 @@
       "transmission": "Transmission",
       "startType": "Démarrage",
       "brakes": "Freins",
+      "wheelSize": "Taille des roues",
       "dimensionsOther": "Dimensions et Autres",
       "weight": "Poids",
       "dashboard": "Tableau de bord"
