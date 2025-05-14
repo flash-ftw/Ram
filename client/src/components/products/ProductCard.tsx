@@ -7,7 +7,7 @@ import { Product } from "@shared/schema";
 import { getImageUrl, formatPrice } from "@/lib/utils";
 import MotorcycleIcon from "@/components/ui/motorcycle-icon";
 import { useTranslation } from "react-i18next";
-import { useLanguage } from "@/contexts/LanguageContext";
+import i18n from "i18next";
 
 interface ProductCardProps {
   product: Product;
@@ -15,7 +15,7 @@ interface ProductCardProps {
 
 const ProductCard = ({ product }: ProductCardProps) => {
   const { t } = useTranslation('common');
-  const { isRTL } = useLanguage();
+  const isRTL = i18n.language === 'ar';
   
   // Fonction pour obtenir la traduction de la catégorie
   const getCategoryLabel = (categoryId: number) => {

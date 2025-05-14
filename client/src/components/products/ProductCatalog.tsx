@@ -11,11 +11,12 @@ import { useProducts } from "@/hooks/useProducts";
 import { useCategories } from "@/hooks/useCategories";
 import { useBrands } from "@/hooks/useBrands";
 import { useTranslation } from "react-i18next";
-import { useLanguage } from "@/contexts/LanguageContext";
+import i18n from "i18next";
 
 const ProductCatalog = () => {
   const { t } = useTranslation('common');
-  const { language, isRTL } = useLanguage();
+  const language = i18n.language;
+  const isRTL = language === 'ar';
   const [location] = useLocation();
   const searchParams = new URLSearchParams(window.location.search);
   const categorySlug = searchParams.get('category');

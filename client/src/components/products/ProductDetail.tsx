@@ -19,6 +19,7 @@ import { useProduct } from "@/hooks/useProduct";
 import { useCategories } from "@/hooks/useCategories";
 import { useCart } from "@/contexts/CartContext";
 import { useTranslation } from "react-i18next";
+import i18n from "i18next";
 import { getImageUrl, formatPrice } from "@/lib/utils";
 
 const ProductDetail = () => {
@@ -29,6 +30,7 @@ const ProductDetail = () => {
   const { addItem } = useCart();
   const { toast } = useToast();
   const { t } = useTranslation('common');
+  const isRTL = i18n.language === 'ar';
   const [selectedImage, setSelectedImage] = useState(0);
   const [quantity, setQuantity] = useState(1);
   const [isAddingToCart, setIsAddingToCart] = useState(false);
