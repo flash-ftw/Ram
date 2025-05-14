@@ -5,11 +5,11 @@ import { useProduct } from "@/hooks/useProduct";
 import { useCategories } from "@/hooks/useCategories";
 import { getImageUrl } from "@/lib/utils";
 import { useTranslation } from 'react-i18next';
-import { useLanguage } from '@/contexts/LanguageContext';
+import i18n from 'i18next';
 
 const ProductDetail = () => {
   const { t } = useTranslation('common');
-  const { language } = useLanguage();
+  const language = i18n.language;
   const { slug } = useParams();
   const { data: product } = useProduct(slug as string);
   const { data: categories = [] } = useCategories();

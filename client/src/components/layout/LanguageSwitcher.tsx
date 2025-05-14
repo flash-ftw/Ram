@@ -38,7 +38,7 @@ const LanguageSwitcher: React.FC<LanguageSwitcherProps> = ({
   };
   
   // Pour l'affichage dans la version minimale
-  const languageCodes = {
+  const languageCodes: Record<string, string> = {
     fr: 'FR',
     ar: 'ع'
   };
