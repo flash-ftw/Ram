@@ -334,6 +334,14 @@
       "phone": "Téléphone",
       "email": "Email",
       "workingHours": "Heures d'ouverture"
+    },
+    "showroom": {
+      "title": "Visitez Notre Showroom",
+      "description": "Découvrez nos motos en personne dans notre showroom principal à Tunis. Notre équipe d'experts motards et de techniciens est prête à vous aider à trouver votre moto parfaite ou à entretenir votre monture actuelle.",
+      "hours": "Heures d'Ouverture :",
+      "monday": "Lundi - Vendredi : 9h - 19h",
+      "saturday": "Samedi : 10h - 17h",
+      "sunday": "Dimanche : Sur rendez-vous uniquement"
     }
   },
   "about": {

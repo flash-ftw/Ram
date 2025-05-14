@@ -1,20 +1,23 @@
 import { Helmet } from 'react-helmet';
 import ContactForm from "@/components/contact/ContactForm";
+import { useTranslation } from "react-i18next";
 
 const Contact = () => {
+  const { t } = useTranslation();
+  
   return (
     <>
       <Helmet>
-        <title>Contactez-Nous - Rammeh MotoScoot</title>
-        <meta name="description" content="Contactez Rammeh MotoScoot pour vos demandes de motos, essais, rendez-vous d'entretien, ou toute question concernant nos motos et accessoires." />
-        <meta property="og:title" content="Contactez-Nous - Rammeh MotoScoot" />
-        <meta property="og:description" content="Contactez le premier showroom de motos en Tunisie pour les ventes, services, pièces et accessoires. Planifiez un essai ou un rendez-vous d'entretien dès aujourd'hui." />
+        <title>{t('contact.title')} - Rammeh MotoScoot</title>
+        <meta name="description" content={t('contact.subtitle')} />
+        <meta property="og:title" content={`${t('contact.title')} - Rammeh MotoScoot`} />
+        <meta property="og:description" content={t('contact.subtitle')} />
         <meta property="og:type" content="website" />
       </Helmet>
       
       <div className="py-12 bg-gray-900 text-white">
         <div className="container mx-auto px-4">
-          <h1 className="text-4xl font-bold text-center mb-2 moto-heading inline-block after:bottom-[-10px] after:w-24 after:left-1/2 after:-translate-x-1/2">Contactez Rammeh MotoScoot</h1>
+          <h1 className="text-4xl font-bold text-center mb-2 moto-heading inline-block after:bottom-[-10px] after:w-24 after:left-1/2 after:-translate-x-1/2">{t('contact.title')}</h1>
         </div>
       </div>
       
@@ -25,16 +28,16 @@ const Contact = () => {
           <div className="max-w-4xl mx-auto">
             <div className="grid grid-cols-1 md:grid-cols-2 gap-12">
               <div className="bg-gray-900 p-8 rounded-lg border-l-4 border-yellow-500">
-                <h2 className="text-2xl font-bold mb-4 text-yellow-500">Visitez Notre Showroom</h2>
+                <h2 className="text-2xl font-bold mb-4 text-yellow-500">{t('contact.showroom.title')}</h2>
                 <p className="text-gray-300 mb-6">
-                  Découvrez nos motos en personne dans notre showroom principal à Tunis. Notre équipe d'experts motards et de techniciens est prête à vous aider à trouver votre moto parfaite ou à entretenir votre monture actuelle.
+                  {t('contact.showroom.description')}
                 </p>
                 <div className="mt-4">
-                  <h3 className="font-semibold mb-2 text-white">Heures d'Ouverture :</h3>
+                  <h3 className="font-semibold mb-2 text-white">{t('contact.showroom.hours')}</h3>
                   <p className="text-gray-300">
-                    Lundi - Vendredi : 9h - 19h<br />
-                    Samedi : 10h - 17h<br />
-                    Dimanche : Sur rendez-vous uniquement
+                    {t('contact.showroom.monday')}<br />
+                    {t('contact.showroom.saturday')}<br />
+                    {t('contact.showroom.sunday')}
                   </p>
                 </div>
               </div>
