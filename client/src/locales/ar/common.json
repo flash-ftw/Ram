@@ -13,6 +13,17 @@
     "login": "تسجيل الدخول",
     "search": "بحث..."
   },
+  "units": {
+    "kg": "كغ",
+    "liters": "لتر",
+    "litersPer100km": "لتر/100كم",
+    "km": "كم",
+    "cm": "سم",
+    "mm": "ملم",
+    "watts": "واط",
+    "volts": "فولت",
+    "amperes": "أمبير"
+  },
   "footer": {
     "quickLinks": "روابط سريعة",
     "categories": "الفئات",

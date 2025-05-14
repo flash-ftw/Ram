@@ -13,6 +13,17 @@
     "login": "Connexion",
     "search": "Rechercher..."
   },
+  "units": {
+    "kg": "kg",
+    "liters": "litres",
+    "litersPer100km": "L/100km",
+    "km": "km",
+    "cm": "cm",
+    "mm": "mm",
+    "watts": "watts",
+    "volts": "volts",
+    "amperes": "ampères"
+  },
   "footer": {
     "quickLinks": "Liens Rapides",
     "categories": "Catégories",

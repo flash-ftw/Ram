@@ -401,21 +401,21 @@ const ProductDetail = () => {
                   {product.weight && (
                     <div className="flex justify-between">
                       <span className="text-gray-600">{t('productDetail.specs.weight')}:</span>
-                      <span className="font-medium">{product.weight} kg</span>
+                      <span className="font-medium">{product.weight} {t('units.kg')}</span>
                     </div>
                   )}
                   
                   {product.fuelCapacity && (
                     <div className="flex justify-between">
                       <span className="text-gray-600">{t('productDetail.specs.fuelCapacity')}:</span>
-                      <span className="font-medium">{product.fuelCapacity} litres</span>
+                      <span className="font-medium">{product.fuelCapacity} {t('units.liters')}</span>
                     </div>
                   )}
                   
                   {product.fuelConsumption && (
                     <div className="flex justify-between">
                       <span className="text-gray-600">{t('productDetail.specs.fuelConsumption')}:</span>
-                      <span className="font-medium">{product.fuelConsumption} L/100km</span>
+                      <span className="font-medium">{product.fuelConsumption} {t('units.litersPer100km')}</span>
                     </div>
                   )}
                   
