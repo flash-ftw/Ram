@@ -19,14 +19,14 @@ import {
 } from "lucide-react";
 import { useCategories } from "@/hooks/useCategories";
 import { useTranslation } from "react-i18next";
-import { useLanguage } from "@/contexts/LanguageContext";
+import i18n from "i18next";
 import LanguageSwitcher from "./LanguageSwitcher";
 import MotorcycleIcon from "@/components/ui/motorcycle-icon";
 
 const Footer = () => {
   const { data: categories } = useCategories();
   const { t } = useTranslation('common');
-  const { isRTL } = useLanguage();
+  const isRTL = i18n.language === 'ar';
   
   const scrollToTop = () => {
     window.scrollTo({

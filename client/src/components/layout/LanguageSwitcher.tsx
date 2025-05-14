@@ -1,6 +1,6 @@
 import React from 'react';
 import { useTranslation } from 'react-i18next';
-import { useLanguage } from '@/contexts/LanguageContext';
+import i18n from 'i18next';
 import { Button } from '@/components/ui/button';
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from '@/components/ui/select';
 import { Globe } from 'lucide-react';
@@ -15,7 +15,21 @@ const LanguageSwitcher: React.FC<LanguageSwitcherProps> = ({
   className = ''
 }) => {
   const { t } = useTranslation('common');
-  const { language, setLanguage, isRTL } = useLanguage();
+  const language = i18n.language as 'fr' | 'ar';
+  const isRTL = language === 'ar';
+  
+  const setLanguage = (lang: 'fr' | 'ar') => {
+    i18n.changeLanguage(lang);
+    localStorage.setItem('language', lang);
+    document.documentElement.dir = lang === 'ar' ? 'rtl' : 'ltr';
+    document.documentElement.lang = lang;
+    
+    if (lang === 'ar') {
+      document.documentElement.classList.add('rtl');
+    } else {
+      document.documentElement.classList.remove('rtl');
+    }
+  };
   
   // Pour l'affichage des noms des langues
   const languageNames = {

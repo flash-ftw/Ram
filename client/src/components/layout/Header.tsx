@@ -11,8 +11,8 @@ import {
 } from "@/components/ui/dropdown-menu";
 import { useCategories } from "@/hooks/useCategories";
 import { useCart } from "@/contexts/CartContext";
-import { useLanguage } from "@/contexts/LanguageContext";
 import { useTranslation } from "react-i18next";
+import i18n from "i18next";
 import LanguageSwitcher from "./LanguageSwitcher";
 import MotorcycleIcon from "@/components/ui/motorcycle-icon";
 
@@ -23,7 +23,7 @@ const Header = () => {
   const { data: categories } = useCategories();
   const { state: cartState } = useCart();
   const { t } = useTranslation('common');
-  const { isRTL } = useLanguage();
+  const isRTL = i18n.language === 'ar';
 
   const handleSearch = (e: React.FormEvent) => {
     e.preventDefault();
