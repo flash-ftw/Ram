@@ -114,7 +114,15 @@
       "twoStroke": "2 temps",
       "fourStroke": "4 temps",
       "airCooled": "Refroidi par air",
-      "waterCooled": "Refroidi par eau"
+      "waterCooled": "Refroidi par eau",
+      "électrique": "Électrique",
+      "thermique": "Thermique",
+      "monocylindre": "Monocylindre",
+      "refroidiparair": "Refroidi par air",
+      "refroidipareau": "Refroidi par eau",
+      "automatique": "Automatique",
+      "manuelle": "Manuelle",
+      "electrique": "Électrique"
     }
   },
   "productDetail": {

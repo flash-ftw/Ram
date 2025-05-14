@@ -113,7 +113,15 @@
       "twoStroke": "شوطين",
       "fourStroke": "أربعة أشواط",
       "airCooled": "تبريد هوائي",
-      "waterCooled": "تبريد مائي"
+      "waterCooled": "تبريد مائي",
+      "électrique": "كهربائي",
+      "thermique": "حراري",
+      "monocylindre": "أسطوانة واحدة",
+      "refroidiparair": "تبريد هوائي",
+      "refroidipareau": "تبريد مائي",
+      "automatique": "أوتوماتيكي",
+      "manuelle": "يدوي",
+      "electrique": "كهربائي"
     }
   },
   "productDetail": {

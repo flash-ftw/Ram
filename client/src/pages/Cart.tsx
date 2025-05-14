@@ -117,7 +117,7 @@ const Cart = () => {
                             />
                           </div>
                           <div className={`${isRTL ? 'mr-4' : 'ml-4'}`}>
-                            <Link href={`/product/${item.product.slug}`} className="text-sm font-medium text-gray-900 hover:text-yellow-500">
+                            <Link href={`/products/${item.product.slug}`} className="text-sm font-medium text-gray-900 hover:text-yellow-500">
                               {item.product.name}
                             </Link>
                           </div>

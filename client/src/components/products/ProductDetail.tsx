@@ -314,7 +314,7 @@ const ProductDetail = () => {
                   {product.motorType && (
                     <div className="flex justify-between">
                       <span className="text-gray-600">{t('productDetail.specs.engineType')}:</span>
-                      <span className="font-medium">{product.motorType}</span>
+                      <span className="font-medium">{t(`products.specs.${product.motorType?.toLowerCase()}`, { defaultValue: product.motorType })}</span>
                     </div>
                   )}
                   
@@ -328,7 +328,7 @@ const ProductDetail = () => {
                   {product.cooling && (
                     <div className="flex justify-between">
                       <span className="text-gray-600">{t('productDetail.specs.cooling')}:</span>
-                      <span className="font-medium">{product.cooling}</span>
+                      <span className="font-medium">{t(`products.specs.${product.cooling?.toLowerCase()?.replace(/\s+/g, '').replace(/é/g, 'e')}`, { defaultValue: product.cooling })}</span>
                     </div>
                   )}
                   
@@ -361,14 +361,14 @@ const ProductDetail = () => {
                   {product.transmission && (
                     <div className="flex justify-between">
                       <span className="text-gray-600">{t('productDetail.specs.transmission')}:</span>
-                      <span className="font-medium">{product.transmission}</span>
+                      <span className="font-medium">{t(`products.specs.${product.transmission?.toLowerCase()?.replace(/\s+/g, '').replace(/é/g, 'e').replace(/\(.*\)/g, '')}`, { defaultValue: product.transmission })}</span>
                     </div>
                   )}
                   
                   {product.starter && (
                     <div className="flex justify-between">
                       <span className="text-gray-600">{t('productDetail.specs.startType')}:</span>
-                      <span className="font-medium">{product.starter}</span>
+                      <span className="font-medium">{t(`products.specs.${product.starter?.toLowerCase()?.replace(/\s+/g, '').replace(/é/g, 'e')}`, { defaultValue: product.starter })}</span>
                     </div>
                   )}
                   
