@@ -119,6 +119,8 @@
   },
   "productDetail": {
     "home": "Accueil",
+    "products": "Produits",
+    "product": "Produit",
     "features": "Caractéristiques",
     "specifications": "Spécifications",
     "addToCart": "Ajouter au Panier",
@@ -224,6 +226,9 @@
     "backToForm": "Retour au Formulaire",
     "finalizeOrder": "Finaliser la Commande",
     "continueToPayment": "Continuer vers le Paiement",
+    "processing": "En cours de traitement...",
+    "reference": "Référence",
+    "orderNumber": "Commande n°",
     "formLabels": {
       "fullName": "Nom Complet",
       "fullNamePlaceholder": "Entrez votre nom complet",

@@ -118,6 +118,8 @@
   },
   "productDetail": {
     "home": "الرئيسية",
+    "products": "المنتجات",
+    "product": "المنتج",
     "features": "المميزات",
     "specifications": "المواصفات",
     "addToCart": "أضف إلى العربة",
