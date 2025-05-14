@@ -11,21 +11,23 @@ import arCommon from '../locales/ar/common.json';
 export type Language = 'fr' | 'ar';
 
 // Configuration initiale de i18next
-i18n
-  .use(LanguageDetector)
-  .use(initReactI18next)
-  .init({
-    resources: {
-      fr: { common: frCommon },
-      ar: { common: arCommon }
-    },
-    lng: 'fr',
-    fallbackLng: 'fr',
-    ns: ['common'],
-    defaultNS: 'common',
-    interpolation: { escapeValue: false },
-    react: { useSuspense: false }
-  });
+if (!i18n.isInitialized) {
+  i18n
+    .use(LanguageDetector)
+    .use(initReactI18next)
+    .init({
+      resources: {
+        fr: { common: frCommon },
+        ar: { common: arCommon }
+      },
+      lng: 'fr',
+      fallbackLng: 'fr',
+      ns: ['common'],
+      defaultNS: 'common',
+      interpolation: { escapeValue: false },
+      react: { useSuspense: false }
+    });
+}
 
 // Interface du contexte
 interface LanguageContextType {
@@ -34,24 +36,11 @@ interface LanguageContextType {
   isRTL: boolean;
 }
 
-// Contexte avec une valeur par défaut
-const LanguageContext = createContext<LanguageContextType>({
-  language: 'fr',
-  setLanguage: () => {},
-  isRTL: false
-});
+// Définir le contexte
+const LanguageContext = createContext<LanguageContextType | undefined>(undefined);
 
-// Hook pour utiliser le contexte - défini en premier pour éviter les erreurs de Hot Module Reloading
-export function useLanguage() {
-  return useContext(LanguageContext);
-}
-
-interface LanguageProviderProps {
-  children: React.ReactNode;
-}
-
-// Le Provider défini après le hook
-export function LanguageProvider({ children }: LanguageProviderProps) {
+// Provider Component
+const LanguageProvider: React.FC<{children: React.ReactNode}> = ({ children }) => {
   const [language, setLanguageState] = useState<Language>('fr');
   const isRTL = language === 'ar';
   
@@ -82,15 +71,27 @@ export function LanguageProvider({ children }: LanguageProviderProps) {
     }
   }, []);
   
-  const contextValue = {
+  const value = {
     language,
     setLanguage,
     isRTL
   };
   
   return (
-    <LanguageContext.Provider value={contextValue}>
+    <LanguageContext.Provider value={value}>
       {children}
     </LanguageContext.Provider>
   );
-}
+};
+
+// Hook personnalisé pour utiliser le contexte
+const useLanguage = () => {
+  const context = useContext(LanguageContext);
+  if (context === undefined) {
+    throw new Error('useLanguage doit être utilisé à l\'intérieur d\'un LanguageProvider');
+  }
+  return context;
+};
+
+// Exporter les composants et hooks
+export { LanguageProvider, useLanguage };

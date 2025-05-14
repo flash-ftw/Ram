@@ -1,4 +1,9 @@
 {
+  "languages": {
+    "switchLanguage": "Changer de langue",
+    "french": "Français",
+    "arabic": "Arabe"
+  },
   "header": {
     "home": "Accueil",
     "products": "Produits",
