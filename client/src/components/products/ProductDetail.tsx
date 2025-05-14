@@ -421,7 +421,7 @@ const ProductDetail = () => {
                   
                   {product.headlight && (
                     <div className="flex justify-between">
-                      <span className="text-gray-600">Phare:</span>
+                      <span className="text-gray-600">{t('productDetail.specs.headlight')}:</span>
                       <span className="font-medium">{product.headlight}</span>
                     </div>
                   )}

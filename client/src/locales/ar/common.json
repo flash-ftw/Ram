@@ -173,6 +173,10 @@
       "startType": "نظام التشغيل",
       "brakes": "الفرامل",
       "wheelSize": "حجم العجلات",
+      "tires": "الإطارات",
+      "fuelCapacity": "خزان الوقود",
+      "fuelConsumption": "استهلاك الوقود",
+      "headlight": "المصباح الأمامي",
       "dimensionsOther": "الأبعاد وأخرى",
       "weight": "الوزن",
       "dashboard": "لوحة القيادة"
