@@ -333,6 +333,7 @@
       "address": "Adresse",
       "phone": "Téléphone",
       "email": "Email",
+      "emailAddress": "info@rammehmotoscoot.tn",
       "workingHours": "Heures d'ouverture"
     },
     "showroom": {
@@ -342,6 +343,15 @@
       "monday": "Lundi - Vendredi : 9h - 19h",
       "saturday": "Samedi : 10h - 17h",
       "sunday": "Dimanche : Sur rendez-vous uniquement"
+    },
+    "assistance": {
+      "title": "Assistance Motards",
+      "description": "Besoin d'aide avec votre moto, des pièces détachées, ou des questions sur l'entretien ? Notre équipe d'assistance dédiée est là pour aider chaque motard.",
+      "contact": "Façons de Nous Contacter :",
+      "phone": "Téléphone : +216 58 274 563",
+      "whatsapp": "WhatsApp : Disponible 7j/7 pour une assistance rapide",
+      "visitUs": "Visitez-nous : Venez à notre atelier pour une consultation personnelle",
+      "cta": "Contactez-nous maintenant pour tous vos besoins de motos"
     }
   },
   "about": {

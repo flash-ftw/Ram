@@ -42,16 +42,16 @@ const Contact = () => {
                 </div>
               </div>
               <div className="bg-gray-900 p-8 rounded-lg border-l-4 border-yellow-500">
-                <h2 className="text-2xl font-bold mb-4 text-yellow-500">Assistance Motards</h2>
+                <h2 className="text-2xl font-bold mb-4 text-yellow-500">{t('contact.assistance.title')}</h2>
                 <p className="text-gray-300 mb-6">
-                  Besoin d'aide avec votre moto, des pièces détachées, ou des questions sur l'entretien ? Notre équipe d'assistance dédiée est là pour aider chaque motard.
+                  {t('contact.assistance.description')}
                 </p>
                 <div className="mt-4">
-                  <h3 className="font-semibold mb-2 text-white">Informations de Contact :</h3>
+                  <h3 className="font-semibold mb-2 text-white">{t('contact.assistance.contact')}</h3>
                   <p className="text-gray-300">
-                    Téléphone : +216 58 274 563<br />
-                    Email : info@rammehmotoscoot.tn<br />
-                    WhatsApp : +216 58 274 563
+                    {t('contact.assistance.phone')}<br />
+                    {t('contact.info.email')} : {t('contact.info.emailAddress')}<br />
+                    {t('contact.assistance.whatsapp')}
                   </p>
                 </div>
               </div>
