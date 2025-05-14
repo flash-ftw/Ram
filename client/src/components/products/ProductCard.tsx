@@ -7,7 +7,7 @@ import { Product } from "@shared/schema";
 import { getImageUrl, formatPrice } from "@/lib/utils";
 import MotorcycleIcon from "@/components/ui/motorcycle-icon";
 import { useTranslation } from "react-i18next";
-import i18n from "i18next";
+import i18n from "@/i18n";
 
 interface ProductCardProps {
   product: Product;

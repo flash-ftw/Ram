@@ -62,4 +62,11 @@ if (!i18n.isInitialized) {
   }
 }
 
+// Fonction helper pour changer la langue
+export function changeLanguage(lang: Language) {
+  if (lang === 'fr' || lang === 'ar') {
+    i18n.changeLanguage(lang);
+  }
+}
+
 export default i18n;

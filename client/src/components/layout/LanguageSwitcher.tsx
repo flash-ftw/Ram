@@ -1,6 +1,6 @@
 import React from 'react';
 import { useTranslation } from 'react-i18next';
-import i18n from 'i18next';
+import i18n, { changeLanguage, Language } from '@/i18n';
 import { Button } from '@/components/ui/button';
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from '@/components/ui/select';
 import { Globe } from 'lucide-react';
@@ -15,21 +15,8 @@ const LanguageSwitcher: React.FC<LanguageSwitcherProps> = ({
   className = ''
 }) => {
   const { t } = useTranslation('common');
-  const language = i18n.language as 'fr' | 'ar';
+  const language = i18n.language as Language;
   const isRTL = language === 'ar';
-  
-  const setLanguage = (lang: 'fr' | 'ar') => {
-    i18n.changeLanguage(lang);
-    localStorage.setItem('language', lang);
-    document.documentElement.dir = lang === 'ar' ? 'rtl' : 'ltr';
-    document.documentElement.lang = lang;
-    
-    if (lang === 'ar') {
-      document.documentElement.classList.add('rtl');
-    } else {
-      document.documentElement.classList.remove('rtl');
-    }
-  };
   
   // Pour l'affichage des noms des langues
   const languageNames = {
@@ -45,7 +32,7 @@ const LanguageSwitcher: React.FC<LanguageSwitcherProps> = ({
   
   const handleLanguageChange = (value: string) => {
     if (value === 'fr' || value === 'ar') {
-      setLanguage(value);
+      changeLanguage(value as Language);
     }
   };
   
@@ -56,7 +43,7 @@ const LanguageSwitcher: React.FC<LanguageSwitcherProps> = ({
         <Button
           variant={language === 'fr' ? 'default' : 'outline'}
           size="sm"
-          onClick={() => setLanguage('fr')}
+          onClick={() => changeLanguage('fr')}
           className={language === 'fr' ? 'bg-yellow-500 text-black' : ''}
         >
           FR
@@ -64,7 +51,7 @@ const LanguageSwitcher: React.FC<LanguageSwitcherProps> = ({
         <Button
           variant={language === 'ar' ? 'default' : 'outline'}
           size="sm"
-          onClick={() => setLanguage('ar')}
+          onClick={() => changeLanguage('ar')}
           className={language === 'ar' ? 'bg-yellow-500 text-black' : ''}
         >
           ع
@@ -78,7 +65,7 @@ const LanguageSwitcher: React.FC<LanguageSwitcherProps> = ({
       <Button
         variant="ghost"
         size="sm"
-        onClick={() => setLanguage(language === 'fr' ? 'ar' : 'fr')}
+        onClick={() => changeLanguage(language === 'fr' ? 'ar' : 'fr')}
         className={`flex items-center gap-1 ${className}`}
       >
         <Globe className="h-4 w-4" />
