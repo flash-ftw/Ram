@@ -137,7 +137,7 @@ const ProductCatalog = () => {
           {/* Filters Sidebar */}
           <div className="lg:w-1/4">
             <div className="bg-gray-50 rounded-lg p-5 shadow-sm sticky top-24">
-              <h3 className="font-semibold text-lg mb-4">{t('products.filter')}</h3>
+              <h3 className="font-semibold text-lg mb-4">{t('products.filterTitle')}</h3>
               
               {/* Categories Filter */}
               <div className="mb-6">

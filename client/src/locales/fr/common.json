@@ -55,7 +55,7 @@
     "title": "Nos Produits",
     "description": "Parcourez notre vaste collection de produits de qualité pour tous vos besoins et styles.",
     "searchResults": "Résultats de recherche pour: \"{{query}}\"",
-    "filter": "Filtrer",
+    "filterTitle": "Filtrer",
     "sort": "Trier",
     "categoriesTitle": "Catégories",
     "brands": "Marques",
