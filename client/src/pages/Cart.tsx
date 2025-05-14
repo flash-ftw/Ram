@@ -10,13 +10,13 @@ import { useCart } from "@/contexts/CartContext";
 import { formatPrice } from "@/lib/utils";
 import { getImageUrl } from "@/lib/utils";
 import { useTranslation } from "react-i18next";
-import { useLanguage } from "@/contexts/LanguageContext";
+import i18n from "i18next";
 
 const Cart = () => {
   const [, setLocation] = useLocation();
   const { state: cartState, updateQuantity, removeItem, clearCart } = useCart();
   const { t } = useTranslation('common');
-  const { isRTL } = useLanguage();
+  const isRTL = i18n.language === 'ar';
   
   // SEO - Update page title
   useEffect(() => {

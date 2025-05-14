@@ -6,7 +6,7 @@ import { zodResolver } from "@hookform/resolvers/zod";
 import { useForm } from "react-hook-form";
 import { ArrowLeft, CreditCard, ShoppingBag, MapPin, Send } from "lucide-react";
 import { useTranslation } from "react-i18next";
-import { useLanguage } from "@/contexts/LanguageContext";
+import i18n from "i18next";
 
 import { Button } from "@/components/ui/button";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
@@ -40,7 +40,7 @@ const Checkout = () => {
   const [showBankDetails, setShowBankDetails] = useState(false);
   const [orderNumber, setOrderNumber] = useState<number | null>(null);
   const { t } = useTranslation('common');
-  const { isRTL } = useLanguage();
+  const isRTL = i18n.language === 'ar';
   
   // Update page title
   useEffect(() => {

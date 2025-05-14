@@ -5,11 +5,11 @@ import Categories from "@/components/home/Categories";
 import AboutSection from "@/components/home/AboutSection";
 import ContactForm from "@/components/contact/ContactForm";
 import { useTranslation } from 'react-i18next';
-import { useLanguage } from '@/contexts/LanguageContext';
+import i18n from 'i18next';
 
 const Home = () => {
   const { t } = useTranslation('common');
-  const { language } = useLanguage();
+  const language = i18n.language;
   
   return (
     <>
