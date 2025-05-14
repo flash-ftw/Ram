@@ -374,8 +374,8 @@ const ProductDetail = () => {
                   
                   {product.brakes && (
                     <div className="flex justify-between">
-                      <span className="text-gray-600">Freins:</span>
-                      <span className="font-medium">{product.brakes}</span>
+                      <span className="text-gray-600">{t('productDetail.specs.brakes')}:</span>
+                      <span className="font-medium">{t(`products.specs.${product.brakes?.toLowerCase()?.replace(/\s+/g, '').replace(/é/g, 'e')}`, { defaultValue: product.brakes })}</span>
                     </div>
                   )}
                   

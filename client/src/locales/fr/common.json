@@ -127,7 +127,12 @@
       "refroidipareau": "Refroidi par eau",
       "automatique": "Automatique",
       "manuelle": "Manuelle",
-      "electrique": "Électrique"
+      "electrique": "Électrique",
+      "disqueavant/disquearrière": "Disque avant / Disque arrière",
+      "tambouravant/tambourrarrière": "Tambour avant / Tambour rarrière",
+      "disque": "Disque",
+      "tambour": "Tambour",
+      "électrique/électrique": "Électrique / Électrique"
     }
   },
   "productDetail": {
@@ -167,6 +172,7 @@
       "transmissionChassis": "Transmission et Châssis",
       "transmission": "Transmission",
       "startType": "Démarrage",
+      "brakes": "Freins",
       "dimensionsOther": "Dimensions et Autres",
       "weight": "Poids",
       "dashboard": "Tableau de bord"

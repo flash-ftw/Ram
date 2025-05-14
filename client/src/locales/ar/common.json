@@ -126,7 +126,12 @@
       "refroidipareau": "تبريد مائي",
       "automatique": "أوتوماتيكي",
       "manuelle": "يدوي",
-      "electrique": "كهربائي"
+      "electrique": "كهربائي",
+      "disqueavant/disquearrière": "قرص أمامي / قرص خلفي",
+      "tambouravant/tambourrarrière": "طبلة أمامية / طبلة خلفية",
+      "disque": "قرص",
+      "tambour": "طبلة",
+      "électrique/électrique": "كهربائي / كهربائي"
     }
   },
   "productDetail": {
