@@ -225,6 +225,9 @@
     "backToForm": "العودة إلى النموذج",
     "finalizeOrder": "إتمام الطلب",
     "continueToPayment": "متابعة إلى الدفع",
+    "processing": "جاري المعالجة...",
+    "reference": "المرجع",
+    "orderNumber": "طلب رقم",
     "formLabels": {
       "fullName": "الاسم الكامل",
       "fullNamePlaceholder": "أدخل اسمك الكامل",

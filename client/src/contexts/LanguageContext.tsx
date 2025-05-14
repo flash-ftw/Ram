@@ -90,6 +90,4 @@ export function LanguageProvider({ children }: LanguageProviderProps) {
 }
 
 // Hook pour utiliser le contexte
-export function useLanguage() {
-  return useContext(LanguageContext);
-}
+export const useLanguage = () => useContext(LanguageContext);
