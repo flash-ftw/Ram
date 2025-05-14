@@ -118,6 +118,7 @@
     }
   },
   "productDetail": {
+    "home": "Accueil",
     "features": "Caractéristiques",
     "specifications": "Spécifications",
     "addToCart": "Ajouter au Panier",

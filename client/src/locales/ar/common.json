@@ -117,6 +117,7 @@
     }
   },
   "productDetail": {
+    "home": "الرئيسية",
     "features": "المميزات",
     "specifications": "المواصفات",
     "addToCart": "أضف إلى العربة",
