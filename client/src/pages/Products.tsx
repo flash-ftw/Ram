@@ -1,11 +1,11 @@
 import { Helmet } from 'react-helmet';
 import ProductCatalog from "@/components/products/ProductCatalog";
 import { useTranslation } from 'react-i18next';
-import { useLanguage } from '@/contexts/LanguageContext';
+import i18n from 'i18next';
 
 const Products = () => {
   const { t } = useTranslation('common');
-  const { language } = useLanguage();
+  const language = i18n.language;
   
   // Extract category from URL for title
   const searchParams = new URLSearchParams(window.location.search);

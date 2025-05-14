@@ -1,11 +1,12 @@
 import { Helmet } from 'react-helmet';
 import AboutSection from "@/components/home/AboutSection";
 import { useTranslation } from 'react-i18next';
-import { useLanguage } from '@/contexts/LanguageContext';
+import i18n from 'i18next';
 
 const About = () => {
   const { t } = useTranslation('common');
-  const { language, isRTL } = useLanguage();
+  const language = i18n.language;
+  const isRTL = language === 'ar';
   
   return (
     <>
