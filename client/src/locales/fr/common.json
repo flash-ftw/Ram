@@ -197,13 +197,24 @@
   "cart": {
     "title": "Votre Panier",
     "empty": "Votre panier est vide",
+    "emptyMessage": "Vous n'avez pas encore ajouté d'articles à votre panier.",
+    "browseProducts": "Parcourir les produits",
     "continueShopping": "Continuer vos achats",
     "summary": "Résumé",
+    "orderSummary": "Résumé de la commande",
     "subtotal": "Sous-total",
+    "shipping": "Frais de livraison",
+    "toCalculate": "À calculer",
     "checkout": "Passer à la caisse",
+    "proceedToCheckout": "Procéder au paiement",
     "remove": "Supprimer",
+    "clearCart": "Vider le panier",
+    "product": "Produit",
+    "price": "Prix",
     "quantity": "Quantité",
-    "total": "Total"
+    "actions": "Actions",
+    "total": "Total",
+    "termsNotice": "En continuant, vous acceptez nos conditions de vente et notre politique de confidentialité."
   },
   "checkout": {
     "title": "Paiement",

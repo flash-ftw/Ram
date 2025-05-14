@@ -196,13 +196,24 @@
   "cart": {
     "title": "عربة التسوق",
     "empty": "عربة التسوق فارغة",
+    "emptyMessage": "لم تقم بإضافة أي منتجات إلى عربة التسوق حتى الآن.",
+    "browseProducts": "تصفح المنتجات",
     "continueShopping": "مواصلة التسوق",
     "summary": "الملخص",
+    "orderSummary": "ملخص الطلب",
     "subtotal": "المجموع الفرعي",
+    "shipping": "رسوم الشحن",
+    "toCalculate": "سيتم الحساب",
     "checkout": "إتمام الشراء",
+    "proceedToCheckout": "متابعة للدفع",
     "remove": "إزالة",
+    "clearCart": "تفريغ العربة",
+    "product": "المنتج",
+    "price": "السعر",
     "quantity": "الكمية",
-    "total": "الإجمالي"
+    "actions": "الإجراءات",
+    "total": "الإجمالي",
+    "termsNotice": "بالمتابعة، فإنك توافق على شروط البيع وسياسة الخصوصية الخاصة بنا."
   },
   "checkout": {
     "title": "الدفع",
