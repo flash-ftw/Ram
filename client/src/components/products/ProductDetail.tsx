@@ -19,7 +19,7 @@ import { useProduct } from "@/hooks/useProduct";
 import { useCategories } from "@/hooks/useCategories";
 import { useCart } from "@/contexts/CartContext";
 import { useTranslation } from "react-i18next";
-import i18n from "i18next";
+import i18n from "@/i18n";
 import { getImageUrl, formatPrice } from "@/lib/utils";
 
 const ProductDetail = () => {
@@ -85,7 +85,10 @@ const ProductDetail = () => {
   }
 
   const category = categories.find(c => c.id === product.categoryId);
-  const featuresArray = product.features.split('\n').filter(f => f.trim() !== '');
+  // Récupérer les caractéristiques dans la langue appropriée
+  const featuresArray = product.features ? product.features.split('\n').filter(f => f.trim() !== '') : [];
+  
+  // Pour une implémentation plus robuste, nous devrions avoir des champs séparés pour chaque langue dans la base de données
 
   return (
     <section className="py-16 bg-gray-50">
@@ -170,7 +173,7 @@ const ProductDetail = () => {
               <Badge variant="default" className="text-sm font-semibold uppercase tracking-wide">
                 {category?.name || t('productDetail.product')}
               </Badge>
-              <h1 className="mt-2 text-3xl font-bold text-gray-900">{product.name}</h1>
+              <h1 className={`mt-2 text-3xl font-bold text-gray-900 ${isRTL ? 'text-right' : ''}`}>{product.name}</h1>
               
               <div className="mt-4 flex items-center">
                 <div className="flex text-amber-400">
@@ -183,7 +186,7 @@ const ProductDetail = () => {
                 <span className="ml-2 text-gray-600">4.5 (128 {t('productDetail.reviews')})</span>
               </div>
               
-              <div className="mt-6">
+              <div className={`mt-6 ${isRTL ? 'text-right' : ''}`}>
                 <h2 className="text-lg font-medium text-gray-900">{t('productDetail.description')}</h2>
                 <p className="mt-2 text-gray-600">
                   {product.description}
