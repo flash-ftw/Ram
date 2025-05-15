@@ -372,7 +372,18 @@
     "subtitle": "Votre Source de Confiance pour les Motos",
     "ourStory": "Notre Histoire",
     "ourMission": "Notre Mission",
-    "whyChooseUs": "Pourquoi Nous Choisir"
+    "whyChooseUs": "Pourquoi Nous Choisir",
+    "since2015": "Depuis 2015",
+    "storyTitle": "L'Histoire de Rammeh MotoScoot",
+    "paragraph1": "Bienvenue chez Rammeh MotoScoot, le premier showroom de motos en Tunisie. Fondé en 2015 par des passionnés de moto, nous sommes devenus la destination la plus fiable du pays pour les motos haute performance, les accessoires de qualité et un service expert.",
+    "paragraph2": "Notre passion guide tout ce que nous faisons. Nous sélectionnons soigneusement chaque moto pour sa performance, sa fiabilité et sa valeur. Notre équipe de techniciens certifiés fournit des services exceptionnels de maintenance et de personnalisation pour garder votre moto en parfait état de marche.",
+    "paragraph3": "Visitez notre showroom ultramoderne à Tunis ou parcourez notre catalogue en ligne pour découvrir votre moto parfaite. Chez Rammeh MotoScoot, nous ne vendons pas simplement des motos – nous livrons des rêves sur deux roues.",
+    "stats": {
+      "years": "Années d'Excellence",
+      "riders": "Motards Satisfaits",
+      "services": "Services Réalisés",
+      "models": "Modèles Disponibles"
+    }
   },
   "cart": {
     "title": "Votre Panier",
