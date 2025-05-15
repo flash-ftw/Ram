@@ -434,6 +434,35 @@
     "title": "404 Page Non Trouvée",
     "description": "La page que vous cherchez n'existe pas ou a été déplacée."
   },
+  "admin": {
+    "login": {
+      "title": "Connexion Admin",
+      "description": "Entrez vos identifiants pour accéder au tableau de bord",
+      "username": "Nom d'utilisateur",
+      "password": "Mot de passe",
+      "usernameError": "Le nom d'utilisateur doit contenir au moins 3 caractères.",
+      "passwordError": "Le mot de passe doit contenir au moins 6 caractères.",
+      "loginButton": "Connexion",
+      "loggingIn": "Connexion en cours...",
+      "backToWebsite": "Retour au site web",
+      "loginSuccess": "Connexion réussie",
+      "welcomeMessage": "Bienvenue dans le tableau de bord d'administration",
+      "accessDenied": "Accès refusé",
+      "notAdmin": "Vous n'avez pas les privilèges d'administrateur",
+      "loginFailed": "Échec de la connexion",
+      "invalidCredentials": "Nom d'utilisateur ou mot de passe invalide"
+    },
+    "dashboard": {
+      "title": "Tableau de Bord",
+      "welcome": "Bienvenue, {username}",
+      "orders": "Commandes",
+      "products": "Produits",
+      "categories": "Catégories",
+      "brands": "Marques",
+      "users": "Utilisateurs",
+      "settings": "Paramètres"
+    }
+  },
   "contact": {
     "title": "Contactez-Nous",
     "heading": "Contacter Rammeh MotoScoot",
