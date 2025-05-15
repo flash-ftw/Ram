@@ -460,6 +460,24 @@
       "brands": "العلامات التجارية",
       "users": "المستخدمون",
       "settings": "الإعدادات"
+    },
+    "layout": {
+      "adminPanel": "لوحة الإدارة",
+      "dashboard": "لوحة التحكم",
+      "products": "المنتجات",
+      "categories": "الفئات",
+      "brands": "العلامات التجارية",
+      "orders": "الطلبات",
+      "messages": "الرسائل",
+      "loggedInAs": "تم تسجيل الدخول باسم:",
+      "logout": "تسجيل الخروج",
+      "loading": "جاري التحميل...",
+      "accessDenied": "تم رفض الوصول",
+      "needAdminLogin": "يجب تسجيل الدخول كمسؤول للوصول إلى هذه الصفحة",
+      "loggedOut": "تم تسجيل الخروج",
+      "logoutSuccess": "تم تسجيل الخروج بنجاح",
+      "logoutFailed": "فشل تسجيل الخروج",
+      "logoutError": "حدث خطأ أثناء تسجيل الخروج"
     }
   },
   "contact": {

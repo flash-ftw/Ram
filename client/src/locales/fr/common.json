@@ -461,6 +461,24 @@
       "brands": "Marques",
       "users": "Utilisateurs",
       "settings": "Paramètres"
+    },
+    "layout": {
+      "adminPanel": "Panneau d'Administration",
+      "dashboard": "Tableau de Bord",
+      "products": "Produits",
+      "categories": "Catégories",
+      "brands": "Marques",
+      "orders": "Commandes",
+      "messages": "Messages",
+      "loggedInAs": "Connecté en tant que :",
+      "logout": "Déconnexion",
+      "loading": "Chargement...",
+      "accessDenied": "Accès refusé",
+      "needAdminLogin": "Vous devez vous connecter en tant qu'administrateur pour accéder à cette page",
+      "loggedOut": "Déconnecté",
+      "logoutSuccess": "Vous avez été déconnecté avec succès",
+      "logoutFailed": "Échec de la déconnexion",
+      "logoutError": "Une erreur s'est produite lors de la déconnexion"
     }
   },
   "contact": {

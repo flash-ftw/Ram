@@ -3,6 +3,8 @@ import { useLocation } from "wouter";
 import { Button } from "@/components/ui/button";
 import { useToast } from "@/hooks/use-toast";
 import { apiRequest } from "@/lib/queryClient";
+import { useTranslation } from "react-i18next";
+import i18n from "i18next";
 import { 
   LayoutDashboard, 
   Package, 
@@ -26,6 +28,8 @@ export default function AdminLayout({ children, title }: AdminLayoutProps) {
   const [isLoading, setIsLoading] = useState(true);
   const [user, setUser] = useState<{ id: number; username: string; isAdmin: boolean } | null>(null);
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
+  const { t } = useTranslation('common');
+  const isRTL = i18n.language === 'ar';
 
   useEffect(() => {
     const checkAuth = async () => {
@@ -41,8 +45,8 @@ export default function AdminLayout({ children, title }: AdminLayoutProps) {
         } else {
           toast({
             variant: "destructive",
-            title: "Access denied",
-            description: "You need to login as admin to access this page",
+            title: t('admin.layout.accessDenied'),
+            description: t('admin.layout.needAdminLogin'),
           });
           setLocation("/admin/login");
         }
@@ -55,7 +59,7 @@ export default function AdminLayout({ children, title }: AdminLayoutProps) {
     };
 
     checkAuth();
-  }, [setLocation, toast]);
+  }, [setLocation, toast, t]);
 
   const handleLogout = async () => {
     try {
@@ -65,8 +69,8 @@ export default function AdminLayout({ children, title }: AdminLayoutProps) {
       });
       
       toast({
-        title: "Logged out",
-        description: "You have been successfully logged out",
+        title: t('admin.layout.loggedOut'),
+        description: t('admin.layout.logoutSuccess'),
       });
       
       setLocation("/admin/login");
@@ -74,8 +78,8 @@ export default function AdminLayout({ children, title }: AdminLayoutProps) {
       console.error("Logout error:", error);
       toast({
         variant: "destructive",
-        title: "Logout failed",
-        description: "An error occurred while logging out",
+        title: t('admin.layout.logoutFailed'),
+        description: t('admin.layout.logoutError'),
       });
     }
   };
@@ -85,27 +89,27 @@ export default function AdminLayout({ children, title }: AdminLayoutProps) {
       <div className="flex min-h-screen items-center justify-center">
         <div className="text-center">
           <div className="w-16 h-16 border-4 border-primary border-t-transparent rounded-full animate-spin mx-auto"></div>
-          <p className="mt-4 text-lg font-medium">Loading...</p>
+          <p className="mt-4 text-lg font-medium">{t('admin.layout.loading')}</p>
         </div>
       </div>
     );
   }
 
   const navigationItems = [
-    { title: "Dashboard", icon: <LayoutDashboard className="h-5 w-5" />, path: "/admin/dashboard" },
-    { title: "Products", icon: <Package className="h-5 w-5" />, path: "/admin/products" },
-    { title: "Categories", icon: <Tag className="h-5 w-5" />, path: "/admin/categories" },
-    { title: "Brands", icon: <Settings className="h-5 w-5" />, path: "/admin/brands" },
-    { title: "Orders", icon: <ShoppingBag className="h-5 w-5" />, path: "/admin/orders" },
-    { title: "Messages", icon: <MessageSquare className="h-5 w-5" />, path: "/admin/contact-submissions" },
+    { title: t('admin.layout.dashboard'), icon: <LayoutDashboard className="h-5 w-5" />, path: "/admin/dashboard" },
+    { title: t('admin.layout.products'), icon: <Package className="h-5 w-5" />, path: "/admin/products" },
+    { title: t('admin.layout.categories'), icon: <Tag className="h-5 w-5" />, path: "/admin/categories" },
+    { title: t('admin.layout.brands'), icon: <Settings className="h-5 w-5" />, path: "/admin/brands" },
+    { title: t('admin.layout.orders'), icon: <ShoppingBag className="h-5 w-5" />, path: "/admin/orders" },
+    { title: t('admin.layout.messages'), icon: <MessageSquare className="h-5 w-5" />, path: "/admin/contact-submissions" },
   ];
 
   return (
-    <div className="min-h-screen bg-gray-100 flex flex-col md:flex-row">
+    <div className={`min-h-screen bg-gray-100 flex flex-col md:flex-row ${isRTL ? 'rtl' : ''}`}>
       {/* Mobile menu toggle */}
       <div className="block md:hidden fixed top-0 left-0 right-0 z-30 bg-white p-4 border-b shadow-sm">
         <div className="flex items-center justify-between">
-          <h1 className="text-lg font-bold">Admin Panel</h1>
+          <h1 className="text-lg font-bold">{t('admin.layout.adminPanel')}</h1>
           <Button 
             variant="ghost" 
             size="icon" 
@@ -120,7 +124,7 @@ export default function AdminLayout({ children, title }: AdminLayoutProps) {
       <div className="hidden md:flex md:w-64 md:flex-col bg-white border-r shadow-sm">
         <div className="flex-1 flex flex-col min-h-0">
           <div className="flex items-center h-16 flex-shrink-0 px-4 border-b">
-            <h1 className="text-xl font-bold">Admin Panel</h1>
+            <h1 className="text-xl font-bold">{t('admin.layout.adminPanel')}</h1>
           </div>
           <div className="flex-1 flex flex-col overflow-y-auto">
             <nav className="py-4 flex-1 px-2 space-y-1">
@@ -128,28 +132,46 @@ export default function AdminLayout({ children, title }: AdminLayoutProps) {
                 <Button
                   key={item.path}
                   variant="ghost"
-                  className="w-full justify-start"
+                  className={`w-full ${isRTL ? 'justify-end text-right' : 'justify-start text-left'}`}
                   onClick={() => setLocation(item.path)}
                 >
-                  {item.icon}
-                  <span className="ml-3">{item.title}</span>
+                  {isRTL ? (
+                    <>
+                      <span className="mr-3">{item.title}</span>
+                      {item.icon}
+                    </>
+                  ) : (
+                    <>
+                      {item.icon}
+                      <span className="ml-3">{item.title}</span>
+                    </>
+                  )}
                 </Button>
               ))}
             </nav>
             <div className="px-2 py-4 border-t">
               {user && (
                 <div className="px-3 py-2 rounded-md mb-2">
-                  <p className="text-sm font-medium">Logged in as:</p>
+                  <p className="text-sm font-medium">{t('admin.layout.loggedInAs')}</p>
                   <p className="text-sm">{user.username}</p>
                 </div>
               )}
               <Button 
                 variant="destructive" 
-                className="w-full justify-start"
+                className={`w-full ${isRTL ? 'justify-end' : 'justify-start'}`}
                 onClick={handleLogout}
               >
-                <LogOut className="h-5 w-5 mr-2" />
-                Logout
+                {isRTL ? (
+                  <>
+                    {t('admin.layout.logout')}
+                    <LogOut className="h-5 w-5 mr-2" />
+                  </>
+                ) : (
+                  <>
+                    <LogOut className="h-5 w-5 mr-2" />
+                    {t('admin.layout.logout')}
+                  </>
+                )}
               </Button>
             </div>
           </div>
@@ -159,38 +181,56 @@ export default function AdminLayout({ children, title }: AdminLayoutProps) {
       {/* Sidebar - Mobile */}
       {mobileMenuOpen && (
         <div className="md:hidden fixed inset-0 z-20 bg-black bg-opacity-50" onClick={() => setMobileMenuOpen(false)}>
-          <div className="absolute top-[57px] left-0 w-64 h-full bg-white shadow-lg" onClick={e => e.stopPropagation()}>
+          <div className={`absolute top-[57px] ${isRTL ? 'right-0' : 'left-0'} w-64 h-full bg-white shadow-lg`} onClick={e => e.stopPropagation()}>
             <div className="flex-1 flex flex-col overflow-y-auto">
               <nav className="py-4 flex-1 px-2 space-y-1">
                 {navigationItems.map((item) => (
                   <Button
                     key={item.path}
                     variant="ghost"
-                    className="w-full justify-start"
+                    className={`w-full ${isRTL ? 'justify-end text-right' : 'justify-start text-left'}`}
                     onClick={() => {
                       setLocation(item.path);
                       setMobileMenuOpen(false);
                     }}
                   >
-                    {item.icon}
-                    <span className="ml-3">{item.title}</span>
+                    {isRTL ? (
+                      <>
+                        <span className="mr-3">{item.title}</span>
+                        {item.icon}
+                      </>
+                    ) : (
+                      <>
+                        {item.icon}
+                        <span className="ml-3">{item.title}</span>
+                      </>
+                    )}
                   </Button>
                 ))}
               </nav>
               <div className="px-2 py-4 border-t">
                 {user && (
                   <div className="px-3 py-2 rounded-md mb-2">
-                    <p className="text-sm font-medium">Logged in as:</p>
+                    <p className="text-sm font-medium">{t('admin.layout.loggedInAs')}</p>
                     <p className="text-sm">{user.username}</p>
                   </div>
                 )}
                 <Button 
                   variant="destructive" 
-                  className="w-full justify-start"
+                  className={`w-full ${isRTL ? 'justify-end' : 'justify-start'}`}
                   onClick={handleLogout}
                 >
-                  <LogOut className="h-5 w-5 mr-2" />
-                  Logout
+                  {isRTL ? (
+                    <>
+                      {t('admin.layout.logout')}
+                      <LogOut className="h-5 w-5 mr-2" />
+                    </>
+                  ) : (
+                    <>
+                      <LogOut className="h-5 w-5 mr-2" />
+                      {t('admin.layout.logout')}
+                    </>
+                  )}
                 </Button>
               </div>
             </div>
