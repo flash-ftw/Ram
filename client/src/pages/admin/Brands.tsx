@@ -34,6 +34,8 @@ import {
 import { Plus, Pencil, Trash2, Link } from "lucide-react";
 import { apiRequest } from "@/lib/queryClient";
 import { useToast } from "@/hooks/use-toast";
+import { useTranslation } from "react-i18next";
+import i18n from "i18next";
 
 interface Brand {
   id: number;
@@ -48,6 +50,8 @@ interface Brand {
 export default function AdminBrands() {
   const { toast } = useToast();
   const queryClient = useQueryClient();
+  const { t } = useTranslation('common');
+  const isRTL = i18n.language === 'ar';
   
   // State for dialog control
   const [createDialogOpen, setCreateDialogOpen] = useState(false);
@@ -134,8 +138,8 @@ export default function AdminBrands() {
     if (!formData.name || (!formData.logo && !logoFile)) {
       toast({
         variant: "destructive",
-        title: "Error",
-        description: "Name and either a Logo URL or Logo File are required."
+        title: t('admin.brands.create.error'),
+        description: t('admin.brands.fieldsRequiredError')
       });
       return;
     }
@@ -187,8 +191,8 @@ export default function AdminBrands() {
       queryClient.invalidateQueries({ queryKey: ['/api/brands'] });
       
       toast({
-        title: "Success",
-        description: "Brand has been created successfully."
+        title: t('admin.brands.create.success'),
+        description: t('admin.brands.create.successDescription')
       });
       
       setCreateDialogOpen(false);
@@ -196,8 +200,8 @@ export default function AdminBrands() {
       console.error("Error creating brand:", error);
       toast({
         variant: "destructive",
-        title: "Error",
-        description: "Failed to create brand. Please try again."
+        title: t('admin.brands.create.error'),
+        description: t('admin.brands.create.errorDescription')
       });
     } finally {
       setIsSubmitting(false);
@@ -210,8 +214,8 @@ export default function AdminBrands() {
     if (!formData.name || (!formData.logo && !logoFile)) {
       toast({
         variant: "destructive",
-        title: "Error",
-        description: "Name and either a Logo URL or Logo File are required."
+        title: t('admin.brands.update.error'),
+        description: t('admin.brands.fieldsRequiredError')
       });
       return;
     }
@@ -263,8 +267,8 @@ export default function AdminBrands() {
       queryClient.invalidateQueries({ queryKey: ['/api/brands'] });
       
       toast({
-        title: "Success",
-        description: "Brand has been updated successfully."
+        title: t('admin.brands.update.success'),
+        description: t('admin.brands.update.successDescription')
       });
       
       setEditDialogOpen(false);
@@ -272,8 +276,8 @@ export default function AdminBrands() {
       console.error("Error updating brand:", error);
       toast({
         variant: "destructive",
-        title: "Error",
-        description: "Failed to update brand. Please try again."
+        title: t('admin.brands.update.error'),
+        description: t('admin.brands.update.errorDescription')
       });
     } finally {
       setIsSubmitting(false);
@@ -294,8 +298,8 @@ export default function AdminBrands() {
       queryClient.invalidateQueries({ queryKey: ['/api/brands'] });
       
       toast({
-        title: "Success",
-        description: "Brand has been deleted successfully."
+        title: t('admin.brands.delete.success'),
+        description: t('admin.brands.delete.successDescription', { name: currentBrand.name })
       });
       
       setDeleteDialogOpen(false);
@@ -303,8 +307,8 @@ export default function AdminBrands() {
       console.error("Error deleting brand:", error);
       toast({
         variant: "destructive",
-        title: "Error",
-        description: "Failed to delete brand. Please try again."
+        title: t('admin.brands.delete.error'),
+        description: t('admin.brands.delete.errorDescription')
       });
     } finally {
       setIsSubmitting(false);
@@ -312,12 +316,21 @@ export default function AdminBrands() {
   };
 
   return (
-    <AdminLayout title="Brands">
-      <div className="flex justify-between items-center mb-6">
-        <h2 className="text-lg font-medium">Manage Brands</h2>
+    <AdminLayout title={t('admin.brands.title')}>
+      <div className={`flex justify-between items-center mb-6 ${isRTL ? 'flex-row-reverse' : ''}`}>
+        <h2 className="text-lg font-medium">{t('admin.brands.manage')}</h2>
         <Button onClick={handleOpenCreateDialog}>
-          <Plus className="h-4 w-4 mr-2" />
-          Add Brand
+          {isRTL ? (
+            <>
+              {t('admin.brands.add')}
+              <Plus className="h-4 w-4 ml-2" />
+            </>
+          ) : (
+            <>
+              <Plus className="h-4 w-4 mr-2" />
+              {t('admin.brands.add')}
+            </>
+          )}
         </Button>
       </div>
 
@@ -327,24 +340,24 @@ export default function AdminBrands() {
         </div>
       ) : error ? (
         <div className="bg-red-50 p-4 rounded-md">
-          <p className="text-red-800">Error loading brands. Please try again.</p>
+          <p className={`text-red-800 ${isRTL ? 'text-right' : ''}`}>{t('admin.brands.error')}</p>
         </div>
       ) : brands && brands.length > 0 ? (
         <div className="bg-white rounded-md shadow overflow-hidden">
           <Table>
             <TableHeader>
               <TableRow>
-                <TableHead>Logo</TableHead>
-                <TableHead>Name</TableHead>
-                <TableHead>Website</TableHead>
-                <TableHead>Created</TableHead>
-                <TableHead className="text-right">Actions</TableHead>
+                <TableHead className={isRTL ? 'text-right' : ''}>{t('admin.brands.logo')}</TableHead>
+                <TableHead className={isRTL ? 'text-right' : ''}>{t('admin.brands.name')}</TableHead>
+                <TableHead className={isRTL ? 'text-right' : ''}>{t('admin.brands.website')}</TableHead>
+                <TableHead className={isRTL ? 'text-right' : ''}>{t('admin.brands.created')}</TableHead>
+                <TableHead className={isRTL ? 'text-left' : 'text-right'}>{t('admin.brands.actions')}</TableHead>
               </TableRow>
             </TableHeader>
             <TableBody>
               {brands.map((brand) => (
                 <TableRow key={brand.id}>
-                  <TableCell>
+                  <TableCell className={isRTL ? 'text-right' : ''}>
                     <img 
                       src={brand.logo} 
                       alt={brand.name} 
@@ -354,8 +367,8 @@ export default function AdminBrands() {
                       }}
                     />
                   </TableCell>
-                  <TableCell className="font-medium">{brand.name}</TableCell>
-                  <TableCell>
+                  <TableCell className={`font-medium ${isRTL ? 'text-right' : ''}`}>{brand.name}</TableCell>
+                  <TableCell className={isRTL ? 'text-right' : ''}>
                     {brand.website ? (
                       <a 
                         href={brand.website} 
@@ -363,15 +376,15 @@ export default function AdminBrands() {
                         rel="noopener noreferrer"
                         className="flex items-center text-blue-600 hover:underline"
                       >
-                        <Link className="h-3 w-3 mr-1" />
-                        Website
+                        <Link className={`h-3 w-3 ${isRTL ? 'ml-1' : 'mr-1'}`} />
+                        {t('admin.brands.visitWebsite')}
                       </a>
                     ) : (
                       <span className="text-gray-400">-</span>
                     )}
                   </TableCell>
-                  <TableCell>{new Date(brand.createdAt).toLocaleDateString()}</TableCell>
-                  <TableCell className="text-right">
+                  <TableCell className={isRTL ? 'text-right' : ''}>{new Date(brand.createdAt).toLocaleDateString()}</TableCell>
+                  <TableCell className={isRTL ? 'text-left' : 'text-right'}>
                     <Button 
                       variant="ghost" 
                       size="icon"
@@ -394,55 +407,67 @@ export default function AdminBrands() {
         </div>
       ) : (
         <div className="bg-gray-50 p-8 text-center rounded-md">
-          <h3 className="text-lg font-medium text-gray-600 mb-4">No brands found</h3>
-          <p className="text-gray-500 mb-6">Get started by creating your first brand</p>
+          <h3 className={`text-lg font-medium text-gray-600 mb-4 ${isRTL ? 'rtl' : ''}`}>{t('admin.brands.noBrands')}</h3>
+          <p className={`text-gray-500 mb-6 ${isRTL ? 'rtl' : ''}`}>{t('admin.brands.noBrandsDescription')}</p>
           <Button onClick={handleOpenCreateDialog}>
-            <Plus className="h-4 w-4 mr-2" />
-            Add Brand
+            {isRTL ? (
+              <>
+                {t('admin.brands.add')}
+                <Plus className="h-4 w-4 ml-2" />
+              </>
+            ) : (
+              <>
+                <Plus className="h-4 w-4 mr-2" />
+                {t('admin.brands.add')}
+              </>
+            )}
           </Button>
         </div>
       )}
 
       {/* Create Brand Dialog */}
       <Dialog open={createDialogOpen} onOpenChange={setCreateDialogOpen}>
-        <DialogContent>
+        <DialogContent className={isRTL ? 'rtl' : ''}>
           <DialogHeader>
-            <DialogTitle>Create Brand</DialogTitle>
+            <DialogTitle>{t('admin.brands.create')}</DialogTitle>
             <DialogDescription>
-              Add a new product brand to your store.
+              {t('admin.brands.createDescription')}
             </DialogDescription>
           </DialogHeader>
           <div className="space-y-4 py-2">
             <div className="space-y-2">
-              <Label htmlFor="name">Name</Label>
+              <Label htmlFor="name">{t('admin.brands.name')}</Label>
               <Input
                 id="name"
                 name="name"
-                placeholder="e.g. Apple"
+                placeholder={isRTL ? "مثال: أبل" : "e.g. Apple"}
                 value={formData.name}
                 onChange={handleInputChange}
+                dir={isRTL ? 'rtl' : 'ltr'}
               />
             </div>
             <div className="space-y-2">
-              <Label htmlFor="logo-file">Logo</Label>
+              <Label htmlFor="logo-file">{t('admin.brands.logo')}</Label>
               <div className="space-y-3">
                 <Input
                   id="logo-file"
                   type="file"
                   accept="image/*"
                   onChange={handleLogoFileChange}
+                  dir={isRTL ? 'rtl' : 'ltr'}
                 />
-                <div className="text-sm text-muted-foreground">Or enter a logo URL</div>
+                <div className={`text-sm text-muted-foreground ${isRTL ? 'text-right' : ''}`}>{t('admin.brands.logoOrFile')}</div>
                 <Input
                   id="logo"
                   name="logo"
                   placeholder="https://example.com/logo.jpg"
                   value={formData.logo}
                   onChange={handleInputChange}
+                  dir={isRTL ? 'rtl' : 'ltr'}
                 />
                 {(logoPreview || formData.logo) && (
                   <div className="mt-2 border rounded p-2">
-                    <p className="text-sm font-medium mb-2">Preview:</p>
+                    <p className={`text-sm font-medium mb-2 ${isRTL ? 'text-right' : ''}`}>{t('admin.brands.logoPreview')}</p>
                     <img 
                       src={logoPreview || formData.logo} 
                       alt="Logo preview" 
@@ -457,30 +482,32 @@ export default function AdminBrands() {
               </div>
             </div>
             <div className="space-y-2">
-              <Label htmlFor="website">Website (optional)</Label>
+              <Label htmlFor="website">{t('admin.brands.website')}</Label>
               <Input
                 id="website"
                 name="website"
                 placeholder="https://example.com"
                 value={formData.website}
                 onChange={handleInputChange}
+                dir={isRTL ? 'rtl' : 'ltr'}
               />
             </div>
             <div className="space-y-2">
-              <Label htmlFor="description">Description (optional)</Label>
+              <Label htmlFor="description">{t('admin.brands.description')}</Label>
               <Textarea
                 id="description"
                 name="description"
-                placeholder="Describe this brand..."
+                placeholder={isRTL ? "وصف هذه العلامة التجارية..." : "Describe this brand..."}
                 value={formData.description}
                 onChange={handleInputChange}
+                dir={isRTL ? 'rtl' : 'ltr'}
               />
             </div>
           </div>
-          <DialogFooter>
-            <Button variant="outline" onClick={() => setCreateDialogOpen(false)}>Cancel</Button>
+          <DialogFooter className={isRTL ? 'flex-row-reverse' : ''}>
+            <Button variant="outline" onClick={() => setCreateDialogOpen(false)}>{t('admin.brands.delete.cancel')}</Button>
             <Button onClick={handleCreateBrand} disabled={isSubmitting}>
-              {isSubmitting ? "Creating..." : "Create"}
+              {isSubmitting ? t('admin.brands.creating') : t('admin.brands.create')}
             </Button>
           </DialogFooter>
         </DialogContent>
@@ -488,42 +515,45 @@ export default function AdminBrands() {
 
       {/* Edit Brand Dialog */}
       <Dialog open={editDialogOpen} onOpenChange={setEditDialogOpen}>
-        <DialogContent>
+        <DialogContent className={isRTL ? 'rtl' : ''}>
           <DialogHeader>
-            <DialogTitle>Edit Brand</DialogTitle>
+            <DialogTitle>{t('admin.brands.edit')}</DialogTitle>
             <DialogDescription>
-              Make changes to the product brand.
+              {t('admin.brands.editDescription')}
             </DialogDescription>
           </DialogHeader>
           <div className="space-y-4 py-2">
             <div className="space-y-2">
-              <Label htmlFor="edit-name">Name</Label>
+              <Label htmlFor="edit-name">{t('admin.brands.name')}</Label>
               <Input
                 id="edit-name"
                 name="name"
                 value={formData.name}
                 onChange={handleInputChange}
+                dir={isRTL ? 'rtl' : 'ltr'}
               />
             </div>
             <div className="space-y-2">
-              <Label htmlFor="edit-logo-file">Logo</Label>
+              <Label htmlFor="edit-logo-file">{t('admin.brands.logo')}</Label>
               <div className="space-y-3">
                 <Input
                   id="edit-logo-file"
                   type="file"
                   accept="image/*"
                   onChange={handleLogoFileChange}
+                  dir={isRTL ? 'rtl' : 'ltr'}
                 />
-                <div className="text-sm text-muted-foreground">Current logo or enter a new URL</div>
+                <div className={`text-sm text-muted-foreground ${isRTL ? 'text-right' : ''}`}>{t('admin.brands.logoCurrent')}</div>
                 <Input
                   id="edit-logo"
                   name="logo"
                   value={formData.logo}
                   onChange={handleInputChange}
+                  dir={isRTL ? 'rtl' : 'ltr'}
                 />
                 {(logoPreview || formData.logo) && (
                   <div className="mt-2 border rounded p-2">
-                    <p className="text-sm font-medium mb-2">Preview:</p>
+                    <p className={`text-sm font-medium mb-2 ${isRTL ? 'text-right' : ''}`}>{t('admin.brands.logoPreview')}</p>
                     <img 
                       src={logoPreview || formData.logo} 
                       alt="Logo preview" 
@@ -538,28 +568,30 @@ export default function AdminBrands() {
               </div>
             </div>
             <div className="space-y-2">
-              <Label htmlFor="edit-website">Website (optional)</Label>
+              <Label htmlFor="edit-website">{t('admin.brands.website')}</Label>
               <Input
                 id="edit-website"
                 name="website"
                 value={formData.website}
                 onChange={handleInputChange}
+                dir={isRTL ? 'rtl' : 'ltr'}
               />
             </div>
             <div className="space-y-2">
-              <Label htmlFor="edit-description">Description (optional)</Label>
+              <Label htmlFor="edit-description">{t('admin.brands.description')}</Label>
               <Textarea
                 id="edit-description"
                 name="description"
                 value={formData.description}
                 onChange={handleInputChange}
+                dir={isRTL ? 'rtl' : 'ltr'}
               />
             </div>
           </div>
-          <DialogFooter>
-            <Button variant="outline" onClick={() => setEditDialogOpen(false)}>Cancel</Button>
+          <DialogFooter className={isRTL ? 'flex-row-reverse' : ''}>
+            <Button variant="outline" onClick={() => setEditDialogOpen(false)}>{t('admin.brands.delete.cancel')}</Button>
             <Button onClick={handleUpdateBrand} disabled={isSubmitting}>
-              {isSubmitting ? "Updating..." : "Update"}
+              {isSubmitting ? t('admin.brands.updating') : t('admin.brands.update')}
             </Button>
           </DialogFooter>
         </DialogContent>
@@ -567,18 +599,17 @@ export default function AdminBrands() {
 
       {/* Delete Confirmation Dialog */}
       <AlertDialog open={deleteDialogOpen} onOpenChange={setDeleteDialogOpen}>
-        <AlertDialogContent>
+        <AlertDialogContent className={isRTL ? 'rtl' : ''}>
           <AlertDialogHeader>
-            <AlertDialogTitle>Are you sure?</AlertDialogTitle>
+            <AlertDialogTitle>{t('admin.brands.delete.title')}</AlertDialogTitle>
             <AlertDialogDescription>
-              This will permanently delete the brand "{currentBrand?.name}". 
-              This action cannot be undone.
+              {t('admin.brands.delete.description', { name: currentBrand?.name })}
             </AlertDialogDescription>
           </AlertDialogHeader>
-          <AlertDialogFooter>
-            <AlertDialogCancel>Cancel</AlertDialogCancel>
+          <AlertDialogFooter className={isRTL ? 'flex-row-reverse' : ''}>
+            <AlertDialogCancel>{t('admin.brands.delete.cancel')}</AlertDialogCancel>
             <AlertDialogAction onClick={handleDeleteBrand} className="bg-red-600 hover:bg-red-700" disabled={isSubmitting}>
-              {isSubmitting ? "Deleting..." : "Delete"}
+              {isSubmitting ? t('admin.brands.deleting') : t('admin.brands.delete.confirm')}
             </AlertDialogAction>
           </AlertDialogFooter>
         </AlertDialogContent>

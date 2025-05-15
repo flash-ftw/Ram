@@ -548,6 +548,58 @@
         "errorDescription": "Échec de la mise à jour de la catégorie. Veuillez réessayer."
       }
     },
+    "brands": {
+      "title": "Marques",
+      "manage": "Gérer les Marques",
+      "add": "Ajouter une Marque",
+      "edit": "Modifier la Marque",
+      "create": "Créer une Marque",
+      "update": "Mettre à jour",
+      "updating": "Mise à jour...",
+      "creating": "Création...",
+      "deleting": "Suppression...",
+      "name": "Nom",
+      "logo": "Logo",
+      "logoFile": "Fichier Logo",
+      "logoUrl": "URL du Logo",
+      "logoPreview": "Aperçu:",
+      "logoOrFile": "Ou entrez une URL de logo",
+      "logoCurrent": "Logo actuel ou entrez une nouvelle URL",
+      "website": "Site web (optionnel)",
+      "description": "Description (optionnelle)",
+      "created": "Créé le",
+      "actions": "Actions",
+      "visitWebsite": "Visiter le site",
+      "loading": "Chargement des marques...",
+      "error": "Erreur lors du chargement des marques. Veuillez réessayer.",
+      "noBrands": "Aucune marque trouvée",
+      "noBrandsDescription": "Commencez par créer votre première marque",
+      "createDescription": "Ajouter une nouvelle marque de produits à votre boutique.",
+      "editDescription": "Modifier la marque de produits.",
+      "fieldsRequiredError": "Le nom et le logo (URL ou fichier) sont obligatoires.",
+      "delete": {
+        "title": "Êtes-vous sûr ?",
+        "description": "Cette action supprimera définitivement la marque \"{name}\". Cette action ne peut pas être annulée.",
+        "confirm": "Supprimer",
+        "cancel": "Annuler",
+        "success": "Marque supprimée",
+        "successDescription": "{name} a été supprimée avec succès.",
+        "error": "Erreur",
+        "errorDescription": "Échec de la suppression de la marque. Veuillez réessayer."
+      },
+      "create": {
+        "success": "Succès",
+        "successDescription": "La marque a été créée avec succès.",
+        "error": "Erreur",
+        "errorDescription": "Échec de la création de la marque. Veuillez réessayer."
+      },
+      "update": {
+        "success": "Succès",
+        "successDescription": "La marque a été mise à jour avec succès.",
+        "error": "Erreur",
+        "errorDescription": "Échec de la mise à jour de la marque. Veuillez réessayer."
+      }
+    },
     "layout": {
       "adminPanel": "Panneau d'Administration",
       "dashboard": "Tableau de Bord",
