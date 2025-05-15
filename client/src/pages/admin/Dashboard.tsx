@@ -3,6 +3,8 @@ import AdminLayout from "@/components/admin/AdminLayout";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { apiRequest } from "@/lib/queryClient";
 import { Package, ShoppingCart, Tag, MessageSquare } from "lucide-react";
+import { useTranslation } from "react-i18next";
+import i18n from "i18next";
 
 interface DashboardStats {
   productCount: number;
@@ -12,6 +14,8 @@ interface DashboardStats {
 }
 
 export default function AdminDashboard() {
+  const { t } = useTranslation('common');
+  const isRTL = i18n.language === 'ar';
   const [stats, setStats] = useState<DashboardStats>({
     productCount: 0,
     categoryCount: 0,
@@ -63,80 +67,80 @@ export default function AdminDashboard() {
   }, []);
 
   return (
-    <AdminLayout title="Dashboard">
+    <AdminLayout title={t('admin.dashboard.title')}>
       <div className="grid gap-4 md:grid-cols-2 lg:grid-cols-4">
         <Card>
-          <CardHeader className="flex flex-row items-center justify-between space-y-0 pb-2">
-            <CardTitle className="text-sm font-medium">Products</CardTitle>
+          <CardHeader className={`flex flex-row items-center ${isRTL ? 'justify-between flex-row-reverse' : 'justify-between'} space-y-0 pb-2`}>
+            <CardTitle className="text-sm font-medium">{t('admin.dashboard.productCount')}</CardTitle>
             <Package className="h-4 w-4 text-muted-foreground" />
           </CardHeader>
           <CardContent>
-            <div className="text-2xl font-bold">
+            <div className={`text-2xl font-bold ${isRTL ? 'text-right' : ''}`}>
               {isLoading ? (
                 <div className="h-8 w-16 bg-gray-200 animate-pulse rounded"></div>
               ) : (
                 stats.productCount
               )}
             </div>
-            <p className="text-xs text-muted-foreground">
-              Total products in inventory
+            <p className={`text-xs text-muted-foreground ${isRTL ? 'text-right' : ''}`}>
+              {t('admin.dashboard.totalProducts')}
             </p>
           </CardContent>
         </Card>
         
         <Card>
-          <CardHeader className="flex flex-row items-center justify-between space-y-0 pb-2">
-            <CardTitle className="text-sm font-medium">Categories</CardTitle>
+          <CardHeader className={`flex flex-row items-center ${isRTL ? 'justify-between flex-row-reverse' : 'justify-between'} space-y-0 pb-2`}>
+            <CardTitle className="text-sm font-medium">{t('admin.dashboard.categoryCount')}</CardTitle>
             <Tag className="h-4 w-4 text-muted-foreground" />
           </CardHeader>
           <CardContent>
-            <div className="text-2xl font-bold">
+            <div className={`text-2xl font-bold ${isRTL ? 'text-right' : ''}`}>
               {isLoading ? (
                 <div className="h-8 w-16 bg-gray-200 animate-pulse rounded"></div>
               ) : (
                 stats.categoryCount
               )}
             </div>
-            <p className="text-xs text-muted-foreground">
-              Total product categories
+            <p className={`text-xs text-muted-foreground ${isRTL ? 'text-right' : ''}`}>
+              {t('admin.dashboard.totalCategories')}
             </p>
           </CardContent>
         </Card>
         
         <Card>
-          <CardHeader className="flex flex-row items-center justify-between space-y-0 pb-2">
-            <CardTitle className="text-sm font-medium">Brands</CardTitle>
+          <CardHeader className={`flex flex-row items-center ${isRTL ? 'justify-between flex-row-reverse' : 'justify-between'} space-y-0 pb-2`}>
+            <CardTitle className="text-sm font-medium">{t('admin.dashboard.brandCount')}</CardTitle>
             <ShoppingCart className="h-4 w-4 text-muted-foreground" />
           </CardHeader>
           <CardContent>
-            <div className="text-2xl font-bold">
+            <div className={`text-2xl font-bold ${isRTL ? 'text-right' : ''}`}>
               {isLoading ? (
                 <div className="h-8 w-16 bg-gray-200 animate-pulse rounded"></div>
               ) : (
                 stats.brandCount
               )}
             </div>
-            <p className="text-xs text-muted-foreground">
-              Total product brands
+            <p className={`text-xs text-muted-foreground ${isRTL ? 'text-right' : ''}`}>
+              {t('admin.dashboard.totalBrands')}
             </p>
           </CardContent>
         </Card>
         
         <Card>
-          <CardHeader className="flex flex-row items-center justify-between space-y-0 pb-2">
-            <CardTitle className="text-sm font-medium">Messages</CardTitle>
+          <CardHeader className={`flex flex-row items-center ${isRTL ? 'justify-between flex-row-reverse' : 'justify-between'} space-y-0 pb-2`}>
+            <CardTitle className="text-sm font-medium">{t('admin.dashboard.messageCount')}</CardTitle>
             <MessageSquare className="h-4 w-4 text-muted-foreground" />
           </CardHeader>
           <CardContent>
-            <div className="text-2xl font-bold">
+            <div className={`text-2xl font-bold ${isRTL ? 'text-right' : ''}`}>
               {isLoading ? (
                 <div className="h-8 w-16 bg-gray-200 animate-pulse rounded"></div>
               ) : (
                 stats.messageCount
               )}
             </div>
-            <p className="text-xs text-muted-foreground">
-              Unread contact messages
+            <p className={`text-xs text-muted-foreground ${isRTL ? 'text-right' : ''}`}>
+              {t('admin.dashboard.unreadMessages')}
             </p>
           </CardContent>
         </Card>
@@ -144,12 +148,12 @@ export default function AdminDashboard() {
 
       <div className="mt-8">
         <Card>
-          <CardHeader>
-            <CardTitle>Recent Activity</CardTitle>
+          <CardHeader className={isRTL ? 'text-right' : ''}>
+            <CardTitle>{t('admin.dashboard.recentActivity')}</CardTitle>
           </CardHeader>
           <CardContent>
-            <p className="text-sm text-muted-foreground">
-              This is where recent activity would be displayed. For now, this section is a placeholder.
+            <p className={`text-sm text-muted-foreground ${isRTL ? 'text-right' : ''}`}>
+              {t('admin.dashboard.recentActivityDescription')}
             </p>
           </CardContent>
         </Card>

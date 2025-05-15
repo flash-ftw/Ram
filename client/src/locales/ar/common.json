@@ -459,7 +459,17 @@
       "categories": "الفئات",
       "brands": "العلامات التجارية",
       "users": "المستخدمون",
-      "settings": "الإعدادات"
+      "settings": "الإعدادات",
+      "productCount": "المنتجات",
+      "categoryCount": "الفئات",
+      "brandCount": "العلامات التجارية",
+      "messageCount": "الرسائل",
+      "totalProducts": "إجمالي المنتجات في المخزون",
+      "totalCategories": "إجمالي فئات المنتجات",
+      "totalBrands": "إجمالي علامات المنتجات",
+      "unreadMessages": "رسائل الاتصال غير المقروءة",
+      "recentActivity": "النشاط الأخير",
+      "recentActivityDescription": "هنا سيتم عرض النشاط الأخير. في الوقت الحالي، هذا القسم مجرد مكان مؤقت."
     },
     "layout": {
       "adminPanel": "لوحة الإدارة",

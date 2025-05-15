@@ -460,7 +460,17 @@
       "categories": "Catégories",
       "brands": "Marques",
       "users": "Utilisateurs",
-      "settings": "Paramètres"
+      "settings": "Paramètres",
+      "productCount": "Produits",
+      "categoryCount": "Catégories",
+      "brandCount": "Marques",
+      "messageCount": "Messages",
+      "totalProducts": "Total des produits en inventaire",
+      "totalCategories": "Total des catégories de produits",
+      "totalBrands": "Total des marques de produits",
+      "unreadMessages": "Messages de contact non lus",
+      "recentActivity": "Activité Récente",
+      "recentActivityDescription": "C'est ici que l'activité récente serait affichée. Pour l'instant, cette section est un espace réservé."
     },
     "layout": {
       "adminPanel": "Panneau d'Administration",
