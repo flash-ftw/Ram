@@ -430,6 +430,10 @@
     "shareOnInstagram": "Partager sur Instagram",
     "shareOnWhatsApp": "Partager sur WhatsApp"
   },
+  "notFound": {
+    "title": "404 Page Non Trouvée",
+    "description": "La page que vous cherchez n'existe pas ou a été déplacée."
+  },
   "contact": {
     "title": "Contactez-Nous",
     "heading": "Contacter Rammeh MotoScoot",
