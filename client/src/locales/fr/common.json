@@ -472,6 +472,33 @@
       "recentActivity": "Activité Récente",
       "recentActivityDescription": "C'est ici que l'activité récente serait affichée. Pour l'instant, cette section est un espace réservé."
     },
+    "products": {
+      "title": "Produits",
+      "manage": "Gérer les Produits",
+      "add": "Ajouter un Produit",
+      "edit": "Modifier le Produit",
+      "name": "Nom",
+      "price": "Prix",
+      "status": "Statut",
+      "featured": "Mis en avant",
+      "standard": "Standard",
+      "created": "Créé le",
+      "actions": "Actions",
+      "loading": "Chargement des produits...",
+      "error": "Erreur lors du chargement des produits. Veuillez réessayer.",
+      "noProducts": "Aucun produit trouvé",
+      "noProductsDescription": "Commencez par créer votre premier produit",
+      "delete": {
+        "title": "Êtes-vous sûr ?",
+        "description": "Cette action supprimera définitivement le produit \"{name}\". Cette action ne peut pas être annulée.",
+        "confirm": "Supprimer",
+        "cancel": "Annuler",
+        "success": "Produit supprimé",
+        "successDescription": "{name} a été supprimé avec succès.",
+        "error": "Erreur",
+        "errorDescription": "Échec de la suppression du produit. Veuillez réessayer."
+      }
+    },
     "layout": {
       "adminPanel": "Panneau d'Administration",
       "dashboard": "Tableau de Bord",
