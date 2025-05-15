@@ -498,6 +498,55 @@
         "errorDescription": "فشل حذف المنتج. يرجى المحاولة مرة أخرى."
       }
     },
+    "categories": {
+      "title": "الفئات",
+      "manage": "إدارة الفئات",
+      "add": "إضافة فئة",
+      "edit": "تعديل الفئة",
+      "create": "إنشاء فئة",
+      "update": "تحديث",
+      "updating": "جاري التحديث...",
+      "creating": "جاري الإنشاء...",
+      "deleting": "جاري الحذف...",
+      "name": "الاسم",
+      "slug": "الرابط المختصر",
+      "image": "رابط الصورة",
+      "imageUrl": "رابط الصورة",
+      "description": "الوصف (اختياري)",
+      "created": "تاريخ الإنشاء",
+      "actions": "الإجراءات",
+      "loading": "جاري تحميل الفئات...",
+      "error": "حدث خطأ أثناء تحميل الفئات. يرجى المحاولة مرة أخرى.",
+      "noCategories": "لم يتم العثور على فئات",
+      "noCategoriesDescription": "ابدأ بإنشاء أول فئة لك",
+      "createDescription": "إضافة فئة منتجات جديدة إلى متجرك.",
+      "editDescription": "تعديل فئة المنتجات.",
+      "nameRequiredError": "الاسم مطلوب.",
+      "imageRequiredError": "رابط الصورة مطلوب.",
+      "fieldsRequiredError": "الاسم ورابط الصورة مطلوبان.",
+      "delete": {
+        "title": "هل أنت متأكد؟",
+        "description": "سيؤدي هذا إلى حذف الفئة \"{name}\" نهائيًا. لا يمكن التراجع عن هذا الإجراء.",
+        "confirm": "حذف",
+        "cancel": "إلغاء",
+        "success": "تم حذف الفئة",
+        "successDescription": "تم حذف {name} بنجاح.",
+        "error": "خطأ",
+        "errorDescription": "فشل حذف الفئة. يرجى المحاولة مرة أخرى."
+      },
+      "create": {
+        "success": "نجاح",
+        "successDescription": "تم إنشاء الفئة بنجاح.",
+        "error": "خطأ",
+        "errorDescription": "فشل إنشاء الفئة. يرجى المحاولة مرة أخرى."
+      },
+      "update": {
+        "success": "نجاح",
+        "successDescription": "تم تحديث الفئة بنجاح.",
+        "error": "خطأ",
+        "errorDescription": "فشل تحديث الفئة. يرجى المحاولة مرة أخرى."
+      }
+    },
     "layout": {
       "adminPanel": "لوحة الإدارة",
       "dashboard": "لوحة التحكم",

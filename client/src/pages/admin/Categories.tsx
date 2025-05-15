@@ -34,6 +34,8 @@ import {
 import { Plus, Pencil, Trash2 } from "lucide-react";
 import { apiRequest } from "@/lib/queryClient";
 import { useToast } from "@/hooks/use-toast";
+import { useTranslation } from "react-i18next";
+import i18n from "i18next";
 
 interface Category {
   id: number;
@@ -47,6 +49,8 @@ interface Category {
 export default function AdminCategories() {
   const { toast } = useToast();
   const queryClient = useQueryClient();
+  const { t } = useTranslation('common');
+  const isRTL = i18n.language === 'ar';
   
   // State for dialog control
   const [createDialogOpen, setCreateDialogOpen] = useState(false);
@@ -108,8 +112,8 @@ export default function AdminCategories() {
     if (!formData.name || !formData.image) {
       toast({
         variant: "destructive",
-        title: "Error",
-        description: "Name and Image are required fields."
+        title: t('admin.categories.create.error'),
+        description: t('admin.categories.fieldsRequiredError')
       });
       return;
     }
@@ -133,8 +137,8 @@ export default function AdminCategories() {
       queryClient.invalidateQueries({ queryKey: ['/api/admin/categories'] });
       
       toast({
-        title: "Success",
-        description: "Category has been created successfully."
+        title: t('admin.categories.create.success'),
+        description: t('admin.categories.create.successDescription')
       });
       
       setCreateDialogOpen(false);
@@ -142,8 +146,8 @@ export default function AdminCategories() {
       console.error("Error creating category:", error);
       toast({
         variant: "destructive",
-        title: "Error",
-        description: "Failed to create category. Please try again."
+        title: t('admin.categories.create.error'),
+        description: t('admin.categories.create.errorDescription')
       });
     } finally {
       setIsSubmitting(false);
@@ -156,8 +160,8 @@ export default function AdminCategories() {
     if (!formData.name || !formData.image) {
       toast({
         variant: "destructive",
-        title: "Error",
-        description: "Name and Image are required fields."
+        title: t('admin.categories.update.error'),
+        description: t('admin.categories.fieldsRequiredError')
       });
       return;
     }
@@ -181,8 +185,8 @@ export default function AdminCategories() {
       queryClient.invalidateQueries({ queryKey: ['/api/admin/categories'] });
       
       toast({
-        title: "Success",
-        description: "Category has been updated successfully."
+        title: t('admin.categories.update.success'),
+        description: t('admin.categories.update.successDescription')
       });
       
       setEditDialogOpen(false);
@@ -190,8 +194,8 @@ export default function AdminCategories() {
       console.error("Error updating category:", error);
       toast({
         variant: "destructive",
-        title: "Error",
-        description: "Failed to update category. Please try again."
+        title: t('admin.categories.update.error'),
+        description: t('admin.categories.update.errorDescription')
       });
     } finally {
       setIsSubmitting(false);
@@ -212,8 +216,8 @@ export default function AdminCategories() {
       queryClient.invalidateQueries({ queryKey: ['/api/admin/categories'] });
       
       toast({
-        title: "Success",
-        description: "Category has been deleted successfully."
+        title: t('admin.categories.delete.success'),
+        description: t('admin.categories.delete.successDescription', { name: currentCategory.name })
       });
       
       setDeleteDialogOpen(false);
@@ -221,8 +225,8 @@ export default function AdminCategories() {
       console.error("Error deleting category:", error);
       toast({
         variant: "destructive",
-        title: "Error",
-        description: "Failed to delete category. Please try again."
+        title: t('admin.categories.delete.error'),
+        description: t('admin.categories.delete.errorDescription')
       });
     } finally {
       setIsSubmitting(false);
@@ -230,12 +234,21 @@ export default function AdminCategories() {
   };
 
   return (
-    <AdminLayout title="Categories">
-      <div className="flex justify-between items-center mb-6">
-        <h2 className="text-lg font-medium">Manage Categories</h2>
+    <AdminLayout title={t('admin.categories.title')}>
+      <div className={`flex justify-between items-center mb-6 ${isRTL ? 'flex-row-reverse' : ''}`}>
+        <h2 className="text-lg font-medium">{t('admin.categories.manage')}</h2>
         <Button onClick={handleOpenCreateDialog}>
-          <Plus className="h-4 w-4 mr-2" />
-          Add Category
+          {isRTL ? (
+            <>
+              {t('admin.categories.add')}
+              <Plus className="h-4 w-4 ml-2" />
+            </>
+          ) : (
+            <>
+              <Plus className="h-4 w-4 mr-2" />
+              {t('admin.categories.add')}
+            </>
+          )}
         </Button>
       </div>
 
@@ -245,26 +258,26 @@ export default function AdminCategories() {
         </div>
       ) : error ? (
         <div className="bg-red-50 p-4 rounded-md">
-          <p className="text-red-800">Error loading categories. Please try again.</p>
+          <p className={`text-red-800 ${isRTL ? 'text-right' : ''}`}>{t('admin.categories.error')}</p>
         </div>
       ) : categories && categories.length > 0 ? (
         <div className="bg-white rounded-md shadow overflow-hidden">
           <Table>
             <TableHeader>
               <TableRow>
-                <TableHead>Name</TableHead>
-                <TableHead>Slug</TableHead>
-                <TableHead>Created</TableHead>
-                <TableHead className="text-right">Actions</TableHead>
+                <TableHead className={isRTL ? 'text-right' : ''}>{t('admin.categories.name')}</TableHead>
+                <TableHead className={isRTL ? 'text-right' : ''}>{t('admin.categories.slug')}</TableHead>
+                <TableHead className={isRTL ? 'text-right' : ''}>{t('admin.categories.created')}</TableHead>
+                <TableHead className={isRTL ? 'text-left' : 'text-right'}>{t('admin.categories.actions')}</TableHead>
               </TableRow>
             </TableHeader>
             <TableBody>
               {categories.map((category) => (
                 <TableRow key={category.id}>
-                  <TableCell className="font-medium">{category.name}</TableCell>
-                  <TableCell>{category.slug}</TableCell>
-                  <TableCell>{new Date(category.createdAt).toLocaleDateString()}</TableCell>
-                  <TableCell className="text-right">
+                  <TableCell className={`font-medium ${isRTL ? 'text-right' : ''}`}>{category.name}</TableCell>
+                  <TableCell className={isRTL ? 'text-right' : ''}>{category.slug}</TableCell>
+                  <TableCell className={isRTL ? 'text-right' : ''}>{new Date(category.createdAt).toLocaleDateString()}</TableCell>
+                  <TableCell className={isRTL ? 'text-left' : 'text-right'}>
                     <Button 
                       variant="ghost" 
                       size="icon"
@@ -287,60 +300,72 @@ export default function AdminCategories() {
         </div>
       ) : (
         <div className="bg-gray-50 p-8 text-center rounded-md">
-          <h3 className="text-lg font-medium text-gray-600 mb-4">No categories found</h3>
-          <p className="text-gray-500 mb-6">Get started by creating your first category</p>
+          <h3 className={`text-lg font-medium text-gray-600 mb-4 ${isRTL ? 'rtl' : ''}`}>{t('admin.categories.noCategories')}</h3>
+          <p className={`text-gray-500 mb-6 ${isRTL ? 'rtl' : ''}`}>{t('admin.categories.noCategoriesDescription')}</p>
           <Button onClick={handleOpenCreateDialog}>
-            <Plus className="h-4 w-4 mr-2" />
-            Add Category
+            {isRTL ? (
+              <>
+                {t('admin.categories.add')}
+                <Plus className="h-4 w-4 ml-2" />
+              </>
+            ) : (
+              <>
+                <Plus className="h-4 w-4 mr-2" />
+                {t('admin.categories.add')}
+              </>
+            )}
           </Button>
         </div>
       )}
 
       {/* Create Category Dialog */}
       <Dialog open={createDialogOpen} onOpenChange={setCreateDialogOpen}>
-        <DialogContent>
+        <DialogContent className={isRTL ? 'rtl' : ''}>
           <DialogHeader>
-            <DialogTitle>Create Category</DialogTitle>
+            <DialogTitle>{t('admin.categories.create')}</DialogTitle>
             <DialogDescription>
-              Add a new product category to your store.
+              {t('admin.categories.createDescription')}
             </DialogDescription>
           </DialogHeader>
           <div className="space-y-4 py-2">
             <div className="space-y-2">
-              <Label htmlFor="name">Name</Label>
+              <Label htmlFor="name">{t('admin.categories.name')}</Label>
               <Input
                 id="name"
                 name="name"
-                placeholder="e.g. Electronics"
+                placeholder={isRTL ? "مثال: إلكترونيات" : "e.g. Electronics"}
                 value={formData.name}
                 onChange={handleInputChange}
+                dir={isRTL ? 'rtl' : 'ltr'}
               />
             </div>
             <div className="space-y-2">
-              <Label htmlFor="image">Image URL</Label>
+              <Label htmlFor="image">{t('admin.categories.imageUrl')}</Label>
               <Input
                 id="image"
                 name="image"
                 placeholder="https://example.com/image.jpg"
                 value={formData.image}
                 onChange={handleInputChange}
+                dir={isRTL ? 'rtl' : 'ltr'}
               />
             </div>
             <div className="space-y-2">
-              <Label htmlFor="description">Description (optional)</Label>
+              <Label htmlFor="description">{t('admin.categories.description')}</Label>
               <Textarea
                 id="description"
                 name="description"
-                placeholder="Describe this category..."
+                placeholder={isRTL ? "صف هذه الفئة..." : "Describe this category..."}
                 value={formData.description}
                 onChange={handleInputChange}
+                dir={isRTL ? 'rtl' : 'ltr'}
               />
             </div>
           </div>
-          <DialogFooter>
-            <Button variant="outline" onClick={() => setCreateDialogOpen(false)}>Cancel</Button>
+          <DialogFooter className={isRTL ? 'flex-row-reverse' : ''}>
+            <Button variant="outline" onClick={() => setCreateDialogOpen(false)}>{t('admin.categories.delete.cancel')}</Button>
             <Button onClick={handleCreateCategory} disabled={isSubmitting}>
-              {isSubmitting ? "Creating..." : "Create"}
+              {isSubmitting ? t('admin.categories.creating') : t('admin.categories.create')}
             </Button>
           </DialogFooter>
         </DialogContent>
@@ -348,46 +373,49 @@ export default function AdminCategories() {
 
       {/* Edit Category Dialog */}
       <Dialog open={editDialogOpen} onOpenChange={setEditDialogOpen}>
-        <DialogContent>
+        <DialogContent className={isRTL ? 'rtl' : ''}>
           <DialogHeader>
-            <DialogTitle>Edit Category</DialogTitle>
+            <DialogTitle>{t('admin.categories.edit')}</DialogTitle>
             <DialogDescription>
-              Make changes to the product category.
+              {t('admin.categories.editDescription')}
             </DialogDescription>
           </DialogHeader>
           <div className="space-y-4 py-2">
             <div className="space-y-2">
-              <Label htmlFor="edit-name">Name</Label>
+              <Label htmlFor="edit-name">{t('admin.categories.name')}</Label>
               <Input
                 id="edit-name"
                 name="name"
                 value={formData.name}
                 onChange={handleInputChange}
+                dir={isRTL ? 'rtl' : 'ltr'}
               />
             </div>
             <div className="space-y-2">
-              <Label htmlFor="edit-image">Image URL</Label>
+              <Label htmlFor="edit-image">{t('admin.categories.imageUrl')}</Label>
               <Input
                 id="edit-image"
                 name="image"
                 value={formData.image}
                 onChange={handleInputChange}
+                dir={isRTL ? 'rtl' : 'ltr'}
               />
             </div>
             <div className="space-y-2">
-              <Label htmlFor="edit-description">Description (optional)</Label>
+              <Label htmlFor="edit-description">{t('admin.categories.description')}</Label>
               <Textarea
                 id="edit-description"
                 name="description"
                 value={formData.description}
                 onChange={handleInputChange}
+                dir={isRTL ? 'rtl' : 'ltr'}
               />
             </div>
           </div>
-          <DialogFooter>
-            <Button variant="outline" onClick={() => setEditDialogOpen(false)}>Cancel</Button>
+          <DialogFooter className={isRTL ? 'flex-row-reverse' : ''}>
+            <Button variant="outline" onClick={() => setEditDialogOpen(false)}>{t('admin.categories.delete.cancel')}</Button>
             <Button onClick={handleUpdateCategory} disabled={isSubmitting}>
-              {isSubmitting ? "Updating..." : "Update"}
+              {isSubmitting ? t('admin.categories.updating') : t('admin.categories.update')}
             </Button>
           </DialogFooter>
         </DialogContent>
@@ -395,18 +423,17 @@ export default function AdminCategories() {
 
       {/* Delete Confirmation Dialog */}
       <AlertDialog open={deleteDialogOpen} onOpenChange={setDeleteDialogOpen}>
-        <AlertDialogContent>
+        <AlertDialogContent className={isRTL ? 'rtl' : ''}>
           <AlertDialogHeader>
-            <AlertDialogTitle>Are you sure?</AlertDialogTitle>
+            <AlertDialogTitle>{t('admin.categories.delete.title')}</AlertDialogTitle>
             <AlertDialogDescription>
-              This will permanently delete the category "{currentCategory?.name}". 
-              This action cannot be undone.
+              {t('admin.categories.delete.description', { name: currentCategory?.name })}
             </AlertDialogDescription>
           </AlertDialogHeader>
-          <AlertDialogFooter>
-            <AlertDialogCancel>Cancel</AlertDialogCancel>
+          <AlertDialogFooter className={isRTL ? 'flex-row-reverse' : ''}>
+            <AlertDialogCancel>{t('admin.categories.delete.cancel')}</AlertDialogCancel>
             <AlertDialogAction onClick={handleDeleteCategory} className="bg-red-600 hover:bg-red-700" disabled={isSubmitting}>
-              {isSubmitting ? "Deleting..." : "Delete"}
+              {isSubmitting ? t('admin.categories.deleting') : t('admin.categories.delete.confirm')}
             </AlertDialogAction>
           </AlertDialogFooter>
         </AlertDialogContent>

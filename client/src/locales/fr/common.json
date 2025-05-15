@@ -499,6 +499,55 @@
         "errorDescription": "Échec de la suppression du produit. Veuillez réessayer."
       }
     },
+    "categories": {
+      "title": "Catégories",
+      "manage": "Gérer les Catégories",
+      "add": "Ajouter une Catégorie",
+      "edit": "Modifier la Catégorie",
+      "create": "Créer une Catégorie",
+      "update": "Mettre à jour",
+      "updating": "Mise à jour...",
+      "creating": "Création...",
+      "deleting": "Suppression...",
+      "name": "Nom",
+      "slug": "Slug",
+      "image": "URL de l'image",
+      "imageUrl": "URL de l'image",
+      "description": "Description (optionnelle)",
+      "created": "Créé le",
+      "actions": "Actions",
+      "loading": "Chargement des catégories...",
+      "error": "Erreur lors du chargement des catégories. Veuillez réessayer.",
+      "noCategories": "Aucune catégorie trouvée",
+      "noCategoriesDescription": "Commencez par créer votre première catégorie",
+      "createDescription": "Ajouter une nouvelle catégorie de produits à votre boutique.",
+      "editDescription": "Modifier la catégorie de produits.",
+      "nameRequiredError": "Le nom est obligatoire.",
+      "imageRequiredError": "L'URL de l'image est obligatoire.",
+      "fieldsRequiredError": "Le nom et l'URL de l'image sont obligatoires.",
+      "delete": {
+        "title": "Êtes-vous sûr ?",
+        "description": "Cette action supprimera définitivement la catégorie \"{name}\". Cette action ne peut pas être annulée.",
+        "confirm": "Supprimer",
+        "cancel": "Annuler",
+        "success": "Catégorie supprimée",
+        "successDescription": "{name} a été supprimée avec succès.",
+        "error": "Erreur",
+        "errorDescription": "Échec de la suppression de la catégorie. Veuillez réessayer."
+      },
+      "create": {
+        "success": "Succès",
+        "successDescription": "La catégorie a été créée avec succès.",
+        "error": "Erreur",
+        "errorDescription": "Échec de la création de la catégorie. Veuillez réessayer."
+      },
+      "update": {
+        "success": "Succès",
+        "successDescription": "La catégorie a été mise à jour avec succès.",
+        "error": "Erreur",
+        "errorDescription": "Échec de la mise à jour de la catégorie. Veuillez réessayer."
+      }
+    },
     "layout": {
       "adminPanel": "Panneau d'Administration",
       "dashboard": "Tableau de Bord",
