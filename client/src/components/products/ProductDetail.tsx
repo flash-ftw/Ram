@@ -193,26 +193,26 @@ const ProductDetail = () => {
                 </p>
               </div>
               
-              <div className="mt-6">
+              <div className={`mt-6 ${isRTL ? 'text-right' : ''}`}>
                 <h2 className="text-lg font-medium text-gray-900">{t('productDetail.features')}</h2>
                 <ul className="mt-2 space-y-2">
                   {featuresArray.map((feature, index) => (
-                    <li key={index} className="flex items-center text-gray-600">
-                      <CheckCircle className="text-green-500 mr-2 flex-shrink-0" size={18} />
+                    <li key={index} className={`flex items-center text-gray-600 ${isRTL ? 'flex-row-reverse' : ''}`}>
+                      <CheckCircle className={`text-green-500 ${isRTL ? 'ml-2' : 'mr-2'} flex-shrink-0`} size={18} />
                       {feature}
                     </li>
                   ))}
                 </ul>
               </div>
               
-              <div className="mt-8 flex items-center">
+              <div className={`mt-8 flex items-center ${isRTL ? 'flex-row-reverse' : ''}`}>
                 <span className="text-3xl font-bold text-gray-900">{formatPrice(product.price)}</span>
                 {product.originalPrice && (
                   <>
-                    <span className="ml-3 text-lg text-gray-500 line-through">
+                    <span className={`${isRTL ? 'mr-3' : 'ml-3'} text-lg text-gray-500 line-through`}>
                       {formatPrice(product.originalPrice)}
                     </span>
-                    <span className="ml-3 px-2 py-1 text-xs font-semibold text-white bg-green-500 rounded">
+                    <span className={`${isRTL ? 'mr-3' : 'ml-3'} px-2 py-1 text-xs font-semibold text-white bg-green-500 rounded`}>
                       {t('productDetail.save')} {Math.round((1 - product.price / product.originalPrice) * 100)}%
                     </span>
                   </>
@@ -220,12 +220,12 @@ const ProductDetail = () => {
               </div>
               
               {/* Quantity Selector */}
-              <div className="mt-6 flex items-center">
-                <span className="text-gray-700 mr-4">{t('productDetail.quantity')} :</span>
+              <div className={`mt-6 flex items-center ${isRTL ? 'flex-row-reverse' : ''}`}>
+                <span className={`text-gray-700 ${isRTL ? 'ml-4' : 'mr-4'}`}>{t('productDetail.quantity')} :</span>
                 <div className="flex items-center border border-gray-300 rounded-md">
                   <button 
                     onClick={() => handleQuantityChange(quantity - 1)}
-                    className="px-4 py-2 border-r border-gray-300 text-gray-600 hover:bg-gray-100 focus:outline-none"
+                    className={`px-4 py-2 ${isRTL ? 'border-l' : 'border-r'} border-gray-300 text-gray-600 hover:bg-gray-100 focus:outline-none`}
                     disabled={quantity <= 1}
                   >
                     -
@@ -233,14 +233,14 @@ const ProductDetail = () => {
                   <span className="px-4 py-2 text-gray-700">{quantity}</span>
                   <button 
                     onClick={() => handleQuantityChange(quantity + 1)}
-                    className="px-4 py-2 border-l border-gray-300 text-gray-600 hover:bg-gray-100 focus:outline-none"
+                    className={`px-4 py-2 ${isRTL ? 'border-r' : 'border-l'} border-gray-300 text-gray-600 hover:bg-gray-100 focus:outline-none`}
                   >
                     +
                   </button>
                 </div>
               </div>
               
-              <div className="mt-8 flex flex-col sm:flex-row space-y-4 sm:space-y-0 sm:space-x-4">
+              <div className={`mt-8 flex flex-col sm:flex-row space-y-4 sm:space-y-0 ${isRTL ? 'sm:space-x-reverse sm:space-x-4' : 'sm:space-x-4'}`}>
                 <Button 
                   onClick={() => {
                     setIsAddingToCart(true);
