@@ -5,6 +5,7 @@ import { setupVite, serveStatic, log } from "./vite";
 import { pool } from "./db";
 import connectPgSimple from "connect-pg-simple";
 import { storage } from "./storage";
+import { ensureUploadDirectoriesExist } from "./utils/ensure-upload-dirs";
 import path from "path";
 import fs from "fs";
 
@@ -116,6 +117,9 @@ app.use((req, res, next) => {
 });
 
 (async () => {
+  // Ensure all upload directories exist
+  ensureUploadDirectoriesExist();
+  
   // Initialize admin user if this is the first run
   try {
     // Check if any admin users exist first
