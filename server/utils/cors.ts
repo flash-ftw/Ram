@@ -1,4 +1,4 @@
-import { CorsOptions } from 'express';
+import { CorsOptions } from 'cors';
 
 /**
  * Configuration CORS pour l'application
@@ -20,7 +20,7 @@ export function getCorsConfig(): CorsOptions {
   }
 
   return {
-    origin: (origin, callback) => {
+    origin: (origin: string | undefined, callback: (err: Error | null, allow?: boolean) => void) => {
       // Autoriser les requêtes sans origine (comme les applications mobiles ou curl)
       if (!origin) return callback(null, true);
       

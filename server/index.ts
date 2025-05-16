@@ -1,11 +1,13 @@
 import express, { type Request, Response, NextFunction } from "express";
 import session from "express-session";
+import cors from "cors";
 import { registerRoutes } from "./routes";
 import { setupVite, serveStatic, log } from "./vite";
 import { pool } from "./db";
 import connectPgSimple from "connect-pg-simple";
 import { storage } from "./storage";
 import { ensureUploadDirectoriesExist } from "./utils/ensure-upload-dirs";
+import { getCorsConfig } from "./utils/cors";
 import path from "path";
 import fs from "fs";
 
@@ -21,6 +23,8 @@ declare module "express-session" {
 }
 
 const app = express();
+// Configurer CORS pour les appels API
+app.use(cors(getCorsConfig()));
 app.use(express.json());
 app.use(express.urlencoded({ extended: false }));
 
