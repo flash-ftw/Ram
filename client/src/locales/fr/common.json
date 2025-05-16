@@ -2,7 +2,7 @@
   "languages": {
     "switchLanguage": "Changer de langue",
     "french": "Français",
-    "arabic": "Arabe"
+    "arabic": "العربية"
   },
   "header": {
     "home": "Accueil",
@@ -142,7 +142,7 @@
       "manuelle": "Manuelle",
       "electrique": "Électrique",
       "disqueavant/disquearrière": "Disque avant / Disque arrière",
-      "tambouravant/tambourrarrière": "Tambour avant / Tambour rarrière",
+      "tambouravant/tambourrarrière": "Tambour avant / Tambour arrière",
       "disque": "Disque",
       "tambour": "Tambour",
       "électrique/électrique": "Électrique / Électrique"
