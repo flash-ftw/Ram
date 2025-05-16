@@ -406,9 +406,9 @@ const ProductForm = ({ productId, defaultValues, isEdit = false }: ProductFormPr
                       />
                     </FormControl>
                     <div className="space-y-1 leading-none">
-                      <FormLabel>Featured Product</FormLabel>
+                      <FormLabel>{t('products.form.featuredProduct')}</FormLabel>
                       <FormDescription>
-                        This product will be displayed in the featured section on the homepage
+                        {t('products.form.featuredDescription')}
                       </FormDescription>
                     </div>
                   </FormItem>
@@ -418,14 +418,14 @@ const ProductForm = ({ productId, defaultValues, isEdit = false }: ProductFormPr
             
             {/* Pricing & Inventory */}
             <div className="space-y-4">
-              <h3 className="text-lg font-medium border-b pb-2">Pricing & Inventory</h3>
+              <h3 className="text-lg font-medium border-b pb-2">{t('products.form.pricingInventory')}</h3>
               
               <FormField
                 control={form.control}
                 name="price"
                 render={({ field }) => (
                   <FormItem>
-                    <FormLabel>Price (TND)</FormLabel>
+                    <FormLabel>{t('products.form.priceTND')}</FormLabel>
                     <FormControl>
                       <Input {...field} type="number" step="0.01" min="0" />
                     </FormControl>
@@ -439,20 +439,20 @@ const ProductForm = ({ productId, defaultValues, isEdit = false }: ProductFormPr
                 name="originalPrice"
                 render={({ field }) => (
                   <FormItem>
-                    <FormLabel>Original Price (TND) (Optional)</FormLabel>
+                    <FormLabel>{t('products.form.originalPrice')}</FormLabel>
                     <FormControl>
                       <Input 
                         {...field} 
                         type="number" 
                         step="0.01" 
                         min="0" 
-                        placeholder="Leave empty if no discount"
+                        placeholder={t('products.form.originalPrice')}
                         value={field.value || ""}
                         onChange={(e) => field.onChange(e.target.value ? Number(e.target.value) : null)}
                       />
                     </FormControl>
                     <FormDescription>
-                      Set this only if the product is on sale
+                      {t('products.form.originalPriceDescription')}
                     </FormDescription>
                     <FormMessage />
                   </FormItem>
@@ -471,9 +471,9 @@ const ProductForm = ({ productId, defaultValues, isEdit = false }: ProductFormPr
                       />
                     </FormControl>
                     <div className="space-y-1 leading-none">
-                      <FormLabel>In Stock</FormLabel>
+                      <FormLabel>{t('products.form.inStockLabel')}</FormLabel>
                       <FormDescription>
-                        Is this product currently available for purchase?
+                        {t('products.form.inStockDescription')}
                       </FormDescription>
                     </div>
                   </FormItem>
@@ -1079,11 +1079,11 @@ const ProductForm = ({ productId, defaultValues, isEdit = false }: ProductFormPr
               className="mr-2"
               onClick={() => setLocation("/admin/products")}
             >
-              Cancel
+              {t('products.delete.cancel')}
             </Button>
             <Button type="submit" disabled={isSubmitting}>
               <Save className="mr-2 h-4 w-4" />
-              {isSubmitting ? 'Saving...' : 'Save Product'}
+              {isSubmitting ? t('products.form.saving') : t('products.form.saveProduct')}
             </Button>
           </div>
         </form>
