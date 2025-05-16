@@ -20,8 +20,8 @@ const Hero = () => {
         <div className="container mx-auto px-4 h-full flex items-center">
           <div className="max-w-2xl">
             <div className="flex items-center mb-4">
-              <MotorcycleIcon className="text-yellow-500 mr-2" size={40} />
-              <span className="text-xl font-semibold text-yellow-500">PREMIUM SELECTION</span>
+              <MotorcycleIcon className={`text-yellow-500 ${isRTL ? 'ml-2' : 'mr-2'}`} size={40} />
+              <span className="text-xl font-semibold text-yellow-500">{t('home.hero.premium')}</span>
             </div>
             <h1 className="text-5xl sm:text-6xl font-bold mb-4 leading-tight">
               <span className="text-white">{t('home.hero.title')}</span> <span className="text-yellow-500">{t('home.hero.subtitle')}</span>

@@ -65,7 +65,7 @@ const Categories = () => {
                 <Link 
                   href={`/products?category=${category.slug}`} 
                   className="absolute inset-0" 
-                  aria-label={`View ${category.name}`}
+                  aria-label={t('products.categoryView', { name: category.name })}
                 />
               </div>
             ))}
