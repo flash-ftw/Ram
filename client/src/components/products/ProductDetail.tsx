@@ -158,7 +158,7 @@ const ProductDetail = () => {
                       >
                         <img 
                           src={getImageUrl(image)} 
-                          alt={`${product.name} view ${index + 1}`} 
+                          alt={`${product.name} ${t('productDetail.view')} ${index + 1}`} 
                           className="w-full h-full object-cover"
                         />
                       </button>

@@ -162,6 +162,7 @@
     "originalPrice": "Prix original",
     "relatedProducts": "Produits Similaires",
     "reviews": "avis",
+    "view": "vue",
     "save": "Économisez",
     "productNotFound": "Produit Non Trouvé",
     "productNotFoundText": "Le produit que vous recherchez n'existe pas ou a été supprimé.",
@@ -313,6 +314,17 @@
       "orderCreationFailed": "Un problème est survenu lors de la création de votre commande. Veuillez réessayer."
     },
     "errorTitle": "Erreur"
+  },
+  "buttons": {
+    "viewDetails": "Voir détails",
+    "submit": "Soumettre",
+    "cancel": "Annuler",
+    "save": "Enregistrer",
+    "edit": "Modifier",
+    "delete": "Supprimer",
+    "back": "Retour",
+    "next": "Suivant",
+    "previous": "Précédent"
   },
   "thankYou": {
     "title": "Merci pour Votre Commande !",
