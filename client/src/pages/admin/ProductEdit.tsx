@@ -5,6 +5,7 @@ import AdminLayout from "@/components/admin/AdminLayout";
 import ProductForm from "@/components/admin/ProductForm";
 import type { ProductFormValues } from "@/components/admin/ProductForm";
 import { useToast } from "@/hooks/use-toast";
+import { useTranslation } from "react-i18next";
 
 interface Product {
   id: number;
@@ -29,6 +30,7 @@ export default function ProductEdit() {
   const { id } = useParams();
   const [, setLocation] = useLocation();
   const { toast } = useToast();
+  const { t } = useTranslation();
   const [defaultValues, setDefaultValues] = useState<ProductFormValues>();
   const productId = parseInt(id as string);
 
@@ -44,8 +46,8 @@ export default function ProductEdit() {
         if (response.status === 404) {
           toast({
             variant: "destructive",
-            title: "Product Not Found",
-            description: "The product you're trying to edit doesn't exist."
+            title: t('products.notFound'),
+            description: t('products.notFoundDescription')
           });
           setTimeout(() => setLocation("/admin/products"), 1500);
           throw new Error('Product not found');
@@ -80,7 +82,7 @@ export default function ProductEdit() {
 
   if (isLoading) {
     return (
-      <AdminLayout title="Edit Product">
+      <AdminLayout title={t('products.form.editProduct')}>
         <div className="flex justify-center my-8">
           <div className="w-8 h-8 border-4 border-primary border-t-transparent rounded-full animate-spin"></div>
         </div>
@@ -90,11 +92,11 @@ export default function ProductEdit() {
 
   if (error || !product) {
     return (
-      <AdminLayout title="Edit Product">
+      <AdminLayout title={t('products.form.editProduct')}>
         <div className="bg-red-50 p-6 rounded-lg">
-          <h3 className="text-red-800 font-semibold text-lg mb-2">Error Loading Product</h3>
+          <h3 className="text-red-800 font-semibold text-lg mb-2">{t('products.errorLoading')}</h3>
           <p className="text-red-600">
-            We couldn't load the product information. Please try again or go back to the product list.
+            {t('products.errorLoadingDescription')}
           </p>
         </div>
       </AdminLayout>
@@ -102,7 +104,7 @@ export default function ProductEdit() {
   }
 
   return (
-    <AdminLayout title={`Edit Product: ${product.name}`}>
+    <AdminLayout title={`${t('products.form.editProduct')}: ${product.name}`}>
       {defaultValues ? (
         <ProductForm 
           productId={productId} 

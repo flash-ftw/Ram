@@ -488,6 +488,10 @@
       "error": "Erreur lors du chargement des produits. Veuillez réessayer.",
       "noProducts": "Aucun produit trouvé",
       "noProductsDescription": "Commencez par créer votre premier produit",
+      "notFound": "Produit introuvable",
+      "notFoundDescription": "Le produit que vous essayez de modifier n'existe pas.",
+      "errorLoading": "Erreur de chargement du produit",
+      "errorLoadingDescription": "Nous n'avons pas pu charger les informations du produit. Veuillez réessayer ou retourner à la liste des produits.",
       "delete": {
         "title": "Êtes-vous sûr ?",
         "description": "Cette action supprimera définitivement le produit \"{name}\". Cette action ne peut pas être annulée.",
