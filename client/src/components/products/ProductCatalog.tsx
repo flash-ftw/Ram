@@ -391,7 +391,7 @@ const ProductCatalog = () => {
                         className="rounded-l-md border border-gray-300"
                       >
                         <span className="sr-only">{t('pagination.previous')}</span>
-                        <ChevronLeft className="h-4 w-4" />
+                        <ChevronLeft className={`h-4 w-4 ${isRTL ? 'transform rotate-180' : ''}`} />
                       </Button>
                       
                       {[...Array(totalPages)].map((_, i) => (
@@ -415,7 +415,7 @@ const ProductCatalog = () => {
                         className="rounded-r-md border border-gray-300"
                       >
                         <span className="sr-only">{t('pagination.next')}</span>
-                        <ChevronRight className="h-4 w-4" />
+                        <ChevronRight className={`h-4 w-4 ${isRTL ? 'transform rotate-180' : ''}`} />
                       </Button>
                     </nav>
                   </div>
