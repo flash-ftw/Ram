@@ -83,6 +83,7 @@
     "featured": "مميز",
     "noProductsFound": "لم يتم العثور على منتجات",
     "tryAdjustingFilters": "حاول تعديل الفلاتر أو معايير البحث للعثور على ما تبحث عنه.",
+    "categoryView": "عرض {{name}}",
     "categoryItems": {
       "casques": "خوذات",
       "moteur-electrique": "محرك كهربائي",

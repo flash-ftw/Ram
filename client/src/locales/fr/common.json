@@ -83,6 +83,7 @@
     "featured": "En Vedette",
     "noProductsFound": "Aucun produit trouvé",
     "tryAdjustingFilters": "Essayez d'ajuster vos filtres ou critères de recherche pour trouver ce que vous cherchez.",
+    "categoryView": "Voir {{name}}",
     "categoryItems": {
       "casques": "Casques",
       "moteur-electrique": "Moteur Électrique",
