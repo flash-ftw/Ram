@@ -278,16 +278,16 @@ const ProductForm = ({ productId, defaultValues, isEdit = false }: ProductFormPr
           <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
             {/* Basic Information */}
             <div className="space-y-4 md:col-span-2">
-              <h3 className="text-lg font-medium border-b pb-2">Basic Information</h3>
+              <h3 className="text-lg font-medium border-b pb-2">{t('products.form.basicInformation')}</h3>
               
               <FormField
                 control={form.control}
                 name="name"
                 render={({ field }) => (
                   <FormItem>
-                    <FormLabel>Product Name</FormLabel>
+                    <FormLabel>{t('products.form.productName')}</FormLabel>
                     <FormControl>
-                      <Input {...field} placeholder="Enter product name" />
+                      <Input {...field} placeholder={t('products.form.productNamePlaceholder')} />
                     </FormControl>
                     <FormMessage />
                   </FormItem>
@@ -299,11 +299,11 @@ const ProductForm = ({ productId, defaultValues, isEdit = false }: ProductFormPr
                 name="description"
                 render={({ field }) => (
                   <FormItem>
-                    <FormLabel>Description</FormLabel>
+                    <FormLabel>{t('products.form.description')}</FormLabel>
                     <FormControl>
                       <Textarea 
                         {...field} 
-                        placeholder="Enter product description" 
+                        placeholder={t('products.form.descriptionPlaceholder')} 
                         rows={4}
                       />
                     </FormControl>
@@ -317,16 +317,16 @@ const ProductForm = ({ productId, defaultValues, isEdit = false }: ProductFormPr
                 name="features"
                 render={({ field }) => (
                   <FormItem>
-                    <FormLabel>Features</FormLabel>
+                    <FormLabel>{t('products.form.features')}</FormLabel>
                     <FormControl>
                       <Textarea 
                         {...field} 
-                        placeholder="Enter product features, one per line" 
+                        placeholder={t('products.form.featuresPlaceholder')}
                         rows={4}
                       />
                     </FormControl>
                     <FormDescription>
-                      Enter features separated by line breaks or commas
+                      {t('products.form.featuresDescription')}
                     </FormDescription>
                     <FormMessage />
                   </FormItem>
@@ -336,21 +336,21 @@ const ProductForm = ({ productId, defaultValues, isEdit = false }: ProductFormPr
             
             {/* Categorization */}
             <div className="space-y-4">
-              <h3 className="text-lg font-medium border-b pb-2">Categorization</h3>
+              <h3 className="text-lg font-medium border-b pb-2">{t('products.form.categorization')}</h3>
               
               <FormField
                 control={form.control}
                 name="categoryId"
                 render={({ field }) => (
                   <FormItem>
-                    <FormLabel>Category</FormLabel>
+                    <FormLabel>{t('products.form.category')}</FormLabel>
                     <Select 
                       onValueChange={(value) => field.onChange(parseInt(value))}
                       defaultValue={field.value?.toString()}
                     >
                       <FormControl>
                         <SelectTrigger>
-                          <SelectValue placeholder="Select a category" />
+                          <SelectValue placeholder={t('products.form.selectCategory')} />
                         </SelectTrigger>
                       </FormControl>
                       <SelectContent>
@@ -371,14 +371,14 @@ const ProductForm = ({ productId, defaultValues, isEdit = false }: ProductFormPr
                 name="brandId"
                 render={({ field }) => (
                   <FormItem>
-                    <FormLabel>Brand</FormLabel>
+                    <FormLabel>{t('products.form.brand')}</FormLabel>
                     <Select 
                       onValueChange={(value) => field.onChange(parseInt(value))}
                       defaultValue={field.value?.toString()}
                     >
                       <FormControl>
                         <SelectTrigger>
-                          <SelectValue placeholder="Select a brand" />
+                          <SelectValue placeholder={t('products.form.selectBrand')} />
                         </SelectTrigger>
                       </FormControl>
                       <SelectContent>
