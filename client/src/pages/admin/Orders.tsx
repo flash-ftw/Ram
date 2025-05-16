@@ -12,6 +12,8 @@ import {
   UserCircle, 
   X
 } from "lucide-react";
+import { useTranslation } from "react-i18next";
+import i18n from "i18next";
 
 import { formatPrice, formatDate } from "@/lib/utils";
 import { Button } from "@/components/ui/button";
@@ -82,6 +84,8 @@ interface Order {
 }
 
 const Orders = () => {
+  const { t } = useTranslation('common');
+  const isRTL = i18n.language === 'ar';
   const [selectedOrder, setSelectedOrder] = useState<Order | null>(null);
   const [orderItems, setOrderItems] = useState<OrderItem[]>([]);
   const [isUpdateStatusOpen, setIsUpdateStatusOpen] = useState(false);
@@ -160,8 +164,8 @@ const Orders = () => {
       
       // Show success message
       toast({
-        title: "Status Updated",
-        description: `Order #${selectedOrder.id} status changed to ${status}`,
+        title: t('admin.orders.statusUpdated'),
+        description: t('admin.orders.statusUpdatedDescription', { id: selectedOrder.id, status: t(`admin.orders.statuses.${status}`) }),
       });
       
       // Close the dialog
@@ -172,8 +176,8 @@ const Orders = () => {
     } catch (error) {
       console.error('Error updating order status:', error);
       toast({
-        title: "Error",
-        description: "Failed to update order status. Please try again.",
+        title: t('admin.orders.error'),
+        description: t('admin.orders.updateStatusError'),
         variant: "destructive",
       });
     } finally {
@@ -206,8 +210,8 @@ const Orders = () => {
       
       // Show success message
       toast({
-        title: "Payment Confirmed",
-        description: `Order #${selectedOrder.id} marked as paid`,
+        title: t('admin.orders.paymentConfirmed'),
+        description: t('admin.orders.paymentConfirmedDescription', { id: selectedOrder.id }),
       });
       
       // Close the dialog
@@ -218,8 +222,8 @@ const Orders = () => {
     } catch (error) {
       console.error('Error marking order as paid:', error);
       toast({
-        title: "Error",
-        description: "Failed to mark order as paid. Please try again.",
+        title: t('admin.orders.error'),
+        description: t('admin.orders.markAsPaidError'),
         variant: "destructive",
       });
     } finally {
@@ -231,7 +235,7 @@ const Orders = () => {
   const deleteOrder = async () => {
     if (!selectedOrder) return;
     
-    if (window.confirm(`Are you sure you want to delete order #${selectedOrder.id}?`)) {
+    if (window.confirm(t('admin.orders.deleteConfirmation', { id: selectedOrder.id }))) {
       try {
         const response = await fetch(`/api/admin/orders/${selectedOrder.id}`, {
           method: 'DELETE',
@@ -243,8 +247,8 @@ const Orders = () => {
         
         // Show success message
         toast({
-          title: "Order Deleted",
-          description: `Order #${selectedOrder.id} has been deleted`,
+          title: t('admin.orders.orderDeleted'),
+          description: t('admin.orders.orderDeletedDescription', { id: selectedOrder.id }),
         });
         
         // Close the details and refresh the orders list
@@ -253,8 +257,8 @@ const Orders = () => {
       } catch (error) {
         console.error('Error deleting order:', error);
         toast({
-          title: "Error",
-          description: "Failed to delete order. Please try again.",
+          title: t('admin.orders.error'),
+          description: t('admin.orders.deleteOrderError'),
           variant: "destructive",
         });
       }
@@ -262,20 +266,20 @@ const Orders = () => {
   };
 
   return (
-    <AdminLayout title="Manage Orders">
+    <AdminLayout title={t('admin.orders.title')}>
       <Helmet>
-        <title>Manage Orders | Rammeh MotoScoot Admin</title>
+        <title>{t('admin.orders.manageOrders')} | Rammeh MotoScoot Admin</title>
       </Helmet>
       
-      <div className="flex items-center justify-between mb-6">
-        <h1 className="text-2xl font-bold">Manage Orders</h1>
+      <div className={`flex items-center ${isRTL ? 'flex-row-reverse' : ''} justify-between mb-6`}>
+        <h1 className="text-2xl font-bold">{t('admin.orders.manageOrders')}</h1>
         <Button 
           onClick={() => refetch()}
           variant="outline"
-          className="flex items-center gap-2"
+          className={`flex items-center gap-2 ${isRTL ? 'flex-row-reverse' : ''}`}
         >
-          <FileText className="h-4 w-4" />
-          <span>Refresh Orders</span>
+          <FileText className={`h-4 w-4 ${isRTL ? 'ml-2' : 'mr-2'}`} />
+          <span>{t('admin.orders.refreshOrders')}</span>
         </Button>
       </div>
       
@@ -285,12 +289,12 @@ const Orders = () => {
         </div>
       ) : !orders?.length ? (
         <div className="bg-white rounded-lg shadow-md p-8 text-center">
-          <p className="text-gray-500 mb-4">No orders found</p>
+          <p className={`text-gray-500 mb-4 ${isRTL ? 'rtl' : ''}`}>{t('admin.orders.noOrders')}</p>
           <Button 
             onClick={() => refetch()}
             variant="outline"
           >
-            Refresh
+            {t('admin.orders.refresh')}
           </Button>
         </div>
       ) : (
@@ -299,46 +303,46 @@ const Orders = () => {
             <Table>
               <TableHeader>
                 <TableRow>
-                  <TableHead>Order ID</TableHead>
-                  <TableHead>Date</TableHead>
-                  <TableHead>Customer</TableHead>
-                  <TableHead>Amount</TableHead>
-                  <TableHead>Status</TableHead>
-                  <TableHead>Payment</TableHead>
-                  <TableHead className="text-right">Actions</TableHead>
+                  <TableHead className={isRTL ? 'text-right' : ''}>{t('admin.orders.orderId')}</TableHead>
+                  <TableHead className={isRTL ? 'text-right' : ''}>{t('admin.orders.date')}</TableHead>
+                  <TableHead className={isRTL ? 'text-right' : ''}>{t('admin.orders.customer')}</TableHead>
+                  <TableHead className={isRTL ? 'text-right' : ''}>{t('admin.orders.amount')}</TableHead>
+                  <TableHead className={isRTL ? 'text-right' : ''}>{t('admin.orders.status')}</TableHead>
+                  <TableHead className={isRTL ? 'text-right' : ''}>{t('admin.orders.payment')}</TableHead>
+                  <TableHead className={isRTL ? 'text-left' : 'text-right'}>{t('admin.orders.actions')}</TableHead>
                 </TableRow>
               </TableHeader>
               <TableBody>
                 {orders.map((order) => (
                   <TableRow key={order.id}>
-                    <TableCell className="font-medium">#{order.id}</TableCell>
-                    <TableCell>{formatDate(new Date(order.createdAt))}</TableCell>
-                    <TableCell>{order.customerName}</TableCell>
-                    <TableCell>{formatPrice(order.totalAmount)}</TableCell>
-                    <TableCell>
+                    <TableCell className={`font-medium ${isRTL ? 'text-right' : ''}`}>#{order.id}</TableCell>
+                    <TableCell className={isRTL ? 'text-right' : ''}>{formatDate(new Date(order.createdAt))}</TableCell>
+                    <TableCell className={isRTL ? 'text-right' : ''}>{order.customerName}</TableCell>
+                    <TableCell className={isRTL ? 'text-right' : ''}>{formatPrice(order.totalAmount)}</TableCell>
+                    <TableCell className={isRTL ? 'text-right' : ''}>
                       <Badge className={`${statusColors[order.status]} border`}>
-                        {order.status}
+                        {t(`admin.orders.statuses.${order.status}`)}
                       </Badge>
                     </TableCell>
-                    <TableCell>
+                    <TableCell className={isRTL ? 'text-right' : ''}>
                       {order.paymentConfirmed ? (
                         <Badge className="bg-green-100 text-green-800 border border-green-300">
-                          Paid
+                          {t('admin.orders.paid')}
                         </Badge>
                       ) : (
                         <Badge className="bg-gray-100 text-gray-800 border border-gray-300">
-                          Pending
+                          {t('admin.orders.pending')}
                         </Badge>
                       )}
                     </TableCell>
-                    <TableCell className="text-right">
+                    <TableCell className={isRTL ? 'text-left' : 'text-right'}>
                       <Button
                         variant="ghost"
                         size="sm"
                         onClick={() => showOrderDetails(order)}
                         className="text-blue-600 hover:text-blue-800 hover:bg-blue-50"
                       >
-                        View
+                        {t('admin.orders.view')}
                       </Button>
                     </TableCell>
                   </TableRow>
@@ -352,35 +356,35 @@ const Orders = () => {
       {/* Order Details Dialog */}
       {selectedOrder && (
         <Dialog open={!!selectedOrder} onOpenChange={() => closeOrderDetails()}>
-          <DialogContent className="max-w-4xl max-h-[90vh] overflow-auto">
+          <DialogContent className={`max-w-4xl max-h-[90vh] overflow-auto ${isRTL ? 'rtl' : ''}`}>
             <DialogHeader>
-              <DialogTitle className="flex items-center justify-between">
-                <span>Order #{selectedOrder.id}</span>
-                <Badge className={`${statusColors[selectedOrder.status]} border ml-2`}>
-                  {selectedOrder.status}
+              <DialogTitle className={`flex items-center ${isRTL ? 'flex-row-reverse' : 'justify-between'}`}>
+                <span>{t('admin.orders.orderDetails')} #{selectedOrder.id}</span>
+                <Badge className={`${statusColors[selectedOrder.status]} border ${isRTL ? 'mr-2' : 'ml-2'}`}>
+                  {t(`admin.orders.statuses.${selectedOrder.status}`)}
                 </Badge>
               </DialogTitle>
-              <DialogDescription className="flex items-center gap-2">
+              <DialogDescription className={`flex items-center gap-2 ${isRTL ? 'flex-row-reverse' : ''}`}>
                 <Calendar className="h-4 w-4" />
-                <span>Created on {formatDate(new Date(selectedOrder.createdAt))}</span>
+                <span>{t('admin.orders.createdOn')} {formatDate(new Date(selectedOrder.createdAt))}</span>
               </DialogDescription>
             </DialogHeader>
             
             <div className="grid grid-cols-1 md:grid-cols-2 gap-6 mt-4">
               {/* Customer Information */}
               <div className="bg-gray-50 p-4 rounded-md">
-                <h3 className="font-medium mb-3 flex items-center gap-2">
+                <h3 className={`font-medium mb-3 flex items-center gap-2 ${isRTL ? 'flex-row-reverse' : ''}`}>
                   <UserCircle className="h-4 w-4" />
-                  <span>Customer Information</span>
+                  <span>{t('admin.orders.customerInformation')}</span>
                 </h3>
-                <div className="space-y-2 text-sm">
-                  <p><span className="font-medium">Name:</span> {selectedOrder.customerName}</p>
-                  <p><span className="font-medium">Email:</span> {selectedOrder.customerEmail}</p>
-                  <p className="flex items-start gap-1">
+                <div className={`space-y-2 text-sm ${isRTL ? 'text-right' : ''}`}>
+                  <p><span className="font-medium">{t('admin.orders.customerName')}</span> {selectedOrder.customerName}</p>
+                  <p><span className="font-medium">{t('admin.orders.customerEmail')}</span> {selectedOrder.customerEmail}</p>
+                  <p className={`flex items-start gap-1 ${isRTL ? 'flex-row-reverse' : ''}`}>
                     <Phone className="h-4 w-4 mt-0.5 flex-shrink-0" />
                     <span>{selectedOrder.customerPhone}</span>
                   </p>
-                  <p className="flex items-start gap-1">
+                  <p className={`flex items-start gap-1 ${isRTL ? 'flex-row-reverse' : ''}`}>
                     <MapPin className="h-4 w-4 mt-0.5 flex-shrink-0" />
                     <span>{selectedOrder.deliveryLocation}</span>
                   </p>
@@ -389,33 +393,33 @@ const Orders = () => {
               
               {/* Order Information */}
               <div className="bg-gray-50 p-4 rounded-md">
-                <h3 className="font-medium mb-3 flex items-center gap-2">
+                <h3 className={`font-medium mb-3 flex items-center gap-2 ${isRTL ? 'flex-row-reverse' : ''}`}>
                   <Info className="h-4 w-4" />
-                  <span>Order Information</span>
+                  <span>{t('admin.orders.orderInformation')}</span>
                 </h3>
-                <div className="space-y-2 text-sm">
+                <div className={`space-y-2 text-sm ${isRTL ? 'text-right' : ''}`}>
                   <p>
-                    <span className="font-medium">Payment Method:</span> 
-                    {selectedOrder.paymentMethod === 'bank_transfer' ? 'Bank Transfer' : selectedOrder.paymentMethod}
+                    <span className="font-medium">{t('admin.orders.paymentMethod')}</span> 
+                    {selectedOrder.paymentMethod === 'bank_transfer' ? t('admin.orders.bankTransfer') : selectedOrder.paymentMethod}
                   </p>
                   <p>
-                    <span className="font-medium">Payment Status:</span>
+                    <span className="font-medium">{t('admin.orders.paymentStatus')}</span>
                     {selectedOrder.paymentConfirmed ? (
-                      <span className="ml-2 inline-flex items-center text-green-600">
-                        <Check className="h-3 w-3 mr-1" />
-                        Paid
+                      <span className={`${isRTL ? 'mr-2' : 'ml-2'} inline-flex items-center text-green-600`}>
+                        <Check className={`h-3 w-3 ${isRTL ? 'ml-1' : 'mr-1'}`} />
+                        {t('admin.orders.paid')}
                       </span>
                     ) : (
-                      <span className="ml-2 inline-flex items-center text-yellow-600">
-                        <X className="h-3 w-3 mr-1" />
-                        Pending
+                      <span className={`${isRTL ? 'mr-2' : 'ml-2'} inline-flex items-center text-yellow-600`}>
+                        <X className={`h-3 w-3 ${isRTL ? 'ml-1' : 'mr-1'}`} />
+                        {t('admin.orders.pending')}
                       </span>
                     )}
                   </p>
-                  <p><span className="font-medium">Total Amount:</span> {formatPrice(selectedOrder.totalAmount)}</p>
+                  <p><span className="font-medium">{t('admin.orders.totalAmount')}</span> {formatPrice(selectedOrder.totalAmount)}</p>
                   {selectedOrder.notes && (
                     <div>
-                      <span className="font-medium">Notes:</span>
+                      <span className="font-medium">{t('admin.orders.notes')}</span>
                       <p className="mt-1 italic bg-white p-2 rounded border border-gray-200">{selectedOrder.notes}</p>
                     </div>
                   )}
@@ -425,29 +429,29 @@ const Orders = () => {
             
             {/* Order Items */}
             <div className="mt-6">
-              <h3 className="font-medium mb-3">Order Items</h3>
+              <h3 className={`font-medium mb-3 ${isRTL ? 'text-right' : ''}`}>{t('admin.orders.orderItems')}</h3>
               <div className="bg-gray-50 rounded-md overflow-hidden">
                 <Table>
                   <TableHeader>
                     <TableRow>
-                      <TableHead>Product</TableHead>
-                      <TableHead className="text-center">Quantity</TableHead>
-                      <TableHead className="text-right">Price</TableHead>
-                      <TableHead className="text-right">Subtotal</TableHead>
+                      <TableHead className={isRTL ? 'text-right' : ''}>{t('admin.orders.product')}</TableHead>
+                      <TableHead className={isRTL ? 'text-right' : 'text-center'}>{t('admin.orders.quantity')}</TableHead>
+                      <TableHead className={isRTL ? 'text-left' : 'text-right'}>{t('admin.orders.price')}</TableHead>
+                      <TableHead className={isRTL ? 'text-left' : 'text-right'}>{t('admin.orders.subtotal')}</TableHead>
                     </TableRow>
                   </TableHeader>
                   <TableBody>
                     {orderItems.map((item, idx) => (
                       <TableRow key={idx}>
-                        <TableCell>{item.product.name}</TableCell>
-                        <TableCell className="text-center">{item.quantity}</TableCell>
-                        <TableCell className="text-right">{formatPrice(item.product.price)}</TableCell>
-                        <TableCell className="text-right">{formatPrice(item.product.price * item.quantity)}</TableCell>
+                        <TableCell className={isRTL ? 'text-right' : ''}>{item.product.name}</TableCell>
+                        <TableCell className={isRTL ? 'text-right' : 'text-center'}>{item.quantity}</TableCell>
+                        <TableCell className={isRTL ? 'text-left' : 'text-right'}>{formatPrice(item.product.price)}</TableCell>
+                        <TableCell className={isRTL ? 'text-left' : 'text-right'}>{formatPrice(item.product.price * item.quantity)}</TableCell>
                       </TableRow>
                     ))}
                     <TableRow>
-                      <TableCell colSpan={3} className="text-right font-medium">Total</TableCell>
-                      <TableCell className="text-right font-bold">{formatPrice(selectedOrder.totalAmount)}</TableCell>
+                      <TableCell colSpan={3} className={isRTL ? 'text-left font-medium' : 'text-right font-medium'}>{t('admin.orders.total')}</TableCell>
+                      <TableCell className={isRTL ? 'text-left font-bold' : 'text-right font-bold'}>{formatPrice(selectedOrder.totalAmount)}</TableCell>
                     </TableRow>
                   </TableBody>
                 </Table>
@@ -457,12 +461,12 @@ const Orders = () => {
             <Separator className="my-6" />
             
             {/* Action Buttons */}
-            <DialogFooter className="flex-col sm:flex-row gap-2 sm:space-x-2">
+            <DialogFooter className={`flex-col sm:flex-row gap-2 ${isRTL ? 'sm:space-x-reverse sm:flex-row-reverse' : 'sm:space-x-2'}`}>
               <Button
                 onClick={() => setIsUpdateStatusOpen(true)}
                 className="bg-blue-600 hover:bg-blue-700 text-white"
               >
-                Update Status
+                {t('admin.orders.updateStatus')}
               </Button>
               
               {!selectedOrder.paymentConfirmed && (
@@ -470,7 +474,7 @@ const Orders = () => {
                   onClick={() => setIsMarkAsPaidOpen(true)}
                   className="bg-green-600 hover:bg-green-700 text-white"
                 >
-                  Mark as Paid
+                  {t('admin.orders.markAsPaid')}
                 </Button>
               )}
               
@@ -478,14 +482,14 @@ const Orders = () => {
                 variant="destructive"
                 onClick={deleteOrder}
               >
-                Delete Order
+                {t('admin.orders.deleteOrder')}
               </Button>
               
               <Button
                 variant="outline"
                 onClick={closeOrderDetails}
               >
-                Close
+                {t('admin.orders.close')}
               </Button>
             </DialogFooter>
           </DialogContent>
@@ -495,11 +499,11 @@ const Orders = () => {
       {/* Update Status Dialog */}
       {selectedOrder && (
         <Dialog open={isUpdateStatusOpen} onOpenChange={setIsUpdateStatusOpen}>
-          <DialogContent className="sm:max-w-md">
+          <DialogContent className={`sm:max-w-md ${isRTL ? 'rtl' : ''}`}>
             <DialogHeader>
-              <DialogTitle>Update Order Status</DialogTitle>
+              <DialogTitle>{t('admin.orders.updateOrderStatus')}</DialogTitle>
               <DialogDescription>
-                Change the status for order #{selectedOrder.id}
+                {t('admin.orders.changeStatusFor', { id: selectedOrder.id })}
               </DialogDescription>
             </DialogHeader>
             
@@ -510,25 +514,25 @@ const Orders = () => {
                 disabled={isUpdating}
               >
                 <SelectTrigger>
-                  <SelectValue placeholder="Select status" />
+                  <SelectValue placeholder={t('admin.orders.selectStatus')} />
                 </SelectTrigger>
                 <SelectContent>
-                  <SelectItem value="PENDING">Pending</SelectItem>
-                  <SelectItem value="CONFIRMED">Confirmed</SelectItem>
-                  <SelectItem value="PROCESSING">Processing</SelectItem>
-                  <SelectItem value="SHIPPED">Shipped</SelectItem>
-                  <SelectItem value="DELIVERED">Delivered</SelectItem>
-                  <SelectItem value="CANCELLED">Cancelled</SelectItem>
+                  <SelectItem value="PENDING">{t('admin.orders.statuses.PENDING')}</SelectItem>
+                  <SelectItem value="CONFIRMED">{t('admin.orders.statuses.CONFIRMED')}</SelectItem>
+                  <SelectItem value="PROCESSING">{t('admin.orders.statuses.PROCESSING')}</SelectItem>
+                  <SelectItem value="SHIPPED">{t('admin.orders.statuses.SHIPPED')}</SelectItem>
+                  <SelectItem value="DELIVERED">{t('admin.orders.statuses.DELIVERED')}</SelectItem>
+                  <SelectItem value="CANCELLED">{t('admin.orders.statuses.CANCELLED')}</SelectItem>
                 </SelectContent>
               </Select>
             </div>
             
-            <DialogFooter>
+            <DialogFooter className={isRTL ? 'flex-row-reverse' : ''}>
               <Button
                 variant="outline"
                 onClick={() => setIsUpdateStatusOpen(false)}
               >
-                Cancel
+                {t('admin.orders.cancel')}
               </Button>
             </DialogFooter>
           </DialogContent>
@@ -538,27 +542,26 @@ const Orders = () => {
       {/* Mark as Paid Dialog */}
       {selectedOrder && (
         <Dialog open={isMarkAsPaidOpen} onOpenChange={setIsMarkAsPaidOpen}>
-          <DialogContent className="sm:max-w-md">
+          <DialogContent className={`sm:max-w-md ${isRTL ? 'rtl' : ''}`}>
             <DialogHeader>
-              <DialogTitle>Mark Order as Paid</DialogTitle>
+              <DialogTitle>{t('admin.orders.markOrderAsPaid')}</DialogTitle>
               <DialogDescription>
-                Confirm that payment has been received for order #{selectedOrder.id}
+                {t('admin.orders.confirmPaymentReceived', { id: selectedOrder.id })}
               </DialogDescription>
             </DialogHeader>
             
             <div className="mt-4 mb-6">
-              <p className="text-sm">
-                This will mark the order as paid and update its status to "Confirmed".
-                This action cannot be undone.
+              <p className={`text-sm ${isRTL ? 'text-right' : ''}`}>
+                {t('admin.orders.paymentConfirmationInfo')}
               </p>
             </div>
             
-            <DialogFooter>
+            <DialogFooter className={isRTL ? 'flex-row-reverse' : ''}>
               <Button
                 variant="outline"
                 onClick={() => setIsMarkAsPaidOpen(false)}
               >
-                Cancel
+                {t('admin.orders.cancel')}
               </Button>
               
               <Button
@@ -568,13 +571,13 @@ const Orders = () => {
               >
                 {isUpdating ? (
                   <>
-                    <Loader2 className="mr-2 h-4 w-4 animate-spin" />
-                    Processing...
+                    <Loader2 className={`${isRTL ? 'ml-2' : 'mr-2'} h-4 w-4 animate-spin`} />
+                    {t('admin.orders.processing')}
                   </>
                 ) : (
                   <>
-                    <Check className="mr-2 h-4 w-4" />
-                    Confirm Payment
+                    <Check className={`${isRTL ? 'ml-2' : 'mr-2'} h-4 w-4`} />
+                    {t('admin.orders.confirmPayment')}
                   </>
                 )}
               </Button>
