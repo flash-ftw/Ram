@@ -14,6 +14,8 @@ import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@
 import { Checkbox } from "@/components/ui/checkbox";
 import { ArrowLeft, Save } from "lucide-react";
 import { Product } from "@shared/schema";
+import { useTranslation } from "react-i18next";
+import i18n from "i18next";
 
 // Create a schema for product validation
 const productSchema = z.object({
