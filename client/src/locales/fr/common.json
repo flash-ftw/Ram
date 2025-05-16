@@ -346,6 +346,8 @@
   "contact": {
     "title": "Contactez-Nous",
     "subtitle": "Nous sommes là pour vous aider",
+    "heading": "Contactez Notre Équipe",
+    "description": "Envoyez-nous un message et notre équipe vous répondra rapidement. Nous sommes là pour répondre à toutes vos questions concernant nos produits et services.",
     "form": {
       "firstName": "Prénom",
       "lastName": "Nom",
@@ -353,8 +355,34 @@
       "phone": "Téléphone",
       "subject": "Sujet",
       "message": "Message",
+      "messagePlaceholder": "Comment pouvons-nous vous aider?",
+      "subjectPlaceholder": "Sélectionnez un sujet",
       "subscribe": "S'abonner à la newsletter",
-      "submit": "Envoyer"
+      "submit": "Envoyer",
+      "submitting": "Envoi en cours...",
+      "errors": {
+        "firstNameMin": "Le prénom doit contenir au moins 2 caractères",
+        "lastNameMin": "Le nom doit contenir au moins 2 caractères",
+        "emailInvalid": "Veuillez entrer une adresse email valide",
+        "subjectRequired": "Veuillez sélectionner un sujet",
+        "messageMin": "Le message doit contenir au moins 10 caractères"
+      },
+      "subjects": {
+        "motorcycleInquiry": "Demande d'informations sur les motos",
+        "testRide": "Demande d'essai",
+        "service": "Service et réparation",
+        "parts": "Pièces et accessoires",
+        "financing": "Options de financement",
+        "other": "Autre demande"
+      },
+      "success": {
+        "title": "Message envoyé!",
+        "message": "Merci pour votre message. Notre équipe vous contactera très bientôt."
+      },
+      "error": {
+        "title": "Erreur",
+        "message": "Une erreur s'est produite lors de l'envoi de votre message. Veuillez réessayer."
+      }
     },
     "info": {
       "address": "Adresse",

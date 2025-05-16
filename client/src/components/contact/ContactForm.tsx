@@ -76,7 +76,7 @@ const ContactForm = () => {
         <div className="max-w-4xl mx-auto">
           <div className="text-center mb-12">
             <div className="flex items-center justify-center mb-4">
-              <MessageSquare className="text-yellow-500 mr-2" size={28} />
+              <MessageSquare className={`text-yellow-500 ${isRTL ? 'ml-2' : 'mr-2'}`} size={28} />
               <span className="text-yellow-500 text-lg uppercase font-semibold tracking-wider">{t('contact.title')}</span>
             </div>
             <h2 className="text-4xl font-bold mb-4 moto-heading inline-block after:bottom-[-10px] after:w-24 after:left-1/2 after:-translate-x-1/2">
@@ -220,7 +220,7 @@ const ContactForm = () => {
                     disabled={isSubmitting}
                   >
                     {isSubmitting ? t('contact.form.submitting') : t('contact.form.submit')}
-                    <Send className="ml-2 -mr-1 w-5 h-5" />
+                    <Send className={`${isRTL ? 'mr-2 -ml-1' : 'ml-2 -mr-1'} w-5 h-5 ${isRTL ? 'transform rotate-180' : ''}`} />
                   </Button>
                 </div>
               </form>
