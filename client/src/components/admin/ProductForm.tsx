@@ -68,6 +68,7 @@ const ProductForm = ({ productId, defaultValues, isEdit = false }: ProductFormPr
   const queryClient = useQueryClient();
   const [isSubmitting, setIsSubmitting] = useState(false);
   const [galleryImageUrl, setGalleryImageUrl] = useState("");
+  const { t } = useTranslation();
 
   // Get categories and brands for dropdown options
   interface Category {
@@ -134,8 +135,8 @@ const ProductForm = ({ productId, defaultValues, isEdit = false }: ProductFormPr
     if (!z.string().url().safeParse(galleryImageUrl).success) {
       toast({
         variant: "destructive",
-        title: "Invalid URL",
-        description: "Please enter a valid image URL",
+        title: t('products.form.invalidUrl'),
+        description: t('products.form.invalidUrlDescription'),
       });
       return;
     }
@@ -145,8 +146,8 @@ const ProductForm = ({ productId, defaultValues, isEdit = false }: ProductFormPr
     if (currentGalleryImages.includes(galleryImageUrl)) {
       toast({
         variant: "destructive",
-        title: "Duplicate URL",
-        description: "This image URL is already in the gallery",
+        title: t('products.form.duplicateUrl'),
+        description: t('products.form.duplicateUrlDescription'),
       });
       return;
     }
@@ -232,8 +233,8 @@ const ProductForm = ({ productId, defaultValues, isEdit = false }: ProductFormPr
       }
       
       toast({
-        title: isEdit ? "Product updated" : "Product created",
-        description: `The product has been ${isEdit ? 'updated' : 'created'} successfully.`,
+        title: isEdit ? t('products.form.productUpdated') : t('products.form.productCreated'),
+        description: isEdit ? t('products.form.productUpdateSuccess') : t('products.form.productCreateSuccess'),
       });
       
       // Invalidate queries to refresh data
@@ -250,8 +251,8 @@ const ProductForm = ({ productId, defaultValues, isEdit = false }: ProductFormPr
       console.error("Error saving product:", error);
       toast({
         variant: "destructive",
-        title: "Error",
-        description: "Failed to save product. Please try again.",
+        title: t('products.form.saveError'),
+        description: t('products.form.saveErrorDescription'),
       });
     } finally {
       setIsSubmitting(false);
@@ -265,10 +266,11 @@ const ProductForm = ({ productId, defaultValues, isEdit = false }: ProductFormPr
           variant="outline" 
           size="icon" 
           onClick={() => setLocation("/admin/products")}
+          aria-label={t('products.form.backToProducts')}
         >
           <ArrowLeft className="h-4 w-4" />
         </Button>
-        <h2 className="text-xl font-semibold">{isEdit ? "Edit Product" : "Create New Product"}</h2>
+        <h2 className="text-xl font-semibold">{isEdit ? t('products.form.editProduct') : t('products.form.createNewProduct')}</h2>
       </div>
       
       <Form {...form}>
